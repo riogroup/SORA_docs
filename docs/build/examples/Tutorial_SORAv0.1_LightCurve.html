@@ -1,0 +1,2104 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>LightCurve Object Class &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Observer Object Class" href="Tutorial_SORAv0.1_Observer.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Tutorial_SORAv0.1_Ephem.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Manual:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../goals_updates.html">Goals and Version updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../curiosities.html">Curiosities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../future_linea.html">The future and the LIneA TNO Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">Input and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora_code.html">SORA Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.1_ChiSquare.html">ChiSquare Object Class</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LightCurve Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.1_Observer.html">Observer Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.1_Occultation.html">Occultation Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.1_Prediction.html"><em>prediction()</em> and PredictionTable Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.1_Star.html">Star Class</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#lightcurve">Lightcurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#module-sora.Observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#module-sora.Occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#module-sora.Star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#module-sora.Body">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sora.html#extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>LightCurve Object Class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/Tutorial_SORAv0.1_LightCurve.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p><strong>SORA - Stellar Occultation Reduction and Analysis</strong></p>
+<div class="section" id="LightCurve-Object-Class">
+<h1>LightCurve Object Class<a class="headerlink" href="#LightCurve-Object-Class" title="Permalink to this headline">¶</a></h1>
+<p>The LightCurve Object Class within SORA was created to reduce and analyze stellar occultations’ light curves. Here we present some useful tasks that allows the user: - set the model’s parameters - prepare the light curve to be reduced - fit one or all parameters simultaneously.</p>
+<p>The documentation at add link contains the details about every step.</p>
+<p>This Jupyter-Notebook was designed as a tutorial for how to work with the LightCurve Object Class. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</p>
+<p>Index</p>
+<ol class="arabic">
+<li><p><a class="reference external" href="#section_1">Instantiating the LightCurve Object</a></p></li>
+<li><p><a class="reference external" href="#section_2">Set and/or modify model parameters</a></p></li>
+<li><p><a class="reference external" href="#section_3">Preparing the LightCurve</a></p>
+<p>3.1 <a class="reference external" href="#section_3a">Light curve normalization using a polinomial fit</a></p>
+</li>
+<li><p><a class="reference external" href="#section_4">Automatic dettection of Occultations</a></p></li>
+<li><p><a class="reference external" href="#section_5">Complete occultation light curve model and fitting</a></p>
+<p>5.1 <a class="reference external" href="#section_5a">Automatic mode</a></p>
+<p>5.2 <a class="reference external" href="#section_5b">Fitting only the immersion</a></p>
+<p>5.3 <a class="reference external" href="#section_5c">Fitting the times and the opacity</a></p>
+</li>
+<li><p><a class="reference external" href="#section_6">Viewing and saving the results</a></p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">## SORA package</span>
+<span class="kn">from</span> <span class="nn">sora</span> <span class="kn">import</span> <span class="n">LightCurve</span>
+
+<span class="c1">## Other main and necessary packages</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+<h3 id="section_1"><ol class="arabic">
+<li><p>Instantiating the LightCurve Object</p>
+</h3></li>
+</ol>
+<p>The LightCurve Object Class can be instantiated in different ways.</p>
+<p>First, all LightCurves Objects should have a ‘name’ that will distinguish it from other LightCurves Objects and also allows the Occultation Object to control all the steps and Objects. It is not possible to add two LightCurves Objects with the same name, although the user can add the same light curve file with different LightCurve Object names.</p>
+<p>The LightCurve main goal is to reduce and analyse stellar occultations light curves, which is a file composed of two or three columns: time, flux, and flux uncertainty. An ASCII file can be used as input, where the first column is the time (Julian Date or seconds relative to a reference time), the second column is the flux for each time, and the third is the flux uncertainty (optional). Another option is to furnish theses parameters directly as NumPy arrays. If the time provided is in JD the
+reference time will be set as 00:00:00.000 of the occultation date, otherwise the user should add the used reference time.</p>
+<p>Other observational parameters needed are the exposure time for the respective light curve (in seconds) and the filter parameters (central wavelength and bandwidth, in microns). If the filter parameter is not furnished the default values are used: <span class="math notranslate nohighlight">\(\lambda_0\)</span> as 0.7 and <span class="math notranslate nohighlight">\(\Delta \lambda\)</span> as 0.3 microns.</p>
+<p>If the parameters of the light curve were already calculated using SORA or other method, the user could instantiate the LightCurve by only providing the instants of immersion and emersion and their uncertainties, with no need to provide a light curve file. This is useful for example in cases where the user does not want to redo the fitting process and go directly to the chords and ellipse fit procedure within the Occultation Object Class.</p>
+<p>The user can also instantiate a LightCurve Object for the negative observations. In this case, it is just needed the initial and the end time of the observational sequence. In this case, an Error (and a warning message) will raise for all functions in this module that require times and fluxes, but the object will be instantiated and can be used for other purposes.</p>
+<p><strong>The LightCurve Docstring was designed to help the users. Also, each function has its Docstring containing its main purpose and the needed parameters to set (physical description and formats). Please, do not hesitate to use it.</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>LightCurve<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span> LightCurve<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Init docstring:</span>
+Defines a Light Curve
+
+Parameters:
+    name (str): The name of the LightCurve. (required)
+        Each time an LightCurve object is defined the name must be different.
+    tref (Time,str,float): Instant of reference.
+        Format: Julian Date, string in ISO format or Time object.
+        Required only if LightCurve have input fluxes and given time is not in Julian Date.
+    central_bandpass (int,float): The center band pass of the detector used in observation.
+        Value in microns (not required). Default=0.7
+    delta_bandpass (int,float): The band pass width of the detector used in observation.
+        Value in microns (not required). Default=0.3
+    exptime (int,float): The exposure time of the observation, in seconds.
+        NOT required in cases 2, 3 and 4 below.
+        Required in case 1 below.
+
+Kwargs:
+    vel (int,float):  velocity in km/s.
+    dist (int,float): object distance in AU.
+    d_star (float):   star diameter, in km.
+
+Input data must be one of the 4 options below:
+
+    1) Input file with time and flux
+        file (str): a file with the time and flux.
+            A third column with the error in flux can also be given.
+        usecols (int, tuple, array): Which columns to read, with the
+            first being the time, the seconds the flux and third the flux error [optional].
+
+    2) IF file is not given:
+        time: time must be a list of times, in seconds from tref,
+            or Julian Date, or a Time object.
+        flux: flux must be a list of fluxes. It must have the
+            same lenght as time.
+        dflux: if file not given, dflux must be a list of fluxes errors.
+            It must have the same lenght as time. (not required)
+
+    IF time and flux are not given.
+    3) For a positive occultation
+        immersion: The instant of immersion.
+        emersion: The instant of emersion.
+        immersion_err: Immersion time uncertainty, in seconds.
+        emersion_err: Emersion time uncertainty, in seconds.
+
+    4) For a negative occultation
+        initial_time: The initial time of observation.
+        end_time: The end time of observation.
+
+Examples: The user can provide one of the followings:
+
+    LightCurve(name, flux, time, exptime) # dflux can also be given
+    LightCurve(name, file, exptime) # dflux can also be given
+    LightCurve(name, immersion, immersion_err, emersion, emersion_err)
+    LightCurve(name, initial_time, end_time)
+<span class="ansi-red-fg">File:</span>           ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>
+
+</pre></div></div>
+</div>
+<p><strong>Example of LightCurve intantiate with an ASCII file</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># The file lc_example.dat contains time in JD and flux</span>
+<span class="n">lc_1a</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 1a&#39;</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;input/lightcurves/lc_example.dat&#39;</span><span class="p">,</span><span class="n">exptime</span><span class="o">=</span><span class="mf">0.100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># The file lc_example_trend.dat contains time in seconds and flux, so it is needed a reference time</span>
+<span class="n">lc_1b</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 1b&#39;</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;input/lightcurves/lc_example_trend.dat&#39;</span><span class="p">,</span><span class="n">tref</span><span class="o">=</span><span class="s1">&#39;2017-06-22 00:00&#39;</span><span class="p">,</span><span class="n">exptime</span><span class="o">=</span><span class="mf">0.100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># If the file has more columns, the user can set which columns to use. Always in a sense, time, flux, flux error [optional].</span>
+<span class="n">lc_1c</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 1c&#39;</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;input/lightcurves/lc_example_colunms.dat&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">exptime</span><span class="o">=</span><span class="mf">0.100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Example of LightCurve intantiate with NumPy arrays with times as Julian Dates</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;input/lightcurves/lc_example_2.dat&#39;</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first time: &#39;</span><span class="p">,</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">lc_2a</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 2a&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span><span class="n">flux</span><span class="o">=</span><span class="n">flux</span><span class="p">,</span><span class="n">exptime</span><span class="o">=</span><span class="mf">0.075</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+first time:  2457927.38872249
+</pre></div></div>
+</div>
+<p><strong>Example of LightCurve intantiate with NumPy arrays with times as seconds relative to a reference time</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;input/lightcurves/lc_example_2.dat&#39;</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tref</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2017-06-22 21:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">jd</span>
+
+<span class="n">time_sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">-</span> <span class="n">tref</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first time: &#39;</span><span class="p">,</span><span class="n">time_sec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">lc_2b</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 2b&#39;</span><span class="p">,</span><span class="n">time</span><span class="o">=</span><span class="n">time_sec</span><span class="p">,</span><span class="n">flux</span><span class="o">=</span><span class="n">flux</span><span class="p">,</span><span class="n">tref</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:00&#39;</span><span class="p">,</span><span class="n">exptime</span><span class="o">=</span><span class="mf">0.075</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+first time:  1185.6231406331062
+</pre></div></div>
+</div>
+<p><strong>Example of LightCurve intantiate with the required parameters (positive)</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_3</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 3&#39;</span><span class="p">,</span>
+                  <span class="n">initial_time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:16:00.094&#39;</span><span class="p">,</span>
+                  <span class="n">end_time</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:28:00.018&#39;</span><span class="p">,</span>
+                  <span class="n">immersion</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:21:15.628&#39;</span><span class="p">,</span><span class="n">immersion_err</span><span class="o">=</span><span class="mf">0.010</span><span class="p">,</span>
+                  <span class="n">emersion</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:21:19.988&#39;</span><span class="p">,</span><span class="n">emersion_err</span><span class="o">=</span><span class="mf">0.040</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<p><strong>Example of LightCurve intantiate with the required parameters (negative)</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_4</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 4&#39;</span><span class="p">,</span>
+                  <span class="n">initial_time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:16:00.094&#39;</span><span class="p">,</span>
+                  <span class="n">end_time</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:28:00.018&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<p><strong>An error will rise if the user try to intanciate two LightCurves with the same name</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_5a</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 5&#39;</span><span class="p">,</span>
+                   <span class="n">initial_time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:16:00.094&#39;</span><span class="p">,</span>
+                   <span class="n">end_time</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:28:00.018&#39;</span><span class="p">)</span>
+
+<span class="n">lc_5b</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 5&#39;</span><span class="p">,</span>
+                   <span class="n">initial_time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 20:00:00&#39;</span><span class="p">,</span>
+                   <span class="n">end_time</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:30:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-10-9bb82ef4dec5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>                    end_time =&#39;2017-06-22 21:28:00.018&#39;)
+<span class="ansi-green-intense-fg ansi-bold">      4</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> lc_5b = LightCurve(name=&#39;Example 5&#39;,
+</span><span class="ansi-green-intense-fg ansi-bold">      6</span>                    initial_time<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;2017-06-22 20:00:00&#39;</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>                    end_time =&#39;2017-06-22 21:30:00&#39;)
+
+<span class="ansi-green-fg">~/miniconda3/lib/python3.8/site-packages/sora/config/decorators.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>             rename_kwargs<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> kwargs<span class="ansi-blue-fg">,</span> aliases<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     17</span>         <span class="ansi-green-fg">return</span> wrapper
+<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-green-fg">return</span> deco
+
+<span class="ansi-green-fg">~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, name, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    123</span>         self<span class="ansi-blue-fg">.</span>time_model <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">    124</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>__name <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>__names<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 125</span><span class="ansi-red-fg">             raise ValueError(&#39;name {} already defined for another LightCurve object. Please choose a different one.&#39;.
+</span><span class="ansi-green-intense-fg ansi-bold">    126</span>                              format(self.__name))
+<span class="ansi-green-intense-fg ansi-bold">    127</span>         <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">&#39;tref&#39;</span> <span class="ansi-green-fg">in</span> kwargs<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">ValueError</span>: name Example 5 already defined for another LightCurve object. Please choose a different one.
+</pre></div></div>
+</div>
+<p><strong>If the user wants to overwrite the previous LightCurve, first they need to delete it</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">del</span><span class="p">(</span><span class="n">lc_5a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_5b</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Example 5&#39;</span><span class="p">,</span>
+                   <span class="n">initial_time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 20:00:00&#39;</span><span class="p">,</span>
+                   <span class="n">end_time</span> <span class="o">=</span><span class="s1">&#39;2017-06-22 21:30:00&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<p><strong>After the LightCurve was instantiated, some parameters can be easily retrieved</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Initial time: </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">initial_time</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean time:    </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">time_mean</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End time:     </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Name: Example 1a
+Initial time: 2017-06-22 21:20:00.056 UTC
+Mean time:    2017-06-22 21:21:40.007 UTC
+End time:     2017-06-22 21:23:19.958 UTC
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># For cases where the immersion and emersion time were instanciated (or calculated), the mean time is between these values.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Initial time:   </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_3</span><span class="o">.</span><span class="n">initial_time</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Immersion time: </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_3</span><span class="o">.</span><span class="n">immersion</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean time:      </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_3</span><span class="o">.</span><span class="n">time_mean</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Emersion time:  </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_3</span><span class="o">.</span><span class="n">emersion</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End time:       </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_3</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">iso</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Initial time:   2017-06-22 21:16:00.094 UTC
+Immersion time: 2017-06-22 21:21:15.628 UTC
+Mean time:      2017-06-22 21:21:17.808 UTC
+Emersion time:  2017-06-22 21:21:19.988 UTC
+End time:       2017-06-22 21:28:00.018 UTC
+</pre></div></div>
+</div>
+<p><strong>If the LightCurve were instantiated with times and fluxes, the exposure time and the mean cycle can also be obtained</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exposure time: </span><span class="si">{:.4f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">exptime</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cycle time:    </span><span class="si">{:.4f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">cycle</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Exposure time: 0.1000 s
+Cycle time:    0.1002 s
+</pre></div></div>
+</div>
+<h3 id="section_2"><ol class="arabic" start="2">
+<li><p>Set and/or modifing model parameters</p>
+</h3></li>
+</ol>
+<p>In order to create a stellar occultation light curve model, some physical parameters are needed. First, we need to ‘project’ the time axis of the light curve in the sky plane using the event’s velocity (<span class="math notranslate nohighlight">\(vel\)</span> in km/s). Then the Fresnel diffraction should be applied. That diffraction works in a scale that depends on the object distance (<span class="math notranslate nohighlight">\(dist\)</span> in AU) and the observational wavelength (<span class="math notranslate nohighlight">\(\lambda_0\)</span> and <span class="math notranslate nohighlight">\(\Delta \lambda\)</span>, in microns). The last parameter needed is the occulted
+star apparent diameter at the object distance (<span class="math notranslate nohighlight">\(d\_star\)</span> in km). In all cases, the user can provide each parameter with its own unit, otherwise SORA will consider the standard units described above.</p>
+<p><strong>Let’s start with the shadow velocity during the occultation, in km/s</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="n">vel</span><span class="o">=</span><span class="mf">22.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vel: </span><span class="si">{:3.1f}</span><span class="s1"> km/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">vel</span><span class="p">))</span>
+
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="n">vel</span><span class="o">=</span><span class="mf">22.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vel: </span><span class="si">{:3.1f}</span><span class="s1"> km/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">vel</span><span class="p">))</span>
+
+<span class="n">lc_2a</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="n">vel</span><span class="o">=</span><span class="mf">22000.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vel: </span><span class="si">{:3.1f}</span><span class="s1"> km/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_2a</span><span class="o">.</span><span class="n">vel</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Vel: 22.0 km/s
+Vel: 22.0 km/s
+Vel: 22.0 km/s
+</pre></div></div>
+</div>
+<p><strong>Now, the object distance at occultation time, in AU</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">set_dist</span><span class="p">(</span><span class="n">dist</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">{:3.1f}</span><span class="s1"> AU&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">dist</span><span class="p">))</span>
+
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">set_dist</span><span class="p">(</span><span class="n">dist</span><span class="o">=</span><span class="mi">15</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">{:3.1f}</span><span class="s1"> AU&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">dist</span><span class="p">))</span>
+
+<span class="n">lc_2a</span><span class="o">.</span><span class="n">set_dist</span><span class="p">(</span><span class="n">dist</span><span class="o">=</span><span class="mf">2243968060.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">{:3.1f}</span><span class="s1"> AU&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_2a</span><span class="o">.</span><span class="n">dist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Distance: 15.0 AU
+Distance: 15.0 AU
+Distance: 15.0 AU
+</pre></div></div>
+</div>
+<p><strong>And then, the observational wavelength, central value (:math:`lambda_0`) and its bandwidth (:math:`Deltalambda`), in microns</strong></p>
+<p>Default value set as <span class="math notranslate nohighlight">\(\lambda_0\)</span> = 0.7 and <span class="math notranslate nohighlight">\(\Delta\lambda\)</span> = 0.3 microns, no filter (Clear).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observational wavelength centred at </span><span class="si">{:1.3f}</span><span class="s1"> with a bandwidth of </span><span class="si">{:1.3f}</span><span class="s1"> microns&#39;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">central_bandpass</span><span class="p">,</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">delta_bandpass</span><span class="p">))</span>
+
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">set_filter</span><span class="p">(</span><span class="n">central_bandpass</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">delta_bandpass</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observational wavelength centred at </span><span class="si">{:1.3f}</span><span class="s1"> with a bandwidth of </span><span class="si">{:1.3f}</span><span class="s1"> microns&#39;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">central_bandpass</span><span class="p">,</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">delta_bandpass</span><span class="p">))</span>
+
+<span class="n">lc_2a</span><span class="o">.</span><span class="n">set_filter</span><span class="p">(</span><span class="n">central_bandpass</span><span class="o">=</span><span class="mf">0.8</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">micrometer</span><span class="p">,</span> <span class="n">delta_bandpass</span><span class="o">=</span><span class="mf">0.2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">micrometer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observational wavelength centred at </span><span class="si">{:1.3f}</span><span class="s1"> with a bandwidth of </span><span class="si">{:1.3f}</span><span class="s1"> microns&#39;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_2a</span><span class="o">.</span><span class="n">central_bandpass</span><span class="p">,</span><span class="n">lc_2a</span><span class="o">.</span><span class="n">delta_bandpass</span><span class="p">))</span>
+
+<span class="n">lc_4</span><span class="o">.</span><span class="n">set_filter</span><span class="p">(</span><span class="n">central_bandpass</span><span class="o">=</span><span class="mi">800</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">delta_bandpass</span><span class="o">=</span><span class="mi">200</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observational wavelength centred at </span><span class="si">{:1.3f}</span><span class="s1"> with a bandwidth of </span><span class="si">{:1.3f}</span><span class="s1"> microns&#39;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_4</span><span class="o">.</span><span class="n">central_bandpass</span><span class="p">,</span><span class="n">lc_4</span><span class="o">.</span><span class="n">delta_bandpass</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Observational wavelength centred at 0.700 with a bandwidth of 0.300 microns
+Observational wavelength centred at 0.800 with a bandwidth of 0.200 microns
+Observational wavelength centred at 0.800 with a bandwidth of 0.200 microns
+Observational wavelength centred at 0.800 with a bandwidth of 0.200 microns
+</pre></div></div>
+</div>
+<p><strong>With the model parameters, the mean Fresnel Scale (:math:`F_S`) is automatically calculated.</strong></p>
+<p><span class="math notranslate nohighlight">\(F_S = \frac{1}{2}.\left(\sqrt{\frac{(\lambda + 0.5.\Delta\lambda).dist}{2}} + \sqrt{\frac{(\lambda - 0.5.\Delta\lambda).dist}{2}}\right)\)</span></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fresnel Scale: </span><span class="si">{:1.3f}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">fresnel_scale</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Fresnel Scale: 0.881 km
+</pre></div></div>
+</div>
+<p><strong>Last, let’s set the stellar diameter projected at the body distance, in km</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">set_star_diam</span><span class="p">(</span><span class="n">d_star</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stellar diameter: </span><span class="si">{:1.2f}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">d_star</span><span class="p">))</span>
+
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">set_star_diam</span><span class="p">(</span><span class="n">d_star</span><span class="o">=</span><span class="mf">0.2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stellar diameter: </span><span class="si">{:1.2f}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">d_star</span><span class="p">))</span>
+
+<span class="n">lc_2a</span><span class="o">.</span><span class="n">set_star_diam</span><span class="p">(</span><span class="n">d_star</span><span class="o">=</span><span class="mi">200</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Stellar diameter: </span><span class="si">{:1.2f}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_2a</span><span class="o">.</span><span class="n">d_star</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Stellar diameter: 0.20 km
+Stellar diameter: 0.20 km
+Stellar diameter: 0.20 km
+</pre></div></div>
+</div>
+<p><strong>If the user instantiated the LightCurve Object without times and flux and wanna do it later (or redo it)</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_4</span><span class="o">.</span><span class="n">set_flux</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;input/lightcurves/lc_example_3.dat&#39;</span><span class="p">,</span><span class="n">exptime</span><span class="o">=</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">tref</span><span class="o">=</span><span class="s1">&#39;2018-05-20 00:00:00.000&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<h3 id="section_3"><ol class="arabic" start="3">
+<li><p>Preparing the LightCurve</p>
+</h3></li>
+</ol>
+<p>With the LightCurve Object instantiated, the user may want to improve the quality of his curve using some processes.</p>
+<p>For SORA v0.1 the only process implemented is the normalization of a light curve using a polinomial fit.</p>
+<p>Other processes will be developed for future use, such as the binning of the light curve (sum, mean and median), a Savitzky–Golay filter, among others.</p>
+<p><strong>First, let’s check the expected magnitude drop and bottom flux</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1b</span><span class="o">.</span><span class="n">calc_magnitude_drop</span><span class="p">(</span><span class="n">mag_obj</span><span class="o">=</span><span class="mf">18.6</span><span class="p">,</span><span class="n">mag_star</span><span class="o">=</span><span class="mf">14.3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expected magnitude drop: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">mag_drop</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expected bottom flux:    </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">bottom_flux</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Expected magnitude drop: 4.320
+Expected bottom flux:    0.019
+</pre></div></div>
+</div>
+<p><strong>Now, let’s look at this light curve</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1b</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_43_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_43_0.png" />
+</div>
+</div>
+<p><strong>There is a linear trend at this light curve.</strong></p>
+<h4 id="section_3a"><p>3.1. Light curve normalization using a polinomial fit</p>
+</h4><p>The user can remove this linear trend using the function LightCurve.normalize(). That function can be used automatically or with the desired inputed parameters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>lc_1b.normalize<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+lc_1b<span class="ansi-blue-fg">.</span>normalize<span class="ansi-blue-fg">(</span>
+    poly_deg<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    mask<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    flux_min<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.0</span><span class="ansi-blue-fg">,</span>
+    flux_max<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1.0</span><span class="ansi-blue-fg">,</span>
+    plot<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Returns the fresnel scale.
+
+Parameters:
+    poly_deg (int): degree of the polynom to be fitted
+    mask (array of Bolleans): which values to be fitted
+    flux_min (int,float): event flux to be setted as 0.0
+    flux_max (int,float): baseline flux to be setted as 1.0
+    plot (Bollean): If True plot the steps for visual aid
+<span class="ansi-red-fg">File:</span>      ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<p><strong>Let’s try the automatic mode</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1b</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Normalization using a 1 degree polynom
+There is no improvement with a 2 degree polynom
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_47_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_47_1.png" />
+</div>
+</div>
+<p><strong>If the user wants to see the steps inside the automatic mode, just set the :math:`plot` parameter as True</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1b</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Normalization using a 1 degree polynom
+There is no improvement with a 2 degree polynom
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_3.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_49_3.png" />
+</div>
+</div>
+<p><strong>As an standard procedure within the SORA package the user can control all the parameters</strong></p>
+<p>This is useful when the automatic mode does not work correctly (particular cases), or for better control of the procedure.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="mi">76875</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="mi">76900</span><span class="p">)</span>
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">poly_deg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="n">lc_1b</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">76875</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">76900</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_51_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_51_0.png" />
+</div>
+</div>
+<p><strong>Also, the user can control the maximum and/or minimum value of the flux</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_4</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_53_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_53_0.png" />
+</div>
+</div>
+<p><strong>In this case the bottom flux goes to 0.5, instead of the expected 0.0. This com be solved setting the :math:`flux_min` parameter</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_4</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">flux_min</span><span class="o">=</span><span class="mf">0.50</span><span class="p">)</span>
+
+<span class="n">lc_4</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Normalization using a 0 degree polynom
+There is no improvement with a 1 degree polynom
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_55_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_55_1.png" />
+</div>
+</div>
+<p><strong>If the user is not satisfied with the normalization, it is possible to throw away and redo the normalization process and to return to the initial stage using the LightCurve.reset_flux()</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_4</span><span class="o">.</span><span class="n">reset_flux</span><span class="p">()</span>
+
+<span class="n">lc_4</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_57_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_57_0.png" />
+</div>
+</div>
+<h3 id="section_4"><ol class="arabic" start="4">
+<li><p>Automatic detection of Occultations</p>
+</h3></li>
+</ol>
+<p>Before considering any effect (Fresnell scale, star diameter, etc), the user can choose that SORA detect the events in the light curve automatically. This process is done using the BLS algorithm (Kovacs et al., 2002). This function will always find events and give their Signal to Noise Raito (SNR). The user will consider the values for the events found and determine the significance of each event. This is a useful tool for detection of low depth events or to check for secondary events, for
+example.</p>
+<p>The result of the <em>LightCurve.occ_detect()</em> will be a python dictionary containing: a rank for the detection; duration; central, immersion and emersion times; time uncertainty; flux depth and its uncertainty; baseline flux and its uncertainty; SNR; and a bollean mask with the values inside the detection. All the times are in seconds. The automatic mode will determine only one detection (the most significant).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>lc_2a.occ_detect<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+lc_2a<span class="ansi-blue-fg">.</span>occ_detect<span class="ansi-blue-fg">(</span>
+    maximum_duration<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    dur_step<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    snr_limit<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    n_detections<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    plot<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Detects automatically the occultation event in the light curve
+    (detects a &#39;square well transit&#39;)
+
+Parameters:
+(All parameters are optional)
+    maximum_duration (float): Maximum duration of the occultation event. Default: light curve&#39;s time span
+    dur_step (float): Step size to sweep occultation duration event. Default=1/2 of sampling
+    snr_limit (float): Minimum occultation SNR. Default=none
+    n_detections (int): Number of detections regardless the SNR.
+        n_detections is superseded by snr_limit. Default=1
+    plot (boolean): True if output plots are desired.
+
+Returns:
+    OrderedDict = An ordered dictionary of :attr:`name`::attr:`value` pairs for each Parameter.
+
+Examples:
+    &gt;&gt;&gt; lc = sora.LightCurve(time=time, flux=flux, exptime=0.0, name=&#39;lc_example&#39;)
+    &gt;&gt;&gt; params = lc.occ_detect()
+    &gt;&gt;&gt; params
+    {&#39;rank&#39;: 1,
+    &#39;occultation_duration&#39;: 40.1384063065052,
+    &#39;central_time&#39;: 7916.773870512843,
+    &#39;immersion_time&#39;: 7896.7046673595905,
+    &#39;emersion_time&#39;: 7936.843073666096,
+    &#39;time_err&#39;: 0.05011036992073059,
+    &#39;depth&#39;: 0.8663887801707082,
+    &#39;depth_err&#39;: 0.10986223384336465,
+    &#39;baseline&#39;: 0.9110181732552853,
+    &#39;baseline_err&#39;: 0.19045768512595365,
+    &#39;snr&#39;: 7.886138392251848,
+    &#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}
+<span class="ansi-red-fg">File:</span>      ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<p><strong>For visual aid the user can set the :math:`plot` parameter as True</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">preliminary</span> <span class="o">=</span> <span class="n">lc_2a</span><span class="o">.</span><span class="n">occ_detect</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">preliminary</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;rank&#39;: 1,
+ &#39;occultation_duration&#39;: 11.52958944439888,
+ &#39;central_time&#39;: 76888.023570925,
+ &#39;immersion_time&#39;: 76882.2587762028,
+ &#39;emersion_time&#39;: 76893.7883656472,
+ &#39;time_err&#39;: 0.04017278552055359,
+ &#39;depth&#39;: 0.9797601789722584,
+ &#39;depth_err&#39;: 0.06536566413075075,
+ &#39;baseline&#39;: 1.0271920160757066,
+ &#39;baseline_err&#39;: 0.11532581974159437,
+ &#39;snr&#39;: 14.988911869883966,
+ &#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_61_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_61_1.png" />
+</div>
+</div>
+<p><strong>The user can choose to detect more than one event, two parameters can be used to control this :math:`n_detections` and :math:`snr_limit`</strong></p>
+<p>With the <span class="math notranslate nohighlight">\(n\_detections\)</span>, the user will set the number of detections they want. On the other hand <span class="math notranslate nohighlight">\(snr\_limit\)</span> will obtain all the detection within the set limit. In all cases is up to the user to confirm if these detections have physical meaning.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">preliminary</span> <span class="o">=</span> <span class="n">lc_2a</span><span class="o">.</span><span class="n">occ_detect</span><span class="p">(</span><span class="n">n_detections</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_63_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_63_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">preliminary</span> <span class="o">=</span> <span class="n">lc_2a</span><span class="o">.</span><span class="n">occ_detect</span><span class="p">(</span><span class="n">snr_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_64_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_64_0.png" />
+</div>
+</div>
+<p><strong>Other two parameters can be used for otimization purpose</strong></p>
+<p>The first is the <span class="math notranslate nohighlight">\(maximum\_duration\)</span>, and this will set an upper limit to the size of the occultation (in seconds). The user can also set the <span class="math notranslate nohighlight">\(dur\_step\)</span>, which is the step size in seconds of the occultation search. Those parameters will decrease the CPU time of these searches.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">preliminary</span> <span class="o">=</span> <span class="n">lc_2a</span><span class="o">.</span><span class="n">occ_detect</span><span class="p">(</span><span class="n">maximum_duration</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">dur_step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">preliminary</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;rank&#39;: 1,
+ &#39;occultation_duration&#39;: 11.0,
+ &#39;central_time&#39;: 76888.3231406331,
+ &#39;immersion_time&#39;: 76882.8231406331,
+ &#39;emersion_time&#39;: 76893.8231406331,
+ &#39;time_err&#39;: 0.04017278552055359,
+ &#39;depth&#39;: 0.9802503938156636,
+ &#39;depth_err&#39;: 0.062074094327636595,
+ &#39;baseline&#39;: 1.0241496004823303,
+ &#39;baseline_err&#39;: 0.1266541830883394,
+ &#39;snr&#39;: 15.791618136895426,
+ &#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_66_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_66_1.png" />
+</div>
+</div>
+<h3 id="section_5"><ol class="arabic" start="5">
+<li><p>Complete occultation light curve model and fitting</p>
+</h3></li>
+</ol>
+<p>The model considers a sharp-edge occultation model (geometric) convolved with Fresnel diffraction, stellar diameter (projected at the body distance), CCD bandwidth, and finite integration time. It is created using a smaller time resolution than the observational light curve. By default, the model will have a resolution that is 1/10 of the mean Fresnel Scale (in km) divided by the event’s velocity (in km/s), if the exposure time is shorter than this value the software will use 1/10 of the
+exposure time. The parameters of interest are, mostly, the immersion and emersion times. Moreover, the opacity of the object can also be of interest for particular cases (occultations by rings, for instance), where 1.0 means an opaque body and 0.0 a transparent one.</p>
+<p>The fit consists into create models and compare them with the observational light curve, through a standard <span class="math notranslate nohighlight">\(\chi^2\)</span> test. The parameters that minimizes the <span class="math notranslate nohighlight">\(\chi^2\)</span> are the fitted parameters and their uncertainties are obtained from the values within <span class="math notranslate nohighlight">\(1\sigma = \chi^2_{min} + 1\)</span> and <span class="math notranslate nohighlight">\(3\sigma = \chi^2_{min} + 9\)</span>. The result of the fit is a ChiSquare Object Class, and its functions can be found at its specific Jupyter-Notebook.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>lc_1a.occ_model<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+lc_1a<span class="ansi-blue-fg">.</span>occ_model<span class="ansi-blue-fg">(</span>
+    immersion_time<span class="ansi-blue-fg">,</span>
+    emersion_time<span class="ansi-blue-fg">,</span>
+    opacity<span class="ansi-blue-fg">,</span>
+    mask<span class="ansi-blue-fg">,</span>
+    npt_star<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">12</span><span class="ansi-blue-fg">,</span>
+    time_resolution_factor<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">,</span>
+    flux_min<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span>
+    flux_max<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Returns the modelled light curve considering fresnel difraction, star diameter and intrumental response.
+
+Parameters:
+    immersion_time (int, float): Immersion time, in seconds.
+    emersion_time (int, float): Emersion time, in seconds.
+    opacity (int, float): Opacity. Opaque = 1.0, transparent = 0.0
+    mask (array with Booleans): Mask with True values to be computed
+    npt_star  (int): Number of subdivisions for computing the star size&#39;s effects. Default=12
+    time_resolution_factor (int,float): Steps for fresnel scale used for modelling the light curve.
+        Default=10*fresnel scale.
+    flux_min (int,float): Bottom flux (only object). Default=0.0
+    flux_max (int,float): Base flux (object plus star). Default=1.0
+<span class="ansi-red-fg">File:</span>      ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<p><strong>Let’s find some parameters to create the model</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">immersion_time</span> <span class="o">=</span> <span class="mf">76880.000</span>  <span class="c1"># seconds relative to tref</span>
+<span class="n">emersion_time</span>  <span class="o">=</span> <span class="mf">76891.000</span>  <span class="c1"># seconds relative to tref</span>
+<span class="n">opacity</span> <span class="o">=</span> <span class="mf">1.0</span>            <span class="c1"># 1.0 == opaque; 0.0 == transparent</span>
+
+<span class="n">tmin</span> <span class="o">=</span> <span class="n">immersion_time</span>  <span class="o">-</span> <span class="mi">20</span> <span class="c1"># seconds relative to tref</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="n">emersion_time</span>   <span class="o">+</span> <span class="mi">20</span> <span class="c1"># seconds relative to tref</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">tmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="n">tmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Let’s give a look at the parameters we created (visual aid)</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">time</span><span class="p">,</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">flux</span><span class="p">,</span><span class="s1">&#39;k.-&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observation&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">flux</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Points inside the mask&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">immersion_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Immersion&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">emersion_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Emersion&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_72_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_72_0.png" />
+</div>
+</div>
+<p><strong>Now, let’s create the model</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">occ_model</span><span class="p">(</span><span class="n">immersion_time</span><span class="p">,</span> <span class="n">emersion_time</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+<span class="n">lc_1a</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">76870</span><span class="p">,</span><span class="mi">76900</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_74_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_74_0.png" />
+</div>
+</div>
+<p><strong>Let’s start with the fitting procedure</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>lc_1a.occ_lcfit<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> lc_1a<span class="ansi-blue-fg">.</span>occ_lcfit<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Monte Carlo chi square fit for occultations lightcurve.
+
+Parameters:
+    tmin (int,float): Minimum time to consider in the fit procedure, in seconds
+    tmax (int,float): Maximum time to consider in the fit procedure, in seconds
+    flux_min (int,float): Bottom flux (only object). Default=0.0
+    flux_max (int,float): Base flux (object plus star). Default=1.0
+    immersion_time (int, float): Initial guess for immersion time, in seconds.
+    emersion_time (int, float): Initial guess for emersion time, in seconds.
+    opacity (int, float): Initial guess for opacity. Opaque=1.0, transparent=0.0. Default=1.0
+    delta_t (int, float): Interval to fit immersion or emersion time
+    dopacity (int, float): Interval to fit opacity. Default=0
+    loop (int): Number of tests to be done. Default=10000
+
+Returns:
+    chi2 (ChiSquare): ChiSquare object
+<span class="ansi-red-fg">File:</span>      ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<h4 id="section_5a"><p>5.1. Automatic mode</p>
+</h4><p>This step is one of the most time consuming processes within the SORA package. It is expected that it would take between 1-10 minutes to complete 10000 loops. To spend less computational time with this tutorial, we will use only 1000 loops. However it is suggested that the user always set at least 10000 loops.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2</span> <span class="o">=</span> <span class="n">lc_1a</span><span class="o">.</span><span class="n">occ_lcfit</span><span class="p">(</span><span class="n">loop</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>The result of the fitting is a ChiSquare Object</strong></p>
+<p>That is an auxiliary object class, and its main information can be found at its specific Jupyter-Notebook, for the purpose of this tutorial only two main functions will be cover: <em>print(ChiSquare)</em> and <em>ChiSquare.plot_chi2()</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">lc_chi2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Minimum chi-square: 489.936
+Number of fitted points: 496
+Number of fitted parameters: 2
+Minimum chi-square per degree of freedom: 0.992
+
+immersion:
+    1-sigma: 76880.329 +/- 0.019
+    3-sigma: 76880.365 +/- 0.133
+
+emersion:
+    1-sigma: 76890.338 +/- 0.031
+    3-sigma: 76890.340 +/- 0.106
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2</span><span class="o">.</span><span class="n">plot_chi2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_81_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_81_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_81_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_81_1.png" />
+</div>
+</div>
+<p><strong>These gaps within the chisquare curve are expected as we did a small number of loops (1000)</strong></p>
+<h4 id="section_5b"><p>5.2. Fitting only the immersion</p>
+</h4><p>The user can set the parameters of choice to the fitting. That will allow using a more complex set of parameters for the model or do specific fits. One typical example is fitting one side of the chord (only the immersion time, for instance).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">immersion_time</span> <span class="o">=</span> <span class="mf">76880.338</span>
+<span class="n">tmin</span> <span class="o">=</span> <span class="mf">76873.000</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mf">76887.000</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">tmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="n">tmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Let’s give a look at the parameters we created (visual aid)</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span><span class="p">,</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">flux</span><span class="p">,</span><span class="s1">&#39;k.-&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observation&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span><span class="n">lc_1b</span><span class="o">.</span><span class="n">flux</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Points inside the mask&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">immersion_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Immersion&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_86_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_86_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2_1b_imm</span> <span class="o">=</span> <span class="n">lc_1b</span><span class="o">.</span><span class="n">occ_lcfit</span><span class="p">(</span><span class="n">tmin</span><span class="o">=</span><span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">immersion_time</span><span class="o">=</span><span class="n">immersion_time</span><span class="p">,</span>
+                              <span class="n">delta_t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">lc_chi2_1b_imm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Minimum chi-square: 154.489
+Number of fitted points: 140
+Number of fitted parameters: 1
+Minimum chi-square per degree of freedom: 1.111
+
+immersion:
+    1-sigma: 76880.331 +/- 0.029
+    3-sigma: 76880.361 +/- 0.120
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2_1b_imm</span><span class="o">.</span><span class="n">plot_chi2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_89_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_89_0.png" />
+</div>
+</div>
+<h4 id="section_5c"><p>5.3. Fitting the times and the opacity</p>
+</h4><p>Let’s give a look in another LightCurve.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_2a</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_91_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_91_0.png" />
+</div>
+</div>
+<p><strong>In this light curve, aside the occultation by the main body there are two secondary events (rings), now let’s determine the times and the opacity for the first detection.</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2_2a_ring</span> <span class="o">=</span> <span class="n">lc_2a</span><span class="o">.</span><span class="n">occ_lcfit</span><span class="p">(</span><span class="n">tmin</span><span class="o">=</span><span class="mf">76872.676</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">76874.892</span><span class="p">,</span> <span class="n">immersion_time</span><span class="o">=</span><span class="mf">76873.676</span><span class="p">,</span>
+                                  <span class="n">emersion_time</span><span class="o">=</span><span class="mf">76873.892</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">delta_t</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                  <span class="n">dopacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">lc_chi2_2a_ring</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Minimum chi-square: 29.410
+Number of fitted points: 27
+Number of fitted parameters: 3
+Minimum chi-square per degree of freedom: 1.225
+
+immersion:
+    1-sigma: 76873.674 +/- 0.012
+    3-sigma: 76873.672 +/- 0.030
+
+emersion:
+    1-sigma: 76873.892 +/- 0.011
+    3-sigma: 76873.895 +/- 0.037
+
+opacity:
+    1-sigma: 0.466 +/- 0.069
+    3-sigma: 0.507 +/- 0.220
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_chi2_2a_ring</span><span class="o">.</span><span class="n">plot_chi2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_1.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_2.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_95_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_2a</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">76869</span><span class="p">,</span><span class="mi">76878</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_96_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_96_0.png" />
+</div>
+</div>
+<h3 id="section_6"><ol class="arabic" start="6">
+<li><p>Viewing and saving the results</p>
+</h3></li>
+</ol>
+<p>At the end, the immersion and emersion times can be easily accessed using <em>LightCurve.immersion</em> and <em>LightCurve.emersion</em>. Their uncertainties can be found at <em>LightCurve.immersion_err</em> and <em>LightCurve.emersion_err</em>. Plot functions were created to facilitate the user to created the desired plots, an automatic plot can be created using <em>Light_curve.plot_lc()</em> and <em>LightCurve.plot_model()</em>, and the user can control the plot parameter using matplotlib functions. These plots can be saved using
+<em>matplotlib.pyplot.savefig()</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imersion time </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">immersion</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imersion time err: </span><span class="si">{:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">immersion_err</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Emersion time </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">emersion</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Emersion time err: </span><span class="si">{:.3f}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">emersion_err</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Imersion time 2017-06-22 21:21:20.329 UTC
+Imersion time err: 0.019 seconds
+
+
+Emersion time 2017-06-22 21:21:30.338 UTC
+Emersion time err: 0.031 seconds
+</pre></div></div>
+</div>
+<p><strong>A complete log can be created by printing the LightCurve</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">lc_1a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Light curve name: Example 1a
+Initial time: 2017-06-22 21:20:00.056 UTC
+End time:     2017-06-22 21:23:19.958 UTC
+Duration:     3.332 minutes
+Time offset:  0.000 seconds
+
+Exposure time:    0.1000 seconds
+Cycle time:       0.1002 seconds
+Num. data points: 2000
+
+Bandpass:             0.700 +/- 0.300 microns
+Object Distance:      15.00 AU
+Used shadow velocity: 22.000 km/s
+Fresnel scale:        0.040 seconds or 0.88 km
+Stellar size effect:  0.009 seconds or 0.20 km
+Inst. response:       0.100 seconds or 2.20 km
+Dead time effect:     0.000 seconds or 0.00 km
+Model resolution:     0.004 seconds or 0.09 km
+Modelled baseflux:    1.000
+Modelled bottomflux:  0.000
+Light curve sigma:    0.336
+
+Immersion time: 2017-06-22 21:21:20.329 UTC +/- 0.019 seconds
+Emersion time:  2017-06-22 21:21:30.338 UTC +/- 0.031 seconds
+
+Monte Carlo chi square fit.
+
+Minimum chi-square: 489.936
+Number of fitted points: 496
+Number of fitted parameters: 2
+Minimum chi-square per degree of freedom: 0.992
+
+immersion:
+    1-sigma: 76880.329 +/- 0.019
+    3-sigma: 76880.365 +/- 0.133
+
+emersion:
+    1-sigma: 76890.338 +/- 0.031
+    3-sigma: 76890.340 +/- 0.106
+
+
+</pre></div></div>
+</div>
+<p><strong>And this log can be saved as a file using LightCurve.to_log()</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">to_log</span><span class="p">(</span><span class="s1">&#39;output/LC_test_1a.log&#39;</span><span class="p">)</span>
+
+<span class="o">!</span>ls output/*.log
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+output/LC_test_1a.log
+</pre></div></div>
+</div>
+<p><strong>The post fitted light curve can be plotted using the LightCurve.plot_lc()</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_104_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_104_0.png" />
+</div>
+</div>
+<p><strong>The post fitted light curve complete model can be plotted using the LightCurve.plot_model()</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">plot_lc</span><span class="p">()</span>
+<span class="n">lc_1a</span><span class="o">.</span><span class="n">plot_model</span><span class="p">()</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">76879.8</span><span class="p">,</span><span class="mf">76880.8</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_Tutorial_SORAv0.1_LightCurve_106_0.png" src="../_images/examples_Tutorial_SORAv0.1_LightCurve_106_0.png" />
+</div>
+</div>
+<p><strong>The LightCurves data values can be saved using LightCurve.to_file()</strong></p>
+<p>If the model was correctly fitted with SORA, 4 files should be created: (i) One containing the observational light curve and its convoluted model; (ii) Containing the complete light curve model (geometric, affected by fresnel diffraction and by the star apparent diameter); and (iii and iv) with the labels for each colunm for other two files. Otherwise only 2 files will be created: the observational one and its labels.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>lc_1a.to_file<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> lc_1a<span class="ansi-blue-fg">.</span>to_file<span class="ansi-blue-fg">(</span>namefile<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Saves the light curve to a file
+
+Parameters:
+    namefile (str): Filename to save the data
+<span class="ansi-red-fg">File:</span>      ~/miniconda3/lib/python3.8/site-packages/sora/lightcurve.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">namefile</span><span class="o">=</span><span class="s1">&#39;output/LC_test_1a.dat&#39;</span><span class="p">)</span>
+
+<span class="o">!</span>ls output/*.dat
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">!</span>ls output/*.dat.label
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+output/LC_test_1a.dat  output/example_chi2.dat  output/model_LC_test_1a.dat
+
+
+output/LC_test_1a.dat.label    output/model_LC_test_1a.dat.label
+output/example_chi2.dat.label
+</pre></div></div>
+</div>
+<p><strong>One last thing, a common issue within the Stellar occultation light curves is a time offset for a specific light curve</strong></p>
+<p>To fit the body size and shape the user should consider the times (immersion and emersion) for all the observers. It is not unusual to have the different chords projected at the sky plane not be appropriately ‘aligned’. Those shifts are often caused by instrumental issues (lack of GPS, software’s features, internet protocols, among many others). To deal with this issue, the user can add a time offset (in seconds) manually at the LightCurve Object using the <em>LightCurve.dt</em>. Then the SORA package
+will automatically consider this offset to the fitted (or instantiated) parameters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lc_1a</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#seconds</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imersion time </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">immersion</span><span class="p">))</span>
+
+<span class="n">lc_1a</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1">#seconds</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Imersion time </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lc_1a</span><span class="o">.</span><span class="n">immersion</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Imersion time 2017-06-22 21:21:20.329 UTC
+Imersion time 2017-06-22 21:21:50.329 UTC
+</pre></div></div>
+</div>
+<p><strong>This Jupyter-Notebook was designed as a tutorial for how to work with the LightCurve Object Class. More information about the other classes, please refer to their specif Jupyter-Notebook. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</strong></p>
+<p><em>The End.</em></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Tutorial_SORAv0.1_Observer.html" class="btn btn-neutral float-right" title="Observer Object Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Tutorial_SORAv0.1_Ephem.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

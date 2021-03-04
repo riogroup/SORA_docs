@@ -1,0 +1,1365 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Ephem &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Star Class" href="examples/Tutorial_SORAv0.1_Star.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Manual:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="goals_updates.html">Goals and Version updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curiosities.html">Curiosities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future_linea.html">The future and the LIneA TNO Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">Input and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html">SORA Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_ChiSquare.html">ChiSquare Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_LightCurve.html">LightCurve Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Observer.html">Observer Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Occultation.html">Occultation Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Prediction.html"><em>prediction()</em> and PredictionTable Object Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Star.html">Star Class</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.lightcurve">Lightcurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.body">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-sora.extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Ephem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/sora.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sora.ephem">
+<span id="ephem"></span><h1>Ephem<a class="headerlink" href="#module-sora.ephem" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="sora.ephem.apparent_mag">
+<code class="sig-prename descclassname"><span class="pre">sora.ephem.</span></code><code class="sig-name descname"><span class="pre">apparent_mag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sundist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem.html#apparent_mag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.apparent_mag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Object Apparent Magnitude</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>H</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Absolute Magnitude</p></li>
+<li><p><strong>G</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Slope parameter</p></li>
+<li><p><strong>dist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Observer-Object distance, in AU</p></li>
+<li><p><strong>sundist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Sun-Object distance, in AU</p></li>
+<li><p><strong>phase</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Phase Angle: Sun-Target-Observer, in deg</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Apparent Magnitude</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ap_mag (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.ephem.ephem_kernel">
+<code class="sig-prename descclassname"><span class="pre">sora.ephem.</span></code><code class="sig-name descname"><span class="pre">ephem_kernel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem.html#ephem_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.ephem_kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the ephemeris from kernel files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – reference instant to calculate ephemeris</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – IAU (kernel) code of the target</p></li>
+<li><p><strong>observer</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – IAU (kernel) code of the observer</p></li>
+<li><p><strong>kernels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – list of paths for all the kernels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ICRS coordinate of the target.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>coord (SkyCoord)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.ephem.read_obj_data">
+<code class="sig-prename descclassname"><span class="pre">sora.ephem.</span></code><code class="sig-name descname"><span class="pre">read_obj_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem.html#read_obj_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.read_obj_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads an online table (link below) with physical parameters for selected objects</p>
+<p>Table url: <a class="reference external" href="http://devel2.linea.gov.br/~altair.gomes/radius.txt">http://devel2.linea.gov.br/~altair.gomes/radius.txt</a></p>
+<dl class="simple">
+<dt>Table content: Object name; radius (km); uncertainty in RA; uncertainty in DEC</dt><dd><p>RA: Delta * alpha * cos (delta)
+DEC: Delta * delta</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>python dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.lightcurve">
+<span id="lightcurve"></span><h1>Lightcurve<a class="headerlink" href="#module-sora.lightcurve" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="sora.lightcurve.calc_fresnel">
+<code class="sig-prename descclassname"><span class="pre">sora.lightcurve.</span></code><code class="sig-name descname"><span class="pre">calc_fresnel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve.html#calc_fresnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.calc_fresnel" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Calculates the Fresnel scale.</dt><dd><p>(Fresnel Scale = square root of half the multiplication of wavelength and object distance.)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>array</em>) – distances, in km.</p></li>
+<li><p><strong>bandpass</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>array</em>) – wavelength, in km.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Fresnel scale, in km</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>fresnel_scale  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, array)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.lightcurve.fit_pol">
+<code class="sig-prename descclassname"><span class="pre">sora.lightcurve.</span></code><code class="sig-name descname"><span class="pre">fit_pol</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve.html#fit_pol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.fit_pol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits a n-degree polynom to the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array</em>) – x-values</p></li>
+<li><p><strong>y</strong> (<em>array</em>) – y-values</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – degree of the polynom</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array with the fitted values
+param_err (array): Array with the errors of the fitted values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>param (array)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.observer">
+<span id="observer"></span><h1>Observer<a class="headerlink" href="#module-sora.observer" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="sora.observer.search_code_mpc">
+<code class="sig-prename descclassname"><span class="pre">sora.observer.</span></code><code class="sig-name descname"><span class="pre">search_code_mpc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer.html#search_code_mpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.observer.search_code_mpc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the MPC Observer Database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A python dictionaty with all the sites as an Astropy EarthLocation object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>observatories (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.occultation">
+<span id="occultation"></span><h1>Occultation<a class="headerlink" href="#module-sora.occultation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="sora.occultation.Occultation">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.occultation.</span></code><code class="sig-name descname"><span class="pre">Occultation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Does the reduction of the occultation</p>
+<dl class="py method">
+<dt id="sora.occultation.Occultation.add_observation">
+<code class="sig-name descname"><span class="pre">add_observation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lightcurve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.add_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.add_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds observations to the Occultation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obs</strong> (<em>Observer</em>) – The Observer object to be added.</p></li>
+<li><p><strong>lightcurve</strong> (<em>LightCurve</em>) – The LightCurve object to be added</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.check_velocities">
+<code class="sig-name descname"><span class="pre">check_velocities</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.check_velocities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.check_velocities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the current velocity used by the LightCurves and its Radial velocity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.fit_ellipse">
+<code class="sig-name descname"><span class="pre">fit_ellipse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.fit_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.fit_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits an ellipse to the chords of this occultation</p>
+<p>Parameters:
+Required parameters:</p>
+<blockquote>
+<div><p>Each occultation is added as the first arguments directly.
+center_f (int,float): The coordinate in f of the ellipse center.
+center_g (int,float): The coordinate in g of the ellipse center.
+equatorial_radius (int,float): The Equatorial radius (semi-major axis) of the ellipse.
+oblateness (int,float): The oblateness of the ellipse.
+position_angle (int,float): The pole position angle of the ellipse in degrees. Default=0</p>
+<blockquote>
+<div><p>Zero is in the North direction (‘g-positive’). Positive clockwise.</p>
+</div></blockquote>
+</div></blockquote>
+<dl>
+<dt>Parameters interval of fitting. Default values are set to zero.</dt><dd><p>Search between (value - dvalue) and (value + dvalue):
+dcenter_f (int,float): Interval for coordinate f of the ellipse center
+dcenter_g (int,float): Interval for coordinate g of the ellipse center
+dequatorial_radius (int,float): Interval for the Equatorial radius (semi-major axis) of the ellipse
+doblateness (int,float): Interval for the oblateness of the ellipse
+dposition_angle (int,float): Interval for the pole position angle of the ellipse in degrees</p>
+<p>loop (int): The number of ellipses to attempt fitting. Default: 10,000,000
+dchi_min (int,float): If given, it will only save ellipsis which chi square are</p>
+<blockquote>
+<div><p>smaller than chi_min + dchi_min.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>number_chi (int): if dchi_min is given, the procedure is repeated until</dt><dd><p>number_chi is reached. Default: 10,000</p>
+</dd>
+</dl>
+<p>log (bool): If True, it prints information while fitting. Default: False.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A ChiSquare object with all parameters.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>chisquare</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.get_map_sites">
+<code class="sig-name descname"><span class="pre">get_map_sites</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.get_map_sites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.get_map_sites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Dictionary with sites in the format required by plot_occ_map function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionary with the sites in the format required by plot_occ_map function</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sites (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.new_astrometric_position">
+<code class="sig-name descname"><span class="pre">new_astrometric_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.new_astrometric_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.new_astrometric_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the new astrometric position for the object given fitted parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Reference time to calculate the position.
+If not given, it uses the instant of the occultation Closest Approach.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – <p>Offset to apply to the position. If not given, uses the parameters from the fitted ellipse.
+Must be a list of 3 values being [X, Y, ‘unit’]</p>
+<blockquote>
+<div><p>’unit’ must be Angular or Distance unit.
+- If Distance units for X and Y</p>
+<blockquote>
+<div><p>Ex: [100, -200, ‘km’], [0.001, 0.002, ‘AU’]</p>
+</div></blockquote>
+<ul>
+<li><dl class="simple">
+<dt>If Angular units fox X [d*a*cos(dec)] and Y [d*dec]</dt><dd><p>Ex: [30.6, 20, ‘mas’], or [-15, 2, ‘arcsec’]</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Error bar of the given offset. If not given, it uses the 1-sigma value of the fitted ellipse.
+Error must be a list of 3 values being [dX, dY, ‘unit’], similar to offset.
+It does not need to be in the same unit as offset.</p></li>
+<li><p><strong>log</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it Prints text, else it Returns text.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.observations">
+<code class="sig-name descname"><span class="pre">observations</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.observations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print all the observations added to the Occultation object
+Pair (Observer, LightCurve)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.plot_chords">
+<code class="sig-name descname"><span class="pre">plot_chords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positive_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.plot_chords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.plot_chords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the chords of the occultation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_chords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, it plots all the chords,
+if False, it sees what was deactivated in self.positions and ignores them</p></li>
+<li><p><strong>positive_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color for the positive chords. Default: blue</p></li>
+<li><p><strong>negative_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color for the negative chords. Default: green</p></li>
+<li><p><strong>error_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color for the error bars of the chords. Default: red</p></li>
+<li><p><strong>ax</strong> (<em>maptlotlib.Axes</em>) – Axis where to plot chords. Default: Use matplotlib pool.</p></li>
+<li><p><strong>lw</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – linewidth of the chords. Default: 2</p></li>
+<li><p><strong>axis_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True it prints the labels of the axis of the image.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.plot_occ_map">
+<code class="sig-name descname"><span class="pre">plot_occ_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.plot_occ_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.plot_occ_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the occultation map</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> – The radius of the shadow. If not given it uses the equatorial radius
+from the ellipse fit, else it uses the radius obtained from ephem upon instantiating.</p></li>
+<li><p><strong>nameimg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the name of the image saved.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to a directory where to save map.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Cartopy feature resolution. “1” means a resolution of “10m”,
+“2” a resolution of “50m” and “3” a resolution of “100m”. Default = 2</p></li>
+<li><p><strong>states</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True to plot the state division of the countries. The states of
+some countries will only be shown depending on the resolution.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Zooms in or out of the map.</p></li>
+<li><p><strong>centermap_geo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Center the map for a given coordinates in longitude and latitude.
+It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centermap_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Displace the center of the map given displacement
+in X and Y, in km. It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centerproj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Rotates the Earth to show occultation with the center
+projected at a given longitude and latitude. It must be a list with two numbers</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Plots text above and below the map with the occultation parameters.
+Default=True.</p></li>
+<li><p><strong>meridians</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the meridians for given interval. Default=30 deg</p></li>
+<li><p><strong>parallels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the parallels for given interval. Default=30 deg</p></li>
+<li><p><strong>sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots site positions in map. It must be a python dictionary where the key is
+the name of the site, and the value is a list with longitude, latitude, delta_x,
+delta_y and color. delta_x and delta_y are displacement, in km, from the point
+of the site in the map and the name. color is the color of the point.
+If not given, it calculates from observations added to Occultation</p></li>
+<li><p><strong>site_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the name of the sites given, else it plots only the points</p></li>
+<li><p><strong>countries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots the names of countries. It must be a python dictionary where the key
+is the name of the country and the value is a list with longitude and latitude
+of the lower left part of the text.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – applies an offset to the ephemeris, calculating new CA and instant of CA.
+It is a pair of delta_RA*cosDEC and delta_DEC.
+If not given it uses the center from ellipse fitted.</p></li>
+<li><p><strong>mapstyle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Define the color style of the map. 1 is the default black and white scale.
+“2” is a colored map.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ephemeris error in mas. It plots a dashed line representing radius + error.</p></li>
+<li><p><strong>ercolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines of the error bar.</p></li>
+<li><p><strong>ring</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – It plots a dashed line representing the location of a ring.
+It is given in km, from the center.</p></li>
+<li><p><strong>rncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of ring lines.</p></li>
+<li><p><strong>atm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of an atmosphere.
+It is given in km, from the center.</p></li>
+<li><p><strong>atcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of atm lines.</p></li>
+<li><p><strong>chord_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list with distances from center to plot chords</p></li>
+<li><p><strong>chord_geo</strong> (<em>2d-list</em>) – list with pairs of coordinates to plot chords</p></li>
+<li><p><strong>chcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the line of the chords. Default: grey</p></li>
+<li><p><strong>heights</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – plots a circular dashed line showing the locations where the observer
+would observe the occultation at a given height above the horizons.
+This must be a list.</p></li>
+<li><p><strong>hcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the height lines.</p></li>
+<li><p><strong>mapsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The size of figure, in cm. It must be a list with two values.
+Default = [46.0, 38.0].</p></li>
+<li><p><strong>cpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Interval for the small points marking the center of shadow,
+in seconds. Default=60.</p></li>
+<li><p><strong>ptcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the color of the center points.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The transparency of the night shade, where 0.0 is full transparency
+and 1.0 is full black. Default = 0.2.</p></li>
+<li><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to save the image. It is parsed directly by matplotlib.pyplot.
+Default = ‘png’</p></li>
+<li><p><strong>dpi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – “Dots per inch”. It defines the quality of the image. Default = 100.</p></li>
+<li><p><strong>lncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the line that represents the limits of the shadow over Earth.</p></li>
+<li><p><strong>outcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines that represents the limits of the shadow outside Earth</p></li>
+<li><p><strong>nscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the name of the site.</p></li>
+<li><p><strong>cscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the name of the country.</p></li>
+<li><p><strong>sscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of point of the site.</p></li>
+<li><p><strong>pscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the points that represent the center of the shadow</p></li>
+<li><p><strong>arrow</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it plots the arrow with the occultation direction.</p></li>
+<li><p><strong>Comment</strong> – Only one of centermap_geo and centermap_delta can be given</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.positions">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">positions</span></code><a class="headerlink" href="#sora.occultation.Occultation.positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position and velocity for all chords.
+Saves it into an _PositionDict object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.remove_observation">
+<code class="sig-name descname"><span class="pre">remove_observation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_lc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.remove_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.remove_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an observation from the Occultation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name given to Observer or LightCurve to remove from the list.</p></li>
+<li><p><strong>keylc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – In the case where repeated names are present for different observations,
+keylc must be given for the name of the LightCurve and key will be used for the name of the Observer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.to_file">
+<code class="sig-name descname"><span class="pre">to_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the occultation data to a file</p>
+<p>Three files are saved containing the positions and velocities for the observations.
+They are for the positive, negative and error bars positions.</p>
+<p>The format of the files are: positions in f and g, velocities in f and g, the Julian Date of the observation,
+light curve name of the corresponding position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Occultation.to_log">
+<code class="sig-name descname"><span class="pre">to_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#Occultation.to_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Occultation.to_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the occultation log to a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Filename to save the log</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.occultation.fit_ellipse">
+<code class="sig-prename descclassname"><span class="pre">sora.occultation.</span></code><code class="sig-name descname"><span class="pre">fit_ellipse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dequatorial_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcenter_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcenter_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dposition_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_chi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dchi_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#fit_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.fit_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits an ellipse to given occultation using given parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>required</em>) – </p></li>
+<li><p><strong>occultation is added as the first arguments directly.</strong> (<em>Each</em>) – <p>center_f (int,float): The coordinate in f of the ellipse center. Default=0
+center_g (int,float): The coordinate in g of the ellipse center. Default=0
+equatorial_radius (int,float): The Equatorial radius (semi-major axis) of the ellipse.
+oblateness (int,float): The oblateness of the ellipse. Default=0 (circle)
+position_angle (int,float): The pole position angle of the ellipse in degrees. Default=0</p>
+<blockquote>
+<div><p>Zero is in the North direction (‘g-positive’). Positive clockwise.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>interval of fitting. Default values are set to zero.</strong> (<em>Parameters</em>) – </p></li>
+<li><p><strong>between</strong> (<em>Search</em>) – dcenter_f (int,float): Interval for coordinate f of the ellipse center
+dcenter_g (int,float): Interval for coordinate g of the ellipse center
+dequatorial_radius (int,float): Interval for the Equatorial radius (semi-major axis) of the ellipse
+doblateness (int,float): Interval for the oblateness of the ellipse
+dposition_angle (int,float): Interval for the pole position angle of the ellipse in degrees</p></li>
+<li><p><strong>loop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of ellipses to attempt fitting. Default: 10,000,000</p></li>
+<li><p><strong>dchi_min</strong> (<em>intt</em><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – If given, it will only save ellipsis which chi square are
+smaller than chi_min + dchi_min.</p></li>
+<li><p><strong>number_chi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – if dchi_min is given, the procedure is repeated until
+number_chi is reached. Default: 10,000</p></li>
+<li><p><strong>log</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints information while fitting. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A ChiSquare object with all parameters.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>chisquare</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>fit_ellipse(occ1, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs) to fit the ellipse to the chords of occ1 Occultation object
+fit_ellipse(occ1, occ2, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs) to fit the ellipse to the chords of occ1 and occ2 Occultation objects together</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.occultation.positionv">
+<code class="sig-prename descclassname"><span class="pre">sora.occultation.</span></code><code class="sig-name descname"><span class="pre">positionv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation.html#positionv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.positionv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position and velocity of the occultation shadow relative to the observer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>star</strong> (<a class="reference internal" href="#sora.star.Star" title="sora.star.Star"><em>Star</em></a>) – The coordinate of the star in the same reference frame as the ephemeris.
+It must be a Star object.</p></li>
+<li><p><strong>ephem</strong> (<em>Ephem</em>) – The object ephemeris. It must be an Ephemeris object.</p></li>
+<li><p><strong>observer</strong> (<em>Observer</em>) – The Observer information. It must be an Observer object.</p></li>
+<li><p><strong>time</strong> (<em>Time</em>) – Reference instant to calculate position and velocity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The orthographic projection of the shadow relative to the observer.</dt><dd><p>f is in the x-axis (East-West direction; East positive)
+g is in the y-axis (North-South direction; North positive)</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>f, g (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.prediction">
+<span id="prediction"></span><h1>Prediction<a class="headerlink" href="#module-sora.prediction" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="sora.prediction.PredictRow">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">PredictRow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictRow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.table.row.Row</span></code></p>
+<p>An Astropy Row object modified for Prediction purposes.</p>
+<dl class="py method">
+<dt id="sora.prediction.PredictRow.plot_occ_map">
+<code class="sig-name descname"><span class="pre">plot_occ_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictRow.plot_occ_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictRow.plot_occ_map" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The radius of the shadow. If not given it uses saved value</p></li>
+<li><p><strong>nameimg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the name of the image saved.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to a directory where to save map.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Cartopy feature resolution. “1” means a resolution of “10m”,
+“2” a resolution of “50m” and “3” a resolution of “100m”. Default = 2</p></li>
+<li><p><strong>states</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True to plot the state division of the countries. The states of
+some countries will only be shown depending on the resolution.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Zooms in or out of the map.</p></li>
+<li><p><strong>centermap_geo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Center the map given coordinates in longitude and latitude.
+It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centermap_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Displace the center of the map given displacement
+in X and Y, in km. It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centerproj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Rotates the Earth to show occultation with the center
+projected at a given longitude and latitude. It must be a list with two numbers</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Plots text above and below the map with the occultation parameters.
+Default=True.</p></li>
+<li><p><strong>meridians</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the meridians for given interval. Default=30 deg</p></li>
+<li><p><strong>parallels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the parallels for given interval. Default=30 deg</p></li>
+<li><p><strong>sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots site positions in map. It must be a python dictionary where the key is
+the name of the site, and the value is a list with longitude, latitude, delta_x,
+delta_y and color. delta_x and delta_y are displacement, in km, from the point
+of the site in the map and the name. color is the color of the point.</p></li>
+<li><p><strong>site_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the name of the sites given, else it plots only the points</p></li>
+<li><p><strong>countries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots the names of countries. It must be a python dictionary where the key
+is the name of the country and the value is a list with longitude and latitude
+of the lower left part of the text.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – applies an offset to the ephemeris, calculating new CA and instant of CA.
+It is a pair of delta_RA*cosDEC and delta_DEC.</p></li>
+<li><p><strong>mapstyle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Define the color style of the map. 1 is the default black and white scale.
+2 is a colored map.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ephemeris error in mas. It plots a dashed line representing radius + error.</p></li>
+<li><p><strong>ercolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines of the error bar.</p></li>
+<li><p><strong>ring</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – It plots a dashed line representing the location of a ring.
+It is given in km, from the center.</p></li>
+<li><p><strong>rncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of ring lines.</p></li>
+<li><p><strong>atm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of an atmosphere.
+It is given in km, from the center.</p></li>
+<li><p><strong>atcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of atm lines.</p></li>
+<li><p><strong>chord_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list with distances from center to plot chords</p></li>
+<li><p><strong>chord_geo</strong> (<em>2d-list</em>) – list with pairs of coordinates to plot chords</p></li>
+<li><p><strong>chcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the line of the chords. Default: grey</p></li>
+<li><p><strong>heights</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – plots a circular dashed line showing the locations where the observer
+would observe the occultation at a given height above the horizons.
+This must be a list.</p></li>
+<li><p><strong>hcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the height lines.</p></li>
+<li><p><strong>mapsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The size of figure, in cm. It must be a list with two values.
+Default = [46.0, 38.0].</p></li>
+<li><p><strong>cpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Interval for the small points marking the center of shadow,
+in seconds. Default=60.</p></li>
+<li><p><strong>ptcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the color of the center points.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The transparency of the night shade, where 0.0 is full transparency
+and 1.0 is full black. Default = 0.2.</p></li>
+<li><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to save the image. It is parsed directly by matplotlib.pyplot.
+Default = ‘png’</p></li>
+<li><p><strong>dpi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – “Dots per inch”. It defines the quality of the image. Default = 100.</p></li>
+<li><p><strong>lncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the line that represents the limits of the shadow over Earth.</p></li>
+<li><p><strong>outcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines that represents the limits of the shadow outside Earth</p></li>
+<li><p><strong>nscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the name of the site.</p></li>
+<li><p><strong>cscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the name of the country.</p></li>
+<li><p><strong>sscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of point of the site.</p></li>
+<li><p><strong>pscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the points that represent the center of the shadow</p></li>
+<li><p><strong>arrow</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it plots the arrow with the occultation direction.</p></li>
+<li><p><strong>Comment</strong> – Only one of centermap_geo and centermap_delta can be given</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sora.prediction.PredictionTable">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">PredictionTable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.table.table.Table</span></code></p>
+<p>An Astropy Table object modified for Prediction purposes.</p>
+<dl class="py attribute">
+<dt id="sora.prediction.PredictionTable.Row">
+<code class="sig-name descname"><span class="pre">Row</span></code><a class="headerlink" href="#sora.prediction.PredictionTable.Row" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#sora.prediction.PredictRow" title="sora.prediction.PredictRow"><code class="xref py py-class docutils literal notranslate"><span class="pre">sora.prediction.PredictRow</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.from_praia">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">from_praia</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.from_praia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.from_praia" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a PredictionTable Table reading from a PRAIA table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – path to the PRAIA table file.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the Object of the prediction.</p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Object radius, in km. (not required)
+If not given it’s searched in online database.
+If not found online, the default is set to zero.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A PredictionTable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.keep_from_selected_images">
+<code class="sig-name descname"><span class="pre">keep_from_selected_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.keep_from_selected_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.keep_from_selected_images" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Keeps predictions which images were not deleted in given path</dt><dd><p>This function uses the name of the images to identify predictions.
+The name must be the automatic one generated by plot_occ_map().
+The format of the image is not relevant.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – path where images are located</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.plot_occ_map">
+<code class="sig-name descname"><span class="pre">plot_occ_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.plot_occ_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.plot_occ_map" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The radius of the shadow. If not given it uses saved value</p></li>
+<li><p><strong>nameimg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the name of the image saved.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to a directory where to save map.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Cartopy feature resolution. “1” means a resolution of “10m”,
+“2” a resolution of “50m” and “3” a resolution of “100m”. Default = 2</p></li>
+<li><p><strong>states</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True to plot the state division of the countries. The states of
+some countries will only be shown depending on the resolution.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Zooms in or out of the map.</p></li>
+<li><p><strong>centermap_geo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Center the map given coordinates in longitude and latitude.
+It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centermap_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Displace the center of the map given displacement
+in X and Y, in km. It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centerproj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Rotates the Earth to show occultation with the center
+projected at a given longitude and latitude. It must be a list with two numbers</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Plots text above and below the map with the occultation parameters.
+Default=True.</p></li>
+<li><p><strong>meridians</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the meridians for given interval. Default=30 deg</p></li>
+<li><p><strong>parallels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the parallels for given interval. Default=30 deg</p></li>
+<li><p><strong>sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots site positions in map. It must be a python dictionary where the key is
+the name of the site, and the value is a list with longitude, latitude, delta_x,
+delta_y and color. delta_x and delta_y are displacement, in km, from the point
+of the site in the map and the name. color is the color of the point.</p></li>
+<li><p><strong>site_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the name of the sites given, else it plots only the points</p></li>
+<li><p><strong>countries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots the names of countries. It must be a python dictionary where the key
+is the name of the country and the value is a list with longitude and latitude
+of the lower left part of the text.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – applies an offset to the ephemeris, calculating new CA and instant of CA.
+It is a pair of delta_RA*cosDEC and delta_DEC.</p></li>
+<li><p><strong>mapstyle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Define the color style of the map. 1 is the default black and white scale.
+2 is a colored map.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ephemeris error in mas. It plots a dashed line representing radius + error.</p></li>
+<li><p><strong>ercolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines of the error bar.</p></li>
+<li><p><strong>ring</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of a ring.
+It is given in km, from the center.</p></li>
+<li><p><strong>rncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of ring lines.</p></li>
+<li><p><strong>atm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of an atmosphere.
+It is given in km, from the center.</p></li>
+<li><p><strong>atcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of atm lines.</p></li>
+<li><p><strong>chord_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list with distances from center to plot chords</p></li>
+<li><p><strong>chord_geo</strong> (<em>2d-list</em>) – list with pairs of coordinates to plot chords</p></li>
+<li><p><strong>chcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the line of the chords. Default: grey</p></li>
+<li><p><strong>heights</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – It plots a circular dashed line showing the locations where the observer
+would observe the occultation at a given height above the horizons.
+This must be a list.</p></li>
+<li><p><strong>hcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the height lines.</p></li>
+<li><p><strong>mapsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The size of figure, in cm. It must be a list with two values.
+Default = [46.0, 38.0].</p></li>
+<li><p><strong>cpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Interval for the small points marking the center of shadow,
+in seconds. Default=60.</p></li>
+<li><p><strong>ptcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the color of the center points.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The transparency of the night shade, where 0.0 is full transparency
+and 1.0 is full black. Default = 0.2.</p></li>
+<li><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to save the image. It is parsed directly by matplotlib.pyplot.
+Default = ‘png’</p></li>
+<li><p><strong>dpi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – “Dots per inch”. It defines the quality of the image. Default = 100.</p></li>
+<li><p><strong>lncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the line that represents the limits of the shadow over Earth.</p></li>
+<li><p><strong>outcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines that represents the limits of the shadow outside Earth</p></li>
+<li><p><strong>nscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the name of the site.</p></li>
+<li><p><strong>cscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the name of the country.</p></li>
+<li><p><strong>sscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of point of the site.</p></li>
+<li><p><strong>pscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the points that represent the center of the shadow</p></li>
+<li><p><strong>arrow</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it plots the arrow with the occultation direction.</p></li>
+<li><p><strong>Comment</strong> – Only one of centermap_geo and centermap_delta can be given</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.remove_occ">
+<code class="sig-name descname"><span class="pre">remove_occ</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.remove_occ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.remove_occ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes stellar occultations from table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>date</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Date or list of dates of the occultation to be removed.
+The dates mut be as shown in the ‘Epoch’ column. If the date is not
+complete, the function will select all occultations that matches the given string.
+For instance, date=’2020-06’ will remove all occultations from the month of June 2020.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.to_ow">
+<code class="sig-name descname"><span class="pre">to_ow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ow_des</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'append'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.to_ow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.to_ow" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Writes PredictionTable to OccultWatcher feeder update file format.</dt><dd><p>Tables will be saved in two files: “tableOccult_update.txt” and “LOG.dat”</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ow_des</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Occult Watcher designation for the object.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – ‘append’ to append table to already existing file, default
+‘restart’ to overwrite existing file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.prediction.PredictionTable.to_praia">
+<code class="sig-name descname"><span class="pre">to_praia</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#PredictionTable.to_praia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.PredictionTable.to_praia" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes PredictionTable to PRAIA format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of the file to save table</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.prediction.latlon2xy">
+<code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">latlon2xy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loncen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latcen</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#latlon2xy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.latlon2xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the projection of longitude and latitude in the loncen, latcen direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Longitude to calculate projection</p></li>
+<li><p><strong>lat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Latitude to calculate projection</p></li>
+<li><p><strong>loncen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Center longitude of projection (deg)</p></li>
+<li><p><strong>latcen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Center latitude of projection (deg)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Projection of lon, lat at loncen, latcen, in the ITRS (meters)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>x, y (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.prediction.occ_params">
+<code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">occ_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_recursions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tdiff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#occ_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.occ_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the parameters of the occultation, as instant, CA, PA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>star</strong> (<a class="reference internal" href="#sora.star.Star" title="sora.star.Star"><em>Star</em></a>) – The coordinate of the star in the same reference frame as the ephemeris.
+It must be a Star object.</p></li>
+<li><p><strong>ephem</strong> (<em>Ephem</em>) – object ephemeris. It must be an Ephemeris object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Instant of Closest Approach
+CA (arcsec): Distance of Closest Approach
+PA (deg): Position Angle at Closest Approach
+vel (km/s): Velocity of the occultation
+dist (AU): the object geocentric distance.
+n_recursions (int): The number of attempts to try obtain prediction parameters</p>
+<blockquote>
+<div><p>in case the event is outside the previous range of time. Default=5</p>
+</div></blockquote>
+<dl class="simple">
+<dt>max_tdiff (int): Maximum difference from given time it will attempt to identify</dt><dd><p>the occultation, in minutes. If given, ‘n_recursions’ is ignored. Default=None.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>instant of CA (Time)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.prediction.plot_occ_map">
+<code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">plot_occ_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ca</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#plot_occ_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.plot_occ_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots map of the occultation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>Required</em>) – </p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the object</p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – radius of the object (km)</p></li>
+<li><p><strong>coord</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>SkyCoord</em>) – Coordinate of the star
+(“hh mm ss.sss dd mm ss.sss” or “hh.hhhhhhhh dd.dddddddd”)</p></li>
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – Instant of Closest Approach (iso or isot format)</p></li>
+<li><p><strong>ca</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Closest Approach Distance (arcsec)</p></li>
+<li><p><strong>pa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Position Angle at C/A (deg)</p></li>
+<li><p><strong>vel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>vel</em>) – Velocity of the event (km/s)</p></li>
+<li><p><strong>dist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Object distance at C/A (AU)</p></li>
+<li><p><strong>required params</strong> (<em>Not</em>) – </p></li>
+<li><p><strong>mag</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Mag* = Normalized magnitude to vel=20km/s</p></li>
+<li><p><strong>longi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – East longitude of sub-planet point, deg, positive towards East</p></li>
+<li><p><strong>configuration</strong> (<em>Map</em>) – </p></li>
+<li><p><strong>nameimg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the name of the imaged saved.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to a directory where to save map.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Cartopy feature resolution. “1” means a resolution of “10m”,
+“2” a resolution of “50m” and “3” a resolution of “100m”. Default = 2</p></li>
+<li><p><strong>states</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True to plot the state division of the countries. The states of
+some countries will only be shown depending on the resolution.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Zooms in or out of the map.</p></li>
+<li><p><strong>centermap_geo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Center the map given coordinates in longitude and latitude.
+It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centermap_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Displace the center of the map given displacement
+in X and Y, in km. It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centerproj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Rotates the Earth to show occultation with the center
+projected at a given longitude and latitude. It must be a list with two numbers</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Plots text above and below the map with the occultation parameters.
+Default=True.</p></li>
+<li><p><strong>meridians</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the meridians for given interval. Default=30 deg</p></li>
+<li><p><strong>parallels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the parallels for given interval. Default=30 deg</p></li>
+<li><p><strong>sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots site positions in map. It must be a python dictionary where the key is
+the name of the site, and the value is a list with longitude, latitude, delta_x,
+delta_y and color. delta_x and delta_y are displacement, in km, from the point
+of the site in the map and the name. color is the color of the point.</p></li>
+<li><p><strong>site_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the name of the sites given, else it plots only the points</p></li>
+<li><p><strong>countries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots the names of countries. It must be a python dictionary where the key
+is the name of the country and the value is a list with longitude and latitude
+of the lower left part of the text.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – applies an offset to the ephemeris, calculating new CA and instant of CA.
+It is a pair of delta_RA*cosDEC and delta_DEC.</p></li>
+<li><p><strong>mapstyle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Define the color style of the map. 1 is the default black and white scale.
+2 is a colored map.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ephemeris error in mas. It plots a dashed line representing radius + error.</p></li>
+<li><p><strong>ercolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines of the error bar.</p></li>
+<li><p><strong>ring</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of a ring.
+It is given in km, from the center.</p></li>
+<li><p><strong>rncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of ring lines.</p></li>
+<li><p><strong>atm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of an atmosphere.
+It is given in km, from the center.</p></li>
+<li><p><strong>atcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of atm lines.</p></li>
+<li><p><strong>chord_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list with distances from center to plot chords</p></li>
+<li><p><strong>chord_geo</strong> (<em>2d-list</em>) – list with pairs of coordinates to plot chords</p></li>
+<li><p><strong>chcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the line of the chords. Default: grey</p></li>
+<li><p><strong>heights</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – It plots a circular dashed line showing the locations where the observer
+would observe the occultation at a given height above the horizons.
+This must be a list.</p></li>
+<li><p><strong>hcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the height lines.</p></li>
+<li><p><strong>mapsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The size of figure, in cm. It must be a list with two values.
+Default = [46.0, 38.0].</p></li>
+<li><p><strong>cpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Interval for the small points marking the center of shadow,
+in seconds. Default=60.</p></li>
+<li><p><strong>ptcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the color of the center points.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The transparency of the night shade, where 0.0 is full transparency
+and 1.0 is full black. Default = 0.2.</p></li>
+<li><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to save the image. It is parsed directly by matplotlib.pyplot.
+Default = ‘png’</p></li>
+<li><p><strong>dpi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – “Dots per inch”. It defines the quality of the image. Default = 100.</p></li>
+<li><p><strong>lncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the line that represents the limits of the shadow over Earth.</p></li>
+<li><p><strong>outcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines that represents the limits of the shadow outside Earth</p></li>
+<li><p><strong>nscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the name of the site.</p></li>
+<li><p><strong>cscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the name of the country.</p></li>
+<li><p><strong>sscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of point of the site.</p></li>
+<li><p><strong>pscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the points that represent the center of the shadow</p></li>
+<li><p><strong>arrow</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it plots the arrow with the occultation direction.</p></li>
+<li><p><strong>Comment</strong> – Only one of centermap_geo and centermap_delta can be given</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.prediction.prediction">
+<code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_beg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts stellar occultations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_beg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Initial time for prediction (required).</p></li>
+<li><p><strong>time_beg</strong> – Final time for prediction (required).</p></li>
+<li><p><strong>body*</strong> (<em>Body</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Object that will occult the stars. It must be a Body object or its
+name to search in the Small Body Database.</p></li>
+<li><p><strong>ephem*</strong> (<em>Ephem</em>) – object ephemeris. It must be an Ephemeris object.</p></li>
+<li><p><strong>mag_lim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Faintest Gmag for search</p></li>
+<li><p><strong>step</strong> (<em>number</em>) – step, in seconds, of ephem times for search</p></li>
+<li><p><strong>divs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of regions the ephemeris will be splitted for better search of occultations</p></li>
+<li><p><strong>sigma</strong> (<em>number</em>) – ephemeris error sigma for search off-Earth.</p></li>
+<li><p><strong>radius</strong> (<em>number</em>) – The radius of the body. It is important if not defined in body or ephem.</p></li>
+<li><p><strong>log</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – To show what is being done at the moment.</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><dl class="simple">
+<dt>When instantiating with “body” and “ephem”, the user may call the function in 3 ways:</dt><dd><ul>
+<li><p>With “body” and “ephem”.</p></li>
+<li><dl class="simple">
+<dt>With only “body”. In this case, the “body” parameter must be a Body object and have an</dt><dd><p>ephemeris associated (see Body documentation).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>With only “ephem”. In this case, the “ephem” parameter must be one of the Ephem Classes</dt><dd><p>and have a name (see Ephem documentation) to search for the body in the Small Body Database.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>PredictionTable with the occultation params for each event</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>predict (<a class="reference internal" href="#sora.prediction.PredictionTable" title="sora.prediction.PredictionTable">PredictionTable</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.prediction.xy2latlon">
+<code class="sig-prename descclassname"><span class="pre">sora.prediction.</span></code><code class="sig-name descname"><span class="pre">xy2latlon</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loncen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latcen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/prediction.html#xy2latlon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.prediction.xy2latlon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the longitude and latitude given projected positions x and y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Projected position in x, in the GCRS (meters)</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Projected position in y, in the GCRS (meters)</p></li>
+<li><p><strong>loncen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Center longitude of projection (deg)</p></li>
+<li><p><strong>latcen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Center latitude of projection (deg)</p></li>
+<li><p><strong>time</strong> (<em>Time</em>) – Time of refered projection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Longitude and Latitude whose projection at loncen, lat results in x, y. (deg)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>lon, lat (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.star">
+<span id="star"></span><h1>Star<a class="headerlink" href="#module-sora.star" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="sora.star.Star">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.star.</span></code><code class="sig-name descname"><span class="pre">Star</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalogue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaiaedr3'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sora.star.meta.MetaStar</span></code></p>
+<dl class="py method">
+<dt id="sora.star.Star.add_offset">
+<code class="sig-name descname"><span class="pre">add_offset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da_cosdec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.add_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.add_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an offset to the star position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da_cosdec</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – offset in Delta_alpha_cos_delta in mas</p></li>
+<li><p><strong>ddec</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – offset in Delta_delta in mas</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.apparent_diameter">
+<code class="sig-name descname"><span class="pre">apparent_diameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'V'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.apparent_diameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.apparent_diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the apparent diameter of the star at a given distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Object geocentric distance, in AU</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>The mode to calculate the apparent diameter
+‘user’: calculates using user given diameter
+‘gaia’: calculates using diameter obtained from Gaia
+‘kervella’: calculates using Kervella equations
+‘van_belle’: calculates using van Belle equations
+‘auto’ (default): tries all the above methods until it is able to calculate diameter.</p>
+<blockquote>
+<div><p>The order of try is the same as shown above (user, Gaia, Kervella, Van Belle).</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>'band'</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The band filter to calculate the diameter.
+If mode is ‘kervella’ or ‘van_belle’, the filter must be given, ‘B’ or ‘V’.
+If mode ‘auto’, ‘V’ is selected.</p></li>
+<li><p><strong>'star_type'</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>type of star to calculate the diameter.
+If mode is ‘van_belle’, the star type must be given.
+If mode is ‘auto’, type = ‘sg’.
+Types can be:</p>
+<blockquote>
+<div><ul>
+<li><p>’sg’ for ‘Super Giant’</p></li>
+<li><p>’ms’ for ‘Main Sequence’</p></li>
+<li><p>’vs’ for ‘Variable Star’</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>'log'</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the mode used by ‘auto’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.barycentric">
+<code class="sig-name descname"><span class="pre">barycentric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.barycentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.barycentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position of the star using proper motion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – reference time to apply proper motion.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.error_at">
+<code class="sig-name descname"><span class="pre">error_at</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.error_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.error_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the star position error at a given time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – reference time to project star error.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>errors in RA* and DEC</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.geocentric">
+<code class="sig-name descname"><span class="pre">geocentric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.geocentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.geocentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position of the star, propagating the position using parallax and proper motion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>Time</em>) – reference time to apply proper motion and calculate paralax.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.kervella">
+<code class="sig-name descname"><span class="pre">kervella</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.kervella"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.kervella" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from Kervella et. al (2004)
+– A&amp;A Vol.  426, No.  1:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.set_diameter">
+<code class="sig-name descname"><span class="pre">set_diameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.set_diameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.set_diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets an user diameter for the star, in mas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>diameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – sets the user diameter of the star, in mas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.set_magnitude">
+<code class="sig-name descname"><span class="pre">set_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.set_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.set_magnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the magnitudes of a star.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong><strong>)</strong><strong>=</strong> (<em>(</em><em>band</em>) – The star magnitude for given band. The band name can be any string the user wants.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>set_magnitude(G=10)
+set_magnitude(K=15)
+set_magnitude(newband=6)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.star.Star.van_belle">
+<code class="sig-name descname"><span class="pre">van_belle</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.van_belle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.Star.van_belle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from van Belle (1999)
+– Publi. Astron. Soc. Pacific 111, 1515-1523:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.body">
+<span id="body"></span><h1>Body<a class="headerlink" href="#module-sora.body" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-sora.extra">
+<span id="extra"></span><h1>Extra<a class="headerlink" href="#module-sora.extra" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="sora.extra.draw_ellipse">
+<code class="sig-prename descclassname"><span class="pre">sora.extra.</span></code><code class="sig-name descname"><span class="pre">draw_ellipse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra.html#draw_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.draw_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots an ellipse with the given input parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Semi-major axis of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Oblateness of the ellipse. Default=0.0 (circle)</p></li>
+<li><p><strong>center_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Coordinate of the ellipse (abscissa). Default=0.0</p></li>
+<li><p><strong>center_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Coordinate of the ellipse (ordinate). Default=0.0</p></li>
+<li><p><strong>center_dot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, plots a dot at the center of the ellipse. Default=False</p></li>
+<li><p><strong>position_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Pole position angle. Default=0.0</p></li>
+<li><p><strong>ax</strong> (<em>maptlotlib.Axes</em>) – Axis where to plot ellipse</p></li>
+<li><p><strong>**kwargs</strong> – all other parameters will be parsed directly to matplotlib</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples/Tutorial_SORAv0.1_Star.html" class="btn btn-neutral float-left" title="Star Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

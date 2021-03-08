@@ -5,24 +5,17 @@
 # Required
 version: 2
 
+conda:
+  environment: docs/sora.yaml
+  
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
    builder: html
    configuration: docs/conf.py
    fail_on_warning: true
 
-# Optionally set the version of Python and requirements required to build your docs
-python:
-   version: 3.7
-   install:
-   - requirements: docs/requirements.txt
-   - method: pip
-     path: .
-
 # Optionally build your docs in additional formats such as PDF
-formats:
-   - pdf
-   - epub
+formats: all
 
 # By default readthedocs does not checkout git submodules
 submodules:                                                                                                                          

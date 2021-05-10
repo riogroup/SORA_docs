@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Input and Outputs &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SORA Code" href="sora_code.html" />
+    <link rel="prev" title="Modules" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="goals_updates.html">Goals and Version updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curiosities.html">Curiosities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future_linea.html">The future and the LIneA TNO Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input and Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-list">INPUT list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-list">OUTPUT list</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html">SORA Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.lightcurve">Lightcurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.body">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Input and Outputs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/input_output.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="input-and-outputs">
+<span id="sec-input-output"></span><h1>Input and Outputs<a class="headerlink" href="#input-and-outputs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="input-list">
+<span id="subsec-input-list"></span><h2>INPUT list<a class="headerlink" href="#input-list" title="Permalink to this headline">¶</a></h2>
+<p>Here it is listed the inputs that the user needs to provide for SORA
+v0.1 to work.</p>
+<ol class="arabic simple">
+<li><p><strong>Event Related (Star and Ephem)</strong></p>
+<ul class="simple">
+<li><p>Object Name or provisory designation</p></li>
+<li><p>Object Code / SPKID (only for EphemKernel)</p></li>
+<li><p>BSP file and name (only for EphemKernel)</p></li>
+<li><p>DE file and name (only for EphemKernel)</p></li>
+<li><p>Ephemeris offset for RA and DEC -
+<span class="math notranslate nohighlight">\(\Delta \alpha \cdot \cos \delta\)</span>, <span class="math notranslate nohighlight">\(\Delta \delta\)</span>
+(set as 0,0)</p></li>
+<li><p>Occultation date and time</p></li>
+<li><p>Occulted star coordinates RA and DEC; or Gaia code</p></li>
+<li><p>Star offset for RA and DEC -
+<span class="math notranslate nohighlight">\(\Delta \alpha \cdot \cos \delta\)</span>, <span class="math notranslate nohighlight">\(\Delta \delta\)</span>
+(set as 0,0)</p></li>
+</ul>
+</li>
+<li><p><strong>Observer Related</strong></p>
+<ul class="simple">
+<li><p>Site name and location (latitude, longitude, and height; or
+IAU/MPC code)</p></li>
+<li><p>Light curve file and name; or array with fluxes and times; or
+immersion and emersion times</p></li>
+<li><p>Exposure time in seconds</p></li>
+<li><p>Observational bandwidth in microns (set as 0.7 <span class="math notranslate nohighlight">\(\pm\)</span> 0.3
+microns, Clear)</p></li>
+</ul>
+</li>
+<li><p><strong>Fitting Related</strong></p>
+<ul class="simple">
+<li><p>Initial guess for light curve fitting: immersion, emersion and
+opacity.</p></li>
+<li><p>Range to explore all three parameters</p></li>
+<li><p>Initial guess for ellipse parameters: center (f,g), equatorial
+radius, oblateness, and position angle</p></li>
+<li><p>Range to explore all five parameters</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="output-list">
+<h2>OUTPUT list<a class="headerlink" href="#output-list" title="Permalink to this headline">¶</a></h2>
+<p>Here we present all the information that is obtained through
+calculations, from queries, or from plots that are performed in SORA
+code.</p>
+<ol class="arabic simple">
+<li><p><strong>Generic Information</strong> (for a specific occultation):</p>
+<ul class="simple">
+<li><p><strong>Star</strong></p>
+<ul>
+<li><p>Star Gaia-DR2 ID</p></li>
+<li><p>Star coordinates at 2015.5 and uncertainty - RA and DEC (hh mm
+ss.sss , +dd mm ss.sss, mas, mas)</p></li>
+<li><p>Star proper motion - in RA, DEC - and uncertainties (mas/yr)</p></li>
+<li><p>Star parallax and uncertainty (mas)</p></li>
+<li><p>Star coordinates propagated to event epoch and uncertainty - RA
+and DEC (hh mm ss.sss , +dd mm ss.sss, mas, mas)</p></li>
+<li><p>Star magnitudes G, B, V, R, J, H, K (mag)</p></li>
+<li><p>Star projected diameter and model (km and mas, model: GDR2, Van
+Belle, Kervella)</p></li>
+<li><p>Star offset applied in RA and DEC (mas, mas)</p></li>
+</ul>
+</li>
+<li><p><strong>Object and Ephmeris</strong></p>
+<ul>
+<li><p>Object Name</p></li>
+<li><p>Object radius (km)</p></li>
+<li><p>Object mass (kg)</p></li>
+<li><p>Ephemeris kernel (version and DE)</p></li>
+<li><p>Offset applied in RA/DEC (mas, mas)</p></li>
+<li><p>Object distance (AU)</p></li>
+<li><p>Object apparent magnitude for the date (mag)</p></li>
+<li><p>Object absolute magnitude</p></li>
+<li><p>Object geometric albedo (V-band)</p></li>
+</ul>
+</li>
+<li><p><strong>Occultation</strong></p>
+<ul>
+<li><p>Event date and time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p>Closest approach Angle - CA (arcsec)</p></li>
+<li><p>Reference time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p>Position Angle - PA (degree)</p></li>
+<li><p>Shadow’s velocity relative to the geocenter (km/s)</p></li>
+<li><p>Number of positive observations</p></li>
+<li><p>Number of negative observations</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Observer Information</strong> (for each observer):</p>
+<ul class="simple">
+<li><p>Detection status (positive, negative, overcast, tech. problem,
+other)</p></li>
+<li><p>Site Name</p></li>
+<li><p>Site MPC/IAU code (if any)</p></li>
+<li><p>Site coordinates - Latitude, Longitude and height (dd mm ss.s ; dd
+mm ss.s ; m)</p></li>
+<li><p>Light curve file name</p></li>
+<li><p>Number of images (lines in LC)</p></li>
+</ul>
+</li>
+<li><p><strong>Light curve fitting information</strong> (for each positive detection):</p>
+<ul class="simple">
+<li><p>Acquisition start time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p>Acquisition end time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p>Exposure time (s)</p></li>
+<li><p>Cycle time (s)</p></li>
+<li><p>Time offset applied in LC (s)</p></li>
+<li><p>Light curve calculated RMS</p></li>
+<li><p>Calculated normalised flux and bottom flux (standard = 1, 0)</p></li>
+<li><p>Band width and uncertainty (microns)</p></li>
+<li><p>Shadow’s velocity relative to the station (km/s)</p></li>
+<li><p>Fresnel scale (s and km)</p></li>
+<li><p>Projected stellar size scale (s and km)</p></li>
+<li><p>Integration time scale (s and km)</p></li>
+<li><p>Dead time scale (s and km)</p></li>
+<li><p>Model resolution - size of synthetic LC point (s and km)</p></li>
+<li><p>Immersion Time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p>Immersion Time uncertainty - 1<span class="math notranslate nohighlight">\(\sigma\)</span> and
+3<span class="math notranslate nohighlight">\(\sigma\)</span> (s)</p></li>
+<li><p>Emersion Time (yyyy-mm-dd hh:mm:ss.sss)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi^2\)</span> fit model</p></li>
+<li><p>Emersion Time uncertainty - 1<span class="math notranslate nohighlight">\(\sigma\)</span> and
+3<span class="math notranslate nohighlight">\(\sigma\)</span> (s)</p></li>
+<li><p>Minimum Chi-square - <span class="math notranslate nohighlight">\(\chi^2_{min}\)</span></p></li>
+<li><p>Number of fitted points for im- and emersion</p></li>
+<li><p>Number of fitted parameters</p></li>
+<li><p>Minimum Chi-square per degree of freedom -
+<span class="math notranslate nohighlight">\(\chi^2_{min-pdf}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Elipse fit procedure:</strong></p>
+<ul class="simple">
+<li><p>Fitted parameters: Equatorial radius and uncertainty (km); Center
+position (<span class="math notranslate nohighlight">\(f_0\)</span>, <span class="math notranslate nohighlight">\(g_0\)</span>) and 1<span class="math notranslate nohighlight">\(\sigma\)</span>
+uncertainties (km, km); Oblateness and uncertainty; Position angle
+and uncertainty (degree)</p></li>
+<li><p>Minimum Chi-square - <span class="math notranslate nohighlight">\(\chi^2_{min}\)</span></p></li>
+<li><p>Minimum Chi-square per degree of freedom -
+<span class="math notranslate nohighlight">\(\chi^2_{min-pdf}\)</span></p></li>
+<li><p>Number points used to fit ( X points from Y chords )</p></li>
+<li><p>Astrometric object center position at occ. time and uncertainty
+(hh mm ss.sss +dd mm ss.sss <span class="math notranslate nohighlight">\(\pm\)</span> mas)</p></li>
+</ul>
+</li>
+<li><p><strong>Plots and files:</strong> (some are optional)</p>
+<ul class="simple">
+<li><p>Prediction map (Lucky Star model)</p></li>
+<li><p>Normalised light curve - for each site (x = time; y = flux)</p></li>
+<li><p>Chi-square map for immersion and emersion times (x = time; y =
+<span class="math notranslate nohighlight">\(\chi^2\)</span>)</p></li>
+<li><p>Light curve and synthetic LC- for each site (x = time; y = flux)</p></li>
+<li><p>Chords projected in sky plane (x = <span class="math notranslate nohighlight">\(\xi\)</span> (km); y =
+<span class="math notranslate nohighlight">\(\eta\)</span> (km) )</p></li>
+<li><p>Chi-square map for each ellipse parameter (x = time; y =
+<span class="math notranslate nohighlight">\(\chi^2_{param}\)</span>)</p></li>
+<li><p>Chords projected in sky plane and the best ellipse fitted with
+1<span class="math notranslate nohighlight">\(\sigma\)</span> uncertainties (x = <span class="math notranslate nohighlight">\(\xi\)</span> (km); y =
+<span class="math notranslate nohighlight">\(\eta\)</span> (km) )</p></li>
+<li><p>Log file with all information</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="sora_code.html" class="btn btn-neutral float-right" title="SORA Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Goals and Version updates &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Curiosities" href="curiosities.html" />
+    <link rel="prev" title="Welcome to Stellar Occultation Reduction Analysis’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Manual:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Goals and Version updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curiosities.html">Curiosities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future_linea.html">The future and the LIneA TNO Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">Input and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html">SORA Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.lightcurve">Lightcurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.body">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Goals and Version updates</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/goals_updates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="goals-and-version-updates">
+<span id="sec-goals-updates"></span><h1>Goals and Version updates<a class="headerlink" href="#goals-and-version-updates" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Documentation</strong> [SORAversion0.0]</p>
+<ul>
+<li><p>Program design</p></li>
+<li><p>Pipeline workflow</p></li>
+<li><p>Input and Output logs and Figures</p></li>
+<li><p>SORA description</p></li>
+<li><p>Jupyter notebook with a complete reduction.</p></li>
+<li><p>Jupyter notebook tutorial for Ephem().</p></li>
+<li><p>Jupyter notebook tutorial for Star().</p></li>
+<li><p>Jupyter notebook tutorial for Observer().</p></li>
+<li><p>Jupyter notebook tutorial for LightCurve().</p></li>
+<li><p>Jupyter notebook tutorial for Occultation().</p></li>
+<li><p>Jupyter notebook tutorial for Prediction().</p></li>
+<li><p>Jupyter notebook tutorial for ChiSquare().</p></li>
+</ul>
+</li>
+<li><p><strong>Version 0.1</strong></p>
+<ul>
+<li><p>Calculate ephemeris from BSP kernels with SPICE.</p></li>
+<li><p>Calculate ephemeris querying the JPL Horizons website.</p></li>
+<li><p>Calculate ephemeris (using <span class="math notranslate nohighlight">\(\xi\)</span>, <span class="math notranslate nohighlight">\(\eta\)</span>) in the same
+sense as ephem_planete,</p></li>
+<li><p>Calculate position angle of the pole.</p></li>
+<li><p>Download star coordinates, magnitudes, proper motions, parallax
+and uncertainties from Gaia-DR2.</p></li>
+<li><p>Download star magnitudes B, V, R, J, H, K and uncertainties from
+NOMAD.</p></li>
+<li><p>Propagate star coordinates to event epoch (proper motion and
+parallax).</p></li>
+<li><p>Propagate star coordinates uncertainties (first order
+approximation).</p></li>
+<li><p>Predict stellar occultations and calculate their parameters.</p></li>
+<li><p>Include ephemeris uncertainties for occultation prediction
+(instead of a fixed value of object radius + Earth Radius).</p></li>
+<li><p>Download object apparent magnitude from JPL.</p></li>
+<li><p>Calculate object apparent magnitude from absolute magnitude.</p></li>
+<li><p>Calculate Magnitude drop and expected bottom flux.</p></li>
+<li><p>Calculate star apparent size using equations from van Belle
+(1999).</p></li>
+<li><p>Calculate star apparent size using equations from Kervella (2004).</p></li>
+<li><p>Calculate star apparent size using Gaia diameter and object
+distance.</p></li>
+<li><p>Search for site(s) coordinates in the MPC database (geocentric).</p></li>
+<li><p>Read light curve file with 2 columns (time and flux).</p></li>
+<li><p>Light curve normalisation using a polynomial fit.</p></li>
+<li><p>Automatically detect stellar occultation(s) in the light curve
+(determination of initial guess for immersion and emersion times).</p></li>
+<li><p>Create a synthetic stellar occultation light curve.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi^2\)</span> minimisation and fit of immersion and emersion
+times from light curve</p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi^2\)</span> minimisation and fit of opacity from light curve</p></li>
+<li><p>Analyse chi-square and determine the values that minimise it.</p></li>
+<li><p>Calculate the projected points <span class="math notranslate nohighlight">\(f_i\)</span> and <span class="math notranslate nohighlight">\(g_i\)</span> in the
+plane of sky of each occultation instant <span class="math notranslate nohighlight">\(i\)</span> (immersions and
+emersions) with uncertainties.</p></li>
+<li><p>Fit ellipses using the projected points (f, g).</p></li>
+<li><p>Calculate event velocity for the site with respect to the normal
+of the ellipse surface (current method assumes a circle).</p></li>
+<li><p>Calculate object RA and DEC for the ellipse fitted center.</p></li>
+<li><p>Complete output log file</p></li>
+<li><p>Output figures and plots</p></li>
+<li><p>Fully integrated SORA modules.</p></li>
+<li><p>Routines adapted for user input (offline version): star, ephem,
+site(s) coordinates (topocentric).</p></li>
+</ul>
+</li>
+<li><p><strong>Version 0.1.1</strong></p>
+<ul>
+<li><p>Bugs and Error fixes.</p></li>
+<li><p>Inputs and outputs list update.</p></li>
+<li><p>Documentation and “README” file update.</p></li>
+<li><p>PEP8 verification</p></li>
+<li><p>Warnings messages and a few Error bypass fixes.</p></li>
+<li><p>Automatic calculation of object geometric albedo from object
+absolute magnitude.</p></li>
+<li><p>Read light curve files with User format</p></li>
+<li><p>Include Solar and Lunar separation angle in log file.</p></li>
+<li><p>Include observation elevation and azimuth (in degrees) in log
+file.</p></li>
+</ul>
+</li>
+<li><p><strong>Version 0.X - Expected short and medium term implementations</strong>
+[SORAversion0.2]</p>
+<ul>
+<li><p>Bugs and Error fixes. [Under analysis]</p></li>
+<li><p>Include gravitational light shift for shadow path. [Under
+analysis]</p></li>
+<li><p>Include uncertainty in star diameter from GAIA. [Under analysis]</p></li>
+<li><p>Automatic initial value for ellipse fit. [Under analysis]</p></li>
+<li><p>Download object rotation period. [Under analysis]</p></li>
+<li><p>Use rotation period to determine density for Maclaurin. [Under
+analysis]</p></li>
+<li><p>Use rotation period to determine density for Jacobi. [Under
+analysis]</p></li>
+<li><p>Develop a F-test to verify any indication of atmosphere. [Under
+analysis]</p></li>
+<li><p>Improvement for secondary event determination. [Under analysis]</p></li>
+<li><p>Routine to estimate lower limits for presence of atmosphere.
+[Future work]</p></li>
+<li><p>Query to database with sites of recurrent amateurs observers.
+[Future work]</p></li>
+<li><p>From pole position angle determine expected pole coordinates
+(ICRS). [Under development]</p></li>
+<li><p>Determine true longitude in the equatorial plane (ring plane) of a
+point in the sky plane (<span class="math notranslate nohighlight">\(f_i,g_i\)</span>) [Under development]</p></li>
+<li><p>Determine radial velocity for a point in the sky plane
+(<span class="math notranslate nohighlight">\(f_i,g_i\)</span>) in the equatorial plane (ring plane). [Under
+development]</p></li>
+<li><p>Routine to read SORA output logfile as an input for SORA (avoid
+recalculations). [Future work]</p></li>
+<li><p>GUI front end design. [Future work]</p></li>
+<li><p>Model for integration with LIneA TNO portal (user access control).
+[Future work]</p></li>
+</ul>
+</li>
+<li><p><strong>Version 1.X and future updates - Expected long term implementations</strong></p>
+<ul>
+<li><p>Bugs and Error fixes</p></li>
+<li><p>Fit a 3D model to the occultation data.</p></li>
+<li><p>Density estimation for differentiated objects (see Hely’s
+dissertation)</p></li>
+<li><p>Implementation of different <span class="math notranslate nohighlight">\(\chi^2\)</span> fitting procedures
+(e.g. fit 2 or 4 degree polynom in <span class="math notranslate nohighlight">\(\chi^2\)</span> values for
+immersion and emersion instants).</p></li>
+<li><p>Fresnell diffraction functions depending on pre-set values for
+camera sensitivity and filter bandpass.</p></li>
+<li><p>Create a “reverse engeneering” process to determine a possible
+detection in a observing site.</p></li>
+<li><p>Star diameter bin calculation (current: star size divided by 24,
+see Sec. <a class="reference external" href="#SubSec:LC_fit">Light Curve fit</a>).</p></li>
+<li><p>New reduction routines for objects with atmosphere</p></li>
+<li><p>Include module to calculate object rotation period,</p></li>
+<li><p>Integration with google maps for prediction maps (creating kmz
+files),</p></li>
+<li><p>Integration with the stellar occultation database,
+(<a class="reference external" href="http://occultations.ct.utfpr.edu.br/">http://occultations.ct.utfpr.edu.br/</a>)</p></li>
+<li><p>SORA available for private use (core team)</p></li>
+<li><p>SORA available for public use (occultation collaborators)</p></li>
+<li><p>SORA available for public use (general public under conditions)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="curiosities.html" class="btn btn-neutral float-right" title="Curiosities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Stellar Occultation Reduction Analysis’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

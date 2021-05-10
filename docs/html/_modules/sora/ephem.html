@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.ephem &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Manual:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../goals_updates.html">Goals and Version updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../curiosities.html">Curiosities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../future_linea.html">The future and the LIneA TNO Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../input_output.html">Input and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora_code.html">SORA Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.lightcurve">Lightcurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.body">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sora.html#module-sora.extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.ephem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.ephem</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">SkyOffsetFrame</span><span class="p">,</span> \
+    <span class="n">SphericalCosLatDifferential</span><span class="p">,</span> <span class="n">ICRS</span><span class="p">,</span> <span class="n">get_sun</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">vstack</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="k">as</span> <span class="nn">const</span>
+<span class="kn">from</span> <span class="nn">astroquery.jplhorizons</span> <span class="kn">import</span> <span class="n">Horizons</span>
+<span class="kn">from</span> <span class="nn">sora.config</span> <span class="kn">import</span> <span class="n">test_attr</span><span class="p">,</span> <span class="n">input_tests</span>
+<span class="kn">from</span> <span class="nn">sora.config.decorators</span> <span class="kn">import</span> <span class="n">deprecated_alias</span><span class="p">,</span> <span class="n">deprecated_function</span>
+<span class="kn">import</span> <span class="nn">spiceypy</span> <span class="k">as</span> <span class="nn">spice</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_obj_data"><a class="viewcode-back" href="../../sora.html#sora.ephem.read_obj_data">[docs]</a><span class="k">def</span> <span class="nf">read_obj_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Reads an online table (link below) with physical parameters for selected objects</span>
+
+<span class="sd">    Table url: http://devel2.linea.gov.br/~altair.gomes/radius.txt</span>
+
+<span class="sd">    Table content: Object name; radius (km); uncertainty in RA; uncertainty in DEC</span>
+<span class="sd">        RA: Delta * alpha * cos (delta)</span>
+<span class="sd">        DEC: Delta * delta</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        python dictionary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://devel2.linea.gov.br/~altair.gomes/radius.txt&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">obj</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Online object data table could not be found. Please check internet connection.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span></div>
+
+
+<div class="viewcode-block" id="apparent_mag"><a class="viewcode-back" href="../../sora.html#sora.ephem.apparent_mag">[docs]</a><span class="k">def</span> <span class="nf">apparent_mag</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">sundist</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculates the Object Apparent Magnitude</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        H (int, float): Absolute Magnitude</span>
+<span class="sd">        G (int, float): Slope parameter</span>
+<span class="sd">        dist (int, float): Observer-Object distance, in AU</span>
+<span class="sd">        sundist (int, float): Sun-Object distance, in AU</span>
+<span class="sd">        phase (int, float): Phase Angle: Sun-Target-Observer, in deg</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ap_mag (float): Apparent Magnitude</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">phi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">3.33</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">phase</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">**</span><span class="mf">0.63</span><span class="p">))</span>
+    <span class="n">phi1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.87</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">phase</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">**</span><span class="mf">1.22</span><span class="p">))</span>
+    <span class="n">Ha</span> <span class="o">=</span> <span class="n">H</span> <span class="o">-</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">G</span><span class="p">)</span><span class="o">*</span><span class="n">phi0</span> <span class="o">+</span> <span class="n">G</span><span class="o">*</span><span class="n">phi1</span><span class="p">)</span>
+    <span class="n">ap_mag</span> <span class="o">=</span> <span class="n">Ha</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">sundist</span><span class="o">*</span><span class="n">dist</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ap_mag</span><span class="o">.</span><span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="ephem_kernel"><a class="viewcode-back" href="../../sora.html#sora.ephem.ephem_kernel">[docs]</a><span class="k">def</span> <span class="nf">ephem_kernel</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">observer</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculates the ephemeris from kernel files</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        time (str, Time): reference instant to calculate ephemeris</span>
+<span class="sd">        target (str): IAU (kernel) code of the target</span>
+<span class="sd">        observer (str): IAU (kernel) code of the observer</span>
+<span class="sd">        kernels (list, str): list of paths for all the kernels</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        coord (SkyCoord): ICRS coordinate of the target.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">kernels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span><span class="n">kernels</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">kern</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
+        <span class="n">spice</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">kern</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s1">&#39;tdb&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">isscalar</span><span class="p">:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">([</span><span class="n">time</span><span class="p">])</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+    <span class="n">delt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span>
+    <span class="c1"># calculates vector Observer -&gt; Solar System Baricenter</span>
+    <span class="n">position1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">spice</span><span class="o">.</span><span class="n">spkpos</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">sec</span><span class="p">,</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span> <span class="s1">&#39;NONE&#39;</span><span class="p">,</span> <span class="n">observer</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># calculates new time</span>
+        <span class="n">tempo</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">-</span> <span class="n">delt</span>
+        <span class="c1"># calculates vector Solar System Baricenter -&gt; Object</span>
+        <span class="n">position2</span> <span class="o">=</span> <span class="n">spice</span><span class="o">.</span><span class="n">spkpos</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">tempo</span><span class="o">.</span><span class="n">sec</span><span class="p">,</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span> <span class="s1">&#39;NONE&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="n">position1</span> <span class="o">+</span> <span class="n">position2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1"># calculates linear distance Earth Topocenter -&gt; Object</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="c1"># calculates new light time</span>
+        <span class="n">delt</span> <span class="o">=</span> <span class="p">(</span><span class="n">dist</span><span class="o">/</span><span class="n">const</span><span class="o">.</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+        <span class="c1"># if difference between new and previous light time is smaller than 0.001 sec, than continue.</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(((</span><span class="n">dt</span> <span class="o">-</span> <span class="n">tempo</span><span class="p">)</span> <span class="o">-</span> <span class="n">delt</span><span class="p">)</span><span class="o">.</span><span class="n">sec</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">):</span>
+            <span class="k">break</span>
+    <span class="n">coord</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">,</span>
+                     <span class="n">representation_type</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">spice</span><span class="o">.</span><span class="n">kclear</span><span class="p">()</span>
+    <span class="n">coord_rd</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">spherical</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">spherical</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+                        <span class="n">distance</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">spherical</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">coord_rd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">coord_rd</span></div>
+
+
+<span class="k">class</span> <span class="nc">BaseEphem</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># remove &#39;H&#39;, &#39;G&#39;, &#39;mass&#39; and &#39;radius&#39; from allowed kwargs and docstring for v1.0</span>
+        <span class="n">input_tests</span><span class="o">.</span><span class="n">check_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">allowed_kwargs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;error_dec&#39;</span><span class="p">,</span> <span class="s1">&#39;error_ra&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;radius&#39;</span><span class="p">])</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;occultation&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">spkid</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span> <span class="o">=</span> <span class="n">spkid</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span>  <span class="c1"># remove this line for v1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_ra</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error_ra&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_dec</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error_dec&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span>
+        <span class="c1"># start of block removal for v1.0</span>
+        <span class="k">if</span> <span class="s1">&#39;radius&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;radius&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kg</span>
+        <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;G&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+        <span class="c1"># end of block removal for v1.0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">spkid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;spkid&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_spkid&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spkid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> does not have spkid&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="nd">@spkid</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">spkid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;spkid&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;When Ephem is associated to a Body object, spkid must be given to the Body object.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_spkid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="c1"># Start of block removal for v1.0</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;radius&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="s1">&#39;radius&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_radius&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> does not have radius&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="nd">@radius</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;radius&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;When Ephem is associated to a Body object, radius must be given to the Body object.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_H&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_H</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> does not have H&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="nd">@H</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;When Ephem is associated to a Body object, H must be given to the Body object.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_H</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;G&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_G&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_G</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> does not have G&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="nd">@G</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;G&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;When Ephem is associated to a Body object, G must be given to the Body object.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_G</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calculates the Object Apparent Magnitude</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): Reference time to calculate the object aparent magnitude.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ap_mag (float): Object apparent magnitude</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">search_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;search_name&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">id_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;id_type&#39;</span><span class="p">,</span> <span class="s1">&#39;majorbody&#39;</span><span class="p">)</span>
+            <span class="n">id_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id_type&#39;</span><span class="p">,</span> <span class="n">id_type</span><span class="p">)</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">Horizons</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">search_name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="n">id_type</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;geo&#39;</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">jd</span><span class="p">)</span>
+            <span class="n">eph</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">ephemerides</span><span class="p">(</span><span class="n">extra_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="n">eph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obs_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">obs_sun</span> <span class="o">=</span> <span class="n">get_sun</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">sun_obj</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span> <span class="o">-</span> <span class="n">obs_sun</span><span class="o">.</span><span class="n">cartesian</span><span class="p">)</span>
+            <span class="n">sun_obj</span><span class="o">.</span><span class="n">representation_type</span> <span class="o">=</span> <span class="s1">&#39;spherical&#39;</span>
+
+            <span class="c1"># Calculates the phase angle between the 2-vectors</span>
+            <span class="n">unit_vector_1</span> <span class="o">=</span> <span class="o">-</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+            <span class="n">unit_vector_2</span> <span class="o">=</span> <span class="o">-</span><span class="n">sun_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sun_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+            <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">unit_vector_1</span><span class="p">,</span> <span class="n">unit_vector_2</span><span class="p">)</span>
+            <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">dot_product</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+            <span class="k">return</span> <span class="n">apparent_mag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="n">obs_obj</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                <span class="n">sun_obj</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span>
+
+    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use get_pole_position_angle from Body object&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_pole_position_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pole</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the object geocentric position.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            pole (str, SkyCoord): Coordinate of the object pole ICRS.</span>
+<span class="sd">            time (str, Time): Time from which to calculate the position.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            position_angle (float): Position angle of the object pole, in degrees</span>
+<span class="sd">            aperture_angle (float): Apeture angle of the object pole, in degrees</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">pole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">pole</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">))</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">position_angle</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">position_angle</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span>
+        <span class="n">aperture_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span>
+            <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span> <span class="o">+</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">ra</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">position_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">),</span> <span class="n">aperture_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">)</span>
+    <span class="c1"># End of block removal for v1.0</span>
+
+    <span class="k">def</span> <span class="nf">get_ksi_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">star</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns projected position* of the object in the tangent sky plane relative to a star.</span>
+<span class="sd">            * ortographic projection.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): Reference time to calculate the object position.</span>
+<span class="sd">            star (str, SkyCoord): Coordinate of the star in the same reference frame as the ephemeris.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ksi, eta (float): projected position (ortographic projection) of the object in the tangent sky plane</span>
+<span class="sd">                relative to a star.</span>
+<span class="sd">                Ksi is in the North-South direction (North positive)</span>
+<span class="sd">                Eta is in the East-West direction (East positive)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">star</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">))</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">star</span><span class="p">))</span>
+        <span class="n">da</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span>
+        <span class="n">dd</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span>
+        <span class="k">return</span> <span class="n">da</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">add_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">da_cosdec</span><span class="p">,</span> <span class="n">ddec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds an offset to the Ephemeris</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            da_cosdec (int, float): Delta_alpha_cos_delta in mas</span>
+<span class="sd">            ddec (int, float): Delta_delta in mas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dadc</span> <span class="o">=</span> <span class="n">test_attr</span><span class="p">(</span><span class="n">da_cosdec</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;da_cosdec&#39;</span><span class="p">)</span>
+        <span class="n">dd</span> <span class="o">=</span> <span class="n">test_attr</span><span class="p">(</span><span class="n">ddec</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;ddec&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">SphericalCosLatDifferential</span><span class="p">(</span><span class="n">dadc</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="p">,</span> <span class="n">dd</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="p">,</span> <span class="mf">0.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Save the ephemerides to a file. It will be saved starting one hour before the</span>
+<span class="sd">        central time untill one hour after it, with a step of one minute. This file can be</span>
+<span class="sd">        used as an input for EphemPlanete().</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): central time to be saved</span>
+<span class="sd">            namefile (str): Filename to save</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">namefile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">namefile</span> <span class="o">=</span> <span class="s1">&#39;Ephem_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.dat&#39;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">test_attr</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
+        <span class="n">time_output</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">min</span>
+        <span class="n">ephem_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time_output</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+        <span class="n">array_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">time_output</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="n">ephem_output</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">ephem_output</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+                                 <span class="n">ephem_output</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">au</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">namefile</span><span class="p">,</span> <span class="n">array_output</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.14f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; String representation of the Ephem Class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;----------- Ephemeris -----------</span><span class="se">\n</span><span class="s2">&quot;</span>
+               <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{}</span><span class="s2">: {{ephem_info}} (SPKID=</span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+               <span class="s2">&quot;Ephem Error: RA*cosDEC: </span><span class="si">{:.3f}</span><span class="s2">; DEC: </span><span class="si">{:.3f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;spkid&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_ra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_dec</span><span class="p">)</span>
+               <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39;Offset applied: RA*cosDEC: </span><span class="si">{:.4f}</span><span class="s1">; DEC: </span><span class="si">{:.4f}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lon_coslat</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lat</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">class</span> <span class="nc">EphemPlanete</span><span class="p">(</span><span class="n">BaseEphem</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ephem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Simulates the former fortran programs ephem_planete and fit_d2_ksi_eta.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            name (str): name of the object to search in the JPL database</span>
+<span class="sd">            ephem (str): Input file with JD (UTC), and geocentric RA (deg), DEC (deg), and distance (AU)</span>
+<span class="sd">            radius (int,float): Object radius, in km (Default: Online database)</span>
+<span class="sd">            error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            mass (int,float): Object Mass, in kg (Default: 0.0)</span>
+<span class="sd">            H (int,float): Object Absolute Magnitude (Default: NaN)</span>
+<span class="sd">            G (int,float): Object Phase slope (Default: NaN)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="n">spkid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">ephem</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jd&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jd&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jd&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the geocentric position of the object.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time):Time from which to calculate the position.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            coord (SkyCoord): Astropy SkyCoord object with the coordinate at given time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ksi</span><span class="p">,</span> <span class="n">eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">off_ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">ksi</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="n">off_dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="n">coord_frame</span> <span class="o">=</span> <span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="p">)</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="n">off_ra</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">off_dec</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">coord_frame</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pos</span><span class="o">.</span><span class="n">icrs</span>
+
+    <span class="k">def</span> <span class="nf">fit_d2_ksi_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Fits the projected position* of the object in the tangent sky plane relative to a star</span>
+<span class="sd">            * ortographic projection.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            star (str, SkyCoord): The coordinate of the star in the same reference frame as the ephemeris.</span>
+<span class="sd">            log (bool): if True, log is printed. Default: True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">star</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="n">star</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">star</span> <span class="o">=</span> <span class="n">star</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">star</span><span class="p">))</span>
+        <span class="n">da</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span>
+        <span class="n">dd</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ksi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ksi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ksi</span><span class="p">)</span>
+        <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">dksi</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">ksi</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">deta</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">eta</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">rmsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">dksi</span><span class="p">)))</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">deta</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Fitting ephemeris position relative to star coordinate </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;ksi = aksi*t</span><span class="se">\u00b2</span><span class="s1"> + bksi*t + cksi</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;eta = aeta*t</span><span class="se">\u00b2</span><span class="s1"> + beta*t + ceta</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;t=(jd-</span><span class="si">{}</span><span class="s1">)/(</span><span class="si">{}</span><span class="s1">-</span><span class="si">{}</span><span class="s1">)</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        aksi=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        bksi=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        cksi=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        aeta=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        beta=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;        ceta=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;Residual RMS: ksi=</span><span class="si">{:.3f}</span><span class="s1"> km, eta=</span><span class="si">{:.3f}</span><span class="s1"> km&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ksi</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">,</span> <span class="n">rmsk</span><span class="p">,</span> <span class="n">rmse</span><span class="p">)</span>
+                      <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_ksi_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the projected position* of the object in the tangent sky plane relative to a star.</span>
+<span class="sd">            * ortographic projection.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): Reference time to calculate the position.</span>
+<span class="sd">            star (str, SkyCoord): The coordinate of the star in the same reference frame as the ephemeris.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ksi, eta (float): projected position (ortographic projection) of the object in the tangent sky plane</span>
+<span class="sd">                relative to a star.</span>
+<span class="sd">                Ksi is in the North-South direction (North positive)</span>
+<span class="sd">                Eta is in the East-West direction (East positive)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">star</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit_d2_ksi_eta</span><span class="p">(</span><span class="n">star</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time</span><span class="o">.</span><span class="n">isscalar</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;time must be in the interval [</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">time</span><span class="o">.</span><span class="n">isscalar</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span> <span class="ow">or</span> <span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;time must be in the interval [</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ksi&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta&#39;</span><span class="p">):</span>
+            <span class="n">ksi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ksi</span><span class="p">)</span>
+            <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">ksi</span><span class="p">((</span><span class="n">time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">))</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">eta</span><span class="p">((</span><span class="n">time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">):</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+                <span class="n">dksi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lon_coslat</span><span class="p">)</span><span class="o">*</span><span class="n">dist</span>
+                <span class="n">deta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lat</span><span class="p">)</span><span class="o">*</span><span class="n">dist</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="n">dksi</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">e</span> <span class="o">+</span> <span class="n">deta</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A &quot;star&quot; parameter is missing. Please run fit_d2_ksi_eta first.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; String representation of the EphemPlanete Class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">validity</span> <span class="o">=</span> <span class="s1">&#39;Valid from </span><span class="si">{}</span><span class="s1"> until </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="o">.</span><span class="n">iso</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">.</span><span class="n">iso</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ephem_info</span><span class="o">=</span><span class="n">validity</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fitted ephemeris position relative to star coordinate </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;    ksi = aksi*t</span><span class="se">\u00b2</span><span class="s2"> + bksi*t + cksi</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;    eta = aeta*t</span><span class="se">\u00b2</span><span class="s2"> + beta*t + ceta</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;    t=(jd-</span><span class="si">{}</span><span class="s2">)/(</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;        aksi=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;        bksi=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;        aeta=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;        beta=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;        ceta=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ksi</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="p">))</span>
+            <span class="n">da</span> <span class="o">=</span> <span class="o">-</span><span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span>
+            <span class="n">dd</span> <span class="o">=</span> <span class="o">-</span><span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">__reftime</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">min_time</span><span class="p">)</span>
+            <span class="n">ksi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ksi</span><span class="p">)</span>
+            <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">)</span>
+            <span class="n">dksi</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">ksi</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">deta</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">eta</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">rmsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">dksi</span><span class="p">)))</span>
+            <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">deta</span><span class="p">)))</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39;Residual RMS: ksi=</span><span class="si">{:.3f}</span><span class="s1"> km, eta=</span><span class="si">{:.3f}</span><span class="s1"> km</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmsk</span><span class="p">,</span> <span class="n">rmse</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">class</span> <span class="nc">EphemHorizons</span><span class="p">(</span><span class="n">BaseEphem</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;smallbody&#39;</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Obtains the ephemeris from Horizons/JPL service.</span>
+
+<span class="sd">        Web tool URL = https://ssd.jpl.nasa.gov/horizons.cgi</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            name (str): name of the object to search in the JPL database</span>
+<span class="sd">            id_type (str): type of object options: &#39;smallbody&#39;, &#39;majorbody&#39;</span>
+<span class="sd">                (planets but also anything that is not a small body), &#39;designation&#39;,</span>
+<span class="sd">                &#39;name&#39;, &#39;asteroid_name&#39;, &#39;comet_name&#39;, &#39;id&#39; (Horizons id number),</span>
+<span class="sd">                or &#39;smallbody&#39; (find the closest match under any id_type). Default: &#39;smallbody&#39;</span>
+<span class="sd">            radius (int,float): Object radius, in km (Default: Online database)</span>
+<span class="sd">            error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            mass (int,float): Object Mass, in kg (Default: 0.0)</span>
+<span class="sd">            H (int,float): Object Absolute Magnitude (Default: NaN)</span>
+<span class="sd">            G (int,float): Object Phase slope (Default: NaN)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="n">spkid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_type</span> <span class="o">=</span> <span class="n">id_type</span>
+
+    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the geocentric position of the object.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): Reference time to calculate the position.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            coord (SkyCoord): Astropy SkyCoord object with the object coordinates at the given time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time</span><span class="o">.</span><span class="n">isscalar</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">calc_ephem</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="n">i</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="mi">50</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">:</span>
+                    <span class="n">k</span> <span class="o">=</span> <span class="n">s</span>
+                <span class="n">obj</span> <span class="o">=</span> <span class="n">Horizons</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span>
+                               <span class="n">location</span><span class="o">=</span><span class="s1">&#39;geo&#39;</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">time</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">jd</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">ephemerides</span><span class="p">(</span><span class="n">extra_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">plus</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">plus</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">eph</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">([</span><span class="n">calc_ephem</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">//</span><span class="mi">50</span><span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">plus</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">Horizons</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_type</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;geo&#39;</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">jd</span><span class="p">)</span>
+            <span class="n">eph</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">ephemerides</span><span class="p">(</span><span class="n">extra_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">eph</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">],</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;DEC&#39;</span><span class="p">],</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">],</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">):</span>
+            <span class="n">pos_frame</span> <span class="o">=</span> <span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+            <span class="n">new_pos</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lon_coslat</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lat</span><span class="p">,</span>
+                               <span class="n">distance</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">pos_frame</span><span class="p">)</span>
+            <span class="n">coord</span> <span class="o">=</span> <span class="n">new_pos</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ICRS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">coord</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; String representation of the EphemHorizons Class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ephem_info</span><span class="o">=</span><span class="s1">&#39;Ephemeris are downloaded from Horizons website&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="c1"># remove this block for v1.0</span>
+<span class="k">class</span> <span class="nc">EphemJPL</span><span class="p">(</span><span class="n">EphemHorizons</span><span class="p">):</span>
+    <span class="k">pass</span>
+<span class="c1"># end of block removal for v1.0</span>
+
+
+<span class="k">class</span> <span class="nc">EphemKernel</span><span class="p">(</span><span class="n">BaseEphem</span><span class="p">):</span>
+    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;spkid&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernels</span><span class="p">,</span> <span class="n">spkid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Gets the ephemeris from bsp kernels.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            name (str): name of the object to search in the JPL database</span>
+<span class="sd">            spkid (str): spkid of the targeting object. Former &#39;code&#39; (v0.1)</span>
+<span class="sd">            kernels(list): list of paths for kernels files</span>
+<span class="sd">            radius (int,float): Object radius, in km (Default: Online database)</span>
+<span class="sd">            error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)</span>
+<span class="sd">            mass (int,float): Object Mass, in kg (Default: 0.0)</span>
+<span class="sd">            H (int,float): Object Absolute Magnitude (Default: NaN)</span>
+<span class="sd">            G (int,float): Object Phase slope (Default: NaN)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="n">spkid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">kerns</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
+            <span class="n">spice</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+            <span class="n">kerns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="n">spice</span><span class="o">.</span><span class="n">kclear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;kernels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kerns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__kernels</span> <span class="o">=</span> <span class="n">kernels</span>
+
+    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the object geocentric position.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            time (str, Time): Reference time to calculate the object position.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            coord (SkyCoord): Astropy SkyCoord object with the object coordinates at the given time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">ephem_kernel</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span><span class="p">,</span> <span class="s1">&#39;399&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__kernels</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">):</span>
+            <span class="n">pos_frame</span> <span class="o">=</span> <span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+            <span class="n">new_pos</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lon_coslat</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">d_lat</span><span class="p">,</span>
+                               <span class="n">distance</span><span class="o">=</span><span class="n">pos</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">pos_frame</span><span class="p">)</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">new_pos</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ICRS</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; String representation of the EphemKernel Class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ephem_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;kernels&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

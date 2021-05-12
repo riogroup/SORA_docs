@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>General &#8212; SORA develop documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="general">
+<span id="sec-general"></span><h1>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
+<p>A stellar occultation occurs when a solar system object passes in front
+of a star for an observer on Earth, and its shadow causes a temporary
+drop in the observed flux of the star. This technique allows the
+determination of sizes and shapes with kilometre precision and to obtain
+characteristics of the object, such as its albedo, the presence of an
+atmosphere, rings, jets, or other structures around the body (Sicardy et
+al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2011Natur.478..493S/abstract">2011</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016ApJ...819L..38S/abstract">2016</a>;
+Braga-Ribas et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2013ApJ...773...26B/abstract">2013</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014Natur.508...72B/abstract">2014</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019EPSC...13.1076B/abstract">2019</a>;
+Dias-Oliveira et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2015ApJ...811...53D/abstract">2015</a>;
+Benedetti-Rossi et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016AJ....152..156B/abstract">2016</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019AJ....158..159B/abstract">2019</a>;
+Ortiz et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2015EPSC...10..230O/abstract">2015</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2017Natur.550..219O/abstract">2017</a>;
+Leiva et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2017AJ....154..159L/abstract">2017</a>;
+Bérard et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2017AJ....154..144B/abstract">2017</a>,
+Morgado et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019A%26A...626L...4M/abstract">2019</a>,
+Gomes-Júnior et al.,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.462.1351G/abstract">2016</a>,
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020MNRAS.492..770G/abstract">2020</a>),
+or even the detection of topographic features (Dias-Oliveira et al.
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2017AJ....154...22D/abstract">2017</a>)</p>
+<blockquote>
+<div><p><a href="#id4"><span class="problematic" id="id1">[1]_</span></a>.</p>
+</div></blockquote>
+<p>Sora is a Python-based, object-oriented package for optimal analysis of
+stellar occultation data. It includes processes starting on the
+prediction of such events to the resulting size, shape and position of
+the Solar System object. The main object classes created in version 0.1
+are: <strong>Star</strong>, <strong>Ephem</strong>, <strong>Observer</strong>, <strong>LightCurve</strong> and
+<strong>Occultation</strong>. It is important to note that new object classes,
+modules and other improvements and implementations can be available in
+future versions.</p>
+<p>A stellar occultation is defined by the occulting body (<strong>Ephem</strong>), the
+occulted star (<strong>Star</strong>), and the time of the occultation. On the other
+hand, each observational station (<strong>Observer</strong>) will be associated with
+their light curve (<strong>LightCurve</strong>). sora has tasks that allow the user
+to determine the immersion and emersion times and project them to the
+tangent sky plane, using the information within the <strong>Observer</strong>,
+<strong>Ephem</strong> and <strong>Star</strong> Objects. That projection will lead to chords that
+will be used to obtain the object’s apparent size, shape and position at
+the moment of the occultation. Automatic processes were developed for
+optimising the reduction of typical events. However, users have full
+control over the parameters and methods and can make changes in every
+step of the processes.</p>
+<p>This package is intended to analyse Stellar Occultations data in the
+context of big data and the LIneA TNO Portal. The user can use this
+package to build pipelines to analyse stellar occultation’s data. An
+example of a pipeline workflow is given in
+Fig. <a class="reference external" href="#fig:pipeline_workflow">1</a>.</p>
+<p>In this document we present a general overview of the code and a brief
+description on how all the developed modules and Object Classes work.
+For the tests performed for science verification and validation see the
+document in <a href="#id2"><span class="problematic" id="id3">`this link &lt;https://www.overleaf.com/read/ghdgdvrgjcfh
+&gt;`__</span></a>. The last session contains some tips and hints for Python and
+GitHub usage.</p>
+<div class="line-block">
+<div class="line">The Object Classes developed within sora were built as an integrated
+system, and they are controlled by the <strong>Occultation</strong> Object Class.
+Combining these Object Classes and the functions therein, the user can
+perform the complete data reduction, pre- and post-occultation.
+Jupyter-Notebooks with the features of each Class can be found in the
+example folder. The sora package is hosted on a GitHub repository in
+the following link:</div>
+<div class="line"><a class="reference external" href="https://github.com/riogroup/SORA">https://github.com/riogroup/SORA</a></div>
+</div>
+<p>This package was developed with support of the ERC Lucky Star, that
+agglomerates the efforts of the Paris, Granada, and Rio teams. The Lucky
+Star is funded by the ERC (European Research Council) under the European
+Community’s H2020 (2014-2020/ERC Grant Agreement No. 669416). Also, this
+project is supported by LIneA (Laboratório Interinstitucional de
+e-Astronomia), INCT do e-Universo (CNPQ grants 465376/2014-2), by FAPESP
+(proc. 2018/11239-8) and by CNPQ (proc. 300472/2020-0), Brazil.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">SORA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, SORA Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/core_bkp/general.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

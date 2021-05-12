@@ -1,55 +1,43 @@
-Ephem
------------------
-
-.. automodule:: sora.ephem
-   :members:
-   :show-inheritance:
-
-Lightcurve
-----------------------
-
-.. automodule:: sora.lightcurve
-   :members:
-   :show-inheritance:
-
-Observer
---------------------
-
-.. automodule:: sora.observer
-   :members:
-   :show-inheritance:
-
-Occultation
------------------------
-
-.. automodule:: sora.occultation
-   :members:
-   :show-inheritance:
-
-Prediction
-----------------------
-
-.. automodule:: sora.prediction
-   :members:
-   :show-inheritance:
-
-Star
-----------------
-
-.. automodule:: sora.star
-   :members:
-   :show-inheritance:
-
 Body
-----------------
+----
 
-.. automodule:: sora.body
+The Body class
+==============
+.. autoclass:: sora.Body
    :members:
-   :show-inheritance:
+   :private-members:
 
-Extra
------------------
+PhysicalData Object 
+=========================
+.. autoclass:: sora.body.PhysicalData
+   :members:
 
-.. automodule:: sora.extra
-  :members:
-  :show-inheritance:
+Module `util` Functions
+=======================
+.. automodule:: sora.body.utils
+   :members:
+
+
+
+Ephem
+-----
+
+The EphemPlanete Class
+======================
+.. autoclass:: sora.EphemPlanete
+   :members:
+
+The EphemHorizons Class
+=======================
+.. autoclass:: sora.EphemHorizons
+   :members:
+
+The EphemKernel Class
+=====================
+.. autoclass:: sora.EphemKernel
+   :members:
+
+Module `util` Functions
+=======================
+.. automodule:: sora.ephem.utils
+   :members: 

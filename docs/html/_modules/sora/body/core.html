@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.body.core &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Body</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.body.core</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.body.core</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">Longitude</span><span class="p">,</span> <span class="n">Latitude</span><span class="p">,</span> <span class="n">get_sun</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+
+<span class="kn">from</span> <span class="nn">sora.config</span> <span class="kn">import</span> <span class="n">input_tests</span>
+<span class="kn">from</span> <span class="nn">.meta</span> <span class="kn">import</span> <span class="n">BaseBody</span><span class="p">,</span> <span class="n">PhysicalData</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">search_sbdb</span><span class="p">,</span> <span class="n">search_satdb</span><span class="p">,</span> <span class="n">apparent_magnitude</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Body&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Body"><a class="viewcode-back" href="../../../sora.html#sora.Body">[docs]</a><span class="k">class</span> <span class="nc">Body</span><span class="p">(</span><span class="n">BaseBody</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class that contains and manages the information of the body.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : `str`, required</span>
+<span class="sd">        The name of the object. It can be the used `spkid` or `designation </span>
+<span class="sd">        number` to query the SBDB (Small-Body Database). In this case, the name </span>
+<span class="sd">        is case insensitive.</span>
+<span class="sd">    </span>
+<span class="sd">    database : `str`, optional, default=&#39;auto&#39;</span>
+<span class="sd">        The database to query the object. It can be ``satdb`` for our temporary </span>
+<span class="sd">        hardcoded satellite database, or ``&#39;sbdb&#39;`` to query on the SBDB. If </span>
+<span class="sd">        database is set as ``auto`` it will try first with ``satdb``, </span>
+<span class="sd">        then ``sbdb``. If the user wants to use their own information, </span>
+<span class="sd">        database must be given as ``None``. In this case, `spkid` parameter </span>
+<span class="sd">        must be given.</span>
+
+<span class="sd">    ephem : `sora.EphemKernel`, `sora.EphemHorizons`, `sora.EphemJPL`, `sora.EphemPlanete` </span>
+<span class="sd">        An Ephem Class that contains information about the ephemeris. It can be </span>
+<span class="sd">        &quot;horizons&quot; to automatically defined an EphemHorizons object or a list of </span>
+<span class="sd">        kernels to automatically define an EphemKernel object.</span>
+
+<span class="sd">    orbit_class : `str` </span>
+<span class="sd">        It defines the Orbital class of the body. It can be ``TNO``, </span>
+<span class="sd">        ``Satellite``, ``Centaur``, ``comet``, ``asteroid``, ``trojan``, ``neo``, </span>
+<span class="sd">        and ``planet``. It is important for a better characterization of the </span>
+<span class="sd">        object. If a different value is given, it will be defined as </span>
+<span class="sd">        ``unclassified``.</span>
+
+<span class="sd">    spkid : `str`, `int`, `float`</span>
+<span class="sd">        If ``database=None``, the user must give a `spkid` or an `ephem` </span>
+<span class="sd">        which has the `spkid` parameter.</span>
+
+<span class="sd">    albedo : `float`, `int`</span>
+<span class="sd">        The albedo of the object.</span>
+
+<span class="sd">    H : `float`, `int`</span>
+<span class="sd">        The absolute magnitude.</span>
+<span class="sd">        </span>
+<span class="sd">    G : `float`, `int`</span>
+<span class="sd">        The phase slope.</span>
+<span class="sd">        </span>
+<span class="sd">    diameter : `float`, `int`, `astropy.quantity.Quantity`</span>
+<span class="sd">        The dimater of the object, in km.</span>
+<span class="sd">        </span>
+<span class="sd">    density : `float`, `int`, `astropy.quantity.Quantity`</span>
+<span class="sd">        The density of the object, in g/cm³.</span>
+<span class="sd">        </span>
+<span class="sd">    GM : `float`, `int`, `astropy.quantity.Quantity`</span>
+<span class="sd">        The Standard Gravitational Parameter, in km³/s².</span>
+<span class="sd">    </span>
+<span class="sd">    rotation : `float`, `int`, `astropy.quantity.Quantity`</span>
+<span class="sd">        The Rotation of the object, in hours.</span>
+<span class="sd">        </span>
+<span class="sd">    pole : `str`, `astropy.coordinates.SkyCoord`</span>
+<span class="sd">        The Pole coordinates of the object. It can be a `SkyCoord object` or a </span>
+<span class="sd">        string in the format ``&#39;hh mm ss.ss +dd mm ss.ss&#39;``.</span>
+<span class="sd">        </span>
+<span class="sd">    BV : `float`, `int`</span>
+<span class="sd">        The B-V color.</span>
+<span class="sd">    </span>
+<span class="sd">    UB : `float`, `int`</span>
+<span class="sd">        The U-B color.</span>
+<span class="sd">    </span>
+<span class="sd">    smass : `str`</span>
+<span class="sd">        The spectral type in SMASS classification.</span>
+<span class="sd">    </span>
+<span class="sd">    tholen : `str`</span>
+<span class="sd">        The spectral type in Tholen classification.</span>
+<span class="sd">    </span>
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    The following attributes are are returned from the Small-Body Database when </span>
+<span class="sd">    ``database=&#39;sbdb&#39;`` or from our temporary hardcoded Satellite Database when </span>
+<span class="sd">    ``database=&#39;satdb&#39;``:</span>
+
+<span class="sd">    `orbit_class`, `spkid`, `albedo`, `H`, `G`, `diameter`, `density`, `GM`, </span>
+<span class="sd">    `rotation`, `pole`, `BV`, `UB`, `smass`, and `tholen`.</span>
+
+<span class="sd">    These are physical paramaters the user can give to the object. If a query is </span>
+<span class="sd">    made and user gives a parameter, the parameter given by the user is defined </span>
+<span class="sd">    in the *Body* object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>    
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        
+        <span class="n">allowed_kwargs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;albedo&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;diameter&quot;</span><span class="p">,</span> <span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;GM&quot;</span><span class="p">,</span> <span class="s2">&quot;rotation&quot;</span><span class="p">,</span> <span class="s2">&quot;pole&quot;</span><span class="p">,</span> <span class="s2">&quot;BV&quot;</span><span class="p">,</span> <span class="s2">&quot;UB&quot;</span><span class="p">,</span> <span class="s2">&quot;smass&quot;</span><span class="p">,</span>
+                          <span class="s2">&quot;orbit_class&quot;</span><span class="p">,</span> <span class="s2">&quot;spkid&quot;</span><span class="p">,</span> <span class="s2">&quot;tholen&quot;</span><span class="p">,</span> <span class="s2">&quot;ephem&quot;</span><span class="p">]</span>
+        <span class="n">input_tests</span><span class="o">.</span><span class="n">check_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">allowed_kwargs</span><span class="o">=</span><span class="n">allowed_kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ephem&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;occultation&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="n">database</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;satdb&#39;</span><span class="p">,</span> <span class="s1">&#39;sbdb&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s1"> is not a valid database argument.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">database</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__from_local</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spkid&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">database</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;satdb&#39;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__from_satdb</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">database</span> <span class="o">=</span> <span class="s1">&#39;satdb&#39;</span>
+        <span class="k">if</span> <span class="n">database</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="s1">&#39;sbdb&#39;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__from_sbdb</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">database</span> <span class="o">=</span> <span class="s1">&#39;sbdb&#39;</span>
+        <span class="k">if</span> <span class="n">database</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Object was not located on satdb or sbdb.&#39;</span><span class="p">)</span>
+        <span class="c1"># set the physical parameters based on the kwarg name.</span>
+        <span class="k">if</span> <span class="s1">&#39;smass&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;SMASS&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;smass&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;tholen&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;Tholen&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;tholen&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;search_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;id_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id_type</span>
+
+    <span class="k">def</span> <span class="nf">__from_sbdb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Searches the object in the SBDB and defines its physical parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : `str`</span>
+<span class="sd">            The `name`, `spkid` or `designation number` of the Small Body.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sbdb</span> <span class="o">=</span> <span class="n">search_sbdb</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_sbdb</span> <span class="o">=</span> <span class="n">sbdb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;fullname&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;shortname&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;orbit_class&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+
+        <span class="n">pp</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;phys_par&#39;</span><span class="p">]</span>  <span class="c1"># get the physical parameters (pp) of the sbdb</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Albedo&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;albedo&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;albedo_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;albedo_ref&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;albedo_note&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Absolute Magnitude&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;H_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;H_ref&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;H_note&#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Phase Slope&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;G_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;G_ref&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;G_note&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;diameter_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;diameter_ref&#39;</span><span class="p">),</span>
+                                     <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;diameter_note&#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;density_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;density_ref&#39;</span><span class="p">),</span>
+                                    <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;density_note&#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">g</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">GM</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Standard Gravitational Parameter&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GM&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GM_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GM_ref&#39;</span><span class="p">),</span>
+                               <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GM_note&#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Rotation&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rot_per&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rot_per_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rot_per_ref&#39;</span><span class="p">),</span>
+                                     <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rot_per_note&#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BV</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;B-V color&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BV&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BV_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BV_ref&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BV_note&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">UB</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;U-B color&#39;</span><span class="p">,</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UB&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UB_sig&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UB_ref&#39;</span><span class="p">),</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UB_note&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s1">&#39;pole&#39;</span> <span class="ow">in</span> <span class="n">pp</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;pole&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Longitude</span><span class="p">(</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;pole_sig&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Latitude</span><span class="p">(</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;pole_sig&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="n">pp</span><span class="p">[</span><span class="s1">&#39;pole_ref&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="n">pp</span><span class="p">[</span><span class="s1">&#39;pole_note&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;SMASS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_B&#39;</span><span class="p">),</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_B_ref&#39;</span><span class="p">),</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_B_note&#39;</span><span class="p">)},</span>
+            <span class="s2">&quot;Tholen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_T&#39;</span><span class="p">),</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_T_ref&#39;</span><span class="p">),</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="n">pp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spec_T_note&#39;</span><span class="p">)}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_des_name</span> <span class="o">=</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;des&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="s2">&quot;Discovered </span><span class="si">{}</span><span class="s2"> by </span><span class="si">{}</span><span class="s2"> at </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;discovery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">),</span> <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;discovery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;who&#39;</span><span class="p">),</span>
+                                                            <span class="n">sbdb</span><span class="p">[</span><span class="s1">&#39;discovery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;location&#39;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__from_satdb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">satdb</span> <span class="o">=</span> <span class="n">search_satdb</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span> <span class="o">=</span> <span class="s1">&#39;satellite&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Albedo&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;albedo&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Absolute Magnitude&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Phase Slope&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">GM</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Standard Gravitational Parameter&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GM&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span>
+                               <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Rotation&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">satdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rotation&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;pole&#39;</span> <span class="ow">in</span> <span class="n">satdb</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">satdb</span><span class="p">[</span><span class="s1">&#39;pole&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Longitude</span><span class="p">(</span><span class="n">satdb</span><span class="p">[</span><span class="s1">&#39;pole&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Latitude</span><span class="p">(</span><span class="n">satdb</span><span class="p">[</span><span class="s1">&#39;pole&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="n">satdb</span><span class="p">[</span><span class="s1">&#39;pole&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pole</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BV</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">UB</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;SMASS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;Tholen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span> <span class="o">=</span> <span class="n">satdb</span><span class="p">[</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_des_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__from_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Defines Body object with default values for mode=&#39;local&#39;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">spkid</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;spkid&#39; must be given.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spkid</span> <span class="o">=</span> <span class="n">spkid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">albedo</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">GM</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pole</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BV</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">UB</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;SMASS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                              <span class="s2">&quot;Tholen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<div class="viewcode-block" id="Body.get_pole_position_angle"><a class="viewcode-back" href="../../../sora.html#sora.Body.get_pole_position_angle">[docs]</a>    <span class="k">def</span> <span class="nf">get_pole_position_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the pole position angle and the aperture angle relative to </span>
+<span class="sd">        the geocenter.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : `str`, `astropy.time.Time`</span>
+<span class="sd">            Time from which to calculate the position.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        position_angle, aperture angle : `float` array</span>
+<span class="sd">            Position angle and apeture angle of the object&#39;s pole, in degrees.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">pole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Pole coordinates are not defined&quot;</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">position_angle</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">position_angle</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span><span class="o">.</span><span class="n">rad</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span>
+        <span class="n">aperture_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span>
+            <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span> <span class="o">+</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">-</span><span class="n">obj</span><span class="o">.</span><span class="n">ra</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">position_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">),</span> <span class="n">aperture_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Body.apparent_magnitude"><a class="viewcode-back" href="../../../sora.html#sora.Body.apparent_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the object&#39;s apparent magnitude.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time :  `str`, `astropy.time.Time`</span>
+<span class="sd">            Reference time to calculate the object&#39;s aparent magnitude.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ap_mag : `float`</span>
+<span class="sd">            Object&#39;s apparent magnitude.</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">astroquery.jplhorizons</span> <span class="kn">import</span> <span class="n">Horizons</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;H and/or G is not defined for </span><span class="si">{}</span><span class="s1">. Searching into JPL Horizons service&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shortname</span><span class="p">))</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">Horizons</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_search_name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_id_type</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;geo&#39;</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">jd</span><span class="p">)</span>
+            <span class="n">eph</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">ephemerides</span><span class="p">(</span><span class="n">extra_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="n">eph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="s2">&quot;JPL Horizons&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="s2">&quot;JPL Horizons&quot;</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">eph</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obs_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">obs_sun</span> <span class="o">=</span> <span class="n">get_sun</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">sun_obj</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span> <span class="o">-</span> <span class="n">obs_sun</span><span class="o">.</span><span class="n">cartesian</span><span class="p">)</span>
+            <span class="n">sun_obj</span><span class="o">.</span><span class="n">representation_type</span> <span class="o">=</span> <span class="s1">&#39;spherical&#39;</span>
+
+            <span class="c1"># Calculates the phase angle between the 2-vectors</span>
+            <span class="n">unit_vector_1</span> <span class="o">=</span> <span class="o">-</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">obs_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+            <span class="n">unit_vector_2</span> <span class="o">=</span> <span class="o">-</span><span class="n">sun_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">sun_obj</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+            <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">unit_vector_1</span><span class="p">,</span> <span class="n">unit_vector_2</span><span class="p">)</span>
+            <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">dot_product</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">return</span> <span class="n">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">obs_obj</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                      <span class="n">sun_obj</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.values</span> <span class="kn">import</span> <span class="n">smass</span><span class="p">,</span> <span class="n">tholen</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">79</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{:^79s}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;#&#39;</span> <span class="o">*</span> <span class="mi">79</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Object Orbital Class: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;Tholen&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;SMASS&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]:</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="s1">&#39;Spectral Type:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;SMASS&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;    SMASS: </span><span class="si">{}</span><span class="s1">  [Reference: </span><span class="si">{}</span><span class="s1">]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;SMASS&#39;</span><span class="p">][</span><span class="s1">&#39;reference&#39;</span><span class="p">]))</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;Tholen&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;    Tholen: </span><span class="si">{}</span><span class="s1"> [Reference: </span><span class="si">{}</span><span class="s1">]</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;Tholen&#39;</span><span class="p">][</span><span class="s1">&#39;reference&#39;</span><span class="p">]))</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="p">(</span><span class="n">smass</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;SMASS&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">])</span> <span class="ow">or</span>
+                            <span class="n">tholen</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectral_type</span><span class="p">[</span><span class="s1">&#39;Tholen&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">discovery</span><span class="p">)</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">Physical parameters:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Pole</span><span class="se">\n</span><span class="s1">    RA:</span><span class="si">{}</span><span class="s1"> +/- </span><span class="si">{}</span><span class="se">\n</span><span class="s1">    DEC:</span><span class="si">{}</span><span class="s1"> +/- </span><span class="si">{}</span><span class="se">\n</span><span class="s1">    Reference: </span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                       <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">uncertainty</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span>
+                       <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">uncertainty</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">notes</span><span class="p">))</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">G</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">albedo</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BV</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UB</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ephem&#39;</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

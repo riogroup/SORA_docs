@@ -7,34 +7,7 @@ Welcome to Stellar Occultation Reduction Analysis's documentation!
 ==================================================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Manual:
-
-   goals_updates
-   curiosities
-   general
-   future_linea
-   modules
-   input_output
-   sora_code
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Tutorials:
-
-   ../examples/Tutorial_SORAv0.1_ChiSquare
-   examples/Tutorial_SORAv0.1_Ephem
-   examples/Tutorial_SORAv0.1_LightCurve
-   examples/Tutorial_SORAv0.1_Observer
-   examples/Tutorial_SORAv0.1_Occultation
-   examples/Tutorial_SORAv0.1_Prediction
-   examples/Tutorial_SORAv0.1_Star
-
-
-
-.. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Modules:
    
    sora

@@ -16,6 +16,8 @@ sora.body
 
 - "pole_position_angle" and "apparent_magnitude" functions are now present in Body instead of Ephem.[#51]
 
+- Created a hardcoded satellite database to complement missing data of SBDB. It must be replaced in the future. [#61]
+
 sora.config
 ^^^^^^^^^^^
 
@@ -26,6 +28,10 @@ sora.ephem
 
 sora.extra
 ^^^^^^^^^^
+
+- Allow two ChiSquare objects to be combined into one: `chi3 = chi1 + chi2` [#61]
+
+- New function get_ellipse_points() that calculates the positions on the perimeter of an ellipse [#60]
 
 sora.lightcurve
 ^^^^^^^^^^^^^^^
@@ -39,10 +45,34 @@ sora.occultation
 - A shortcut was created in Occultation where the user can pass the coordinate of the star directly to Occultation,
   the Star object will be created automaticaly. [#46]
 
+- New Chord Class introduced to handle a chord with an Observer and a LightCurve. [#53]
+
+- New ChordList Class introduced to handle the list of Chords in an Occultation. [#53]
+
+- New function .get_impact_param() that calculatesthe impact parameter, minimal distance
+  between the chord and the centre position, in Chord and ChordList.[#60]
+
+- New function .get_theoretical_times(),that calcultates the theoretical times and chord size
+  for a given ellipse in Chord and ChordList. [#60]
+
+- New fucntion .check_time_shift() that calculates the offset in time to align the center of the chords
+  in Occultation. [#60]
+
+- New parameters sigma_result, that saves the result with an extended error bar, and ellipse_error, that
+  adds a further systematic error to be considered, in Occultation.fit_ellipse(). [#60]
+
+- New function fiter_negative_chord() that compares the ChiSquare from an Ellipse fitting with the chords
+  and remove the solutions that would cross a negative chord [#60]
+
 sora.prediction
 ^^^^^^^^^^^^^^^
 
 - prediction() now makes use of the user input of the star to calculate faster the occultation parameters. [#48]
+
+- prediction() now can make predictions using Gaia-EDR3. A new parameter "catalogue" was created
+  for choosing between Gaia-DR2 and Gaia-EDR3.[#61]
+
+- Fixed bug when plotting the heights in the map in a rotated projection. [#54]
 
 sora.star
 ^^^^^^^^^^^^^^^
@@ -53,6 +83,8 @@ sora.star
 
 API Changes
 -----------
+
+- Update the argument "log" to "verbose" on all modules. [#61]
 
 sora.config
 ^^^^^^^^^^^
@@ -74,8 +106,14 @@ sora.extra
 sora.lightcurve
 ^^^^^^^^^^^^^^^
 
+- Removed the necessity for LightCurve to have a unique name associated. [#53]
+
+- Cycle time is now determined via mode instead of median. [#56]
+
 sora.observer
 ^^^^^^^^^^^^^
+
+- Removed the necessity for Observer to have a unique name associated. [#53]
 
 sora.occultation
 ^^^^^^^^^^^^^^^^
@@ -83,6 +121,8 @@ sora.occultation
 - The new Body Class was implemented in Occultation. For backward compatibility, the previous
   usage is still possible if the Ephem object have a name. The Body Class is only required
   if the object is a planet or a planetary satellite. [#51]
+
+- Deprecated some functions that were passed to ChordList. [#53]
 
 sora.prediction
 ^^^^^^^^^^^^^^^
@@ -113,6 +153,9 @@ sora.extra
 
 sora.lightcurve
 ^^^^^^^^^^^^^^^
+
+- Corrected bug in LightCurve model where the size of the star was being interpreted
+  as radius instead of diameter [#60]
 
 sora.observer
 ^^^^^^^^^^^^^

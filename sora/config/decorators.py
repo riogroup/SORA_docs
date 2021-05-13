@@ -31,9 +31,11 @@ def rename_kwargs(func_name, kwargs, aliases):
 
 def deprecated_function(message):
     def deco(func):
-        """This is a decorator which can be used to mark functions
-        as deprecated. It will result in a warning being emitted
-        when the function is used."""
+        """Sets function as deprecated.
+        
+        This is a decorator which can be used to mark functions as deprecated. 
+        It will result in a warning being emitted when the function is used.
+        """
         @functools.wraps(func)
         def new_func(*args, **kwargs):
             warnings.warn("{} is deprecated and will be removed in {}; {}".

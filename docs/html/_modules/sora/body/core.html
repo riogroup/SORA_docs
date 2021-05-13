@@ -90,6 +90,9 @@
               <p class="caption"><span class="caption-text">Modules:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#ephem">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#lightcurve">LightCurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#extra">Extra</a></li>
 </ul>
 
             
@@ -177,7 +180,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name : `str`, required</span>
 <span class="sd">        The name of the object. It can be the used `spkid` or `designation </span>
-<span class="sd">        number` to query the SBDB (Small-Body Database). In this case, the name </span>
+<span class="sd">        number` to query the SBDB (Small-Body DataBase). In this case, the name </span>
 <span class="sd">        is case insensitive.</span>
 <span class="sd">    </span>
 <span class="sd">    database : `str`, optional, default=&#39;auto&#39;</span>
@@ -243,8 +246,8 @@
 <span class="sd">    </span>
 <span class="sd">    Note</span>
 <span class="sd">    ----</span>
-<span class="sd">    The following attributes are are returned from the Small-Body Database when </span>
-<span class="sd">    ``database=&#39;sbdb&#39;`` or from our temporary hardcoded Satellite Database when </span>
+<span class="sd">    The following attributes are are returned from the Small-Body DataBase when </span>
+<span class="sd">    ``database=&#39;sbdb&#39;`` or from our temporary hardcoded Satellite DataBase when </span>
 <span class="sd">    ``database=&#39;satdb&#39;``:</span>
 
 <span class="sd">    `orbit_class`, `spkid`, `albedo`, `H`, `G`, `diameter`, `density`, `GM`, </span>
@@ -371,7 +374,6 @@
 
     <span class="k">def</span> <span class="nf">__from_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">spkid</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Defines Body object with default values for mode=&#39;local&#39;.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span> <span class="o">=</span> <span class="n">name</span>
@@ -404,9 +406,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        position_angle, aperture angle : `float` array</span>
+<span class="sd">        position_angle, aperture_angle : `float` array</span>
 <span class="sd">            Position angle and apeture angle of the object&#39;s pole, in degrees.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="n">pole</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pole</span>
@@ -431,8 +432,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ap_mag : `float`</span>
-<span class="sd">            Object&#39;s apparent magnitude.</span>
-<span class="sd">            </span>
+<span class="sd">            Object apparent magnitude.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">astroquery.jplhorizons</span> <span class="kn">import</span> <span class="n">Horizons</span>
 

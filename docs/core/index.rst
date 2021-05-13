@@ -7,7 +7,7 @@ Welcome to Stellar Occultation Reduction Analysis's documentation!
 ==================================================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
    :caption: Modules:
    
    sora

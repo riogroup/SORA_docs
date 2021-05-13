@@ -91,6 +91,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html#ephem">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#lightcurve">LightCurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#extra">Extra</a></li>
 </ul>
 
             
@@ -171,35 +173,35 @@
 
 
 <div class="viewcode-block" id="EphemPlanete"><a class="viewcode-back" href="../../../sora.html#sora.EphemPlanete">[docs]</a><span class="k">class</span> <span class="nc">EphemPlanete</span><span class="p">(</span><span class="n">BaseEphem</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class used to simulate former Fortran programs &#39;ephem_planete&#39; and </span>
-<span class="sd">    &#39;fit_d2_ksi_eta&#39;.</span>
+    <span class="sd">&quot;&quot;&quot;Class used to simulate former Fortran programs `ephem_planete` and </span>
+<span class="sd">    `fit_d2_ksi_eta`.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    ephem : file, required</span>
+<span class="sd">    ephem : `file`, required</span>
 <span class="sd">        Input file with JD (UTC), geocentric RA (deg), DEC (deg), and </span>
 <span class="sd">        distance (AU).</span>
 
-<span class="sd">    name : str, optional(default=None)</span>
+<span class="sd">    name : `str`, optional, default=None</span>
 <span class="sd">        Name of the object to search in the JPL database.</span>
 
-<span class="sd">    radius : int, float, optional(default: online database)</span>
-<span class="sd">        Object radius, in km (default: Online database).</span>
+<span class="sd">    radius : `int`, `float`, optional, default: online database</span>
+<span class="sd">        Object radius, in km.</span>
 <span class="sd">    </span>
-<span class="sd">    error_ra : int, float, optional(default: online database)</span>
+<span class="sd">    error_ra : `int`, `float`, optional, default: online database</span>
 <span class="sd">        Ephemeris RA*cosDEC error, in arcsec.</span>
 
-<span class="sd">    error_dec : int, float, optional(default: online database)</span>
+<span class="sd">    error_dec : `int`, `float`, optional, default: online database</span>
 <span class="sd">        Ephemeris DEC error, in arcsec.</span>
 
-<span class="sd">    mass : int, float, optional(default=0)</span>
-<span class="sd">        Object&#39;s mass, in kg.</span>
+<span class="sd">    mass : `int`, `float`, optional. default=0</span>
+<span class="sd">        Object mass, in kg.</span>
 <span class="sd">    </span>
-<span class="sd">    H : int, float, optional(default=NaN)</span>
-<span class="sd">        Object&#39;s absolute magnitude.</span>
+<span class="sd">    H : `int`, `float`, optional, default=NaN</span>
+<span class="sd">        Object absolute magnitude.</span>
 
-<span class="sd">    G : int, float, optional(default=NaN)</span>
-<span class="sd">        Object&#39;s phase slope.</span>
+<span class="sd">    G : `int`, `float`, optional, default=NaN</span>
+<span class="sd">        Object phase slope.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ephem</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -370,7 +372,7 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    name : `str`</span>
+<span class="sd">    name : `str`, required</span>
 <span class="sd">        Name of the object to search in the JPL database.</span>
 
 <span class="sd">    id_type: `str`, default=&#39;smallbody&#39;</span>
@@ -379,23 +381,23 @@
 <span class="sd">        ``asteroid_name``, ``comet_name``, ``id`` (Horizons id number), or </span>
 <span class="sd">        ``smallbody`` (find the closest match under any id_type).</span>
 
-<span class="sd">    radius : ``int``, ``float``, default: online database</span>
+<span class="sd">    radius : `int`, `float`, default: online database</span>
 <span class="sd">        Object radius, in km.</span>
 
-<span class="sd">    error_ra : ``int``, ``float``, default: online database</span>
+<span class="sd">    error_ra : `int`, `float`, default: online database</span>
 <span class="sd">        Ephemeris RA*cosDEC error, in arcsec.</span>
 <span class="sd">        </span>
-<span class="sd">    error_dec : ``int``, ``float``, default: online database</span>
+<span class="sd">    error_dec : `int`, `float`, default: online database</span>
 <span class="sd">        Ephemeris DEC error, in arcsec. </span>
 
-<span class="sd">    mass : ``int``, ``float``, default=0</span>
-<span class="sd">        Object&#39;s mass, in kg.</span>
+<span class="sd">    mass : `int`, `float`, default=0</span>
+<span class="sd">        Object mass, in kg.</span>
 
-<span class="sd">    H : ``int``, ``float``, default=NaN</span>
-<span class="sd">        Object&#39;s absolute magnitude.</span>
+<span class="sd">    H : `int`, `float`, default=NaN</span>
+<span class="sd">        Object absolute magnitude.</span>
 
-<span class="sd">    G : ``int``, ``float``, default=NaN</span>
-<span class="sd">        Object&#39;s phase slope.</span>
+<span class="sd">    G : `int`, `float`, default=NaN</span>
+<span class="sd">        Object phase slope.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="s1">&#39;smallbody&#39;</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -470,31 +472,31 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    name : `str`</span>
+<span class="sd">    name : `str`,  optional, default=None</span>
 <span class="sd">        Name of the object to search in the JPL database.</span>
 <span class="sd">        </span>
-<span class="sd">    spkid : `str`</span>
+<span class="sd">    spkid : `str`, required</span>
 <span class="sd">        `spkid` of the targeting object. Former &#39;code&#39; (v0.1).</span>
 
-<span class="sd">    kernels : `list`</span>
+<span class="sd">    kernels : `list`, required</span>
 <span class="sd">        List of paths for kernels files.</span>
 <span class="sd">    </span>
-<span class="sd">    radius : `int`, `float`, default: online database</span>
+<span class="sd">    radius : `int`, `float`, optional, default: online database</span>
 <span class="sd">        Object radius, in km.</span>
 <span class="sd">    </span>
-<span class="sd">    error_ra : `int`, `float`, default: online database</span>
+<span class="sd">    error_ra : `int`, `float`, optional, default: online database</span>
 <span class="sd">        Ephemeris RA*cosDEC error, in arcsec .</span>
 <span class="sd">            </span>
-<span class="sd">    error_dec : `int`, `float`, default: online database</span>
+<span class="sd">    error_dec : `int`, `float`, optional, default: online database</span>
 <span class="sd">        Ephemeris DEC error, in arcsec.</span>
 
-<span class="sd">    mass : `int`, `float`, default=0</span>
+<span class="sd">    mass : `int`, `float`, optional, default=0</span>
 <span class="sd">        Object Mass, in kg.</span>
 <span class="sd">        </span>
-<span class="sd">    H : `int`, `float`, default=NaN</span>
+<span class="sd">    H : `int`, `float`, optional, default=NaN</span>
 <span class="sd">        Object Absolute Magnitude.</span>
 <span class="sd">    </span>
-<span class="sd">    G : `int`, `float`, default=NaN</span>
+<span class="sd">    G : `int`, `float`, optional, default=NaN</span>
 <span class="sd">        Object Phase slope.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>

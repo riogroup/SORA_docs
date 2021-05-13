@@ -1,48 +1,31 @@
-from astropy.coordinates import SkyCoord, EarthLocation, GCRS, AltAz
-from astropy.coordinates.matrix_utilities import rotation_matrix
-from astropy.time import Time
 import astropy.units as u
-from astroquery.mpc import MPC
-import numpy as np
+from astropy.coordinates import SkyCoord, EarthLocation, GCRS, AltAz
+from astropy.time import Time
+
 from sora.config import test_attr, input_tests
+from .utils import search_code_mpc
+
+__all__ = ['Observer']
 
 
-def search_code_mpc():
-    """ Reads the MPC Observer Database
-
-    Returns:
-        observatories (dict): A python dictionaty with all the sites as an Astropy EarthLocation object
-    """
-    obs = MPC.get_observatory_codes()
-    observatories = {}
-    for line in obs:
-        code = line['Code']
-        lon = line['Longitude']*u.deg
-        rcphi = line['cos']*6378.137*u.km
-        rsphi = line['sin']*6378.137*u.km
-        name = line['Name']
-        site = EarthLocation.from_geocentric(rcphi*np.cos(lon), rcphi*np.sin(lon), rsphi)
-        observatories[code] = (name, site)
-    return observatories
-
-
-class Observer():
-    __names = []
+class Observer:
 
     def __init__(self, **kwargs):
-        """ Defines the observer object
+        """Defines the observer object.
 
         Parameters:
-            name (str): Name for the Observer. (required)
-                Observer is uniquely defined (name must be different for each observer).
-            code (str): The IAU code for SORA to search for its coordinates in MPC database
+            name (str): Name for the Observer.
+              Observer is uniquely defined (name must be different for each 
+              observer).
+            code (str): The IAU code for SORA to search for its coordinates in 
+              MPC database.
             site (EarthLocation): User provides an EarthLocation object.
             lon (str, float): The Longitude of the site in degrees.
-                Positive to East. Range (0 to 360) or (-180 to +180)
-                User can provide in degrees (float) or hexadecimal (string)
+              Positive to East. Range (0 to 360) or (-180 to +180).
+              User can provide in degrees (float) or hexadecimal (string).
             lat (str, float): The Latitude of the site in degrees.
-                Positive North. Range (+90 to -90)
-                User can provide in degrees (float) or hexadecimal (string)
+              Positive North. Range (+90 to -90).
+              User can provide in degrees (float) or hexadecimal (string).
             height (int, float): The height of the site in meters above see level.
 
         Examples:
@@ -56,8 +39,10 @@ class Observer():
                 Observer(name, site)
             - If user wants to give site coordinates directly:
                 Observer(name, lon, lat, height)
+
         """
         input_tests.check_kwargs(kwargs, allowed_kwargs=['code', 'height', 'lat', 'lon', 'name', 'site'])
+        self.__name = kwargs.get('name', '')
         if 'code' in kwargs:
             self.code = kwargs['code']
             try:
@@ -65,34 +50,34 @@ class Observer():
                 self.__name = kwargs.get('name', name)
             except:
                 raise ValueError('code {} could not be located in MPC database'.format(self.code))
-        elif all(i in kwargs for i in ['name', 'site']):
-            self.__name = kwargs['name']
+        elif 'site' in kwargs:
             self.site = test_attr(kwargs['site'], EarthLocation, 'site')
-        elif all(i in kwargs for i in ['name', 'lon', 'lat', 'height']):
-            self.__name = kwargs['name']
+        elif all(i in kwargs for i in ['lon', 'lat', 'height']):
             self.site = EarthLocation(kwargs['lon'], kwargs['lat'], kwargs['height'])
         else:
             raise ValueError('Input parameters could not be determined')
-        if self.__name in self.__names:
-            raise ValueError("name {} already defined for another Observer object. "
-                             "Please choose a different one.".format(self.__name))
-        self.__names.append(self.__name)
 
     def get_ksi_eta(self, time, star):
-        """ Calculates relative position to star in the orthographic projection.
+        """Calculates relative position to star in the orthographic projection.
 
         Parameters:
             time (str, Time): Reference time to calculate the position.
-                It can be a string in the format "yyyy-mm-dd hh:mm:ss.s" or an astropy Time object
-            star (str, SkyCoord): The coordinate of the star in the same reference frame as the ephemeris.
-                It can be a string in the format "hh mm ss.s +dd mm ss.ss"
-                or an astropy SkyCoord object.
+              It can be a string in the format "yyyy-mm-dd hh:mm:ss.s" or an 
+              astropy Time object.
+            star (str, SkyCoord): The coordinate of the star in the same 
+              reference frame as the ephemeris.
+              It can be a string in the format "hh mm ss.s +dd mm ss.ss"
+              or an astropy SkyCoord object.
 
         Returns:
-            ksi, eta (float): on-sky orthographic projection of the observer relative to a star
-                Ksi is in the North-South direction (North positive)
-                Eta is in the East-West direction (East positive)
+            ksi, eta (float): on-sky orthographic projection of the observer 
+              relative to a star.
+              Ksi is in the North-South direction (North positive).
+              Eta is in the East-West direction (East positive).
+
         """
+        from astropy.coordinates.matrix_utilities import rotation_matrix
+
         time = test_attr(time, Time, 'time')
         try:
             star = SkyCoord(star, unit=(u.hourangle, u.deg))
@@ -108,16 +93,18 @@ class Observer():
         return cp.y.to(u.km).value, cp.z.to(u.km).value
 
     def sidereal_time(self, time, mode='local'):
-        """ Calculates the Apparent Sidereal Time at a reference time
+        """Calculates the Apparent Sidereal Time at a reference time.
 
         Parameters:
             time (str,Time): Reference time to calculate sidereal time.
             mode (str): local or greenwich
-                If 'local': calculates the sidereal time for the coordinates of this object.
-                If 'greenwich': calculates the Greenwich Apparent Sidereal Time.
+              If 'local': calculates the sidereal time for the coordinates of 
+              this object.
+              If 'greenwich': calculates the Greenwich Apparent Sidereal Time.
 
         Returns:
             sidereal_time: An Astropy Longitude object with the Sidereal Time.
+
         """
         # return local or greenwich sidereal time
         time = test_attr(time, Time, 'time')
@@ -130,7 +117,7 @@ class Observer():
             raise ValueError('mode must be "local" or "greenwich"')
 
     def altaz(self, time, coord):
-        """ Calculates the Altitude and Azimuth at a reference time for a coordinate
+        """Calculates the Altitude and Azimuth at a reference time for a coordinate.
 
         Parameters:
             time (str,Time): Reference time to calculate the sidereal time.
@@ -139,6 +126,7 @@ class Observer():
         Returns:
             altitude (float): object altitude in degrees.
             azimuth (float): object azimuth in degrees.
+
         """
         time = test_attr(time, Time, 'time')
         if type(coord) == str:
@@ -184,7 +172,8 @@ class Observer():
         self.site = site
 
     def __str__(self):
-        """ String representation of the Observer class
+        """String representation of the Observer class.
+        
         """
         out = ('Site: {}\n'
                'Geodetic coordinates: Lon: {}, Lat: {}, height: {:.3f}'.format(
@@ -192,11 +181,3 @@ class Observer():
                    self.site.height.to(u.km))
                )
         return out
-
-    def __del__(self):
-        """ When this object is deleted, it removes the name from the Class name list.
-        """
-        try:
-            self.__names.remove(self.__name)
-        except:
-            pass

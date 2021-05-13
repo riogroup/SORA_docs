@@ -1,42 +1,55 @@
-from sora.ephem import EphemPlanete, EphemKernel, EphemJPL, EphemHorizons
-import astropy.units as u
-import astropy.constants as const
-from astropy.coordinates import SkyCoord, Longitude, Latitude
-import numpy as np
 import warnings
 
+import astropy.units as u
+import numpy as np
+from astropy.coordinates import SkyCoord, Longitude, Latitude
+
+from sora.ephem import EphemPlanete, EphemKernel, EphemJPL, EphemHorizons
 
 __all__ = ['PhysicalData']
 
 
 class PhysicalData(u.Quantity):
-    """ Define PhysicalData with uncertainty, reference and notes.
-    It inherits from astropy.units.quantity.Quantity()
+    """Defines PhysicalData with uncertainty, reference and notes.
+    
+    Note
+    ----
+    It inherits from astropy.units.quantity.Quantity().
 
-    Parameters:
-        name (str): The name representing the corresponding physical parameter.
-        value (number, `~numpy.ndarray`, `Quantity` object (sequence), str):
-            The numerical value of this quantity in the units given by unit.  If a
-            `Quantity`  (or any other valid object with a ``unit`` attribute),
-            creates a new `Quantity` object, converting to `unit` units as needed.
-            If a string, it is converted to a number or `Quantity`, depending on
-            whether a unit is present.
-        uncertainty (number, `~numpy.ndarray`, `Quantity` object (sequence), str):
-            The numerical value of this quantity in the units given by unit.  If a
-            `Quantity` (or any other valid object with a ``unit`` attribute),
-            creates a new `Quantity` object, converting to `unit` units as needed.
-            If a string, it is converted to a number or `Quantity`, depending on
-            whether a unit is present. Default = 0.0
-        reference (str): A string stating the reference for the parameter value.
-            Default = "User"
-        notes (str): Any other important information about the physical parameter.
-            Default = ""
-        unit: `~astropy.units.UnitBase` instance, str
-            An object that represents the unit associated with the input value.
-            Must be an `~astropy.units.UnitBase` object or a string parseable by
-            the :mod:`~astropy.units` package. Default = "dimensionless"
-        raise_error (bool): If value=None, the function raise an error if
-            raise_error=True, else value is redefined to NaN.
+    Parameters
+    ----------
+    name :`str`
+        The name representing the corresponding physical parameter.
+    
+    value : `int`, `float`, `str`, `~numpy.ndarray`, `astropy.quantity.Quantity`
+        The numerical value of this quantity in the units given by unit.  If 
+        a `Quantity`  (or any other valid object with a ``unit`` attribute), 
+        creates a new `Quantity` object, converting to `unit` units as needed. 
+        If a string, it is converted to a number or `Quantity`, depending on 
+        whether a unit is present.
+
+    uncertainty : `int`, `float`, `str`, `~numpy.ndarray`, `astropy.quantity.Quantity`, default=0
+        The numerical value of this quantity in the units given by unit.  If 
+        a `Quantity` (or any other valid object with a ``unit`` attribute), 
+        creates a new `Quantity` object, converting to `unit` units as needed. 
+        If a string, it is converted to a number or `Quantity`, depending on 
+        whether a unit is present.
+
+    reference : `str`, default='User'
+        A string stating the reference for the parameter value.
+    
+    notes : `str`, default=''
+        Any other important information about the physical parameter.
+        
+    unit : `str`, `~astropy.units.UnitBase` instance, default='dimensionless'
+        An object that represents the unit associated with the input value. Must 
+        be an `~astropy.units.UnitBase` object or a string parseable by the 
+        :mod:`~astropy.units` package.
+    
+    raise_error : `bool`, default=False
+        If ``value=None`` or ``raise_error=True`` the function raises an error, 
+        else `value` is redefined to ``NaN``.
+
     """
 
     def __new__(cls, name, value, uncertainty=0.0, reference="User", notes="", unit=u.dimensionless_unscaled,
@@ -220,6 +233,8 @@ class BaseBody():
 
     @property
     def mass(self):
+        import astropy.constants as const
+
         return PhysicalData('Mass', self.GM/const.G, self.GM.uncertainty/const.G,
                             self.GM.reference, self.GM.notes, unit=u.kg)
 
@@ -281,6 +296,22 @@ class BaseBody():
         self._shared_with['ephem']['spkid'] = spkid
 
     @property
+    def orbit_class(self):
+        return self._orbit_class
+
+    @orbit_class.setter
+    def orbit_class(self, value):
+        orbit_classes = {'tno': 'TransNeptunian Object', 'satellite': 'Natural Satellite', 'centaur': 'Centaur',
+                         'comet': 'Comet', 'asteroid': 'Main-belt Asteroid', 'trojan': 'Jupiter Trojan',
+                         'neo': 'Near-Earth Object', 'planet': "Planet", 'unclassified': "Unclassified"}
+        if value in orbit_classes.keys():
+            self._orbit_class = orbit_classes[value.lower()]
+        elif value in orbit_classes.values():
+            self._orbit_class = value
+        else:
+            self._orbit_class = orbit_classes['unclassified']
+
+    @property
     def ephem(self):
         try:
             return self._ephem
@@ -292,7 +323,7 @@ class BaseBody():
         allowed_types = [EphemPlanete, EphemKernel, EphemJPL, EphemHorizons]
         if type(value) not in allowed_types:
             if isinstance(value, str) and value.lower() == 'horizons':
-                value = EphemHorizons(name=self._search_name)
+                value = EphemHorizons(name=self._search_name, id_type=self._id_type, spkid=self.spkid)
             elif isinstance(value, (list, str)):
                 value = EphemKernel(kernels=value, spkid=self.spkid)
             else:
@@ -305,9 +336,9 @@ class BaseBody():
         if hasattr(self, '_ephem'):
             self._ephem._shared_with['body'] = {}
         self._ephem = value
-        spkval = value.spkid
+        spkval = getattr(value, 'spkid', None)
         self._ephem._shared_with['body'] = self._shared_with['ephem']
-        spknewval = value.spkid
+        spknewval = getattr(value, 'spkid', None)
         if spkval != spknewval:
             warnings.warn('spkid is different in {0} ({1}) and {2} ({3}). {0}\'s spkid will have higher priority'.format(
                 self.__class__.__name__, spknewval, value.__class__.__name__, spkval))

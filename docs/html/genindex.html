@@ -91,6 +91,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sora.html">Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sora.html#ephem">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#lightcurve">LightCurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#extra">Extra</a></li>
 </ul>
 
             
@@ -163,12 +165,14 @@
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
@@ -219,16 +223,36 @@
   </ul></td>
 </tr></table>
 
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.lightcurve.utils.calc_fresnel">calc_fresnel() (in module sora.lightcurve.utils)</a>
+</li>
+      <li><a href="sora.html#sora.lightcurve.utils.calc_magnitude_drop">calc_magnitude_drop() (in module sora.lightcurve.utils)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.calc_magnitude_drop">(sora.LightCurve method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.extra.ChiSquare">ChiSquare (class in sora.extra)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.Body.database">database (sora.Body attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.Body.density">density (sora.Body attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.Body.diameter">diameter (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.extra.plots.draw_ellipse">draw_ellipse() (in module sora.extra.plots)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -286,12 +310,16 @@
         <li><a href="sora.html#sora.EphemPlanete.G">(sora.EphemPlanete attribute)</a>
 </li>
       </ul></li>
+      <li><a href="sora.html#sora.extra.utils.get_ellipse_points">get_ellipse_points() (in module sora.extra.utils)</a>
+</li>
       <li><a href="sora.html#sora.EphemPlanete.get_ksi_eta">get_ksi_eta() (sora.EphemPlanete method)</a>
 </li>
-      <li><a href="sora.html#sora.Body.get_pole_position_angle">get_pole_position_angle() (sora.Body method)</a>
+      <li><a href="sora.html#sora.extra.ChiSquare.get_nsigma">get_nsigma() (sora.extra.ChiSquare method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Body.get_pole_position_angle">get_pole_position_angle() (sora.Body method)</a>
+</li>
       <li><a href="sora.html#sora.EphemHorizons.get_position">get_position() (sora.EphemHorizons method)</a>
 
       <ul>
@@ -300,6 +328,8 @@
         <li><a href="sora.html#sora.EphemPlanete.get_position">(sora.EphemPlanete method)</a>
 </li>
       </ul></li>
+      <li><a href="sora.html#sora.extra.ChiSquare.get_values">get_values() (sora.extra.ChiSquare method)</a>
+</li>
       <li><a href="sora.html#sora.ephem.utils.getBSPfromJPL">getBSPfromJPL() (in module sora.ephem.utils)</a>
 </li>
       <li><a href="sora.html#sora.Body.GM">GM (sora.Body attribute)</a>
@@ -329,6 +359,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve">LightCurve (class in sora)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -338,8 +376,6 @@
         <li><a href="sora.html#sora.EphemPlanete.mass">(sora.EphemPlanete attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -347,6 +383,14 @@
         <li><a href="sora.html#module-sora.body.utils">sora.body.utils</a>
 </li>
         <li><a href="sora.html#module-sora.ephem.utils">sora.ephem.utils</a>
+</li>
+        <li><a href="sora.html#module-sora.extra.plots">sora.extra.plots</a>
+</li>
+        <li><a href="sora.html#module-sora.extra.utils">sora.extra.utils</a>
+</li>
+        <li><a href="sora.html#module-sora.lightcurve.occdetect">sora.lightcurve.occdetect</a>
+</li>
+        <li><a href="sora.html#module-sora.lightcurve.utils">sora.lightcurve.utils</a>
 </li>
       </ul></li>
   </ul></td>
@@ -364,11 +408,27 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.normalize">normalize() (sora.LightCurve method)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.lightcurve.occdetect.occ_detect">occ_detect() (in module sora.lightcurve.occdetect)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.occ_detect">(sora.LightCurve method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.occ_lcfit">occ_lcfit() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.occ_model">occ_model() (sora.LightCurve method)</a>
+</li>
       <li><a href="sora.html#sora.Body.orbit_class">orbit_class (sora.Body attribute)</a>
 </li>
   </ul></td>
@@ -379,8 +439,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.body.PhysicalData">PhysicalData (class in sora.body)</a>
 </li>
+      <li><a href="sora.html#sora.extra.ChiSquare.plot_chi2">plot_chi2() (sora.extra.ChiSquare method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.plot_lc">plot_lc() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.plot_model">plot_model() (sora.LightCurve method)</a>
+</li>
       <li><a href="sora.html#sora.Body.pole">pole (sora.Body attribute)</a>
 </li>
   </ul></td>
@@ -397,6 +463,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.reset_flux">reset_flux() (sora.LightCurve method)</a>
+</li>
       <li><a href="sora.html#sora.Body.rotation">rotation (sora.Body attribute)</a>
 </li>
   </ul></td>
@@ -406,6 +474,18 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.body.utils.search_sbdb">search_sbdb() (in module sora.body.utils)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_dist">set_dist() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_exptime">set_exptime() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_filter">set_filter() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_flux">set_flux() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_star_diam">set_star_diam() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_vel">set_vel() (sora.LightCurve method)</a>
 </li>
       <li><a href="sora.html#sora.Body.smass">smass (sora.Body attribute)</a>
 </li>
@@ -425,6 +505,34 @@
         <li><a href="sora.html#module-sora.ephem.utils">module</a>
 </li>
       </ul></li>
+      <li>
+    sora.extra.plots
+
+      <ul>
+        <li><a href="sora.html#module-sora.extra.plots">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.extra.utils
+
+      <ul>
+        <li><a href="sora.html#module-sora.extra.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.lightcurve.occdetect
+
+      <ul>
+        <li><a href="sora.html#module-sora.lightcurve.occdetect">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.lightcurve.utils
+
+      <ul>
+        <li><a href="sora.html#module-sora.lightcurve.utils">module</a>
+</li>
+      </ul></li>
       <li><a href="sora.html#sora.Body.spkid">spkid (sora.Body attribute)</a>
 </li>
   </ul></td>
@@ -434,6 +542,16 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.Body.tholen">tholen (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.extra.ChiSquare.to_file">to_file() (sora.extra.ChiSquare method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.to_file">(sora.LightCurve method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.to_log">to_log() (sora.LightCurve method)</a>
 </li>
   </ul></td>
 </tr></table>

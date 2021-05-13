@@ -33,6 +33,8 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,15 +94,27 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Body</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-body-class">The Body class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#physicaldata-object">PhysicalData Object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module <cite>util</cite> Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physicaldata-object">PhysicalData object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module’s <cite>utils</cite> functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#ephem">Ephem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemplanete-class">The EphemPlanete Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemhorizons-class">The EphemHorizons Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemkernel-class">The EphemKernel Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Module <cite>util</cite> Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Module’s <cite>utils</cite> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#lightcurve">LightCurve</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-lightcurve-class">The LightCurve class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.lightcurve.occdetect">Occutation detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Module’s <cite>utils</cite> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#extra">Extra</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#chisquare-object">ChiSquare object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.extra.plots">Plot ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Module’s <cite>utils</cite> functions</a></li>
 </ul>
 </li>
 </ul>
@@ -206,7 +220,7 @@
 <dt id="sora.Body.name">
 <code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#sora.Body.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the object. It can be the used <cite>spkid</cite> or <cite>designation
-number</cite> to query the SBDB (Small-Body Database). In this case, the name
+number</cite> to query the SBDB (Small-Body DataBase). In this case, the name
 is case insensitive.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -406,8 +420,8 @@ string in the format <code class="docutils literal notranslate"><span class="pre
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The following attributes are are returned from the Small-Body Database when
-<code class="docutils literal notranslate"><span class="pre">database='sbdb'</span></code> or from our temporary hardcoded Satellite Database when
+<p>The following attributes are are returned from the Small-Body DataBase when
+<code class="docutils literal notranslate"><span class="pre">database='sbdb'</span></code> or from our temporary hardcoded Satellite DataBase when
 <code class="docutils literal notranslate"><span class="pre">database='satdb'</span></code>:</p>
 <p><cite>orbit_class</cite>, <cite>spkid</cite>, <cite>albedo</cite>, <cite>H</cite>, <cite>G</cite>, <cite>diameter</cite>, <cite>density</cite>, <cite>GM</cite>,
 <cite>rotation</cite>, <cite>pole</cite>, <cite>BV</cite>, <cite>UB</cite>, <cite>smass</cite>, and <cite>tholen</cite>.</p>
@@ -441,7 +455,7 @@ in the <em>Body</em> object.</p>
 <dd class="field-odd"><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to calculate the object’s aparent magnitude.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ap_mag</strong> – Object’s apparent magnitude.</p>
+<dd class="field-even"><p><strong>ap_mag</strong> – Object apparent magnitude.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><cite>float</cite></p>
@@ -459,7 +473,7 @@ the geocenter.</p>
 <dd class="field-odd"><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Time from which to calculate the position.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>position_angle, aperture angle</strong> – Position angle and apeture angle of the object’s pole, in degrees.</p>
+<dd class="field-even"><p><strong>position_angle, aperture_angle</strong> – Position angle and apeture angle of the object’s pole, in degrees.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><cite>float</cite> array</p>
@@ -471,7 +485,7 @@ the geocenter.</p>
 
 </div>
 <div class="section" id="physicaldata-object">
-<h2>PhysicalData Object<a class="headerlink" href="#physicaldata-object" title="Permalink to this headline">¶</a></h2>
+<h2>PhysicalData object<a class="headerlink" href="#physicaldata-object" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="sora.body.PhysicalData">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.body.</span></code><code class="sig-name descname"><span class="pre">PhysicalData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncertainty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'User'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Unit(dimensionless)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/body/meta.html#PhysicalData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.body.PhysicalData" title="Permalink to this definition">¶</a></dt>
@@ -508,7 +522,7 @@ else <cite>value</cite> is redefined to <code class="docutils literal notranslat
 
 </div>
 <div class="section" id="module-sora.body.utils">
-<span id="module-util-functions"></span><h2>Module <cite>util</cite> Functions<a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
+<span id="module-s-utils-functions"></span><h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="sora.body.utils.apparent_magnitude">
 <code class="sig-prename descclassname"><span class="pre">sora.body.utils.</span></code><code class="sig-name descname"><span class="pre">apparent_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sundist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/body/utils.html#apparent_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.body.utils.apparent_magnitude" title="Permalink to this definition">¶</a></dt>
@@ -520,7 +534,7 @@ else <cite>value</cite> is redefined to <code class="docutils literal notranslat
 <li><p><strong>G</strong> (<cite>int</cite>, <cite>float</cite>) – Slope parameter.</p></li>
 <li><p><strong>dist</strong> (<cite>int</cite>, <cite>float</cite>) – Observer-object distance, in AU.</p></li>
 <li><p><strong>sundist</strong> (<cite>int</cite>, <cite>float</cite>) – Sun-object distance, in AU.</p></li>
-<li><p><strong>phase</strong> (<cite>int</cite>, <cite>float</cite>) – Phase angle (Sun-Target-Observer), in degrees.</p></li>
+<li><p><strong>phase</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Phase angle (Sun-Target-Observer), in degrees.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -541,7 +555,7 @@ satellites information are not retrieved by this function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>name</strong> (<cite>str</cite>) – The name of the object for the search. It can be the attributed <cite>spkid</cite>
-or designation number. The name is case insensitive.</p>
+or <cite>designation number</cite>. The name is case insensitive.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>sbdb</strong> – An ordered dictionary with the object information.</p>
@@ -567,8 +581,8 @@ correct one (e.g: <code class="docutils literal notranslate"><span class="pre">n
 <dl class="py class">
 <dt id="sora.EphemPlanete">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">EphemPlanete</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ephem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spkid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem/core.html#EphemPlanete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.EphemPlanete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class used to simulate former Fortran programs ‘ephem_planete’ and
-‘fit_d2_ksi_eta’.</p>
+<dd><p>Class used to simulate former Fortran programs <cite>ephem_planete</cite> and
+<cite>fit_d2_ksi_eta</cite>.</p>
 <dl class="py attribute">
 <dt id="sora.EphemPlanete.ephem">
 <code class="sig-name descname"><span class="pre">ephem</span></code><a class="headerlink" href="#sora.EphemPlanete.ephem" title="Permalink to this definition">¶</a></dt>
@@ -576,7 +590,7 @@ correct one (e.g: <code class="docutils literal notranslate"><span class="pre">n
 distance (AU).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>file, required</p>
+<dd class="field-odd"><p><cite>file</cite>, required</p>
 </dd>
 </dl>
 </dd></dl>
@@ -587,7 +601,7 @@ distance (AU).</p>
 <dd><p>Name of the object to search in the JPL database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>, optional(default=None)</p>
+<dd class="field-odd"><p><cite>str</cite>, optional, default=None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -595,10 +609,10 @@ distance (AU).</p>
 <dl class="py attribute">
 <dt id="sora.EphemPlanete.radius">
 <code class="sig-name descname"><span class="pre">radius</span></code><a class="headerlink" href="#sora.EphemPlanete.radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object radius, in km (default: Online database).</p>
+<dd><p>Object radius, in km.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default: online database)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -609,7 +623,7 @@ distance (AU).</p>
 <dd><p>Ephemeris RA*cosDEC error, in arcsec.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default: online database)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -620,7 +634,7 @@ distance (AU).</p>
 <dd><p>Ephemeris DEC error, in arcsec.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default: online database)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -628,10 +642,10 @@ distance (AU).</p>
 <dl class="py attribute">
 <dt id="sora.EphemPlanete.mass">
 <code class="sig-name descname"><span class="pre">mass</span></code><a class="headerlink" href="#sora.EphemPlanete.mass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s mass, in kg.</p>
+<dd><p>Object mass, in kg.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default=0)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional. default=0</p>
 </dd>
 </dl>
 </dd></dl>
@@ -639,10 +653,10 @@ distance (AU).</p>
 <dl class="py attribute">
 <dt id="sora.EphemPlanete.H">
 <code class="sig-name descname"><span class="pre">H</span></code><a class="headerlink" href="#sora.EphemPlanete.H" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s absolute magnitude.</p>
+<dd><p>Object absolute magnitude.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default=NaN)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional, default=NaN</p>
 </dd>
 </dl>
 </dd></dl>
@@ -650,10 +664,10 @@ distance (AU).</p>
 <dl class="py attribute">
 <dt id="sora.EphemPlanete.G">
 <code class="sig-name descname"><span class="pre">G</span></code><a class="headerlink" href="#sora.EphemPlanete.G" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s phase slope.</p>
+<dd><p>Object phase slope.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>, optional(default=NaN)</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, optional, default=NaN</p>
 </dd>
 </dl>
 </dd></dl>
@@ -733,7 +747,7 @@ tangent sky plane relative to a star.
 <dd><p>Name of the object to search in the JPL database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><cite>str</cite></p>
+<dd class="field-odd"><p><cite>str</cite>, required</p>
 </dd>
 </dl>
 </dd></dl>
@@ -758,7 +772,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dd><p>Object radius, in km.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default: online database</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -769,7 +783,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dd><p>Ephemeris RA*cosDEC error, in arcsec.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default: online database</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -780,7 +794,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dd><p>Ephemeris DEC error, in arcsec.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default: online database</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default: online database</p>
 </dd>
 </dl>
 </dd></dl>
@@ -788,10 +802,10 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dl class="py attribute">
 <dt id="sora.EphemHorizons.mass">
 <code class="sig-name descname"><span class="pre">mass</span></code><a class="headerlink" href="#sora.EphemHorizons.mass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s mass, in kg.</p>
+<dd><p>Object mass, in kg.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default=0</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default=0</p>
 </dd>
 </dl>
 </dd></dl>
@@ -799,10 +813,10 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dl class="py attribute">
 <dt id="sora.EphemHorizons.H">
 <code class="sig-name descname"><span class="pre">H</span></code><a class="headerlink" href="#sora.EphemHorizons.H" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s absolute magnitude.</p>
+<dd><p>Object absolute magnitude.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default=NaN</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default=NaN</p>
 </dd>
 </dl>
 </dd></dl>
@@ -810,10 +824,10 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dl class="py attribute">
 <dt id="sora.EphemHorizons.G">
 <code class="sig-name descname"><span class="pre">G</span></code><a class="headerlink" href="#sora.EphemHorizons.G" title="Permalink to this definition">¶</a></dt>
-<dd><p>Object’s phase slope.</p>
+<dd><p>Object phase slope.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, default=NaN</p>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite>, default=NaN</p>
 </dd>
 </dl>
 </dd></dl>
@@ -847,15 +861,15 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<cite>str</cite>) – Name of the object to search in the JPL database.</p></li>
-<li><p><strong>spkid</strong> (<cite>str</cite>) – <cite>spkid</cite> of the targeting object. Former ‘code’ (v0.1).</p></li>
-<li><p><strong>kernels</strong> (<cite>list</cite>) – List of paths for kernels files.</p></li>
-<li><p><strong>radius</strong> (<cite>int</cite>, <cite>float</cite>, default: online database) – Object radius, in km.</p></li>
-<li><p><strong>error_ra</strong> (<cite>int</cite>, <cite>float</cite>, default: online database) – Ephemeris RA*cosDEC error, in arcsec .</p></li>
-<li><p><strong>error_dec</strong> (<cite>int</cite>, <cite>float</cite>, default: online database) – Ephemeris DEC error, in arcsec.</p></li>
-<li><p><strong>mass</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Object Mass, in kg.</p></li>
-<li><p><strong>H</strong> (<cite>int</cite>, <cite>float</cite>, default=NaN) – Object Absolute Magnitude.</p></li>
-<li><p><strong>G</strong> (<cite>int</cite>, <cite>float</cite>, default=NaN) – Object Phase slope.</p></li>
+<li><p><strong>name</strong> (<cite>str</cite>,  optional, default=None) – Name of the object to search in the JPL database.</p></li>
+<li><p><strong>spkid</strong> (<cite>str</cite>, required) – <cite>spkid</cite> of the targeting object. Former ‘code’ (v0.1).</p></li>
+<li><p><strong>kernels</strong> (<cite>list</cite>, required) – List of paths for kernels files.</p></li>
+<li><p><strong>radius</strong> (<cite>int</cite>, <cite>float</cite>, optional, default: online database) – Object radius, in km.</p></li>
+<li><p><strong>error_ra</strong> (<cite>int</cite>, <cite>float</cite>, optional, default: online database) – Ephemeris RA*cosDEC error, in arcsec .</p></li>
+<li><p><strong>error_dec</strong> (<cite>int</cite>, <cite>float</cite>, optional, default: online database) – Ephemeris DEC error, in arcsec.</p></li>
+<li><p><strong>mass</strong> (<cite>int</cite>, <cite>float</cite>, optional, default=0) – Object Mass, in kg.</p></li>
+<li><p><strong>H</strong> (<cite>int</cite>, <cite>float</cite>, optional, default=NaN) – Object Absolute Magnitude.</p></li>
+<li><p><strong>G</strong> (<cite>int</cite>, <cite>float</cite>, optional, default=NaN) – Object Phase slope.</p></li>
 </ul>
 </dd>
 </dl>
@@ -880,7 +894,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 
 </div>
 <div class="section" id="id1">
-<h2>Module <cite>util</cite> Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-sora.ephem.utils"></span><dl class="py function">
 <dt id="sora.ephem.utils.ephem_kernel">
 <code class="sig-prename descclassname"><span class="pre">sora.ephem.utils.</span></code><code class="sig-name descname"><span class="pre">ephem_kernel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem/utils.html#ephem_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.utils.ephem_kernel" title="Permalink to this definition">¶</a></dt>
@@ -888,7 +902,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<cite>str</cite>, <cite>Time</cite>) – Reference instant to calculate ephemeris.</p></li>
+<li><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference instant to calculate ephemeris.</p></li>
 <li><p><strong>target</strong> (<cite>str</cite>) – IAU (kernel) code of the target.</p></li>
 <li><p><strong>observer</strong> (<cite>str</cite>) – IAU (kernel) code of the observer.</p></li>
 <li><p><strong>kernels</strong> (<cite>list</cite>, <cite>str</cite>) – List of paths for all the kernels.</p></li>
@@ -911,7 +925,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 will be downloaded and named as (without spaces): ‘[identifier].bsp’.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>It is not possible to download BSP files of planets or satellites.</p>
+<p>It is not possible to download BSP files for Planets or Satellites.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -934,6 +948,636 @@ Required by JPL web service.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">username&#64;user.domain.name</span></code>.</p>
 </p></li>
 <li><p><strong>directory</strong> (<cite>str</cite>) – Directory path to save the bsp files.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="page-break section" id="lightcurve">
+<h1>LightCurve<a class="headerlink" href="#lightcurve" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-lightcurve-class">
+<h2>The LightCurve class<a class="headerlink" href="#the-lightcurve-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.LightCurve">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">LightCurve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a Light Curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<cite>str</cite>) – The name of the LightCurve. Each time an LightCurve object is defined
+the name must be different.</p></li>
+<li><p><strong>tref</strong> (<cite>astropy.time.Time</cite>, <cite>str</cite>, <cite>float</cite>) – <p>Instant of reference.</p>
+<p>Format: <cite>Julian Date</cite>, string in ISO format or Time object.
+Required only if LightCurve have input fluxes and given time is
+not in Julian Date.</p>
+</p></li>
+<li><p><strong>central_bandpass</strong> (<cite>int</cite>, <cite>float</cite>, otpional, default=0.7) – The center band pass of the detector used in observation. Value in microns.</p></li>
+<li><p><strong>delta_bandpass</strong> (<cite>int</cite>, <cite>float</cite>, optional, default=0.3) – The band pass width of the detector used in observation. Value in microns.</p></li>
+<li><p><strong>exptime</strong> (<cite>int</cite>, <cite>float</cite>) – The exposure time of the observation, in seconds.
+<em>NOT</em> required in cases <em>2</em>, <em>3</em> and <em>4</em> below.
+<em>Required</em> in case <em>1</em> below.</p></li>
+<li><p><strong>**kwargs</strong> (<cite>int</cite>, <cite>float</cite>) – <p>Object velocity, distance, and star diameter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl>
+<dt>vel<span class="classifier"><cite>int</cite>, <cite>float</cite></span></dt><dd><p>Velocity in km/s.</p>
+</dd>
+<dt>dist<span class="classifier"><cite>int</cite>, <cite>float</cite></span></dt><dd><p>Object distance in AU.</p>
+</dd>
+<dt>d_star<span class="classifier"><cite>float</cite></span></dt><dd><p>Star diameter, in km.</p>
+</dd>
+</dl>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Input data must be one of the 4 options below:</p>
+</div>
+<ol class="arabic">
+<li><dl>
+<dt>Input data from file with time and flux</dt><dd><p><cite>file (str)</cite>: a file with the time and flux. A third column with the error in
+flux can also be given.</p>
+<p><cite>usecols (int, tuple, array)</cite>: Which columns to read, with the first being the
+time, the seconds the flux and third the flux error (optional).</p>
+<p><strong>Example:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">exptime</span><span class="p">)</span> <span class="c1"># dflux can also be given</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Input data when file is not given:</dt><dd><p><cite>time</cite>: time must be a list of times, in seconds from tref, or Julian Date, or
+a Time object.</p>
+<p><cite>flux</cite>: flux must be a list of fluxes. It must have the same lenght as time.</p>
+<p><cite>dflux</cite>: if file not given, dflux must be a list of fluxes errors. It must
+have the same lenght as time. (not required)</p>
+<p><strong>Example:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">exptime</span><span class="p">)</span> <span class="c1"># dflux can also be given</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Cases for when <cite>time</cite> and <cite>flux</cite> are not given.</p>
+<ol class="arabic" start="3">
+<li><dl>
+<dt>Input for a positive occultation:</dt><dd><p><cite>immersion</cite>: The instant of immersion.</p>
+<p><cite>emersion</cite>: The instant of emersion.</p>
+<p><cite>immersion_err</cite>: Immersion time uncertainty, in seconds.</p>
+<p><cite>emersion_err</cite>: Emersion time uncertainty, in seconds.</p>
+<p><strong>Example:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">immersion</span><span class="p">,</span> <span class="n">immersion_err</span><span class="p">,</span> <span class="n">emersion</span><span class="p">,</span> <span class="n">emersion_err</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Input for a negative occultation:</dt><dd><p><cite>initial_time</cite>: The initial time of observation.</p>
+<p><cite>end_time</cite>: The end time of observation.</p>
+<p><strong>Example:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LightCurve</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">initial_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="py method">
+<dt id="sora.LightCurve.calc_magnitude_drop">
+<code class="sig-name descname"><span class="pre">calc_magnitude_drop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.calc_magnitude_drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.calc_magnitude_drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the magnitude drop of the occultation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mag_star</strong> (<cite>int</cite>, <cite>float</cite>) – Star magnitude.</p></li>
+<li><p><strong>int</strong> (<em>mag_obj</em>) – Object apparent magnitude to the date.</p></li>
+<li><p><strong>float</strong> – Object apparent magnitude to the date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mag_drop</strong> (<cite>float</cite>) – Magnitude drop for the given magnitudes.</p></li>
+<li><p><strong>bottom_flux</strong> (<cite>float</cite>) – Normalized bottom flux for the given magnitudes.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.normalize">
+<code class="sig-name descname"><span class="pre">normalize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly_deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fresnel scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poly_deg</strong> (<cite>int</cite>) – Degree of the polynom to be fitted.</p></li>
+<li><p><strong>mask</strong> (<cite>bool</cite> array) – Which values to be fitted.</p></li>
+<li><p><strong>flux_min</strong> (<cite>int</cite>, <cite>float</cite>) – Event flux to be setted as 0.</p></li>
+<li><p><strong>flux_max</strong> (<cite>int</cite>, <cite>float</cite>) – Baseline flux to be setted as 1.</p></li>
+<li><p><strong>plot</strong> (<cite>bool</cite>) – If True plot the steps for visual aid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.occ_detect">
+<code class="sig-name descname"><span class="pre">occ_detect</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_detections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.occ_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.occ_detect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects automatically the occultation event in the light curve.</p>
+<p>Detects a ‘square well’ shaped transit. All parameters are optional.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maximum_duration</strong> (<cite>float</cite>, default: light curve time span) – Maximum duration of the occultation event.</p></li>
+<li><p><strong>dur_step</strong> (<cite>float</cite>, default: 1/2 of sampling rate) – Step size to sweep occultation duration event.</p></li>
+<li><p><strong>snr_limit</strong> (<cite>float</cite>, default=None) – Minimum occultation SNR.</p></li>
+<li><p><strong>n_detections</strong> (<cite>int</cite>, default=1) – Number of detections regardless the SNR. <cite>n_detections</cite> is
+superseded by <cite>snr_limit</cite>.</p></li>
+<li><p><strong>plot</strong> (<cite>bool</cite>) – True if output plots are desired.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>OrderedDict</strong> – An ordered dictionary of <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code>:<code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> pairs for each
+parameter.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>dict</cite></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lc</span> <span class="o">=</span> <span class="n">LightCurve</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="o">=</span><span class="n">flux</span><span class="p">,</span> <span class="n">exptime</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;lc_example&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">occ_detect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span>
+<span class="go">{&#39;rank&#39;: 1,</span>
+<span class="go">&#39;occultation_duration&#39;: 40.1384063065052,</span>
+<span class="go">&#39;central_time&#39;: 7916.773870512843,</span>
+<span class="go">&#39;immersion_time&#39;: 7896.7046673595905,</span>
+<span class="go">&#39;emersion_time&#39;: 7936.843073666096,</span>
+<span class="go">&#39;time_err&#39;: 0.05011036992073059,</span>
+<span class="go">&#39;depth&#39;: 0.8663887801707082,</span>
+<span class="go">&#39;depth_err&#39;: 0.10986223384336465,</span>
+<span class="go">&#39;baseline&#39;: 0.9110181732552853,</span>
+<span class="go">&#39;baseline_err&#39;: 0.19045768512595365,</span>
+<span class="go">&#39;snr&#39;: 7.886138392251848,</span>
+<span class="go">&#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.occ_lcfit">
+<code class="sig-name descname"><span class="pre">occ_lcfit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.occ_lcfit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.occ_lcfit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monte Carlo chi square fit for occultations lightcurve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tmin</strong> (<cite>int</cite>, <cite>float</cite>) – Minimum time to consider in the fit procedure, in seconds.</p></li>
+<li><p><strong>tmax</strong> (<cite>int</cite>, <cite>float</cite>) – Maximum time to consider in the fit procedure, in seconds.</p></li>
+<li><p><strong>flux_min</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Bottom flux (only object).</p></li>
+<li><p><strong>flux_max</strong> (<cite>int</cite>, <cite>float</cite>, default=1) – Base flux (object plus star).</p></li>
+<li><p><strong>immersion_time</strong> (<cite>int</cite>, <cite>float</cite>) – Initial guess for immersion time, in seconds.</p></li>
+<li><p><strong>emersion_time</strong> (<cite>int</cite>, <cite>float</cite>) – Initial guess for emersion time, in seconds.</p></li>
+<li><p><strong>opacity</strong> (<cite>int</cite>, <cite>float</cite>, default=1) – Initial guess for opacity. Opaque = 1, Transparent = 0.</p></li>
+<li><p><strong>delta_t</strong> (<cite>int</cite>, <cite>float</cite>) – Interval to fit immersion or emersion time.</p></li>
+<li><p><strong>dopacity</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Interval to fit opacity.</p></li>
+<li><p><strong>sigma</strong> (<cite>int</cite>, <cite>float</cite>, <cite>array</cite>, ‘auto’) – Fluxes errors. If None it will use the <cite>self.dflux</cite>. If ‘auto’ it
+will calculate using the region outside the event.</p></li>
+<li><p><strong>loop</strong> (<cite>int</cite>, default=10000) – Number of tests to be done.</p></li>
+<li><p><strong>sigma_result</strong> (<cite>int</cite>, <cite>float</cite>) – Sigma value to be considered as result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>chi2</strong> – ChiSquare object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>sora.extra.ChiSquare</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.occ_model">
+<code class="sig-name descname"><span class="pre">occ_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">immersion_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emersion_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npt_star</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_resolution_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.occ_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.occ_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the modelled light curve.</p>
+<p>The modelled light curve takes into account the fresnel difraction, the
+star diameter and the intrumental response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>immersion_time</strong> (<cite>int</cite>, <cite>float</cite>) – Immersion time, in seconds.</p></li>
+<li><p><strong>emersion_time</strong> (<cite>int</cite>, <cite>float</cite>) – Emersion time, in seconds.</p></li>
+<li><p><strong>opacity</strong> (<cite>int</cite>, <cite>float</cite>) – Opacity. Opaque = 1.0, transparent = 0.0,</p></li>
+<li><p><strong>mask</strong> (<cite>bool</cite> array) – Mask with True values to be computed.</p></li>
+<li><p><strong>npt_star</strong> (<cite>int</cite>, default=12) – Number of subdivisions for computing the star size effects.</p></li>
+<li><p><strong>time_resolution_factor</strong> (<cite>int</cite>, <cite>float</cite>, default: 10*fresnel scale) – Steps for fresnel scale used for modelling the light curve.</p></li>
+<li><p><strong>flux_min</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Bottom flux (only object).</p></li>
+<li><p><strong>flux_max</strong> (<cite>int</cite>, <cite>float</cite>, default=1) – Base flux (object plus star).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.plot_lc">
+<code class="sig-name descname"><span class="pre">plot_lc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.plot_lc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.plot_lc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the light curve.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.plot_model">
+<code class="sig-name descname"><span class="pre">plot_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.plot_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.plot_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the modelled light curve.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.reset_flux">
+<code class="sig-name descname"><span class="pre">reset_flux</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.reset_flux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.reset_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets flux for original values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_dist">
+<code class="sig-name descname"><span class="pre">set_dist</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the object distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dist</strong> (<cite>int</cite>, <cite>float</cite>) – Object distance in AU.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_exptime">
+<code class="sig-name descname"><span class="pre">set_exptime</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_exptime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_exptime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the light curve exposure time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>exptime</strong> (<cite>int</cite>, <cite>float</cite>) – Exposure time, in seconds.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_filter">
+<code class="sig-name descname"><span class="pre">set_filter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_bandpass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_bandpass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the filter bandwidth in microns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_bandpass</strong> (<cite>float</cite>) – Center band in microns.</p></li>
+<li><p><strong>delta_bandpass</strong> (<cite>float</cite>) – Bandwidth in microns.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_flux">
+<code class="sig-name descname"><span class="pre">set_flux</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_flux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the flux for the LightCurve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exptime</strong> (<cite>int</cite>, <cite>float</cite>, required) – The exposure time of the observation, in seconds.</p></li>
+<li><p><strong>file</strong> (<cite>str</cite>) – A file with the time and flux in the first and second columns,
+respectively. A third column with error in flux can also be given.</p></li>
+<li><p><strong>time</strong> – If file not given, time must be a list of times, in seconds from <cite>tref</cite>,
+or <cite>Julian Date</cite>, or a <cite>Time object</cite>.</p></li>
+<li><p><strong>flux</strong> – If file not given, flux must be a list of fluxes. It must have the
+same lenght as time.</p></li>
+<li><p><strong>dflux</strong> – If file not given, dflux must be a list of fluxes errors. It must
+have the same lenght as time.</p></li>
+<li><p><strong>tref</strong> (<cite>astropy.time.Time</cite>, <cite>str</cite>, <cite>float</cite>) – Instant of reference. It can be in <cite>Julian Date</cite>, string in ISO
+format or <cite>Time object</cite>.</p></li>
+<li><p><strong>usecols</strong> (<cite>int</cite>, <cite>tuple</cite>, array, optional) – Which columns to read, with the first being the time, the seconds
+the flux and third the flux error.</p></li>
+<li><p><strong>**kwargs</strong> (<cite>int</cite>, <cite>float</cite>) – <p>Object velocity, object distance, star diameter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl>
+<dt>vel<span class="classifier"><cite>int</cite>, <cite>float</cite></span></dt><dd><p>Velocity in km/s.</p>
+</dd>
+<dt>dist<span class="classifier"><cite>int</cite>, <cite>float</cite>:</span></dt><dd><p>Object distance in AU.</p>
+</dd>
+<dt>d_star<span class="classifier"><cite>float</cite></span></dt><dd><p>Star diameter, in km.</p>
+</dd>
+</dl>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_star_diam">
+<code class="sig-name descname"><span class="pre">set_star_diam</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_star</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_star_diam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_star_diam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the star diameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d_star</strong> (<cite>float</cite>) – Star diameter, in km.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.set_vel">
+<code class="sig-name descname"><span class="pre">set_vel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.set_vel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.set_vel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the occultation velocity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> (<cite>int</cite>, <cite>float</cite>) – Velocity in km/s.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.to_file">
+<code class="sig-name descname"><span class="pre">to_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the light curve to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<cite>str</cite>) – Filename to save the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.LightCurve.to_log">
+<code class="sig-name descname"><span class="pre">to_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/core.html#LightCurve.to_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.LightCurve.to_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the light curve log to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<cite>str</cite>) – Filename to save the log.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.lightcurve.occdetect">
+<span id="occutation-detection"></span><h2>Occutation detection<a class="headerlink" href="#module-sora.lightcurve.occdetect" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.lightcurve.occdetect.occ_detect">
+<code class="sig-prename descclassname"><span class="pre">sora.lightcurve.occdetect.</span></code><code class="sig-name descname"><span class="pre">occ_detect</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dflux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_detections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/occdetect.html#occ_detect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.occdetect.occ_detect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects automatically the occultation event in the light curve.</p>
+<p>Detects a ‘square well’ shaped transit. All parameters are optional.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flux</strong> (<cite>float</cite> array) – Flux of the time series. Dependent variable.</p></li>
+<li><p><strong>dflux</strong> (<cite>float</cite> array) – Error in the flux. Error in the dependent variable.</p></li>
+<li><p><strong>time</strong> (<cite>float</cite> array) – Time variable. Independent variable.</p></li>
+<li><p><strong>cycle</strong> (<cite>float</cite>) – Sampling value of the time series.</p></li>
+<li><p><strong>maximum_duration</strong> (<cite>float</cite>, default: light curve time span) – Maximum duration of the occultation event.</p></li>
+<li><p><strong>dur_step</strong> (<cite>float</cite>, default: 1/2 cycle) – Step size to sweep occultation duration event.</p></li>
+<li><p><strong>snr_limit</strong> (<cite>float</cite>, default=None) – Minimum occultation SNR.</p></li>
+<li><p><strong>n_detections</strong> (<cite>int</cite>, default=1) – Number of detections regardless the SNR. <cite>n_detections</cite> is superseded by
+<cite>snr_limit</cite>.</p></li>
+<li><p><strong>plot</strong> (<cite>boolean</cite>, default=False) – True if output plots are desired.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>OrderedDict</strong> – An ordered dictionary of <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code>:<code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> pairs for each
+parameter.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>dict</cite></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sora.lightcurve.occdetect</span> <span class="kn">import</span> <span class="n">occ_detect</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="n">occ_detect</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span>
+<span class="go">{&#39;rank&#39;: 1,</span>
+<span class="go">&#39;occultation_duration&#39;: 40.1384063065052,</span>
+<span class="go">&#39;central_time&#39;: 7916.773870512843,</span>
+<span class="go">&#39;immersion_time&#39;: 7896.7046673595905,</span>
+<span class="go">&#39;emersion_time&#39;: 7936.843073666096,</span>
+<span class="go">&#39;time_err&#39;: 0.05011036992073059,</span>
+<span class="go">&#39;depth&#39;: 0.8663887801707082,</span>
+<span class="go">&#39;depth_err&#39;: 0.10986223384336465,</span>
+<span class="go">&#39;baseline&#39;: 0.9110181732552853,</span>
+<span class="go">&#39;baseline_err&#39;: 0.19045768512595365,</span>
+<span class="go">&#39;snr&#39;: 7.886138392251848,</span>
+<span class="go">&#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sora.lightcurve.utils"></span><dl class="py function">
+<dt id="sora.lightcurve.utils.calc_fresnel">
+<code class="sig-prename descclassname"><span class="pre">sora.lightcurve.utils.</span></code><code class="sig-name descname"><span class="pre">calc_fresnel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/utils.html#calc_fresnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.utils.calc_fresnel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Fresnel scale.</p>
+<p>Fresnel Scale = square root of half the multiplication of wavelength and
+object distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<cite>int</cite>, <cite>float</cite> array) – Distances, in km.</p></li>
+<li><p><strong>bandpass</strong> (<cite>int</cite>, <cite>float</cite>, array) – Wavelength, in km.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fresnel_scale</strong> – Fresnel scale, in km.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>float</cite>, array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.lightcurve.utils.calc_magnitude_drop">
+<code class="sig-prename descclassname"><span class="pre">sora.lightcurve.utils.</span></code><code class="sig-name descname"><span class="pre">calc_magnitude_drop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mag_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mag_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/utils.html#calc_magnitude_drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.utils.calc_magnitude_drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the magnitude drop of the occultation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mag_star</strong> (<cite>int</cite>, <cite>float</cite>) – Star magnitude.</p></li>
+<li><p><strong>mag_obj</strong> (<cite>int</cite>, <cite>float</cite>) – Object apparent magnitude to the date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mag_drop</strong> (<cite>float</cite>) – Magnitude drop for the given magnitudes.</p></li>
+<li><p><strong>bottom_flux</strong> (<cite>float</cite>) – Normalized bottom flux for the given magnitudes.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="page-break section" id="extra">
+<h1>Extra<a class="headerlink" href="#extra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chisquare-object">
+<h2>ChiSquare object<a class="headerlink" href="#chisquare-object" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.extra.ChiSquare">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.extra.</span></code><code class="sig-name descname"><span class="pre">ChiSquare</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npts</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.ChiSquare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the arrays for all inputs and given chi-square.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chi2</strong> (<cite>array</cite>) – Array with all the chi-square values.</p></li>
+<li><p><strong>npts</strong> (<cite>int</cite>) – Number of points used in the fit.</p></li>
+<li><p><strong>**kwargs</strong> – Any other given input must be an array with the same size as chi2. The
+keyword <cite>name</cite> will be associated as the variable <cite>name</cite> of the given data.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chisquare</span> <span class="o">=</span> <span class="n">ChiSquare</span><span class="p">(</span><span class="n">chi2</span><span class="p">,</span> <span class="n">immersion</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">emersion</span><span class="o">=</span><span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t2</span></code> must be an array with the same size as chi2.</p>
+<p>The data can be accessed as</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;immersion&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.get_nsigma">
+<code class="sig-name descname"><span class="pre">get_nsigma</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.get_nsigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.ChiSquare.get_nsigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the interval of the chi-square within the nth sigma.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<cite>float</cite>, <cite>int</cite>) – Value of sigma to calculate.</p></li>
+<li><p><strong>key</strong> (<cite>str</cite>, default=None) – keyword the user desire to obtain results.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary with the average n-sigma value and bondaries.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a key value is given the mean value within the n-sigma and the error
+bar within the n-sigma are returned.</p>
+<p>If no key is given, a dictionary with: the minimum chi-square, the sigma
+required, the number of points where <span class="math notranslate nohighlight">\(chi2 &lt; (chi2_min + sigma^2)\)</span>,
+and the mean values and errors for all keys is returned.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.get_values">
+<code class="sig-name descname"><span class="pre">get_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.get_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.ChiSquare.get_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all values where the chi-square is within the nth sigma.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<cite>float</cite>, <cite>int</cite>) – Value of sigma to cut values.</p></li>
+<li><p><strong>key</strong> (<cite>str</cite>) – Keyword (parameter) that the user desires to obtain results of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>list or dict</strong> – List or dictionary with chi-square values within the nth sigma, the
+average n-sigma value, and bondaries.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite>, <cite>dict</cite></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a <cite>key</cite> is given, it returns a <cite>list</cite> with all the values that are within
+the chosen n-sigma.</p>
+<p>If no <cite>key</cite> is given, it returns a dictionary with the list with all the
+values that are within the n-sigma for all keys.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">sigma=0</span></code>, it returns the parameters for the minimum chi-square
+instead of a list.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.plot_chi2">
+<code class="sig-name descname"><span class="pre">plot_chi2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.plot_chi2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.ChiSquare.plot_chi2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots an ellipse using the input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Key (parameter) for which to plot the chi squares. If no key  is
+given, it will plot for all parameters.</p></li>
+<li><p><strong>ax</strong> (<cite>maplotlib.pyplot.Axes</cite>) – Matplotlib plot axes. If none is given, it uses the matplotlib pool
+to identify.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.to_file">
+<code class="sig-name descname"><span class="pre">to_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namefile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.ChiSquare.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the data to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<cite>str</cite>) – Filename to save the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.extra.plots">
+<span id="plot-ellipse"></span><h2>Plot ellipse<a class="headerlink" href="#module-sora.extra.plots" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.extra.plots.draw_ellipse">
+<code class="sig-prename descclassname"><span class="pre">sora.extra.plots.</span></code><code class="sig-name descname"><span class="pre">draw_ellipse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/plots.html#draw_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.plots.draw_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots an ellipse with the given input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equatorial_radius</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Semi-major axis of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Oblateness of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (abscissa).</p></li>
+<li><p><strong>center_g</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (ordinate).</p></li>
+<li><p><strong>center_dot</strong> (<cite>bool</cite>, default=False) – If True, plots a dot at the center of the ellipse.</p></li>
+<li><p><strong>position_angle</strong> (<cite>float</cite>, <cite>int</cite>, default= 0) – Pole position angle (Default=0.0).</p></li>
+<li><p><strong>ax</strong> (<cite>maptlotlib.pyplot.Axes</cite>) – Axis where to plot ellipse.</p></li>
+<li><p><strong>**kwargs</strong> – All other parameters. They will be parsed directly to matplotlib.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sora.extra.utils"></span><dl class="py function">
+<dt id="sora.extra.utils.get_ellipse_points">
+<code class="sig-prename descclassname"><span class="pre">sora.extra.utils.</span></code><code class="sig-name descname"><span class="pre">get_ellipse_points</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/utils.html#get_ellipse_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.utils.get_ellipse_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get points for the ellipse with the given input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (<cite>float</cite> array) – Angular coordinate, in degrees, to return the ellipse points.</p></li>
+<li><p><strong>equatorial_radius</strong> (<cite>float</cite>, <cite>int</cite>) – Semi-major axis of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Oblateness of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (abscissa).</p></li>
+<li><p><strong>center_g</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (ordinate).</p></li>
+<li><p><strong>position_angle</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – <p>The pole position angle of the ellipse in degrees.</p>
+<p>Zero is in the North direction (‘g-positive’). Positive clockwise.</p>
+</p></li>
 </ul>
 </dd>
 </dl>

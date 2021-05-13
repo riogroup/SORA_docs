@@ -1,31 +1,33 @@
-from astropy.coordinates import SkyCoord
-from astropy.table import Table
 import astropy.units as u
-import astropy.constants as const
-from astroquery.vizier import Vizier
 import numpy as np
-from sora.config import input_tests
+from astropy.coordinates import SkyCoord
 
+from sora.config import input_tests
+from sora.config.decorators import deprecated_alias
 
 __all__ = ['van_belle', 'kervella']
 
 
+@deprecated_alias(log='verbose')  # remove this line for v1.0
 def search_star(**kwargs):
-    """ Searches position on VizieR and returns a catalogue.
+    """Searches position on VizieR and returns a catalogue.
 
     Parameters:
         coord (str, SkyCoord): Coordinate to perform the search.
-        code (str): Gaia Source_id of the star
+        code (str): Gaia Source_id of the star.
         columns (list): List of strings with the name of the columns to retrieve.
-        radius (int, float, unit.quantity): Radius to search around coordinate
+        radius (int, float, unit.quantity): Radius to search around coordinates.
         catalog (str): VizieR catalogue to search.
 
     Returns:
         catalogue(astropy.Table): An astropy Table with the catalogue informations.
+
     """
-    input_tests.check_kwargs(kwargs, allowed_kwargs=['catalog', 'code', 'columns', 'coord', 'log', 'radius'])
+    from astroquery.vizier import Vizier
+
+    input_tests.check_kwargs(kwargs, allowed_kwargs=['catalog', 'code', 'columns', 'coord', 'verbose', 'radius'])
     row_limit = 100
-    if 'log' in kwargs and kwargs['log']:
+    if 'verbose' in kwargs and kwargs['verbose']:
         print('\nDownloading star parameters from {}'.format(kwargs['catalog']))
     vquery = Vizier(columns=kwargs['columns'], row_limit=row_limit, timeout=600)
     if 'code' in kwargs:
@@ -38,14 +40,16 @@ def search_star(**kwargs):
 
 
 def van_belle(magB=None, magV=None, magK=None):
-    """ Determines the diameter of a star in mas using equations from van Belle (1999)
-        -- Publi. Astron. Soc. Pacific 111, 1515-1523:
+    """Determines the diameter of a star in mas using equations from van Belle (1999).
+    
+    See: Publi. Astron. Soc. Pacific 111, 1515-1523:.
 
     Parameters:
-        magB: The magnitude B of the star
-        magV: The magnitude V of the star
-        magK: The magnitude K of the star
+        magB: The magnitude B of the star.
+        magV: The magnitude V of the star.
+        magK: The magnitude K of the star.
         If any of those values is 'None', 'nan' or higher than 49, it is not considered.
+
     """
     if magB is None or np.isnan(magB) or magB > 49:
         magB = np.nan
@@ -75,14 +79,16 @@ def van_belle(magB=None, magV=None, magK=None):
 
 
 def kervella(magB=None, magV=None, magK=None):
-    """ Determines the diameter of a star in mas using equations from Kervella et. al (2004)
-        -- A&A Vol. 426, No.  1:
+    """Determines the diameter of a star in mas using equations from Kervella et. al (2004).
+    
+    See: A&A Vol. 426, No.  1:.
 
     Parameters:
-        magB: The magnitude B of the star
-        magV: The magnitude V of the star
-        magK: The magnitudes K of the star
+        magB: The magnitude B of the star.
+        magV: The magnitude V of the star.
+        magK: The magnitudes K of the star.
         If any of those values is 'None', 'nan' or higher than 49, it is not considered.
+
     """
     if magB is None or np.isnan(magB) or magB > 49:
         magB = np.nan
@@ -94,16 +100,16 @@ def kervella(magB=None, magV=None, magK=None):
     const2 = np.array([0.5170, 0.5159])
     mag = np.array([magV, magB])
     vals = 10**(const1*(mag-magK)+const2-0.2*magK)
-    diam = {}
+    diameter = {}
     if not np.isnan(vals[0]):
-        diam['V'] = vals[0]*u.mas
+        diameter['V'] = vals[0]*u.mas
     if not np.isnan(vals[1]):
-        diam['B'] = vals[1]*u.mas
-    return diam
+        diameter['B'] = vals[1]*u.mas
+    return diameter
 
 
 def spatial_motion(ra, dec, pmra, pmdec, parallax=0, rad_vel=0,  dt=0, cov_matrix=None):
-    """ Applies spatial motion to star coordinate
+    """Applies spatial motion to star coordinate.
 
     Parameters:
         ra (int, float): Right Ascension of the star at t=0 epoch, in deg.
@@ -114,7 +120,10 @@ def spatial_motion(ra, dec, pmra, pmdec, parallax=0, rad_vel=0,  dt=0, cov_matri
         rad_vel (int, float): Radial Velocity of the star at t=0 epoch, in km/s.
         dt (int, float): Variation of time from catalogue epoch, in days.
         cov_matrix (2D-array): 6x6 covariance matrix.
+
     """
+    import astropy.constants as const
+
     A = (1*u.AU).to(u.km).value  # Astronomical units in km
     c = const.c.to(u.km/u.year).value  # light velocity
 
@@ -272,6 +281,8 @@ def spatial_motion(ra, dec, pmra, pmdec, parallax=0, rad_vel=0,  dt=0, cov_matri
 
 
 def choice_star(catalogue, coord, columns, source):
+    from astropy.table import Table
+
     tstars = SkyCoord(catalogue[columns[0]], catalogue[columns[1]])
     sep = tstars.separation(coord)
     k = sep.argsort()

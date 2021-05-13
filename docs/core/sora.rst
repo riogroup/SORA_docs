@@ -19,6 +19,7 @@ Module's `utils` functions
 
 
 
+
 Ephem
 -----
 
@@ -43,7 +44,6 @@ Module's `utils` functions
    :members: 
 
 
-.. rst-class:: page-break
 
 
 LightCurve
@@ -65,8 +65,19 @@ Module's `utils` functions
    :members: 
 
 
-.. rst-class:: page-break
 
+Observer
+--------
+
+The Observer object
+===================
+.. autoclass:: sora.Observer
+   :members:
+
+Module `utils` functions
+========================
+.. automodule:: sora.observer.utils
+   :members:
 
 
 

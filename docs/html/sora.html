@@ -111,6 +111,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">Module’s <cite>utils</cite> functions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#observer">Observer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-observer-object">The Observer object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.observer.utils">Module <cite>utils</cite> functions</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#extra">Extra</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#chisquare-object">ChiSquare object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.extra.plots">Plot ellipse</a></li>
@@ -955,7 +960,7 @@ Required by JPL web service.</p>
 
 </div>
 </div>
-<div class="page-break section" id="lightcurve">
+<div class="section" id="lightcurve">
 <h1>LightCurve<a class="headerlink" href="#lightcurve" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-lightcurve-class">
 <h2>The LightCurve class<a class="headerlink" href="#the-lightcurve-class" title="Permalink to this headline">¶</a></h2>
@@ -1423,7 +1428,110 @@ object distance.</p>
 
 </div>
 </div>
-<div class="page-break section" id="extra">
+<div class="section" id="observer">
+<h1>Observer<a class="headerlink" href="#observer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-observer-object">
+<h2>The Observer object<a class="headerlink" href="#the-observer-object" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.Observer">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">Observer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="sora.Observer.altaz">
+<code class="sig-name descname"><span class="pre">altaz</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer.altaz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer.altaz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Altitude and Azimuth at a reference time for a coordinate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Reference time to calculate the sidereal time.</p></li>
+<li><p><strong>coord</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>astropy.SkyCoord</em>) – Coordinate of the target ICRS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object altitude in degrees.
+azimuth (float): object azimuth in degrees.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>altitude (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Observer.get_ksi_eta">
+<code class="sig-name descname"><span class="pre">get_ksi_eta</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer.get_ksi_eta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer.get_ksi_eta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates relative position to star in the orthographic projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – Reference time to calculate the position.
+It can be a string in the format “yyyy-mm-dd hh:mm:ss.s” or an
+astropy Time object.</p></li>
+<li><p><strong>star</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>SkyCoord</em>) – The coordinate of the star in the same
+reference frame as the ephemeris.
+It can be a string in the format “hh mm ss.s +dd mm ss.ss”
+or an astropy SkyCoord object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>on-sky orthographic projection of the observer</dt><dd><p>relative to a star.
+Ksi is in the North-South direction (North positive).
+Eta is in the East-West direction (East positive).</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ksi, eta (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Observer.sidereal_time">
+<code class="sig-name descname"><span class="pre">sidereal_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'local'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer.sidereal_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer.sidereal_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Apparent Sidereal Time at a reference time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Reference time to calculate sidereal time.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – local or greenwich
+If ‘local’: calculates the sidereal time for the coordinates of
+this object.
+If ‘greenwich’: calculates the Greenwich Apparent Sidereal Time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An Astropy Longitude object with the Sidereal Time.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sidereal_time</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.observer.utils">
+<span id="module-utils-functions"></span><h2>Module <cite>utils</cite> functions<a class="headerlink" href="#module-sora.observer.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.observer.utils.search_code_mpc">
+<code class="sig-prename descclassname"><span class="pre">sora.observer.utils.</span></code><code class="sig-name descname"><span class="pre">search_code_mpc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/utils.html#search_code_mpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.observer.utils.search_code_mpc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the MPC Observer Database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>observatories</strong> – A python dictionaty with all the sites as Astropy EarthLocation objects.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><cite>dict</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="extra">
 <h1>Extra<a class="headerlink" href="#extra" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="chisquare-object">
 <h2>ChiSquare object<a class="headerlink" href="#chisquare-object" title="Permalink to this headline">¶</a></h2>

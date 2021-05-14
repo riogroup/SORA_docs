@@ -8,15 +8,22 @@ __all__ = ['Chord']
 
 
 class Chord:
+    """Defines an Occultation Chord.
+
+    Attributes
+    ----------
+    name : `str`
+        The name of the Chord.
+    
+    observer : `sora.Observer`
+        The site of observation.
+    
+    lightcurve : `sora.LightCurve`
+        The lightcurve observed.
+
+    """
     def __init__(self, *, name, observer, lightcurve):
-        """Defines an Occultation Chord.
-
-        Parameters:
-            name (str): The name of the Chord.
-            observer (Observer): The site of observation.
-            lightcurve (LightCurve): The lightcurve observed.
-
-        """
+        
         from sora.lightcurve import LightCurve
         from sora.observer import Observer
 
@@ -44,7 +51,6 @@ class Chord:
 
     def status(self):
         """Returns if the chord is positive or negative.
-
         """
         im = getattr(self.lightcurve, 'immersion', None)
         em = getattr(self.lightcurve, 'emersion', None)
@@ -56,7 +62,6 @@ class Chord:
     @property
     def is_able(self):
         """Returns a dictionary with the references enabled and disabled for the fit.
-
         """
         im = getattr(self.lightcurve, 'immersion', None)
         if im is None and 'immersion' in self._isable:
@@ -73,10 +78,12 @@ class Chord:
     def enable(self, *, time=None):
         """Enables a contact point of the curve to be used in the fit.
 
-        Parameters:
-            time (None, str): if None, it will enable all contact points.
-              If 'immersion' or 'emersion', it will enable respective contact point.
-
+        Parameters
+        ----------
+        time : `None`, `str`
+            If ``None``, it will enable all contact points.
+            If ``'immersion'`` or ``'emersion'``, it will enable respective 
+            contact point.
         """
         if time not in [None, 'immersion', 'emersion']:
             raise ValueError('time can only be "immersion", "emersion" or None for both values')
@@ -88,10 +95,12 @@ class Chord:
     def disable(self, *, time=None):
         """Disables a contact point of the curve to be used in the fit.
 
-        Parameters:
-            time (None, str): if None, it will disable all contact points.
-              If 'immersion' or 'emersion', it will disable respective contact point.
-
+        Parameters
+        ----------
+        time : `None`, `str`
+            If None, it will disable all contact points.
+            If ``'immersion'`` or ``'emersion'``, it will disable respective 
+            contact point.
         """
         if time not in [None, 'immersion', 'emersion']:
             raise ValueError('time can only be "immersion", "emersion" or None for both values')
@@ -106,21 +115,24 @@ class Chord:
         This Chord object must be associated to an Occultation to work, since 
         it needs the position of the star and an ephemeris.
 
-        Parameters:
-            time (Time, str): It must a time or a list of time to calculate the 
-              on-sky position.
-              If time is 'immersion', 'emersion', 'start' or 'end', it will get 
-              the respective on-sky position. If time=None, it will return the 
-              on-sky position for the immersion and emersion times if positive 
-              or raise an error if negative.
-            vel (bool): If True, it will return the on-sky velocity as well.
+        Parameters
+        ----------
+        time : `astropy.time.Time`, `str`
+            It must a time or a list of time to calculate the on-sky position.
+            If time is ``'immersion'``, ``'emersion'``, ``'start'`` or ``'end'``, 
+            it will get the respective on-sky position. If ``time=None``, it 
+            will return the on-sky position for the immersion and emersion times 
+            if positive or raise an error if negative.
+        
+        vel : `bool`
+            If True, it will return the on-sky velocity as well.
 
-        Return:
-            f, g, [vf, vg]: The geocentric on-sky Orthographic projection of 
-              the object with f poiting to the celestial North and g pointing 
-              to the celestial East. The respective velocities (vf, vg) are 
-              returned if vel=True.
-
+        Return
+        ------
+        f, g, [vf, vg] : `float`, `float`, [`float`, `float`]
+            The geocentric on-sky Orthographic projection of the object with `f` 
+            poiting to the celestial North and `g` pointing to the celestial 
+            East. The respective velocities (vf, vg) are returned if ``vel=True``.
         """
         if 'chordlist' not in self._shared_with:
             raise ValueError('{} must be associated to an Occultation to use this function'.format(self.__class__.__name__))
@@ -168,40 +180,48 @@ class Chord:
         This Chord object must be associated to an Occultation to work, since it 
         needs the position of the star and an ephemeris.
 
-        Parameters:
-            segment (str): The segment to get the path of the chord. The 
-              available options are:
+        Parameters
+        ----------
+        segment : `str`
+            The segment to get the path of the chord. The available options are:
               
-              'positive': to get the path between the immersion and emersion 
-                times if the chord is positive.
-              'negative': to get the path between the start and end of 
-                observation if the chord is negative.
-              'standard': to get the 'positive' path if the chord is positive 
-                or 'negative' if the chord is negative.
-              'full': to get  the path between the start and end of observation 
-                independent if the chord is positive or negative.
-              'outer': to get the path outside the 'positive' path, for 
-                instance between the start and immersion times and between the 
-                emersion and end times.
-              'error': to get the path corresponding to the error bars. Be aware 
-                that some of these segments may return more than 1 path, for 
-                example segment='error'.
+            ``'positive'``: to get the path between the immersion and emersion 
+            times if the chord is positive.
+            
+            ``'negative'``: to get the path between the start and end of 
+            observation if the chord is negative.
+            
+            ``'standard'``: to get the 'positive' path if the chord is positive 
+            or 'negative' if the chord is negative.
+            
+            ``'full'``: to get  the path between the start and end of observation 
+            independent if the chord is positive or negative.
+             
+            ``'outer'``: to get the path outside the 'positive' path, for 
+            instance between the start and immersion times and between the 
+            emersion and end times.
+            
+            ``'error'``: to get the path corresponding to the error bars. Be aware 
+            that some of these segments may return more than 1 path, for example 
+            ``segment='error'``.
 
-            step (number, 'exposure'): If a number, it corresponds to the step, 
-              in seconds, for each point of the path.
+        step : `int`, `float`, `str`
+            If a number, it corresponds to the step, in seconds, for each point 
+            of the path.
               
-              This correspond to an approximate valueif it is not a multiple of 
-              the interval of the segment.
+            This correspond to an approximate valueif it is not a multiple of 
+            the interval of the segment.
               
-              The step can also be equal to 'exposure'. In this case, the path 
-              will return a set of pairs where each pair will have the position 
-              at the beggining of the exposure and the end of the exposure.
+            The step can also be equal to ``'exposure'``. In this case, the path 
+            will return a set of pairs where each pair will have the position 
+            at the beggining of the exposure and the end of the exposure.
 
-        Return:
-            path f (array), path g (array): It will return the path separated 
-              by f and g. If step='exposure', it will return f and g 
-              intercalated for each exposure.
 
+        Return
+        ------
+        path f, path g : `array`, `array`
+            It will return the path separated by `f` and `g`. If ``step='exposure'``, 
+            it will return f and g intercalated for each exposure.
         """
         if 'chordlist' not in self._shared_with:
             raise ValueError('{} must be associated to an Occultation to use this function'.format(self.__class__.__name__))
@@ -279,42 +299,53 @@ class Chord:
         This Chord object must be associated to an Occultation to work, since 
         it needs the position of the star and an ephemeris.
 
-        Parameters:
-            segment (str): The segment to plot the chord. The available 
-              options are:
+        Parameters
+        ----------
+        segment : `str`
+            The segment to plot the chord. The available options are:
 
-              'positive': to get the path between the immersion and emersion 
-                times if the chord is positive.
-              'negative': to get the path between the start and end of 
-                observation if the chord is negative.
-              'standard': to get the 'positive' path if the chord is positive 
+            ``'positive'``: to get the path between the immersion and emersion 
+            times if the chord is positive.
+            
+            ``'negative'``: to get the path between the start and end of 
+            observation if the chord is negative.
+            
+            ``'standard'``: to get the 'positive' path if the chord is positive 
                 or 'negative' if the chord is negative.
-              'full': to get  the path between the start and end of observation 
-                independent if the chord is positive or negative.
-              'outer': to get the path outside the 'positive' path, for 
-                instance between the start and immersion times and between the 
-                emersion and end times.
-              'error': to get the path corresponding to the error bars.
+            
+            ``'full'``: to get  the path between the start and end of observation 
+            independent if the chord is positive or negative.
+            
+            ``'outer'``: to get the path outside the 'positive' path, for 
+            instance between the start and immersion times and between the 
+            emersion and end times.
+            
+            ``'error'``: to get the path corresponding to the error bars.
 
-            only_able (bool): Plot only the contact points that are able to be 
-              used in the fit.
-              If segment='error' it will show only the contact points able. If 
-              segment is any other, the path will be plotted only if both 
-              immersion and emersion are able, or it is a negative chord.
-            ax (matplotlib.Axes): The axes where to make the plot. If None, it 
-              will use the default axes.
-            linestyle (str): Default linestyle used in matplotlib.pyplot.plot. 
-              The difference is that now it accepts linestyle='exposure', where 
-              the plot will be a dashed line corresponding to each exposure. 
-              The blank space between the lines can be interpreted as 'dead 
-              time'.
-            **kwargs: Any other kwarg will be parsed directly by 
-              maplotlip.pyplot.plot. The only difference is that the default 
-              linewidth lw=2.
+        only_able : `bool`
+            Plot only the contact points that are able to be used in the fit.
+            If ``segment='error'`` it will show only the contact points able. If 
+            segment is any other, the path will be plotted only if both 
+            immersion and emersion are able, or it is a negative chord.
+        
+        ax : `matplotlib.pyplot.Axes`
+            The axes where to make the plot. If None, it will use the default axes.
+        
+        linestyle : `str`
+            Default linestyle used in `matplotlib.pyplot.plot`. 
+            The difference is that now it accepts ``linestyle='exposure'``, where 
+            the plot will be a dashed line corresponding to each exposure. 
+            The blank space between the lines can be interpreted as 'dead time'.
+            
+        **kwargs
+            Any other kwarg will be parsed directly by `maplotlip.pyplot.plot`. 
+            The only difference is that the default linewidth ``lw=2``.
 
-        Returns:
+
+        Returns
+        -------
+         : 
             Default list of plots made by matplotlib.
-
         """
         import matplotlib.pyplot as plt
 
@@ -358,23 +389,29 @@ class Chord:
         return var
 
     def get_impact_param(self, center_f=0, center_g=0, verbose=True):
-        """Gets the impact parameter, minimal distance between the chord and the centre position.
+        """Gets the impact parameter, minimal distance between the chord and the 
+        centre position.
 
         This Chord object must be associated to an Occultation to work, since it 
         needs the position of the star and an ephemeris.
 
-        Parameters:
-            center_f (int,float): The coordinate in f of the ellipse center 
-              (Default=0).
-            center_g (int,float): The coordinate in g of the ellipse center
-              (Default=0).
-            verbose (bool): if True, prints the obtained values.
+        Parameters
+        ----------
+        center_f : `int`, `float`, default=0
+            The coordinate in f of the ellipse center; 
 
-        Returns:
-            impact: Impact parameter, in km.
-            sense: Direction of the chord relative the ellipse center, 
-              North (N), South (S), East (E) and West (W).
+        center_g : `int`, `float`, default=0
+            The coordinate in g of the ellipse center.
+              
+        verbose : `bool`, default=True
+            If True, prints the obtained values.
 
+
+        Returns
+        -------
+        impact, sense : `list`
+            The impact parameter (in km) and the direction of the chord relative 
+            the ellipse center, North (N), South (S), East (E) and West (W).
         """
         f, g = self.path(segment='full')
         r = np.sqrt((f - center_f)**2 + (g - center_g)**2)
@@ -396,27 +433,40 @@ class Chord:
         This Chord object must be associated to an Occultation to work, since 
         it needs the position of the star and an ephemeris.
 
-        Parameters:
-            equatorial_radius (int,float): The Equatorial radius (semi-major 
-              axis) of the ellipse.
-            center_f (int,float): The coordinate in f of the ellipse center
-              (Default=0).
-            center_g (int,float): The coordinate in g of the ellipse center
-              (Default=0).
-            oblateness (int,float): The oblateness of the ellipse (Default=0, a
-              circle).
-            position_angle (int,float): The pole position angle of the ellipse 
-              in degrees (Default=0).
-              Zero is in the North direction ('g-positive'). Positive clockwise.
+        Parameters
+        ----------
+        equatorial_radius : `int`, `float`
+            The Equatorial radius (semi-major axis) of the ellipse.
+            
+        center_f : `int`, `float`, default=0
+            The coordinate in f of the ellipse center
+    
+        center_g : `int`, `float`, default=0
+            The coordinate in g of the ellipse center
+              
+        oblateness : `int`, `float`, default=0
+            The oblateness of the ellipse.
+              
+        position_angle : `int`, `float`, default=0
+            The pole position angle of the ellipse in degrees. 
+            Zero is in the North direction ('g-positive'). Positive clockwise.
 
-            sigma (int, float): Unceartity of the expected ellipse, in km.
-            step (int, float): Time resolution of the chord, in seconds.
-            verbose (bool): if True, prints the obtained values.
+        sigma : `int`, `float`
+            Unceartity of the expected ellipse, in km.
+        
+        step : `int`, `float`
+            Time resolution of the chord, in seconds.
+        
+        verbose : `bool`, default=True
+            If True, prints the obtained values.
 
-        Returns:
-            theory_immersion_time: Expected immersion time for the given ellipse.
-            theory_emersion_time: Expected emersion time for the given ellipse.
-            theory_chord_size: Expected chord size for the given ellipse.
+
+        Returns
+        -------
+        theory_immersion_time, theory_emersion_time, theory_chord_size : `list`
+            The expected immersion time for the given ellipse, the expected 
+            emersion time for the given ellipse, and the expected chord size 
+            for the given ellipse.
         """
         from sora.extra import get_ellipse_points
 
@@ -468,13 +518,11 @@ class Chord:
 
     def __repr__(self):
         """String representation of the Chord Class.
-
         """
         return '<{}: {}>'.format(self.__class__.__name__, self.name)
 
     def __str__(self):
         """String of the Chord Class used in str(obj) or print(obj).
-        
         """
         string = ['-' * 79, self.observer.__str__()]
         if 'chordlist' in self._shared_with:

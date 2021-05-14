@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.occultation.utils &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#ephem">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#lightcurve">LightCurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.occultation.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.occultation.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filter_negative_chord&#39;</span><span class="p">,</span> <span class="s1">&#39;positionv&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="positionv"><a class="viewcode-back" href="../../../sora.html#sora.occultation.utils.positionv">[docs]</a><span class="k">def</span> <span class="nf">positionv</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">ephem</span><span class="p">,</span> <span class="n">observer</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the position and velocity of the occultation shadow relative </span>
+<span class="sd">    to the observer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    star : `sora.Star`</span>
+<span class="sd">        The coordinate of the star in the same reference frame as the ephemeris. </span>
+<span class="sd">        It must be a Star object.</span>
+<span class="sd">    </span>
+<span class="sd">    ephem : `sora.Ephem`</span>
+<span class="sd">        The object ephemeris. It must be an Ephemeris object.</span>
+<span class="sd">    </span>
+<span class="sd">    observer : `sora.Observer`</span>
+<span class="sd">        The Observer information. It must be an Observer object.</span>
+<span class="sd">    </span>
+<span class="sd">    time : `astropy.time.Time`</span>
+<span class="sd">        Reference instant to calculate position and velocity.</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">    f, g, vf, vg : `list`</span>
+<span class="sd">        The orthographic projection of the shadow relative to the observer. </span>
+<span class="sd">        ``&#39;f&#39;`` is in the x-axis (East-West direction; East positive). </span>
+<span class="sd">        ``&#39;g&#39;`` is in the y-axis (North-South direction; North positive).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">sora.ephem</span> <span class="kn">import</span> <span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemJPL</span><span class="p">,</span> <span class="n">EphemKernel</span><span class="p">,</span> <span class="n">EphemHorizons</span>
+    <span class="kn">from</span> <span class="nn">sora.observer</span> <span class="kn">import</span> <span class="n">Observer</span>
+    <span class="kn">from</span> <span class="nn">sora.star</span> <span class="kn">import</span> <span class="n">Star</span>
+    <span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Star</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;star must be a Star object&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ephem</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemJPL</span><span class="p">,</span> <span class="n">EphemKernel</span><span class="p">,</span> <span class="n">EphemHorizons</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;ephem must be an Ephemeris object&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Observer</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;observer must be an Observer object&#39;</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+    <span class="n">coord</span> <span class="o">=</span> <span class="n">star</span><span class="o">.</span><span class="n">geocentric</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span>
+
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ephem</span><span class="p">)</span> <span class="o">==</span> <span class="n">EphemPlanete</span><span class="p">:</span>
+        <span class="n">ephem</span><span class="o">.</span><span class="n">fit_d2_ksi_eta</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ksio1</span><span class="p">,</span> <span class="n">etao1</span> <span class="o">=</span> <span class="n">observer</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+    <span class="n">ksie1</span><span class="p">,</span> <span class="n">etae1</span> <span class="o">=</span> <span class="n">ephem</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="n">ksio1</span><span class="o">-</span><span class="n">ksie1</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">etao1</span><span class="o">-</span><span class="n">etae1</span>
+
+    <span class="n">ksio2</span><span class="p">,</span> <span class="n">etao2</span> <span class="o">=</span> <span class="n">observer</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+    <span class="n">ksie2</span><span class="p">,</span> <span class="n">etae2</span> <span class="o">=</span> <span class="n">ephem</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
+
+    <span class="n">nf</span> <span class="o">=</span> <span class="n">ksio2</span><span class="o">-</span><span class="n">ksie2</span>
+    <span class="n">ng</span> <span class="o">=</span> <span class="n">etao2</span><span class="o">-</span><span class="n">etae2</span>
+
+    <span class="n">vf</span> <span class="o">=</span> <span class="p">(</span><span class="n">nf</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="mf">0.1</span>
+    <span class="n">vg</span> <span class="o">=</span> <span class="p">(</span><span class="n">ng</span><span class="o">-</span><span class="n">g</span><span class="p">)</span><span class="o">/</span><span class="mf">0.1</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">vf</span><span class="p">,</span> <span class="n">vg</span></div>
+
+
+<div class="viewcode-block" id="filter_negative_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.utils.filter_negative_chord">[docs]</a><span class="k">def</span> <span class="nf">filter_negative_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">chisquare</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get points for the ellipse with the given input parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    chord : `sora.observer.Chord`</span>
+<span class="sd">        Chord object, must be associated to an Occultation to work.</span>
+<span class="sd">    </span>
+<span class="sd">    chisquare : `sora.extra.ChiSquare`</span>
+<span class="sd">        Resulted ChiSquare object of fit_ellipse.</span>
+<span class="sd">        </span>
+<span class="sd">    sigma : `int`, `float`</span>
+<span class="sd">        Unceartity of the expected ellipse, in km.</span>
+<span class="sd">    </span>
+<span class="sd">    step : `int`, `float`, `str`</span>
+<span class="sd">        If a number, it corresponds to the step, in seconds, for each point of </span>
+<span class="sd">        the chord path. The step can also be equal to ``&#39;exposure&#39;``. In this </span>
+<span class="sd">        case, the chord path will consider the lightcurve individual times and </span>
+<span class="sd">        exptime.  </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">sora.config.visuals</span> <span class="kn">import</span> <span class="n">progressbar</span>
+    <span class="kn">from</span> <span class="nn">sora.extra</span> <span class="kn">import</span> <span class="n">ChiSquare</span>
+    <span class="kn">from</span> <span class="nn">sora.extra.utils</span> <span class="kn">import</span> <span class="n">get_ellipse_points</span>
+
+    <span class="n">keep</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="s1">&#39;exposure&#39;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">exptime</span><span class="o">/</span><span class="mf">10.</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;Chord.lightcurve does not have &quot;exptime&quot;&#39;</span><span class="p">)</span>
+        <span class="n">time_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">step</span><span class="p">)</span>
+        <span class="n">time_exposure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">time</span><span class="p">)):</span>
+            <span class="n">event_model</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_all</span> <span class="o">&gt;</span> <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">exptime</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">time_all</span> <span class="o">&lt;</span> <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">exptime</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+            <span class="n">time_exposure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_exposure</span><span class="p">,</span><span class="n">time_all</span><span class="p">[</span><span class="n">event_model</span><span class="p">])</span>
+            <span class="n">f_all</span><span class="p">,</span> <span class="n">g_all</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">get_fg</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time_exposure</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span> <span class="o">+</span> <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">tref</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">f_all</span><span class="p">,</span> <span class="n">g_all</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">segment</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">progressbar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;chi2&#39;</span><span class="p">])),</span><span class="s1">&#39;Filter chord: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="o">.</span><span class="n">name</span><span class="p">)):</span>
+        <span class="n">df_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_all</span> <span class="o">-</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_f&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">dg_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">g_all</span> <span class="o">-</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_g&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">r_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">df_all</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dg_all</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">cut</span> <span class="o">=</span> <span class="n">r_all</span> <span class="o">&lt;</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;equatorial_radius&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">df_path</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+        <span class="n">dg_path</span> <span class="o">=</span> <span class="n">dg_all</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+        <span class="n">r_path</span> <span class="o">=</span> <span class="n">r_all</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+        <span class="n">theta_path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">dg_path</span><span class="p">,</span> <span class="n">df_path</span><span class="p">)</span>
+
+        <span class="n">r_ellipse</span> <span class="o">=</span> <span class="n">get_ellipse_points</span><span class="p">(</span><span class="n">theta_path</span><span class="p">,</span>
+                                       <span class="n">equatorial_radius</span><span class="o">=</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;equatorial_radius&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                                       <span class="n">oblateness</span><span class="o">=</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;oblateness&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                                       <span class="n">center_f</span><span class="o">=</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_f&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                                       <span class="n">center_g</span><span class="o">=</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_g&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                                       <span class="n">position_angle</span><span class="o">=</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;position_angle&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">r_path</span> <span class="o">-</span> <span class="n">r_ellipse</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">filtered_chisquare</span> <span class="o">=</span> <span class="n">ChiSquare</span><span class="p">(</span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;chi2&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">],</span><span class="n">chisquare</span><span class="o">.</span><span class="n">npts</span><span class="p">,</span>
+                                   <span class="n">center_f</span><span class="o">=</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_f&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">],</span>
+                                   <span class="n">center_g</span><span class="o">=</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;center_g&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">],</span>
+                                   <span class="n">equatorial_radius</span><span class="o">=</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;equatorial_radius&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">],</span>
+                                   <span class="n">oblateness</span><span class="o">=</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;oblateness&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">],</span>
+                                   <span class="n">position_angle</span><span class="o">=</span> <span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;position_angle&#39;</span><span class="p">][</span><span class="n">keep</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">filtered_chisquare</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

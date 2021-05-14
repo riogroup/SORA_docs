@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html#ephem">Ephem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html#lightcurve">LightCurve</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html#observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#occultation">Occultation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../sora.html#extra">Extra</a></li>
 </ul>
 
@@ -171,38 +172,59 @@
 
 
 <div class="viewcode-block" id="Observer"><a class="viewcode-back" href="../../../sora.html#sora.Observer">[docs]</a><span class="k">class</span> <span class="nc">Observer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Defines the observer object.</span>
 
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : `str`</span>
+<span class="sd">        Name for the Observer. Observer is uniquely defined (name must be </span>
+<span class="sd">        different for each observer).</span>
+<span class="sd">    </span>
+<span class="sd">    code : `str`</span>
+<span class="sd">        The IAU code for SORA to search for its coordinates in MPC database.</span>
+<span class="sd">    </span>
+<span class="sd">    site : `astropy.coordinates.EarthLocation`</span>
+<span class="sd">        User provides an EarthLocation object.</span>
+<span class="sd">    </span>
+<span class="sd">    lon : `str`, `float`</span>
+<span class="sd">        The Longitude of the site in degrees. </span>
+<span class="sd">        Positive to East. Range (0 to 360) or (-180 to +180).</span>
+<span class="sd">        User can provide in degrees (`float`) or hexadecimal (`string`).</span>
+<span class="sd">    </span>
+<span class="sd">    lat : `str`, `float`</span>
+<span class="sd">        The Latitude of the site in degrees. </span>
+<span class="sd">        Positive North. Range (+90 to -90).</span>
+<span class="sd">        User can provide in degrees (float) or hexadecimal (string).</span>
+<span class="sd">    </span>
+<span class="sd">    height : `int`, `float`</span>
+<span class="sd">        The height of the site in meters above see level.</span>
+
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    User can provide one of the following to define an observer:</span>
+<span class="sd">    </span>
+<span class="sd">    - If user will use the MPC name for the site:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Observer(code)</span>
+<span class="sd">        </span>
+<span class="sd">    - If user wants to use a different name from the MPC database:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Observer(name, code)</span>
+<span class="sd">    </span>
+<span class="sd">    - If user wants to use an EarthLocation value:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; from astropy.coordinates import EarthLocation</span>
+<span class="sd">    &gt;&gt;&gt; EarthLocation(lon, lat, height)</span>
+<span class="sd">    &gt;&gt;&gt; Observer(name, site)</span>
+<span class="sd">    </span>
+<span class="sd">    - If user wants to give site coordinates directly:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Observer(name, lon, lat, height)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Defines the observer object.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            name (str): Name for the Observer.</span>
-<span class="sd">              Observer is uniquely defined (name must be different for each </span>
-<span class="sd">              observer).</span>
-<span class="sd">            code (str): The IAU code for SORA to search for its coordinates in </span>
-<span class="sd">              MPC database.</span>
-<span class="sd">            site (EarthLocation): User provides an EarthLocation object.</span>
-<span class="sd">            lon (str, float): The Longitude of the site in degrees.</span>
-<span class="sd">              Positive to East. Range (0 to 360) or (-180 to +180).</span>
-<span class="sd">              User can provide in degrees (float) or hexadecimal (string).</span>
-<span class="sd">            lat (str, float): The Latitude of the site in degrees.</span>
-<span class="sd">              Positive North. Range (+90 to -90).</span>
-<span class="sd">              User can provide in degrees (float) or hexadecimal (string).</span>
-<span class="sd">            height (int, float): The height of the site in meters above see level.</span>
-
-<span class="sd">        Examples:</span>
-<span class="sd">            User can provide one of the following to define an observer:</span>
-<span class="sd">            - If user will use the MPC name for the site:</span>
-<span class="sd">                Observer(code)</span>
-<span class="sd">            - If user wants to use a different name from the MPC database:</span>
-<span class="sd">                Observer(name, code)</span>
-<span class="sd">            - If user wants to use an EarthLocation value:</span>
-<span class="sd">                EarthLocation(lon, lat, height)</span>
-<span class="sd">                Observer(name, site)</span>
-<span class="sd">            - If user wants to give site coordinates directly:</span>
-<span class="sd">                Observer(name, lon, lat, height)</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="n">input_tests</span><span class="o">.</span><span class="n">check_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">allowed_kwargs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;site&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;code&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -222,21 +244,24 @@
 <div class="viewcode-block" id="Observer.get_ksi_eta"><a class="viewcode-back" href="../../../sora.html#sora.Observer.get_ksi_eta">[docs]</a>    <span class="k">def</span> <span class="nf">get_ksi_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">star</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates relative position to star in the orthographic projection.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            time (str, Time): Reference time to calculate the position.</span>
-<span class="sd">              It can be a string in the format &quot;yyyy-mm-dd hh:mm:ss.s&quot; or an </span>
-<span class="sd">              astropy Time object.</span>
-<span class="sd">            star (str, SkyCoord): The coordinate of the star in the same </span>
-<span class="sd">              reference frame as the ephemeris.</span>
-<span class="sd">              It can be a string in the format &quot;hh mm ss.s +dd mm ss.ss&quot;</span>
-<span class="sd">              or an astropy SkyCoord object.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : `str`, `astropy.time.Time`</span>
+<span class="sd">            Reference time to calculate the position. It can be a string in the </span>
+<span class="sd">            format ``&#39;yyyy-mm-dd hh:mm:ss.s&#39;`` or an astropy `Time` object.</span>
+<span class="sd">        </span>
+<span class="sd">        star : `str`, `astropy.coordinates.SkyCoord`</span>
+<span class="sd">            The coordinate of the star in the same reference frame as the </span>
+<span class="sd">            ephemeris. It can be a string in the format ``&#39;hh mm ss.s +dd mm ss.ss&#39;`` </span>
+<span class="sd">            or an astropy `SkyCoord` object.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            ksi, eta (float): on-sky orthographic projection of the observer </span>
-<span class="sd">              relative to a star.</span>
-<span class="sd">              Ksi is in the North-South direction (North positive).</span>
-<span class="sd">              Eta is in the East-West direction (East positive).</span>
 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ksi, eta : `float`</span>
+<span class="sd">            On-sky orthographic projection of the observer relative to a star.</span>
+<span class="sd">            ``ksi`` is in the North-South direction (North positive).</span>
+<span class="sd">            ``eta`` is in the East-West direction (East positive).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">astropy.coordinates.matrix_utilities</span> <span class="kn">import</span> <span class="n">rotation_matrix</span>
 
@@ -257,16 +282,23 @@
 <div class="viewcode-block" id="Observer.sidereal_time"><a class="viewcode-back" href="../../../sora.html#sora.Observer.sidereal_time">[docs]</a>    <span class="k">def</span> <span class="nf">sidereal_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the Apparent Sidereal Time at a reference time.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            time (str,Time): Reference time to calculate sidereal time.</span>
-<span class="sd">            mode (str): local or greenwich</span>
-<span class="sd">              If &#39;local&#39;: calculates the sidereal time for the coordinates of </span>
-<span class="sd">              this object.</span>
-<span class="sd">              If &#39;greenwich&#39;: calculates the Greenwich Apparent Sidereal Time.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : `str`, `astropy.time.Time`</span>
+<span class="sd">            Reference time to calculate sidereal time.</span>
+<span class="sd">        </span>
+<span class="sd">        mode : `str`</span>
+<span class="sd">            Local or greenwich time.</span>
+<span class="sd">            If mode set ``&#39;local&#39;`` calculates the sidereal time for the </span>
+<span class="sd">            coordinates of this object.</span>
+<span class="sd">            If mode set ``&#39;greenwich&#39;`` calculates the Greenwich Apparent </span>
+<span class="sd">            Sidereal Time.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            sidereal_time: An Astropy Longitude object with the Sidereal Time.</span>
 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        sidereal_time</span>
+<span class="sd">            An Astropy Longitude object with the Sidereal Time.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># return local or greenwich sidereal time</span>
         <span class="n">time</span> <span class="o">=</span> <span class="n">test_attr</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
@@ -281,14 +313,22 @@
 <div class="viewcode-block" id="Observer.altaz"><a class="viewcode-back" href="../../../sora.html#sora.Observer.altaz">[docs]</a>    <span class="k">def</span> <span class="nf">altaz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">coord</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the Altitude and Azimuth at a reference time for a coordinate.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            time (str,Time): Reference time to calculate the sidereal time.</span>
-<span class="sd">            coord (str, astropy.SkyCoord): Coordinate of the target ICRS.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        time : `str`, `astropy.time.Time`</span>
+<span class="sd">            Reference time to calculate the sidereal time.</span>
+<span class="sd">        </span>
+<span class="sd">        coord : `str`, `astropy.coordinates.SkyCoord`</span>
+<span class="sd">            Coordinate of the target ICRS.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            altitude (float): object altitude in degrees.</span>
-<span class="sd">            azimuth (float): object azimuth in degrees.</span>
 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        altitude : `float`</span>
+<span class="sd">            Object altitude in degrees.</span>
+<span class="sd">        </span>
+<span class="sd">        azimuth : `float`</span>
+<span class="sd">            Object azimuth in degrees.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">time</span> <span class="o">=</span> <span class="n">test_attr</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
@@ -334,8 +374,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;String representation of the Observer class.</span>
-<span class="sd">        </span>
+        <span class="sd">&quot;&quot;&quot;String representation of the Observer class.        </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Site: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
                <span class="s1">&#39;Geodetic coordinates: Lon: </span><span class="si">{}</span><span class="s1">, Lat: </span><span class="si">{}</span><span class="s1">, height: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>

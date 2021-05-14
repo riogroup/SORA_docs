@@ -95,31 +95,39 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Body</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-body-class">The Body class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#physicaldata-object">PhysicalData object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module’s <cite>utils</cite> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module’s <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#ephem">Ephem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemplanete-class">The EphemPlanete Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemhorizons-class">The EphemHorizons Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemkernel-class">The EphemKernel Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Module’s <cite>utils</cite> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Module’s <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#lightcurve">LightCurve</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-lightcurve-class">The LightCurve class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.lightcurve.occdetect">Occutation detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Module’s <cite>utils</cite> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Module’s <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#observer">Observer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-observer-object">The Observer object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-sora.observer.utils">Module <cite>utils</cite> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.observer.utils">Module <cite>utils</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#occultation">Occultation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-occultation-class">The Occultation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-chord-object">The Chord object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-chordlist-class">The Chordlist class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fit-ellipse">Fit ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Module <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#extra">Extra</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#chisquare-object">ChiSquare object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.extra.plots">Plot ellipse</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Module’s <cite>utils</cite> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.extra.utils">Module’s <cite>utils</cite> functions</a></li>
 </ul>
 </li>
 </ul>
@@ -527,7 +535,7 @@ else <cite>value</cite> is redefined to <code class="docutils literal notranslat
 
 </div>
 <div class="section" id="module-sora.body.utils">
-<span id="module-s-utils-functions"></span><h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
+<span id="module-s-utils"></span><h2>Module’s <cite>utils</cite><a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="sora.body.utils.apparent_magnitude">
 <code class="sig-prename descclassname"><span class="pre">sora.body.utils.</span></code><code class="sig-name descname"><span class="pre">apparent_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sundist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/body/utils.html#apparent_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.body.utils.apparent_magnitude" title="Permalink to this definition">¶</a></dt>
@@ -899,7 +907,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 
 </div>
 <div class="section" id="id1">
-<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Module’s <cite>utils</cite><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-sora.ephem.utils"></span><dl class="py function">
 <dt id="sora.ephem.utils.ephem_kernel">
 <code class="sig-prename descclassname"><span class="pre">sora.ephem.utils.</span></code><code class="sig-name descname"><span class="pre">ephem_kernel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem/utils.html#ephem_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.utils.ephem_kernel" title="Permalink to this definition">¶</a></dt>
@@ -1382,7 +1390,7 @@ parameter.</p>
 
 </div>
 <div class="section" id="id2">
-<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>Module’s <cite>utils</cite><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-sora.lightcurve.utils"></span><dl class="py function">
 <dt id="sora.lightcurve.utils.calc_fresnel">
 <code class="sig-prename descclassname"><span class="pre">sora.lightcurve.utils.</span></code><code class="sig-name descname"><span class="pre">calc_fresnel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/utils.html#calc_fresnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.utils.calc_fresnel" title="Permalink to this definition">¶</a></dt>
@@ -1435,23 +1443,123 @@ object distance.</p>
 <dl class="py class">
 <dt id="sora.Observer">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">Observer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Defines the observer object.</p>
+<dl class="py attribute">
+<dt id="sora.Observer.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#sora.Observer.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name for the Observer. Observer is uniquely defined (name must be
+different for each observer).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Observer.code">
+<code class="sig-name descname"><span class="pre">code</span></code><a class="headerlink" href="#sora.Observer.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>The IAU code for SORA to search for its coordinates in MPC database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Observer.site">
+<code class="sig-name descname"><span class="pre">site</span></code><a class="headerlink" href="#sora.Observer.site" title="Permalink to this definition">¶</a></dt>
+<dd><p>User provides an EarthLocation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>astropy.coordinates.EarthLocation</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Observer.lon">
+<code class="sig-name descname"><span class="pre">lon</span></code><a class="headerlink" href="#sora.Observer.lon" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Longitude of the site in degrees.
+Positive to East. Range (0 to 360) or (-180 to +180).
+User can provide in degrees (<cite>float</cite>) or hexadecimal (<cite>string</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite>, <cite>float</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Observer.lat">
+<code class="sig-name descname"><span class="pre">lat</span></code><a class="headerlink" href="#sora.Observer.lat" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Latitude of the site in degrees.
+Positive North. Range (+90 to -90).
+User can provide in degrees (float) or hexadecimal (string).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite>, <cite>float</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Observer.height">
+<code class="sig-name descname"><span class="pre">height</span></code><a class="headerlink" href="#sora.Observer.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The height of the site in meters above see level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>int</cite>, <cite>float</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>User can provide one of the following to define an observer:</p>
+<ul class="simple">
+<li><p>If user will use the MPC name for the site:</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Observer</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If user wants to use a different name from the MPC database:</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Observer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If user wants to use an EarthLocation value:</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">EarthLocation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">EarthLocation</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Observer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">site</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If user wants to give site coordinates directly:</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Observer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
 <dt id="sora.Observer.altaz">
 <code class="sig-name descname"><span class="pre">altaz</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/core.html#Observer.altaz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Observer.altaz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the Altitude and Azimuth at a reference time for a coordinate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Reference time to calculate the sidereal time.</p></li>
-<li><p><strong>coord</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>astropy.SkyCoord</em>) – Coordinate of the target ICRS.</p></li>
+<li><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to calculate the sidereal time.</p></li>
+<li><p><strong>coord</strong> (<cite>str</cite>, <cite>astropy.coordinates.SkyCoord</cite>) – Coordinate of the target ICRS.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>object altitude in degrees.
-azimuth (float): object azimuth in degrees.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>altitude (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>altitude</strong> (<cite>float</cite>) – Object altitude in degrees.</p></li>
+<li><p><strong>azimuth</strong> (<cite>float</cite>) – Object azimuth in degrees.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1463,26 +1571,20 @@ azimuth (float): object azimuth in degrees.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Time</em>) – Reference time to calculate the position.
-It can be a string in the format “yyyy-mm-dd hh:mm:ss.s” or an
-astropy Time object.</p></li>
-<li><p><strong>star</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>SkyCoord</em>) – The coordinate of the star in the same
-reference frame as the ephemeris.
-It can be a string in the format “hh mm ss.s +dd mm ss.ss”
-or an astropy SkyCoord object.</p></li>
+<li><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to calculate the position. It can be a string in the
+format <code class="docutils literal notranslate"><span class="pre">'yyyy-mm-dd</span> <span class="pre">hh:mm:ss.s'</span></code> or an astropy <cite>Time</cite> object.</p></li>
+<li><p><strong>star</strong> (<cite>str</cite>, <cite>astropy.coordinates.SkyCoord</cite>) – The coordinate of the star in the same reference frame as the
+ephemeris. It can be a string in the format <code class="docutils literal notranslate"><span class="pre">'hh</span> <span class="pre">mm</span> <span class="pre">ss.s</span> <span class="pre">+dd</span> <span class="pre">mm</span> <span class="pre">ss.ss'</span></code>
+or an astropy <cite>SkyCoord</cite> object.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>on-sky orthographic projection of the observer</dt><dd><p>relative to a star.
-Ksi is in the North-South direction (North positive).
-Eta is in the East-West direction (East positive).</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p><strong>ksi, eta</strong> – On-sky orthographic projection of the observer relative to a star.
+<code class="docutils literal notranslate"><span class="pre">ksi</span></code> is in the North-South direction (North positive).
+<code class="docutils literal notranslate"><span class="pre">eta</span></code> is in the East-West direction (East positive).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ksi, eta (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a>)</p>
+<dd class="field-odd"><p><cite>float</cite></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1494,11 +1596,12 @@ Eta is in the East-West direction (East positive).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>,</em><em>Time</em>) – Reference time to calculate sidereal time.</p></li>
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – local or greenwich
-If ‘local’: calculates the sidereal time for the coordinates of
-this object.
-If ‘greenwich’: calculates the Greenwich Apparent Sidereal Time.</p></li>
+<li><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to calculate sidereal time.</p></li>
+<li><p><strong>mode</strong> (<cite>str</cite>) – Local or greenwich time.
+If mode set <code class="docutils literal notranslate"><span class="pre">'local'</span></code> calculates the sidereal time for the
+coordinates of this object.
+If mode set <code class="docutils literal notranslate"><span class="pre">'greenwich'</span></code> calculates the Greenwich Apparent
+Sidereal Time.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1514,7 +1617,7 @@ If ‘greenwich’: calculates the Greenwich Apparent Sidereal Time.</p></li>
 
 </div>
 <div class="section" id="module-sora.observer.utils">
-<span id="module-utils-functions"></span><h2>Module <cite>utils</cite> functions<a class="headerlink" href="#module-sora.observer.utils" title="Permalink to this headline">¶</a></h2>
+<span id="module-utils"></span><h2>Module <cite>utils</cite><a class="headerlink" href="#module-sora.observer.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="sora.observer.utils.search_code_mpc">
 <code class="sig-prename descclassname"><span class="pre">sora.observer.utils.</span></code><code class="sig-name descname"><span class="pre">search_code_mpc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/utils.html#search_code_mpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.observer.utils.search_code_mpc" title="Permalink to this definition">¶</a></dt>
@@ -1525,6 +1628,914 @@ If ‘greenwich’: calculates the Greenwich Apparent Sidereal Time.</p></li>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><cite>dict</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="occultation">
+<h1>Occultation<a class="headerlink" href="#occultation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-occultation-class">
+<h2>The Occultation class<a class="headerlink" href="#the-occultation-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.Occultation">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">Occultation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates the Occultation object and performs the reduction of the
+occultation.</p>
+<dl class="py attribute">
+<dt id="sora.Occultation.star">
+<code class="sig-name descname"><span class="pre">star</span></code><a class="headerlink" href="#sora.Occultation.star" title="Permalink to this definition">¶</a></dt>
+<dd><p>the coordinate of the star in the same reference frame as the ephemeris.
+It must be a Star object or a string with the coordinates of the object
+to search on Vizier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Star</cite>, <cite>str</cite>, required</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Occultation.body">
+<code class="sig-name descname"><span class="pre">body</span></code><a class="headerlink" href="#sora.Occultation.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that will occult the star. It must be a Body object or its name
+to search in the Small Body Database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Body</cite>, <cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Occultation.ephem">
+<code class="sig-name descname"><span class="pre">ephem</span></code><a class="headerlink" href="#sora.Occultation.ephem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object ephemeris. It must be an Ephemeris object or a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Ephem</cite>, <cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.Occultation.time">
+<code class="sig-name descname"><span class="pre">time</span></code><a class="headerlink" href="#sora.Occultation.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference time of the occultation. Time does not need to be exact, but
+needs to be within approximately 50 minutes of the occultation closest
+approach to calculate occultation parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite>, <cite>astropy.time.Time</cite>, required</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When instantiating with “body” and “ephem”, the user may define the
+Occultation in 3 ways:</p>
+<ol class="arabic simple">
+<li><p>With <cite>body</cite> and <cite>ephem</cite>.</p></li>
+</ol>
+<p>2. With only “body”. In this case, the “body” parameter must be a Body
+object and have an ephemeris associated (see Body documentation).</p>
+<p>3. With only <cite>ephem</cite>. In this case, the <cite>ephem</cite> parameter must be one of the
+Ephem Classes and have a name (see Ephem documentation) to search for the
+body in the Small Body Database.</p>
+</div>
+<dl class="py method">
+<dt id="sora.Occultation.add_observation">
+<code class="sig-name descname"><span class="pre">add_observation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lightcurve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.add_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.add_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds observations to the Occultation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obs</strong> (<cite>sora.Observer</cite>) – The Observer object to be added.</p></li>
+<li><p><strong>lightcurve</strong> (<cite>sora.LightCurve</cite>) – The LightCurve object to be added.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.check_time_shift">
+<code class="sig-name descname"><span class="pre">check_time_shift</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.check_time_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.check_time_shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the needed time offset, so all chords have their center aligned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_interval</strong> (<cite>int</cite>, <cite>float</cite>) – Time interval to check, default is 30 seconds.</p></li>
+<li><p><strong>time_resolution</strong> (<cite>int</cite>, <cite>float</cite>) – Time resolution of the search, default is 0.001 seconds.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – If True, it prints text, default is False.</p></li>
+<li><p><strong>plot</strong> (<cite>bool</cite>, default=False) – If True, it plots figures as a visual aid.</p></li>
+<li><p><strong>use_error</strong> (<cite>bool</cite>, default=True) – if True, the linear fit considers the time uncertainty.</p></li>
+<li><p><strong>delta_plot</strong> (<cite>int</cite>, <cite>float</cite>, default=100) – Value to be added to increase the plot limit, in km.</p></li>
+<li><p><strong>ignore_chords</strong> (<cite>str</cite>, list, default=None) – Names of the chords to be ignored in the linear fit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>time_decalage</strong> – Dictionary with needed time offset to align the chords, each key is
+the name of the chord.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>dict</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.check_velocities">
+<code class="sig-name descname"><span class="pre">check_velocities</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.check_velocities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.check_velocities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the current velocity used by the LightCurves and its radial velocity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.get_map_sites">
+<code class="sig-name descname"><span class="pre">get_map_sites</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.get_map_sites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.get_map_sites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Dictionary with sites in the format required by plot_occ_map function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>sites</strong> – Dictionary with the sites in the format required by <cite>plot_occ_map</cite>
+function.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><cite>dict</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.new_astrometric_position">
+<code class="sig-name descname"><span class="pre">new_astrometric_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.new_astrometric_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.new_astrometric_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the new astrometric position for the object given fitted parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to calculate the position. If not given, it uses the
+instant of the occultation Closest Approach.</p></li>
+<li><p><strong>offset</strong> (<cite>list</cite>) – <p>Offset to apply to the position. If not given, uses the parameters
+from the fitted ellipse.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Must be a list of 3 values being [X, Y, ‘unit’]. ‘unit’ must be
+Angular or Distance unit.</p>
+<p>If Distance units for X and Y:
+Ex: [100, -200, ‘km’], [0.001, 0.002, ‘AU’]</p>
+<p>If Angular units fox X [d*a*cos(dec)] and Y [d*dec]:
+Ex: [30.6, 20, ‘mas’], or [-15, 2, ‘arcsec’]</p>
+</div>
+</p></li>
+<li><p><strong>error</strong> (<cite>list</cite>) – <p>Error bar of the given offset. If not given, it uses the 1-sigma
+value of the fitted ellipse.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Error must be a list of 3 values being [dX, dY, ‘unit’], similar to
+offset. It does not need to be in the same unit as offset.</p>
+</div>
+</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – If true, it Prints text, else it Returns text.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.observations">
+<code class="sig-name descname"><span class="pre">observations</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.observations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.observations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print all the observations added to the Occultation object
+Pair (<cite>Observer</cite>, <cite>LightCurve</cite>)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.plot_chords">
+<code class="sig-name descname"><span class="pre">plot_chords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positive_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.plot_chords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.plot_chords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the chords of the occultation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_chords</strong> (<cite>bool</cite>, default=True) – If True, it plots all the chords. If False, it sees what was
+deactivated in self.positions and ignores them.</p></li>
+<li><p><strong>positive_color</strong> (<cite>str</cite>, default=’blue’) – Color for the positive chords.</p></li>
+<li><p><strong>negative_color</strong> (<cite>str</cite>, default=’green’) – Color for the negative chords.</p></li>
+<li><p><strong>error_color</strong> (<cite>str</cite>, default=’red’) – Color for the error bars of the chords.</p></li>
+<li><p><strong>ax</strong> (<cite>maptlotlib.pyplot.Axes</cite>, default=None) – Axis where to plot chords (default: Uses matplotlib pool).</p></li>
+<li><p><strong>lw</strong> (<cite>int</cite>, <cite>float</cite>, default=2) – Linewidth of the chords.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.plot_occ_map">
+<code class="sig-name descname"><span class="pre">plot_occ_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.plot_occ_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.plot_occ_map" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The radius of the shadow. If not given it uses saved value.</p></li>
+<li><p><strong>nameimg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the name of the image saved.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to a directory where to save map.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Cartopy feature resolution. “1” means a resolution of “10m”,
+“2” a resolution of “50m” and “3” a resolution of “100m”. Default = 2</p></li>
+<li><p><strong>states</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True to plot the state division of the countries. The states of
+some countries will only be shown depending on the resolution.</p></li>
+<li><p><strong>zoom</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Zooms in or out of the map.</p></li>
+<li><p><strong>centermap_geo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Center the map given coordinates in longitude and latitude.
+It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centermap_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Displace the center of the map given displacement
+in X and Y, in km. It must be a list with two numbers. Default=None.</p></li>
+<li><p><strong>centerproj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Rotates the Earth to show occultation with the center
+projected at a given longitude and latitude. It must be a list with two numbers</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Plots text above and below the map with the occultation parameters.
+Default=True.</p></li>
+<li><p><strong>meridians</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the meridians for given interval. Default=30 deg</p></li>
+<li><p><strong>parallels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Plots lines representing the parallels for given interval. Default=30 deg</p></li>
+<li><p><strong>sites</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots site positions in map. It must be a python dictionary where the key is
+the name of the site, and the value is a list with longitude, latitude, delta_x,
+delta_y and color. delta_x and delta_y are displacement, in km, from the point
+of the site in the map and the name. color is the color of the point.</p></li>
+<li><p><strong>site_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it prints the name of the sites given, else it plots only the points</p></li>
+<li><p><strong>countries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Plots the names of countries. It must be a python dictionary where the key
+is the name of the country and the value is a list with longitude and latitude
+of the lower left part of the text.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – applies an offset to the ephemeris, calculating new CA and instant of CA.
+It is a pair of delta_RA*cosDEC and delta_DEC.</p></li>
+<li><p><strong>mapstyle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Define the color style of the map. 1 is the default black and white scale.
+2 is a colored map.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ephemeris error in mas. It plots a dashed line representing radius + error.</p></li>
+<li><p><strong>ercolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines of the error bar.</p></li>
+<li><p><strong>ring</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – It plots a dashed line representing the location of a ring.
+It is given in km, from the center.</p></li>
+<li><p><strong>rncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of ring lines.</p></li>
+<li><p><strong>atm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – plots a dashed line representing the location of an atmosphere.
+It is given in km, from the center.</p></li>
+<li><p><strong>atcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of atm lines.</p></li>
+<li><p><strong>chord_delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list with distances from center to plot chords</p></li>
+<li><p><strong>chord_geo</strong> (<em>2d-list</em>) – list with pairs of coordinates to plot chords</p></li>
+<li><p><strong>chcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the line of the chords. Default: grey</p></li>
+<li><p><strong>heights</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – plots a circular dashed line showing the locations where the observer
+would observe the occultation at a given height above the horizons.
+This must be a list.</p></li>
+<li><p><strong>hcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the height lines.</p></li>
+<li><p><strong>mapsize</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The size of figure, in cm. It must be a list with two values.
+Default = [46.0, 38.0].</p></li>
+<li><p><strong>cpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Interval for the small points marking the center of shadow,
+in seconds. Default=60.</p></li>
+<li><p><strong>ptcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Change the color of the center points.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The transparency of the night shade, where 0.0 is full transparency
+and 1.0 is full black. Default = 0.2.</p></li>
+<li><p><strong>fmt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The format to save the image. It is parsed directly by matplotlib.pyplot.
+Default = ‘png’</p></li>
+<li><p><strong>dpi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – “Dots per inch”. It defines the quality of the image. Default = 100.</p></li>
+<li><p><strong>lncolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the line that represents the limits of the shadow over Earth.</p></li>
+<li><p><strong>outcolor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Changes the color of the lines that represents the limits of the shadow outside Earth</p></li>
+<li><p><strong>nscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the name of the site.</p></li>
+<li><p><strong>cscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the name of the country.</p></li>
+<li><p><strong>sscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of point of the site.</p></li>
+<li><p><strong>pscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Arbitrary scale for the size of the points that represent the center of the shadow</p></li>
+<li><p><strong>arrow</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If true, it plots the arrow with the occultation direction.</p></li>
+<li><p><strong>Comment</strong> – Only one of centermap_geo and centermap_delta can be given</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.positions">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">positions</span></code><a class="headerlink" href="#sora.Occultation.positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position and velocity for all chords.
+Saves it into an <cite>_PositionDict</cite> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.remove_observation">
+<code class="sig-name descname"><span class="pre">remove_observation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_lc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.remove_observation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.remove_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an observation from the Occultation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – The name given to <cite>Observer</cite> or <cite>LightCurve</cite> to remove from the list.</p></li>
+<li><p><strong>key_lc</strong> (<cite>str</cite>) – In the case where repeated names are present for different
+observations, <cite>key_lc</cite> must be given for the name of the <cite>LightCurve</cite>
+and key will be used for the name of the <cite>Observer</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.to_file">
+<code class="sig-name descname"><span class="pre">to_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the occultation data to a file.</p>
+<p>Three files are saved containing the positions and velocities for the
+observations. They are for the positive, negative and error bars positions.</p>
+<p>The format of the files are: positions in f and g, velocities in f and
+g, the Julian Date of the observation, light curve name of the
+corresponding position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Occultation.to_log">
+<code class="sig-name descname"><span class="pre">to_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/core.html#Occultation.to_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Occultation.to_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the occultation log to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<cite>str</cite>) – Filename to save the log.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-chord-object">
+<h2>The Chord object<a class="headerlink" href="#the-chord-object" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.occultation.Chord">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.occultation.</span></code><code class="sig-name descname"><span class="pre">Chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lightcurve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines an Occultation Chord.</p>
+<dl class="py attribute">
+<dt id="sora.occultation.Chord.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#sora.occultation.Chord.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the Chord.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.occultation.Chord.observer">
+<code class="sig-name descname"><span class="pre">observer</span></code><a class="headerlink" href="#sora.occultation.Chord.observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The site of observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Observer</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.occultation.Chord.lightcurve">
+<code class="sig-name descname"><span class="pre">lightcurve</span></code><a class="headerlink" href="#sora.occultation.Chord.lightcurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>The lightcurve observed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.LightCurve</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.disable">
+<code class="sig-name descname"><span class="pre">disable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables a contact point of the curve to be used in the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<cite>None</cite>, <cite>str</cite>) – If None, it will disable all contact points.
+If <code class="docutils literal notranslate"><span class="pre">'immersion'</span></code> or <code class="docutils literal notranslate"><span class="pre">'emersion'</span></code>, it will disable respective
+contact point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.enable">
+<code class="sig-name descname"><span class="pre">enable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.enable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables a contact point of the curve to be used in the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<cite>None</cite>, <cite>str</cite>) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will enable all contact points.
+If <code class="docutils literal notranslate"><span class="pre">'immersion'</span></code> or <code class="docutils literal notranslate"><span class="pre">'emersion'</span></code>, it will enable respective
+contact point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.get_fg">
+<code class="sig-name descname"><span class="pre">get_fg</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.get_fg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.get_fg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the on-sky position for this chord at a given time.</p>
+<p>This Chord object must be associated to an Occultation to work, since
+it needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<cite>astropy.time.Time</cite>, <cite>str</cite>) – It must a time or a list of time to calculate the on-sky position.
+If time is <code class="docutils literal notranslate"><span class="pre">'immersion'</span></code>, <code class="docutils literal notranslate"><span class="pre">'emersion'</span></code>, <code class="docutils literal notranslate"><span class="pre">'start'</span></code> or <code class="docutils literal notranslate"><span class="pre">'end'</span></code>,
+it will get the respective on-sky position. If <code class="docutils literal notranslate"><span class="pre">time=None</span></code>, it
+will return the on-sky position for the immersion and emersion times
+if positive or raise an error if negative.</p></li>
+<li><p><strong>vel</strong> (<cite>bool</cite>) – If True, it will return the on-sky velocity as well.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>f, g, [vf, vg]</strong> – The geocentric on-sky Orthographic projection of the object with <cite>f</cite>
+poiting to the celestial North and <cite>g</cite> pointing to the celestial
+East. The respective velocities (vf, vg) are returned if <code class="docutils literal notranslate"><span class="pre">vel=True</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>float</cite>, <cite>float</cite>, [<cite>float</cite>, <cite>float</cite>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.get_impact_param">
+<code class="sig-name descname"><span class="pre">get_impact_param</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.get_impact_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.get_impact_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the impact parameter, minimal distance between the chord and the
+centre position.</p>
+<p>This Chord object must be associated to an Occultation to work, since it
+needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center_f</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in f of the ellipse center;</p></li>
+<li><p><strong>center_g</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in g of the ellipse center.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>, default=True) – If True, prints the obtained values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>impact, sense</strong> – The impact parameter (in km) and the direction of the chord relative
+the ellipse center, North (N), South (S), East (E) and West (W).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.get_theoretical_times">
+<code class="sig-name descname"><span class="pre">get_theoretical_times</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.get_theoretical_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.get_theoretical_times" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the theoretical times and chord size for a given ellipse.</p>
+<p>This Chord object must be associated to an Occultation to work, since
+it needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equatorial_radius</strong> (<cite>int</cite>, <cite>float</cite>) – The Equatorial radius (semi-major axis) of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in f of the ellipse center</p></li>
+<li><p><strong>center_g</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in g of the ellipse center</p></li>
+<li><p><strong>oblateness</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The oblateness of the ellipse.</p></li>
+<li><p><strong>position_angle</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The pole position angle of the ellipse in degrees.
+Zero is in the North direction (‘g-positive’). Positive clockwise.</p></li>
+<li><p><strong>sigma</strong> (<cite>int</cite>, <cite>float</cite>) – Unceartity of the expected ellipse, in km.</p></li>
+<li><p><strong>step</strong> (<cite>int</cite>, <cite>float</cite>) – Time resolution of the chord, in seconds.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>, default=True) – If True, prints the obtained values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>theory_immersion_time, theory_emersion_time, theory_chord_size</strong> – The expected immersion time for the given ellipse, the expected
+emersion time for the given ellipse, and the expected chord size
+for the given ellipse.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.is_able">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">is_able</span></code><a class="headerlink" href="#sora.occultation.Chord.is_able" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with the references enabled and disabled for the fit.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.path">
+<code class="sig-name descname"><span class="pre">path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the on-sky path of this chord.</p>
+<p>This Chord object must be associated to an Occultation to work, since it
+needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<cite>str</cite>) – <p>The segment to get the path of the chord. The available options are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">'positive'</span></code>: to get the path between the immersion and emersion
+times if the chord is positive.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'negative'</span></code>: to get the path between the start and end of
+observation if the chord is negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'standard'</span></code>: to get the ‘positive’ path if the chord is positive
+or ‘negative’ if the chord is negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'full'</span></code>: to get  the path between the start and end of observation
+independent if the chord is positive or negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'outer'</span></code>: to get the path outside the ‘positive’ path, for
+instance between the start and immersion times and between the
+emersion and end times.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'error'</span></code>: to get the path corresponding to the error bars. Be aware
+that some of these segments may return more than 1 path, for example
+<code class="docutils literal notranslate"><span class="pre">segment='error'</span></code>.</p>
+</p></li>
+<li><p><strong>step</strong> (<cite>int</cite>, <cite>float</cite>, <cite>str</cite>) – <p>If a number, it corresponds to the step, in seconds, for each point
+of the path.</p>
+<p>This correspond to an approximate valueif it is not a multiple of
+the interval of the segment.</p>
+<p>The step can also be equal to <code class="docutils literal notranslate"><span class="pre">'exposure'</span></code>. In this case, the path
+will return a set of pairs where each pair will have the position
+at the beggining of the exposure and the end of the exposure.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>path f, path g</strong> – It will return the path separated by <cite>f</cite> and <cite>g</cite>. If <code class="docutils literal notranslate"><span class="pre">step='exposure'</span></code>,
+it will return f and g intercalated for each exposure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>array</cite>, <cite>array</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.plot_chord">
+<code class="sig-name descname"><span class="pre">plot_chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_able</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.plot_chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.plot_chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the on-sky path of this chord.</p>
+<p>This Chord object must be associated to an Occultation to work, since
+it needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<cite>str</cite>) – <p>The segment to plot the chord. The available options are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">'positive'</span></code>: to get the path between the immersion and emersion
+times if the chord is positive.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'negative'</span></code>: to get the path between the start and end of
+observation if the chord is negative.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'standard'</span></code>: to get the ‘positive’ path if the chord is positive</dt><dd><p>or ‘negative’ if the chord is negative.</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">'full'</span></code>: to get  the path between the start and end of observation
+independent if the chord is positive or negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'outer'</span></code>: to get the path outside the ‘positive’ path, for
+instance between the start and immersion times and between the
+emersion and end times.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'error'</span></code>: to get the path corresponding to the error bars.</p>
+</p></li>
+<li><p><strong>only_able</strong> (<cite>bool</cite>) – Plot only the contact points that are able to be used in the fit.
+If <code class="docutils literal notranslate"><span class="pre">segment='error'</span></code> it will show only the contact points able. If
+segment is any other, the path will be plotted only if both
+immersion and emersion are able, or it is a negative chord.</p></li>
+<li><p><strong>ax</strong> (<cite>matplotlib.pyplot.Axes</cite>) – The axes where to make the plot. If None, it will use the default axes.</p></li>
+<li><p><strong>linestyle</strong> (<cite>str</cite>) – Default linestyle used in <cite>matplotlib.pyplot.plot</cite>.
+The difference is that now it accepts <code class="docutils literal notranslate"><span class="pre">linestyle='exposure'</span></code>, where
+the plot will be a dashed line corresponding to each exposure.
+The blank space between the lines can be interpreted as ‘dead time’.</p></li>
+<li><p><strong>**kwargs</strong> – Any other kwarg will be parsed directly by <cite>maplotlip.pyplot.plot</cite>.
+The only difference is that the default linewidth <code class="docutils literal notranslate"><span class="pre">lw=2</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Default list of plots made by matplotlib.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.Chord.status">
+<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chord.html#Chord.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.Chord.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the chord is positive or negative.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-chordlist-class">
+<h2>The Chordlist class<a class="headerlink" href="#the-chordlist-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.occultation.chordlist.ChordList">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.occultation.chordlist.</span></code><code class="sig-name descname"><span class="pre">ChordList</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a collection of Chord objects associated to an Occultation.</p>
+<p>This object is not supposed to be defined by the user. It will be automaticaly
+defined in Occultation.</p>
+<dl class="py attribute">
+<dt id="sora.occultation.chordlist.ChordList.star">
+<code class="sig-name descname"><span class="pre">star</span></code><a class="headerlink" href="#sora.occultation.chordlist.ChordList.star" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Star occulted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Star</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.occultation.chordlist.ChordList.body">
+<code class="sig-name descname"><span class="pre">body</span></code><a class="headerlink" href="#sora.occultation.chordlist.ChordList.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>The occulting Body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>sora.Body</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sora.occultation.chordlist.ChordList.time">
+<code class="sig-name descname"><span class="pre">time</span></code><a class="headerlink" href="#sora.occultation.chordlist.ChordList.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The occultation time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><cite>astropy.time.Time</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.add_chord">
+<code class="sig-name descname"><span class="pre">add_chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lightcurve</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.add_chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.add_chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a chord to the occultation chord list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<cite>str</cite>) – The name of the Chord. It must be unique within the list of chords.
+If not given, it will use the name in chord if chord is directly
+given or the name in the observer object. If the name in Chord already
+exists in the list, the name parameter can be given to update the
+chord name. The <cite>name</cite> parameter is required if given together with
+observer and lightcurve. It can not be an empty string.</p></li>
+<li><p><strong>sora.occultation.Chord</strong> (<em>chord</em>) – A chord instance defined by the user.</p></li>
+<li><p><strong>observer</strong> (<cite>sora.Observer</cite>) – An Observer instance defined by the user. It must be given together
+with a lightcurve.</p></li>
+<li><p><strong>lightcurve</strong> (<cite>sora.LightCurve</cite>) – A lightcurve defined by the user. It must be given together with observer.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Ways to add a chord:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span> <span class="c1"># where the name in chord will be used.</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">chord</span><span class="p">)</span> <span class="c1"># where the name in chord will be replaced by &quot;name&quot;.</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">observer</span><span class="p">,</span> <span class="n">lightcurve</span><span class="p">)</span> <span class="c1"># where the name in observer will be used.</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">observer</span><span class="p">,</span> <span class="n">lightcurve</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.disable">
+<code class="sig-name descname"><span class="pre">disable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable a contact point of the curve to be used in the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chord</strong> (<cite>str</cite>) – Name of the chord to disable. If <code class="docutils literal notranslate"><span class="pre">chord=None</span></code>, it applies to all chords.</p></li>
+<li><p><strong>time</strong> (None, <cite>str</cite>) – If <code class="docutils literal notranslate"><span class="pre">time=None</span></code>, it will disable all contact points.
+If ‘immersion’ or ‘emersion’, it will disable respective contact point.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.enable">
+<code class="sig-name descname"><span class="pre">enable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.enable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable a contact point of the curve to be used in the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chord</strong> (<cite>str</cite>) – Name of the chord to enable. If <code class="docutils literal notranslate"><span class="pre">chord=None</span></code>, it applies to all chords.</p></li>
+<li><p><strong>time</strong> (Non`, <cite>str</cite>) – If <code class="docutils literal notranslate"><span class="pre">time=None</span></code>, it will enable all contact points.
+If ‘immersion’ or ‘emersion’, it will enable respective contact point.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.get_impact_param">
+<code class="sig-name descname"><span class="pre">get_impact_param</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all_chords'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.get_impact_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.get_impact_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the impact parameter, minimal distance between the chord and the
+centre position.</p>
+<p>This Chord object must be associated to an Occultation to work, since it
+needs the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chords</strong> (<cite>int</cite>, <cite>str</cite>, default=’all_chords’) – Index or names of the chords to be considered.</p></li>
+<li><p><strong>center_f</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in f of the ellipse center.</p></li>
+<li><p><strong>center_g</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in g of the ellipse center.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – If True, prints the obtained values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>impact, sense, chord_name</strong> – The impact parameter (in km), the direction of the chord relative
+the ellipse center, North (N), South (S), East (E) and West (W), and
+the name of the chord</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.get_theoretical_times">
+<code class="sig-name descname"><span class="pre">get_theoretical_times</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all_chords'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.get_theoretical_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.get_theoretical_times" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the theoretical times and chords sizes for a given ellipse.</p>
+<p>This Chord object must be associated to an Occultation to work, since it needs
+the position of the star and an ephemeris.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chords</strong> (<cite>int</cite>, <cite>str</cite>, default=’all_chords’) – Index or names of the chords to be considered.</p></li>
+<li><p><strong>equatorial_radius</strong> (<cite>int</cite>, <cite>float</cite>) – The Equatorial radius (semi-major axis) of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in f of the ellipse center.</p></li>
+<li><p><strong>center_g</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in g of the ellipse center.</p></li>
+<li><p><strong>oblateness</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The oblateness of the ellipse.</p></li>
+<li><p><strong>position_angle</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The pole position angle of the ellipse in degrees.
+Zero is in the North direction (‘g-positive’). Positive clockwise.</p></li>
+<li><p><strong>sigma</strong> (<cite>int</cite>, <cite>float</cite>) – Uncertainty of the expected ellipse, in km.</p></li>
+<li><p><strong>step</strong> (<cite>int</cite>, <cite>float</cite>) – Time resolution of the chord, in seconds.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – If True, prints the obtained values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>theory_immersion_time, theory_emersion_time, theory_chord_size, chord_name</strong> – The expected immersion time for the given ellipse, the expected
+emersion time for the given ellipse, the expected chord size for the
+given ellipse, and the name of the chord.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.plot_chords">
+<code class="sig-name descname"><span class="pre">plot_chords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_chords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_able</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.plot_chords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.plot_chords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the on-sky path of this chord.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<cite>str</cite>) – <p>The segment to plot the chord. The available options are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">'positive'</span></code> to get the path between the immersion and emersion
+times if the chord is positive.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'negative'</span></code> to get the path between the start and end of
+observation if the chord is negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'standard'</span></code> to get the ‘positive’ path if the chord is positive
+or ‘negative’ if the chord is negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'full'</span></code> to get  the path between the start and end of observation
+independent if the chord is positive or negative.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'outer'</span></code> to get the path outside the ‘positive’ path, for instance
+between the start and immersion times and between the emersion and
+end times.</p>
+<p><code class="docutils literal notranslate"><span class="pre">'error'</span></code> to get the path corresponding to the error bars.</p>
+</p></li>
+<li><p><strong>ignore_chords</strong> (<cite>str</cite>, <cite>list</cite>) – Name of chord or list of names to ignore in the plot.</p></li>
+<li><p><strong>only_able</strong> (<cite>bool</cite>) – Plot only the chords or contact points that are able to be used in the fit.
+If <code class="docutils literal notranslate"><span class="pre">segment='error'</span></code> it will show only the contact points able.
+If segment is any other, the path will be plotted only if both
+immersion and emersion are able, or it is a negative chord.</p></li>
+<li><p><strong>ax</strong> (<cite>matplotlib.pyplot.Axes</cite>) – The axes where to make the plot. If None, it will use the default axes.</p></li>
+<li><p><strong>linestyle</strong> (<cite>str</cite>) – Default linestyle used in <cite>matplotlib.pyplot.plot</cite>. The difference
+is that now it accept <code class="docutils literal notranslate"><span class="pre">linestyle='exposure'</span></code>, where the plot will
+be a dashed line corresponding to each exposure. The blank space
+between the lines can be interpreted as ‘dead time’.</p></li>
+<li><p><strong>**kwargs</strong> – Any other kwarg will be parsed directly by <cite>maplotlip.pyplot.plot</cite>.
+The only difference is that the default linewidth <code class="docutils literal notranslate"><span class="pre">lw=2</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Default list of plots made by matplotlib.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.remove_chord">
+<code class="sig-name descname"><span class="pre">remove_chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.remove_chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.remove_chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a chord from the chord list and disassociate it from the Occultation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<cite>str</cite>) – The name of the chord.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.occultation.chordlist.ChordList.summary">
+<code class="sig-name descname"><span class="pre">summary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/chordlist.html#ChordList.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.chordlist.ChordList.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a table with the summary of the chords.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fit-ellipse">
+<h2>Fit ellipse<a class="headerlink" href="#fit-ellipse" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.occultation.fit_ellipse">
+<code class="sig-prename descclassname"><span class="pre">sora.occultation.</span></code><code class="sig-name descname"><span class="pre">fit_ellipse</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dequatorial_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcenter_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcenter_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dposition_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_chi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dchi_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ellipse_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/fitting.html#fit_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.fit_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits an ellipse to given occultation using given parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center_f</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in f of the ellipse center.</p></li>
+<li><p><strong>center_g</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The coordinate in g of the ellipse center.</p></li>
+<li><p><strong>equatorial_radius</strong> (<cite>int</cite>, <cite>float</cite>) – The Equatorial radius (semi-major axis) of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The oblateness of the ellipse.</p></li>
+<li><p><strong>position_angle</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – The pole position angle of the ellipse in degrees.
+Zero is in the North direction (‘g-positive’). Positive clockwise.</p></li>
+<li><p><strong>dcenter_f</strong> (<cite>int</cite>, <cite>float</cite>) – Interval for coordinate f of the ellipse center.</p></li>
+<li><p><strong>dcenter_g</strong> (<cite>int</cite>, <cite>float</cite>) – Interval for coordinate g of the ellipse center.</p></li>
+<li><p><strong>int</strong> (<em>dequatorial_radius</em>) – Interval for the Equatorial radius (semi-major axis) of the ellipse.</p></li>
+<li><p><strong>float</strong> – Interval for the Equatorial radius (semi-major axis) of the ellipse.</p></li>
+<li><p><strong>doblateness</strong> (<cite>int</cite>, <cite>float</cite>) – Interval for the oblateness of the ellipse</p></li>
+<li><p><strong>dposition_angle</strong> (<cite>int</cite>, <cite>float</cite>) – Interval for the pole position angle of the ellipse in degrees.</p></li>
+<li><p><strong>loop</strong> (<cite>int</cite>, default=10000000) – The number of ellipses to attempt fitting.</p></li>
+<li><p><strong>dchi_min</strong> (<cite>int</cite>, <cite>float</cite>) – If given, it will only save ellipsis which chi square are smaller than
+chi_min + dchi_min.</p></li>
+<li><p><strong>number_chi</strong> (<cite>int</cite>, default=10000) – If dchi_min is given, the procedure is repeated until number_chi is
+reached.</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>, default=False) – If True, it prints information while fitting.</p></li>
+<li><p><strong>ellipse_error</strong> (<cite>int</cite>, <cite>float</cite>) – Model uncertainty to be considered in the fit, in km.</p></li>
+<li><p><strong>sigma_result</strong> (<cite>int</cite>, <cite>float</cite>) – Sigma value to be considered as result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>chisquare</strong> – A ChiSquare object with all parameters.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>sora.ChiSquare</cite></p>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Each occultation is added as the first argument(s) directly.</p>
+<p>Mandatory input parameters: ‘center_f’, ‘center_g’, ‘equatorial_radius’,
+‘oblateness’, and ‘position_angle’.</p>
+<p>Parameters fitting interval: ‘dcenter_f’, ‘dcenter_g’, ‘dequatorial_radius’,
+‘doblateness’, and ‘dposition_angle’. Default values are set to zero.
+Search done between (value - dvalue) and (value + dvalue).</p>
+</div>
+<p class="rubric">Examples</p>
+<p>To fit the ellipse to the chords of occ1 Occultation object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fit_ellipse</span><span class="p">(</span><span class="n">occ1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To fit the ellipse to the chords of occ1 and occ2 Occultation objects together:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fit_ellipse</span><span class="p">(</span><span class="n">occ1</span><span class="p">,</span> <span class="n">occ2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>Module <cite>utils</cite><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sora.occultation.utils"></span><dl class="py function">
+<dt id="sora.occultation.utils.filter_negative_chord">
+<code class="sig-prename descclassname"><span class="pre">sora.occultation.utils.</span></code><code class="sig-name descname"><span class="pre">filter_negative_chord</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chisquare</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/utils.html#filter_negative_chord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.utils.filter_negative_chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get points for the ellipse with the given input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chord</strong> (<cite>sora.observer.Chord</cite>) – Chord object, must be associated to an Occultation to work.</p></li>
+<li><p><strong>chisquare</strong> (<cite>sora.extra.ChiSquare</cite>) – Resulted ChiSquare object of fit_ellipse.</p></li>
+<li><p><strong>sigma</strong> (<cite>int</cite>, <cite>float</cite>) – Unceartity of the expected ellipse, in km.</p></li>
+<li><p><strong>step</strong> (<cite>int</cite>, <cite>float</cite>, <cite>str</cite>) – If a number, it corresponds to the step, in seconds, for each point of
+the chord path. The step can also be equal to <code class="docutils literal notranslate"><span class="pre">'exposure'</span></code>. In this
+case, the chord path will consider the lightcurve individual times and
+exptime.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.occultation.utils.positionv">
+<code class="sig-prename descclassname"><span class="pre">sora.occultation.utils.</span></code><code class="sig-name descname"><span class="pre">positionv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/occultation/utils.html#positionv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.occultation.utils.positionv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position and velocity of the occultation shadow relative
+to the observer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>star</strong> (<cite>sora.Star</cite>) – The coordinate of the star in the same reference frame as the ephemeris.
+It must be a Star object.</p></li>
+<li><p><strong>ephem</strong> (<cite>sora.Ephem</cite>) – The object ephemeris. It must be an Ephemeris object.</p></li>
+<li><p><strong>observer</strong> (<cite>sora.Observer</cite>) – The Observer information. It must be an Observer object.</p></li>
+<li><p><strong>time</strong> (<cite>astropy.time.Time</cite>) – Reference instant to calculate position and velocity.</p></li>
+<li><p><strong>Return</strong> – </p></li>
+<li><p><strong>f</strong> (<cite>list</cite>) – The orthographic projection of the shadow relative to the observer.
+<code class="docutils literal notranslate"><span class="pre">'f'</span></code> is in the x-axis (East-West direction; East positive).
+<code class="docutils literal notranslate"><span class="pre">'g'</span></code> is in the y-axis (North-South direction; North positive).</p></li>
+<li><p><strong>g</strong> (<cite>list</cite>) – The orthographic projection of the shadow relative to the observer.
+<code class="docutils literal notranslate"><span class="pre">'f'</span></code> is in the x-axis (East-West direction; East positive).
+<code class="docutils literal notranslate"><span class="pre">'g'</span></code> is in the y-axis (North-South direction; North positive).</p></li>
+<li><p><strong>vf</strong> (<cite>list</cite>) – The orthographic projection of the shadow relative to the observer.
+<code class="docutils literal notranslate"><span class="pre">'f'</span></code> is in the x-axis (East-West direction; East positive).
+<code class="docutils literal notranslate"><span class="pre">'g'</span></code> is in the y-axis (North-South direction; North positive).</p></li>
+<li><p><strong>vg</strong> (<cite>list</cite>) – The orthographic projection of the shadow relative to the observer.
+<code class="docutils literal notranslate"><span class="pre">'f'</span></code> is in the x-axis (East-West direction; East positive).
+<code class="docutils literal notranslate"><span class="pre">'g'</span></code> is in the y-axis (North-South direction; North positive).</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1669,9 +2680,9 @@ to identify.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="id3">
-<h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-sora.extra.utils"></span><dl class="py function">
+<div class="section" id="module-sora.extra.utils">
+<span id="module-s-utils-functions"></span><h2>Module’s <cite>utils</cite> functions<a class="headerlink" href="#module-sora.extra.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
 <dt id="sora.extra.utils.get_ellipse_points">
 <code class="sig-prename descclassname"><span class="pre">sora.extra.utils.</span></code><code class="sig-name descname"><span class="pre">get_ellipse_points</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equatorial_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oblateness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/utils.html#get_ellipse_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.extra.utils.get_ellipse_points" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get points for the ellipse with the given input parameters.</p>

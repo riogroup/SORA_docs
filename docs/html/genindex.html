@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sora.html#lightcurve">LightCurve</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sora.html#observer">Observer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sora.html#occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html#prediction">Prediction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sora.html#extra">Extra</a></li>
 </ul>
 
@@ -174,6 +175,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -334,11 +336,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.occultation.utils.filter_negative_chord">filter_negative_chord() (in module sora.occultation.utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.EphemPlanete.fit_d2_ksi_eta">fit_d2_ksi_eta() (sora.EphemPlanete method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.occultation.fit_ellipse">fit_ellipse() (in module sora.occultation)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.PredictionTable.from_praia">from_praia() (sora.prediction.PredictionTable class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -431,6 +435,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.prediction.PredictionTable.keep_from_selected_images">keep_from_selected_images() (sora.prediction.PredictionTable method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -475,6 +487,10 @@
         <li><a href="sora.html#module-sora.observer.utils">sora.observer.utils</a>
 </li>
         <li><a href="sora.html#module-sora.occultation.utils">sora.occultation.utils</a>
+</li>
+        <li><a href="sora.html#module-sora.prediction.core">sora.prediction.core</a>
+</li>
+        <li><a href="sora.html#module-sora.prediction.occmap">sora.prediction.occmap</a>
 </li>
       </ul></li>
   </ul></td>
@@ -525,6 +541,8 @@
 </li>
       <li><a href="sora.html#sora.LightCurve.occ_model">occ_model() (sora.LightCurve method)</a>
 </li>
+      <li><a href="sora.html#sora.prediction.core.occ_params">occ_params() (in module sora.prediction.core)</a>
+</li>
       <li><a href="sora.html#sora.Occultation">Occultation (class in sora)</a>
 </li>
       <li><a href="sora.html#sora.Body.orbit_class">orbit_class (sora.Body attribute)</a>
@@ -549,19 +567,29 @@
         <li><a href="sora.html#sora.occultation.chordlist.ChordList.plot_chords">(sora.occultation.chordlist.ChordList method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.LightCurve.plot_lc">plot_lc() (sora.LightCurve method)</a>
 </li>
       <li><a href="sora.html#sora.LightCurve.plot_model">plot_model() (sora.LightCurve method)</a>
 </li>
-      <li><a href="sora.html#sora.Occultation.plot_occ_map">plot_occ_map() (sora.Occultation method)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.prediction.occmap.plot_occ_map">plot_occ_map() (in module sora.prediction.occmap)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Occultation.plot_occ_map">(sora.Occultation method)</a>
 </li>
+        <li><a href="sora.html#sora.prediction.PredictionTable.plot_occ_map">(sora.prediction.PredictionTable method)</a>
+</li>
+      </ul></li>
       <li><a href="sora.html#sora.Body.pole">pole (sora.Body attribute)</a>
 </li>
       <li><a href="sora.html#sora.Occultation.positions">positions() (sora.Occultation property)</a>
 </li>
       <li><a href="sora.html#sora.occultation.utils.positionv">positionv() (in module sora.occultation.utils)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.core.prediction">prediction() (in module sora.prediction.core)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.PredictionTable">PredictionTable (class in sora.prediction)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -577,13 +605,17 @@
       </ul></li>
       <li><a href="sora.html#sora.occultation.chordlist.ChordList.remove_chord">remove_chord() (sora.occultation.chordlist.ChordList method)</a>
 </li>
+      <li><a href="sora.html#sora.Occultation.remove_observation">remove_observation() (sora.Occultation method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.Occultation.remove_observation">remove_observation() (sora.Occultation method)</a>
+      <li><a href="sora.html#sora.prediction.PredictionTable.remove_occ">remove_occ() (sora.prediction.PredictionTable method)</a>
 </li>
       <li><a href="sora.html#sora.LightCurve.reset_flux">reset_flux() (sora.LightCurve method)</a>
 </li>
       <li><a href="sora.html#sora.Body.rotation">rotation (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.PredictionTable.Row">Row (sora.prediction.PredictionTable attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -634,8 +666,6 @@
         <li><a href="sora.html#module-sora.extra.plots">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sora.extra.utils
 
@@ -643,6 +673,8 @@
         <li><a href="sora.html#module-sora.extra.utils">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sora.lightcurve.occdetect
 
@@ -669,6 +701,20 @@
 
       <ul>
         <li><a href="sora.html#module-sora.occultation.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.prediction.core
+
+      <ul>
+        <li><a href="sora.html#module-sora.prediction.core">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.prediction.occmap
+
+      <ul>
+        <li><a href="sora.html#module-sora.prediction.occmap">module</a>
 </li>
       </ul></li>
       <li><a href="sora.html#sora.Body.spkid">spkid (sora.Body attribute)</a>
@@ -713,6 +759,10 @@
         <li><a href="sora.html#sora.Occultation.to_log">(sora.Occultation method)</a>
 </li>
       </ul></li>
+      <li><a href="sora.html#sora.prediction.PredictionTable.to_ow">to_ow() (sora.prediction.PredictionTable method)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.PredictionTable.to_praia">to_praia() (sora.prediction.PredictionTable method)</a>
+</li>
   </ul></td>
 </tr></table>
 

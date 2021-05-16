@@ -17,26 +17,34 @@ __all__ = ['occ_params', 'prediction']
 def occ_params(star, ephem, time, n_recursions=5, max_tdiff=None):
     """Calculates the parameters of the occultation, as instant, CA, PA.
 
-    Parameters:
-        star (Star): The coordinate of the star in the same reference frame as 
-          the ephemeris. It must be a Star object.
-        ephem (Ephem): object ephemeris. It must be an Ephemeris object.
-        time (Time): Time close to occultation epoch to calculate occultation
-          parameters.
-        n_recursions (int): The number of attempts to try obtain prediction 
-          parameters in case the event is outside the previous range of time 
-          (Default=5).
-        max_tdiff (int): Maximum difference from given time it will attempt to 
-          identify the occultation, in minutes. If given, 'n_recursions' is 
-          ignored (Default=None).
+    Parameters
+    ----------
+    star : `sora.Star`
+        The coordinate of the star in the same reference frame as the ephemeris. 
+        It must be a Star object.
+    
+    ephem : `sora.Ephem*`
+        Object ephemeris. It must be an Ephemeris object.
+    
+    time : `astropy.time.Time`
+        Time close to occultation epoch to calculate occultation parameters.
+    
+    n_recursions : `int`, default=5
+        The number of attempts to try obtain prediction parameters in case the 
+        event is outside the previous range of time.
 
-    Returns:
-        instant of CA (Time): Instant of Closest Approach.
-        CA (arcsec): Distance of Closest Approach.
-        PA (deg): Position Angle at Closest Approach.
-        vel (km/s): Velocity of the occultation.
-        dist (AU): the object geocentric distance.
+    max_tdiff : `int`, default=None
+        Maximum difference from given time it will attempt to identify the 
+        occultation, in minutes. If given, 'n_recursions' is ignored.
 
+    Returns
+    -------
+     Oredered list : `list`
+        - Instant of CA (Time): Instant of Closest Approach.\n
+        - CA (arcsec): Distance of Closest Approach.\n
+        - PA (deg): Position Angle at Closest Approach.\n
+        - vel (km/s): Velocity of the occultation.\n
+        - dist (AU): the object geocentric distance.\n
     """
 
     n_recursions = int(n_recursions)
@@ -98,40 +106,61 @@ def prediction(time_beg, time_end, body=None, ephem=None, mag_lim=None, catalogu
                radius=None, verbose=True):
     """Predicts stellar occultations.
 
-    Parameters:
-        time_beg (str,Time): Initial time for prediction (required).
-        time_end (str,Time): Final time for prediction (required).
-        body (Body, str): Object that will occult the stars. It must be a Body 
-          object or its name to search in the Small Body Database.
-        ephem (Ephem): object ephemeris. It must be an Ephemeris object.
-        mag_lim (int,float): Faintest Gmag for search
-        catalogue (str): The catalogue to download data. It can be 'gaiadr2' or 
-          'gaiaedr3'.
-        step (number): step, in seconds, of ephem times for search
-        divs (int): number of regions the ephemeris will be splitted for better 
-          search of occultations.
-        sigma (number): ephemeris error sigma for search off-Earth.
-        radius (number): The radius of the body. It is important if not defined 
-          in body or ephem.
-        verbose (bool): To show what is being done at the moment.
+    Parameters
+    ----------
+    time_beg : `str`, `astropy.time.Time`, required
+        Initial time for prediction.
+    
+    time_end : `str`, `astropy.time.Time`, required
+        Final time for prediction.
+    
+    body : `sora.Body`, `str`, default=None
+        Object that will occult the stars. It must be a Body object or its name 
+        to search in the Small Body Database.
+    
+    ephem : `sora.Ephem`, default=None
+        object ephemeris. It must be an Ephemeris object.
+    
+    mag_lim : `int`, `float`, default=None
+        Faintest Gmag allowed in the search.
+    
+    catalogue : `str`, default='gaiaedr3'
+        The catalogue to download data. It can be ``'gaiadr2'`` or ``'gaiaedr3'``.
+    
+    step : `int`, `float`, default=60
+        Step, in seconds, of ephem times for search
+        
+    divs : `int`, default=1
+        Number of regions the ephemeris will be splitted for better search of 
+        occultations.
+    
+    sigma : `int`, `float`, default=1 
+        Ephemeris error sigma for search off-Earth.
+    
+    radius : `int`, `float`, default=None
+        The radius of the body. It is important if not defined in body or ephem.
+    
+    verbose : `bool`, default=True
+        To show what is being done at the moment.
 
-    Important:
-        When instantiating with "body" and "ephem", the user may call the function 
-          in 3 ways:
+    Important
+    ---------
+    When instantiating with "body" and "ephem", the user may call the function 
+    in 3 ways:
 
-          1) With "body" and "ephem".
+    1 - With "body" and "ephem".
 
-          2) With only "body". In this case, the "body" parameter must be a Body 
-          object and have an ephemeris associated (see Body documentation).
+    2 - With only "body". In this case, the "body" parameter must be a Body 
+    object and have an ephemeris associated (see Body documentation).
 
-          3) With only "ephem". In this case, the "ephem" parameter must be one of 
-          the Ephem Classes and have a name (see Ephem documentation) to search 
-          for the body in the Small Body Database.
+    3 - With only "ephem". In this case, the "ephem" parameter must be one of 
+    the Ephem Classes and have a name (see Ephem documentation) to search 
+    for the body in the Small Body Database.
 
-    Returns:
-        predict (PredictionTable): PredictionTable with the occultation params 
-          for each event.
-
+    Returns
+    -------
+     : `sora.prediction.PredictionTable`
+        PredictionTable with the occultation params for each event.
     """
     from astroquery.vizier import Vizier
     from .table import PredictionTable

@@ -110,6 +110,25 @@ Module `utils`
 
 
 
+Prediction
+----------
+
+Prediction functions
+====================
+.. automodule:: sora.prediction.core
+   :members:
+
+Plot occultation map
+====================
+.. automodule:: sora.prediction.occmap
+   :members:
+
+PredictionTable object
+======================
+.. autoclass:: sora.prediction.PredictionTable
+   :members: 
+
+
 
 Extra
 -----

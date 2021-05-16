@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.star.utils &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#ephem">Ephem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#lightcurve">LightCurve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#observer">Observer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#occultation">Occultation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#prediction">Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#star">Star</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html#extra">Extra</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.star.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.star.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span>
+
+<span class="kn">from</span> <span class="nn">sora.config</span> <span class="kn">import</span> <span class="n">input_tests</span>
+<span class="kn">from</span> <span class="nn">sora.config.decorators</span> <span class="kn">import</span> <span class="n">deprecated_alias</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;van_belle&#39;</span><span class="p">,</span> <span class="s1">&#39;kervella&#39;</span><span class="p">]</span>
+
+
+<span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
+<span class="k">def</span> <span class="nf">search_star</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Searches position on VizieR and returns a catalogue.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    coord : `str`, `astropy.coordinates.SkyCoord`</span>
+<span class="sd">        Coordinate to perform the search.</span>
+<span class="sd">    </span>
+<span class="sd">    code : `str`</span>
+<span class="sd">        Gaia Source_id of the star.</span>
+<span class="sd">    </span>
+<span class="sd">    columns : `list`</span>
+<span class="sd">        List of strings with the name of the columns to retrieve.</span>
+<span class="sd">    </span>
+<span class="sd">    radius : `int`, `float`, `astropy.unit.quantity`</span>
+<span class="sd">        Radius to search around coordinates.</span>
+<span class="sd">    </span>
+<span class="sd">    catalog : `str`</span>
+<span class="sd">        VizieR catalogue to search.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    catalogue : `astropy.Table`</span>
+<span class="sd">        An astropy Table with the catalogue informations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">astroquery.vizier</span> <span class="kn">import</span> <span class="n">Vizier</span>
+
+    <span class="n">input_tests</span><span class="o">.</span><span class="n">check_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">allowed_kwargs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="s1">&#39;coord&#39;</span><span class="p">,</span> <span class="s1">&#39;verbose&#39;</span><span class="p">,</span> <span class="s1">&#39;radius&#39;</span><span class="p">])</span>
+    <span class="n">row_limit</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="s1">&#39;verbose&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Downloading star parameters from </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">]))</span>
+    <span class="n">vquery</span> <span class="o">=</span> <span class="n">Vizier</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">],</span> <span class="n">row_limit</span><span class="o">=</span><span class="n">row_limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;code&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">catalogue</span> <span class="o">=</span> <span class="n">vquery</span><span class="o">.</span><span class="n">query_constraints</span><span class="p">(</span><span class="n">catalog</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">],</span> <span class="n">Source</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">],</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s1">&#39;coord&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">catalogue</span> <span class="o">=</span> <span class="n">vquery</span><span class="o">.</span><span class="n">query_region</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;coord&#39;</span><span class="p">],</span> <span class="n">radius</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;radius&#39;</span><span class="p">],</span> <span class="n">catalog</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">],</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least a code or coord should be given as input&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">catalogue</span>
+
+
+<div class="viewcode-block" id="van_belle"><a class="viewcode-back" href="../../../sora.html#sora.star.utils.van_belle">[docs]</a><span class="k">def</span> <span class="nf">van_belle</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from van Belle (1999).</span>
+<span class="sd">    </span>
+<span class="sd">    See: Publi. Astron. Soc. Pacific 111, 1515-1523:.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    magB : `float`, default=None</span>
+<span class="sd">        The magnitude B of the star.</span>
+<span class="sd">    </span>
+<span class="sd">    magV : `float`, default=None</span>
+<span class="sd">        The magnitude V of the star.</span>
+<span class="sd">    </span>
+<span class="sd">    magK : `float`, default=None</span>
+<span class="sd">        The magnitude K of the star.</span>
+<span class="sd">        </span>
+<span class="sd">    </span>
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    If any of those values is &#39;None&#39;, &#39;nan&#39; or higher than 49, it is not considered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">magB</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magB</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magB</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">magV</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magV</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magV</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">magK</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magK</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magK</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magK</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">def</span> <span class="nf">calc_diameter</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">mag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="p">(</span><span class="n">mag</span> <span class="o">-</span> <span class="n">magK</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">mag</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sg&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.648</span><span class="p">,</span> <span class="mf">0.220</span><span class="p">],</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.669</span><span class="p">,</span> <span class="mf">0.223</span><span class="p">]},</span>
+              <span class="s1">&#39;ms&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.500</span><span class="p">,</span> <span class="mf">0.290</span><span class="p">],</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.500</span><span class="p">,</span> <span class="mf">0.264</span><span class="p">]},</span>
+              <span class="s1">&#39;vs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.840</span><span class="p">,</span> <span class="mf">0.211</span><span class="p">],</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.789</span><span class="p">,</span> <span class="mf">0.218</span><span class="p">]}}</span>
+
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">magB</span><span class="p">,</span> <span class="n">magV</span><span class="p">])</span>
+    <span class="n">diameter</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;sg&#39;</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">,</span> <span class="s1">&#39;vs&#39;</span><span class="p">]:</span>
+        <span class="n">diameter_s</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">]):</span>
+            <span class="n">diam</span> <span class="o">=</span> <span class="n">calc_diameter</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="n">st</span><span class="p">][</span><span class="n">m</span><span class="p">],</span> <span class="n">mag</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">diam</span><span class="p">):</span>
+                <span class="n">diameter_s</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_diameter</span><span class="p">(</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="n">st</span><span class="p">][</span><span class="n">m</span><span class="p">],</span> <span class="n">mag</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span>
+        <span class="k">if</span> <span class="n">diameter_s</span><span class="p">:</span>
+            <span class="n">diameter</span><span class="p">[</span><span class="n">st</span><span class="p">]</span> <span class="o">=</span> <span class="n">diameter_s</span>
+    <span class="k">return</span> <span class="n">diameter</span></div>
+
+
+<div class="viewcode-block" id="kervella"><a class="viewcode-back" href="../../../sora.html#sora.star.utils.kervella">[docs]</a><span class="k">def</span> <span class="nf">kervella</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from Kervella et. al (2004).</span>
+<span class="sd">    </span>
+<span class="sd">    See: A&amp;A Vol. 426, No.  1:.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    magB: `float`, default=None</span>
+<span class="sd">        The magnitude B of the star.</span>
+<span class="sd">    </span>
+<span class="sd">    magV: `float`, default=None</span>
+<span class="sd">        The magnitude V of the star.</span>
+<span class="sd">        </span>
+<span class="sd">    magK: `float`, default=None</span>
+<span class="sd">        The magnitudes K of the star.</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    If any of those values is &#39;None&#39;, &#39;nan&#39; or higher than 49, it is not considered.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">magB</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magB</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magB</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">magV</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magV</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magV</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">magK</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">magK</span><span class="p">)</span> <span class="ow">or</span> <span class="n">magK</span> <span class="o">&gt;</span> <span class="mi">49</span><span class="p">:</span>
+        <span class="n">magK</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">const1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0755</span><span class="p">,</span> <span class="mf">0.0535</span><span class="p">])</span>
+    <span class="n">const2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5170</span><span class="p">,</span> <span class="mf">0.5159</span><span class="p">])</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">magV</span><span class="p">,</span> <span class="n">magB</span><span class="p">])</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">const1</span><span class="o">*</span><span class="p">(</span><span class="n">mag</span><span class="o">-</span><span class="n">magK</span><span class="p">)</span><span class="o">+</span><span class="n">const2</span><span class="o">-</span><span class="mf">0.2</span><span class="o">*</span><span class="n">magK</span><span class="p">)</span>
+    <span class="n">diameter</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">diameter</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">diameter</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span>
+    <span class="k">return</span> <span class="n">diameter</span></div>
+
+
+<span class="k">def</span> <span class="nf">spatial_motion</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">pmra</span><span class="p">,</span> <span class="n">pmdec</span><span class="p">,</span> <span class="n">parallax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rad_vel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Applies spatial motion to star coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ra `int`, `float`</span>
+<span class="sd">        Right Ascension of the star at t=0 epoch, in deg.</span>
+<span class="sd">    </span>
+<span class="sd">    dec : `int`, `float`</span>
+<span class="sd">        Declination of the star at t=0 epoch, in deg.</span>
+<span class="sd">    </span>
+<span class="sd">    pmra : `int`, `float`</span>
+<span class="sd">        Proper Motion in RA of the star at t=0 epoch, in mas/year.</span>
+<span class="sd">    </span>
+<span class="sd">    pmdec : `int`, `float`</span>
+<span class="sd">        Proper Motion in DEC of the star at t=0 epoch, in mas/year.</span>
+<span class="sd">    </span>
+<span class="sd">    parallax : `int`, `float`</span>
+<span class="sd">        Parallax of the star at t=0 epoch, in mas.</span>
+<span class="sd">        </span>
+<span class="sd">    rad_vel : `int`, `float`</span>
+<span class="sd">        Radial Velocity of the star at t=0 epoch, in km/s.</span>
+<span class="sd">        </span>
+<span class="sd">    dt : `int`, `float`</span>
+<span class="sd">        Variation of time from catalogue epoch, in days.</span>
+<span class="sd">    </span>
+<span class="sd">    cov_matrix : `2D-array`</span>
+<span class="sd">        6x6 covariance matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="k">as</span> <span class="nn">const</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># Astronomical units in km</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">const</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># light velocity</span>
+
+    <span class="n">par</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># Eliminate negative or zero parallaxes</span>
+    <span class="k">if</span> <span class="n">parallax</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">parallax</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">par</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">parallax</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+    <span class="k">if</span> <span class="n">cov_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cov_matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Covariance matrix must be a 6x6 matrix&#39;</span><span class="p">)</span>
+
+    <span class="n">ra0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">dec0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">dec</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">parallax0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">parallax</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">pmra0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">pmra</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">pmdec0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">pmdec</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">rad_vel0</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">rad_vel</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">day</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="c1"># normal triad relative to the celestial sphere</span>
+    <span class="c1"># p0 points to growing RA, q0 to growing DEC and r0 to growing distance.</span>
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">q0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dec0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dec0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec0</span><span class="p">)])</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dec0</span><span class="p">)])</span>
+
+    <span class="n">b0</span> <span class="o">=</span> <span class="n">A</span><span class="o">/</span><span class="n">parallax0</span>
+    <span class="n">tau_0</span> <span class="o">=</span> <span class="n">b0</span><span class="o">/</span><span class="n">c</span>
+    <span class="n">tau_A</span> <span class="o">=</span> <span class="n">A</span><span class="o">/</span><span class="n">c</span>
+
+    <span class="n">vec_b0</span> <span class="o">=</span> <span class="n">b0</span><span class="o">*</span><span class="n">r0</span>  <span class="c1"># distance vector</span>
+    <span class="n">vec_u0</span> <span class="o">=</span> <span class="n">vec_b0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec_b0</span><span class="p">)</span>
+    <span class="n">vec_mi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p0</span><span class="o">*</span><span class="n">pmra0</span> <span class="o">+</span> <span class="n">q0</span><span class="o">*</span><span class="n">pmdec0</span><span class="p">)</span>  <span class="c1"># proper motion vector</span>
+
+    <span class="n">mi_r0</span> <span class="o">=</span> <span class="n">rad_vel0</span><span class="o">/</span><span class="n">b0</span>
+    <span class="n">mi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pmra0</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">pmdec0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># total proper motion</span>
+
+    <span class="n">v0</span> <span class="o">=</span> <span class="n">b0</span><span class="o">*</span><span class="p">(</span><span class="n">r0</span><span class="o">*</span><span class="n">mi_r0</span><span class="o">+</span><span class="n">vec_mi0</span><span class="p">)</span>  <span class="c1"># apparent space velocity</span>
+    <span class="n">v_r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v0</span><span class="p">)</span>
+
+    <span class="c1"># Scaling factors of time, distance and velocity due to light time</span>
+    <span class="n">f_T</span> <span class="o">=</span> <span class="p">((</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">tau_0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tau_0</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">v_r0</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">((</span><span class="n">vec_b0</span><span class="o">+</span><span class="n">v0</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+           <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau_0</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">vec_b0</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">))</span>
+    <span class="n">f_D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span> <span class="o">+</span> <span class="p">(</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">f_V</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">mi_r0</span><span class="o">*</span><span class="p">(</span><span class="n">f_D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f_D</span><span class="o">*</span><span class="p">(</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">))</span>
+
+    <span class="n">vec_u</span> <span class="o">=</span> <span class="p">(</span><span class="n">r0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span> <span class="o">+</span> <span class="n">vec_mi0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span>
+    <span class="n">vec_mi</span> <span class="o">=</span> <span class="p">(</span><span class="n">vec_mi0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span> <span class="o">-</span> <span class="n">vec_u0</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">mi_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">mi_r0</span> <span class="o">+</span> <span class="p">(</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span>
+
+    <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">vec_u</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># new dec</span>
+    <span class="n">ra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">vec_u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec</span><span class="p">),</span> <span class="n">vec_u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span>  <span class="c1"># new ra</span>
+
+    <span class="n">parallax</span> <span class="o">=</span> <span class="n">parallax0</span><span class="o">*</span><span class="n">f_D</span>  <span class="c1"># new parallax</span>
+    <span class="n">new_dist</span> <span class="o">=</span> <span class="n">A</span><span class="o">/</span><span class="n">parallax</span>  <span class="c1"># new distance</span>
+
+    <span class="k">if</span> <span class="n">par</span><span class="p">:</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">dec</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">new_dist</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">coord</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">dec</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cov_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">coord</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">])</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dec</span><span class="p">)])</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">parallax0</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="n">tau_A</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">Z</span> <span class="o">-</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">parallax0</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">tau_A</span>
+
+    <span class="c1"># partial derivatives of the logarithm of the velocity factor</span>
+    <span class="c1"># chi_parallax = (1/parallax0)*(1 - f_V)  # not used</span>
+    <span class="n">chi_pm</span> <span class="o">=</span> <span class="p">(</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">f_V</span><span class="p">)</span>
+    <span class="n">chi_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">f_D</span><span class="o">*</span><span class="p">(</span><span class="n">f_V</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">f_V</span><span class="p">)))</span>
+    <span class="c1"># chi_T = -(tau_A/parallax0)*f_D**3*mi0**2*dt*f_T  # not used</span>
+
+    <span class="c1"># partial derivatives of the logarithmic of the time factor</span>
+    <span class="n">psi_parallax</span> <span class="o">=</span> <span class="n">dt</span><span class="o">/</span><span class="n">X</span> <span class="o">-</span> <span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">Y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">tau_A</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Z</span><span class="o">*</span><span class="n">parallax0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">psi_pm</span> <span class="o">=</span> <span class="o">-</span><span class="p">((</span><span class="n">dt</span><span class="o">*</span><span class="n">tau_A</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="n">Z</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span>
+    <span class="n">psi_r</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">tau_A</span><span class="o">/</span><span class="n">Y</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">Z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ni</span> <span class="o">=</span> <span class="n">vec_mi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">mi_r</span><span class="o">/</span><span class="n">f_V</span> <span class="o">+</span> <span class="p">(</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span><span class="p">))</span> <span class="o">-</span> <span class="n">vec_mi0</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">mi_r</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">mi_r</span><span class="o">/</span><span class="n">f_V</span> <span class="o">+</span> <span class="p">(</span><span class="n">tau_A</span><span class="o">/</span><span class="n">parallax0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span><span class="p">))</span> <span class="o">-</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span>
+
+    <span class="n">p_l</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">q_l</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="n">pmra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">vec_mi</span><span class="p">)</span>  <span class="c1"># new pmra</span>
+    <span class="n">pmdec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">vec_mi</span><span class="p">)</span>  <span class="c1"># new pmdec</span>
+
+    <span class="c1"># Jacobian matrix</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># d(alpha)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">pmra</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_r</span>
+
+    <span class="c1"># d(delta)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">pmdec</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">*</span><span class="n">psi_r</span>
+
+    <span class="c1"># d(parallax)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_D</span> <span class="o">-</span> <span class="n">parallax</span><span class="o">*</span><span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">/</span><span class="n">f_V</span><span class="p">)</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">parallax</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">((</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">/</span><span class="n">f_V</span><span class="p">)</span><span class="o">*</span><span class="n">psi_pm</span><span class="p">)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">parallax</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">((</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">/</span><span class="n">f_V</span><span class="p">)</span><span class="o">*</span><span class="n">psi_pm</span><span class="p">)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">parallax</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">mi_r</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">/</span><span class="n">f_V</span><span class="p">)</span><span class="o">*</span><span class="n">psi_r</span><span class="p">)</span>
+
+    <span class="c1"># d(pmra)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> \
+        <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">pmra</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmra</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> \
+        <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">pmra</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmra</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p_l</span><span class="p">,</span> <span class="p">(</span><span class="n">vec_mi0</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">vec_mi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)))</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span>
+
+    <span class="c1"># d(pmdec)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> \
+        <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">pmdec</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmdec</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">q0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">f_V</span> \
+        <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">pmdec</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmdec</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="n">ni</span><span class="p">)</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span> <span class="p">(</span><span class="n">vec_mi0</span><span class="o">*</span><span class="n">f_D</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">vec_mi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)))</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f_V</span>
+
+    <span class="c1"># d(rad_vel)/d(valores inicias)</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">eta</span><span class="o">*</span><span class="n">psi_parallax</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pmra0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmra0</span><span class="o">*</span><span class="n">mi_r</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">pmra0</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pmdec0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">pmdec0</span><span class="o">*</span><span class="n">mi_r</span><span class="o">*</span><span class="n">chi_pm</span> <span class="o">+</span> <span class="n">pmdec0</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">psi_pm</span>
+    <span class="n">J</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">mi_r0</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">mi0</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">f_T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">f_D</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">f_V</span> <span class="o">+</span> <span class="n">mi_r</span><span class="o">*</span><span class="n">chi_r</span> <span class="o">+</span> <span class="n">eta</span><span class="o">*</span><span class="n">psi_r</span>
+
+    <span class="c1"># Propagated covariance matrix</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">cov_matrix</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">par</span><span class="p">:</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">err</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">coord</span><span class="p">,</span> <span class="n">err</span>
+
+
+<span class="k">def</span> <span class="nf">choice_star</span><span class="p">(</span><span class="n">catalogue</span><span class="p">,</span> <span class="n">coord</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+
+    <span class="n">tstars</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">catalogue</span><span class="p">[</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">catalogue</span><span class="p">[</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">sep</span> <span class="o">=</span> <span class="n">tstars</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+        <span class="n">t</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tstars</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">t</span><span class="p">[</span><span class="s1">&#39;dist(&quot;)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sep</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">arcsec</span>
+        <span class="n">t</span><span class="p">[</span><span class="s1">&#39;dist(&quot;)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;6.3f&#39;</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+            <span class="n">t</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalogue</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">t</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;6.3f&#39;</span>
+        <span class="n">t</span><span class="p">[</span><span class="s1">&#39;RA___ICRS___DEC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tstars</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  0: Cancel&#39;</span><span class="p">)</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Choose the corresponding number of the correct star: &#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not a valid choice. Please select the correct star&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">choice</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;gaia&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;It was not possible to define a star&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;nomad&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No magnitudes were obtained from NOMAD&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;bjones&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It was not possible to define a star&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+    <span class="k">return</span> <span class="n">catalogue</span><span class="p">[[</span><span class="n">k</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]]]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

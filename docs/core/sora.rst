@@ -12,8 +12,8 @@ PhysicalData object
 .. autoclass:: sora.body.PhysicalData
    :members:
 
-Module's `utils`
-================
+Module `utils`
+==============
 .. automodule:: sora.body.utils
    :members:
 
@@ -38,8 +38,8 @@ The EphemKernel Class
 .. autoclass:: sora.EphemKernel
    :members:
 
-Module's `utils`
-================
+Module `utils`
+==============
 .. automodule:: sora.ephem.utils
    :members: 
 
@@ -126,8 +126,22 @@ Plot occultation map
 PredictionTable object
 ======================
 .. autoclass:: sora.prediction.PredictionTable
-   :members: 
+   :members:
 
+
+
+Star
+----
+
+The Star class
+==============
+.. autoclass:: sora.Star
+   :members:
+
+Module `utils`
+==============
+.. automodule:: sora.star.utils
+   :members:
 
 
 Extra

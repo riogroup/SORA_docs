@@ -12,16 +12,28 @@ __all__ = ['van_belle', 'kervella']
 def search_star(**kwargs):
     """Searches position on VizieR and returns a catalogue.
 
-    Parameters:
-        coord (str, SkyCoord): Coordinate to perform the search.
-        code (str): Gaia Source_id of the star.
-        columns (list): List of strings with the name of the columns to retrieve.
-        radius (int, float, unit.quantity): Radius to search around coordinates.
-        catalog (str): VizieR catalogue to search.
+    Parameters
+    ----------
+    coord : `str`, `astropy.coordinates.SkyCoord`
+        Coordinate to perform the search.
+    
+    code : `str`
+        Gaia Source_id of the star.
+    
+    columns : `list`
+        List of strings with the name of the columns to retrieve.
+    
+    radius : `int`, `float`, `astropy.unit.quantity`
+        Radius to search around coordinates.
+    
+    catalog : `str`
+        VizieR catalogue to search.
 
-    Returns:
-        catalogue(astropy.Table): An astropy Table with the catalogue informations.
 
+    Returns
+    -------
+    catalogue : `astropy.Table`
+        An astropy Table with the catalogue informations.
     """
     from astroquery.vizier import Vizier
 
@@ -44,12 +56,21 @@ def van_belle(magB=None, magV=None, magK=None):
     
     See: Publi. Astron. Soc. Pacific 111, 1515-1523:.
 
-    Parameters:
-        magB: The magnitude B of the star.
-        magV: The magnitude V of the star.
-        magK: The magnitude K of the star.
-        If any of those values is 'None', 'nan' or higher than 49, it is not considered.
-
+    Parameters
+    ----------
+    magB : `float`, default=None
+        The magnitude B of the star.
+    
+    magV : `float`, default=None
+        The magnitude V of the star.
+    
+    magK : `float`, default=None
+        The magnitude K of the star.
+        
+    
+    Note
+    ----
+    If any of those values is 'None', 'nan' or higher than 49, it is not considered.
     """
     if magB is None or np.isnan(magB) or magB > 49:
         magB = np.nan
@@ -83,11 +104,21 @@ def kervella(magB=None, magV=None, magK=None):
     
     See: A&A Vol. 426, No.  1:.
 
-    Parameters:
-        magB: The magnitude B of the star.
-        magV: The magnitude V of the star.
-        magK: The magnitudes K of the star.
-        If any of those values is 'None', 'nan' or higher than 49, it is not considered.
+    Parameters
+    ----------
+    magB: `float`, default=None
+        The magnitude B of the star.
+    
+    magV: `float`, default=None
+        The magnitude V of the star.
+        
+    magK: `float`, default=None
+        The magnitudes K of the star.
+    
+    
+    Note
+    ----
+    If any of those values is 'None', 'nan' or higher than 49, it is not considered.
 
     """
     if magB is None or np.isnan(magB) or magB > 49:
@@ -111,16 +142,31 @@ def kervella(magB=None, magV=None, magK=None):
 def spatial_motion(ra, dec, pmra, pmdec, parallax=0, rad_vel=0,  dt=0, cov_matrix=None):
     """Applies spatial motion to star coordinate.
 
-    Parameters:
-        ra (int, float): Right Ascension of the star at t=0 epoch, in deg.
-        dec (int, float): Declination of the star at t=0 epoch, in deg.
-        pmra (int, float): Proper Motion in RA of the star at t=0 epoch, in mas/year.
-        pmdec (int, float): Proper Motion in DEC of the star at t=0 epoch, in mas/year.
-        parallax (int, float): Parallax of the star at t=0 epoch, in mas.
-        rad_vel (int, float): Radial Velocity of the star at t=0 epoch, in km/s.
-        dt (int, float): Variation of time from catalogue epoch, in days.
-        cov_matrix (2D-array): 6x6 covariance matrix.
-
+    Parameters
+    ----------
+    ra `int`, `float`
+        Right Ascension of the star at t=0 epoch, in deg.
+    
+    dec : `int`, `float`
+        Declination of the star at t=0 epoch, in deg.
+    
+    pmra : `int`, `float`
+        Proper Motion in RA of the star at t=0 epoch, in mas/year.
+    
+    pmdec : `int`, `float`
+        Proper Motion in DEC of the star at t=0 epoch, in mas/year.
+    
+    parallax : `int`, `float`
+        Parallax of the star at t=0 epoch, in mas.
+        
+    rad_vel : `int`, `float`
+        Radial Velocity of the star at t=0 epoch, in km/s.
+        
+    dt : `int`, `float`
+        Variation of time from catalogue epoch, in days.
+    
+    cov_matrix : `2D-array`
+        6x6 covariance matrix.
     """
     import astropy.constants as const
 

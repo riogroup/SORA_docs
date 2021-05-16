@@ -95,25 +95,25 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Body</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-body-class">The Body class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#physicaldata-object">PhysicalData object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module’s <cite>utils</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.body.utils">Module <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#ephem">Ephem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemplanete-class">The EphemPlanete Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemhorizons-class">The EphemHorizons Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-ephemkernel-class">The EphemKernel Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Module’s <cite>utils</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Module <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#lightcurve">LightCurve</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-lightcurve-class">The LightCurve class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.lightcurve.occdetect">Occutation detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Module’s <cite>utils</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sora.lightcurve.utils">Module’s <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#observer">Observer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-observer-object">The Observer object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-sora.observer.utils">Module <cite>utils</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Module <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#occultation">Occultation</a><ul>
@@ -128,6 +128,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.prediction.core">Prediction functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sora.prediction.occmap">Plot occultation map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#predictiontable-object">PredictionTable object</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#star">Star</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-star-class">The Star class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Module <cite>utils</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#extra">Extra</a><ul>
@@ -541,7 +546,7 @@ else <cite>value</cite> is redefined to <code class="docutils literal notranslat
 
 </div>
 <div class="section" id="module-sora.body.utils">
-<span id="module-s-utils"></span><h2>Module’s <cite>utils</cite><a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
+<span id="module-utils"></span><h2>Module <cite>utils</cite><a class="headerlink" href="#module-sora.body.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="sora.body.utils.apparent_magnitude">
 <code class="sig-prename descclassname"><span class="pre">sora.body.utils.</span></code><code class="sig-name descname"><span class="pre">apparent_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sundist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/body/utils.html#apparent_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.body.utils.apparent_magnitude" title="Permalink to this definition">¶</a></dt>
@@ -913,7 +918,7 @@ also anything that is not a small body), <code class="docutils literal notransla
 
 </div>
 <div class="section" id="id1">
-<h2>Module’s <cite>utils</cite><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Module <cite>utils</cite><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-sora.ephem.utils"></span><dl class="py function">
 <dt id="sora.ephem.utils.ephem_kernel">
 <code class="sig-prename descclassname"><span class="pre">sora.ephem.utils.</span></code><code class="sig-name descname"><span class="pre">ephem_kernel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/ephem/utils.html#ephem_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.ephem.utils.ephem_kernel" title="Permalink to this definition">¶</a></dt>
@@ -1395,9 +1400,9 @@ parameter.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id2">
-<h2>Module’s <cite>utils</cite><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-sora.lightcurve.utils"></span><dl class="py function">
+<div class="section" id="module-sora.lightcurve.utils">
+<span id="module-s-utils"></span><h2>Module’s <cite>utils</cite><a class="headerlink" href="#module-sora.lightcurve.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
 <dt id="sora.lightcurve.utils.calc_fresnel">
 <code class="sig-prename descclassname"><span class="pre">sora.lightcurve.utils.</span></code><code class="sig-name descname"><span class="pre">calc_fresnel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandpass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/lightcurve/utils.html#calc_fresnel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.lightcurve.utils.calc_fresnel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the Fresnel scale.</p>
@@ -1622,9 +1627,9 @@ Sidereal Time.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-sora.observer.utils">
-<span id="module-utils"></span><h2>Module <cite>utils</cite><a class="headerlink" href="#module-sora.observer.utils" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
+<div class="section" id="id2">
+<h2>Module <cite>utils</cite><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sora.observer.utils"></span><dl class="py function">
 <dt id="sora.observer.utils.search_code_mpc">
 <code class="sig-prename descclassname"><span class="pre">sora.observer.utils.</span></code><code class="sig-name descname"><span class="pre">search_code_mpc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/observer/utils.html#search_code_mpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.observer.utils.search_code_mpc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the MPC Observer Database.</p>
@@ -2913,6 +2918,229 @@ Tables will be saved in two files: “tableOccult_update.txt” and “LOG.dat�
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="star">
+<h1>Star<a class="headerlink" href="#star" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-star-class">
+<h2>The Star class<a class="headerlink" href="#the-star-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.Star">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sora.</span></code><code class="sig-name descname"><span class="pre">Star</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalogue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaiaedr3'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a star.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>catalogue</strong> (<cite>str</cite>) – The catalogue to download data. It can be <code class="docutils literal notranslate"><span class="pre">'gaiadr2'</span></code> or <code class="docutils literal notranslate"><span class="pre">'gaiaedr3'</span></code>.</p></li>
+<li><p><strong>code</strong> (<cite>str</cite>) – Gaia Source code for searching in VizieR.</p></li>
+<li><p><strong>coord</strong> (<cite>str</cite>, <cite>astropy.coordinates.SkyCoord</cite>) – If code is not given, coord nust have the coordinates RA and DEC of the
+star to search in VizieR: <code class="docutils literal notranslate"><span class="pre">'hh</span> <span class="pre">mm</span> <span class="pre">ss.ss</span> <span class="pre">+dd</span> <span class="pre">mm</span> <span class="pre">ss.ss'</span></code>.</p></li>
+<li><p><strong>ra</strong> (<cite>int</cite>, <cite>float</cite>) – Right Ascension, in deg.</p></li>
+<li><p><strong>dec</strong> (<cite>int</cite>, <cite>float</cite>) – Declination, in deg.</p></li>
+<li><p><strong>parallax</strong> (<cite>int</cite>, <cite>float</cite>. default=0) – Parallax, in mas.</p></li>
+<li><p><strong>pmra</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Proper Motion in RA*, in mas/year.</p></li>
+<li><p><strong>pmdec</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Proper Motion in DEC, in mas/year.</p></li>
+<li><p><strong>rad_vel</strong> (<cite>int</cite>, <cite>float</cite>, default=0) – Radial Velocity, in km/s.</p></li>
+<li><p><strong>epoch</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>, default=’J2000’) – Epoch of the coordinates.</p></li>
+<li><p><strong>nomad</strong> (<cite>bool</cite>) – If True, it tries to download the magnitudes from NOMAD catalogue.</p></li>
+<li><p><strong>bjones</strong> (<cite>bool</cite>, default=True) – If True, it uses de star distance from Bailer-Jones et al. (2018).</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>, default=True) – If True, it prints the downloaded information</p></li>
+<li><p><strong>local</strong> (<cite>bool</cite>, default=False) – If True, it uses the given coordinate in ‘coord’ as final coordinate.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The user can give either ‘coord’ or ‘ra’ and ‘dec’, but not both.</p>
+<p>To download the coordinates from Gaia, “local” must be set as False
+and the (“code”) or (“coord”) or (“ra” and “dec”) must be given.</p>
+<p>All values downloaded from Gaia will replace the ones given by the user.</p>
+</div>
+<dl class="py method">
+<dt id="sora.Star.add_offset">
+<code class="sig-name descname"><span class="pre">add_offset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">da_cosdec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.add_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.add_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an offset to the star position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>da_cosdec</strong> (<cite>int</cite>, <cite>float</cite>) – Offset in Delta_alpha_cos_delta, in mas.</p></li>
+<li><p><strong>ddec</strong> (<cite>int</cite>, <cite>float</cite>) – Offset in Delta_delta, in mas.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.apparent_diameter">
+<code class="sig-name descname"><span class="pre">apparent_diameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'V'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.apparent_diameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.apparent_diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the apparent diameter of the star at a given distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<cite>int</cite>, <cite>float</cite>) – Object geocentric distance, in AU.</p></li>
+<li><p><strong>mode</strong> (<cite>str</cite>, default=’auto’) – <p>The mode to calculate the apparent diameter.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'user'</span></code>: calculates using user given diameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'gaia'</span></code>: calculates using diameter obtained from Gaia.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'kervella'</span></code>: calculates using Kervella equations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'van_belle'</span></code>: calculates using van Belle equations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code>: tries all the above methods until it is able to calculate diameter.</p></li>
+</ul>
+<p>The order of try is the same as shown above (user, Gaia, Kervella, Van Belle).</p>
+</p></li>
+<li><p><strong>band</strong> (<cite>str</cite>) – The band filter to calculate the diameter. If mode is <cite>kervella</cite>
+or <cite>van_belle</cite>, the filter must be given, <code class="docutils literal notranslate"><span class="pre">'B'</span></code> or <code class="docutils literal notranslate"><span class="pre">'V'</span></code>.
+If mode <cite>auto</cite>, <code class="docutils literal notranslate"><span class="pre">'V'</span></code> is selected.</p></li>
+<li><p><strong>star_type</strong> (<cite>str</cite>) – <p>Type of star to calculate the diameter. If mode is <cite>van_belle</cite>,
+the star type must be given. If mode is <cite>auto</cite>, <code class="docutils literal notranslate"><span class="pre">star_type='sg'</span></code>.</p>
+<p>Accepted types:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'sg'</span></code> for ‘Super Giant’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'ms'</span></code> for ‘Main Sequence’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'vs'</span></code> for ‘Variable Star’.</p></li>
+</ul>
+</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – If True, it prints the mode used by <cite>auto</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.barycentric">
+<code class="sig-name descname"><span class="pre">barycentric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.barycentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.barycentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position of the star using proper motion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to apply proper motion.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.error_at">
+<code class="sig-name descname"><span class="pre">error_at</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.error_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.error_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the star position error at a given time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<cite>str</cite>, <cite>astropy.time.Time</cite>) – Reference time to project star error.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>errors</strong> – In RA* and DEC.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.geocentric">
+<code class="sig-name descname"><span class="pre">geocentric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.geocentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.geocentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position of the star, propagating the position using
+parallax and proper motion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<cite>float, `astropy.time.Time</cite>) – Reference time to apply proper motion and calculate paralax.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.kervella">
+<code class="sig-name descname"><span class="pre">kervella</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.kervella"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.kervella" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from Kervella et. al (2004).</p>
+<p>See: A&amp;A Vol.  426, No.  1:.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.set_diameter">
+<code class="sig-name descname"><span class="pre">set_diameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.set_diameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.set_diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets an user diameter for the star, in mas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>diameter</strong> (<cite>int</cite>, <cite>float</cite>) – Sets the user diameter of the star, in mas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.set_magnitude">
+<code class="sig-name descname"><span class="pre">set_magnitude</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.set_magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.set_magnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the magnitudes of a star.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>band=value</strong> (<cite>str</cite>) – The star magnitude for given band. The band name can be any string
+the user wants.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>To set the stars magnitude in the band G:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_magnitude</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To set the star’s magnitude in the band K:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_magnitude</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To set the star’s magnitude in a customized band:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">set_magnitude</span><span class="p">(</span><span class="n">newband</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.Star.van_belle">
+<code class="sig-name descname"><span class="pre">van_belle</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/core.html#Star.van_belle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.Star.van_belle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from van Belle (1999).</p>
+<p>See: Publi. Astron. Soc. Pacific 111, 1515-1523:.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h2>Module <cite>utils</cite><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-sora.star.utils"></span><dl class="py function">
+<dt id="sora.star.utils.kervella">
+<code class="sig-prename descclassname"><span class="pre">sora.star.utils.</span></code><code class="sig-name descname"><span class="pre">kervella</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magK</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/utils.html#kervella"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.utils.kervella" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from Kervella et. al (2004).</p>
+<p>See: A&amp;A Vol. 426, No.  1:.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>magB</strong> (<cite>float</cite>, default=None) – The magnitude B of the star.</p></li>
+<li><p><strong>magV</strong> (<cite>float</cite>, default=None) – The magnitude V of the star.</p></li>
+<li><p><strong>magK</strong> (<cite>float</cite>, default=None) – The magnitudes K of the star.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If any of those values is ‘None’, ‘nan’ or higher than 49, it is not considered.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sora.star.utils.van_belle">
+<code class="sig-prename descclassname"><span class="pre">sora.star.utils.</span></code><code class="sig-name descname"><span class="pre">van_belle</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magK</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/star/utils.html#van_belle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sora.star.utils.van_belle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the diameter of a star in mas using equations from van Belle (1999).</p>
+<p>See: Publi. Astron. Soc. Pacific 111, 1515-1523:.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>magB</strong> (<cite>float</cite>, default=None) – The magnitude B of the star.</p></li>
+<li><p><strong>magV</strong> (<cite>float</cite>, default=None) – The magnitude V of the star.</p></li>
+<li><p><strong>magK</strong> (<cite>float</cite>, default=None) – The magnitude K of the star.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If any of those values is ‘None’, ‘nan’ or higher than 49, it is not considered.</p>
+</div>
 </dd></dl>
 
 </div>

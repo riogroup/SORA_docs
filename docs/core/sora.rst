@@ -1,14 +1,14 @@
 Body
 ----
 
-The Body class
+The Body Class
 ==============
 .. autoclass:: sora.Body
    :members:
    :private-members:
 
-PhysicalData object 
-===================
+PhysicalData Class 
+==================
 .. autoclass:: sora.body.PhysicalData
    :members:
 
@@ -49,12 +49,12 @@ Module `utils`
 LightCurve
 ----------
 
-The LightCurve class
+The LightCurve Class
 ====================
 .. autoclass:: sora.LightCurve
    :members:
 
-Occutation detection
+Occutation Detection
 ====================
 .. automodule:: sora.lightcurve.occdetect
    :members: occ_detect
@@ -69,8 +69,8 @@ Module's `utils`
 Observer
 --------
 
-The Observer object
-===================
+The Observer Class
+==================
 .. autoclass:: sora.Observer
    :members:
 
@@ -84,22 +84,22 @@ Module `utils`
 
 Occultation
 -----------
-The Occultation class
+The Occultation Class
 =====================
 .. autoclass:: sora.Occultation
    :members:
 
-The Chord object
-================
+The Chord Class
+===============
 .. autoclass:: sora.occultation.Chord
    :members:
 
-The Chordlist class
+The Chordlist Class
 ===================
 .. autoclass:: sora.occultation.chordlist.ChordList
    :members:
 
-Fit ellipse
+Fit Ellipse
 ===========
 .. autofunction:: sora.occultation.fit_ellipse
 
@@ -113,17 +113,17 @@ Module `utils`
 Prediction
 ----------
 
-Prediction functions
+Prediction Functions
 ====================
 .. automodule:: sora.prediction.core
    :members:
 
-Plot occultation map
+Plot Occultation Map
 ====================
 .. automodule:: sora.prediction.occmap
    :members:
 
-PredictionTable object
+PredictionTable Cbject
 ======================
 .. autoclass:: sora.prediction.PredictionTable
    :members:
@@ -133,7 +133,7 @@ PredictionTable object
 Star
 ----
 
-The Star class
+The Star Class
 ==============
 .. autoclass:: sora.Star
    :members:
@@ -144,11 +144,12 @@ Module `utils`
    :members:
 
 
+
 Extra
 -----
 
-ChiSquare object
-================
+ChiSquare Class
+===============
 .. autoclass:: sora.extra.ChiSquare
    :members:
 
@@ -158,7 +159,7 @@ Plot ellipse
    :members:
 
 
-Module's `utils` functions
-==========================
+Module `utils`
+==============
 .. automodule:: sora.extra.utils
    :members:

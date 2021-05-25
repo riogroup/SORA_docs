@@ -4,3 +4,4 @@ numpy==1.18.1
 scipy==1.4.1
 spiceypy==3.0.2
 astroquery==0.4.1
+nbsphinx

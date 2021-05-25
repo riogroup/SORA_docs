@@ -8,7 +8,7 @@ version: 2
 python:
    version: 3.7
    install:
-   - dependencies: docs/core/requirements.txt
+   - requirements: docs/core/requirements.txt
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

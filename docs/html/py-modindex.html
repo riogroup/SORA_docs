@@ -32,7 +32,10 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -90,36 +93,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Manual:</span></p>
+              <p class="caption"><span class="caption-text">Details:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="goals_updates.html">Goals and Version updates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curiosities.html">Curiosities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="future_linea.html">The future and the LIneA TNO Portal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_output.html">Input and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora_code.html">SORA Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team.html">About Us</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials:</span></p>
+<p class="caption"><span class="caption-text">Code:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_ChiSquare.html">ChiSquare Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_LightCurve.html">LightCurve Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Observer.html">Observer Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Occultation.html">Occultation Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Prediction.html"><em>prediction()</em> and PredictionTable Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Star.html">Star Class</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Modules:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sora.html">Ephem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.lightcurve">Lightcurve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.observer">Observer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.occultation">Occultation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.prediction">Prediction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.star">Star</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.body">Body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.extra">Extra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters.html">Jupyter-Notebook Guidelines</a></li>
 </ul>
 
             
@@ -203,42 +189,57 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.body"><code class="xref">sora.body</code></a></td><td>
+       <a href="sora.html#module-sora.body.utils"><code class="xref">sora.body.utils</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.ephem"><code class="xref">sora.ephem</code></a></td><td>
+       <a href="sora.html#module-sora.ephem.utils"><code class="xref">sora.ephem.utils</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.extra"><code class="xref">sora.extra</code></a></td><td>
+       <a href="sora.html#module-sora.extra.plots"><code class="xref">sora.extra.plots</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.lightcurve"><code class="xref">sora.lightcurve</code></a></td><td>
+       <a href="sora.html#module-sora.extra.utils"><code class="xref">sora.extra.utils</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.observer"><code class="xref">sora.observer</code></a></td><td>
+       <a href="sora.html#module-sora.lightcurve.occdetect"><code class="xref">sora.lightcurve.occdetect</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.occultation"><code class="xref">sora.occultation</code></a></td><td>
+       <a href="sora.html#module-sora.lightcurve.utils"><code class="xref">sora.lightcurve.utils</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.prediction"><code class="xref">sora.prediction</code></a></td><td>
+       <a href="sora.html#module-sora.observer.utils"><code class="xref">sora.observer.utils</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="sora.html#module-sora.star"><code class="xref">sora.star</code></a></td><td>
+       <a href="sora.html#module-sora.occultation.utils"><code class="xref">sora.occultation.utils</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="sora.html#module-sora.prediction.core"><code class="xref">sora.prediction.core</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="sora.html#module-sora.prediction.occmap"><code class="xref">sora.prediction.occmap</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="sora.html#module-sora.star.utils"><code class="xref">sora.star.utils</code></a></td><td>
        <em></em></td></tr>
    </table>
 

@@ -51,7 +51,16 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx_rtd_theme',
     'nbsphinx',
+    'sphinx_issues',
 ]
+
+# GitHub repo
+issues_github_path = "riogroup/sora"
+
+# equivalent to
+issues_uri = "https://github.com/riogroup/sora/issues/{issue}"
+issues_pr_uri = "https://github.com/riogroup/sora/pull/{pr}"
+issues_commit_uri = "https://github.com/riogroup/sora/commit/{commit}"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']

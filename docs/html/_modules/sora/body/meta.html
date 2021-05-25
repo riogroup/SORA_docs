@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.body.meta &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.body.meta</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.body.meta</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">Longitude</span><span class="p">,</span> <span class="n">Latitude</span>
+
+<span class="kn">from</span> <span class="nn">sora.ephem</span> <span class="kn">import</span> <span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemKernel</span><span class="p">,</span> <span class="n">EphemJPL</span><span class="p">,</span> <span class="n">EphemHorizons</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PhysicalData&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="PhysicalData"><a class="viewcode-back" href="../../../sora.html#sora.body.PhysicalData">[docs]</a><span class="k">class</span> <span class="nc">PhysicalData</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Defines PhysicalData with uncertainty, reference and notes.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    It inherits from astropy.units.quantity.Quantity().</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name :`str`</span>
+<span class="sd">        The name representing the corresponding physical parameter.</span>
+
+<span class="sd">    value : `int`, `float`, `str`, `~numpy.ndarray`, `astropy.quantity.Quantity`</span>
+<span class="sd">        The numerical value of this quantity in the units given by unit.  If</span>
+<span class="sd">        a `Quantity`  (or any other valid object with a ``unit`` attribute),</span>
+<span class="sd">        creates a new `Quantity` object, converting to `unit` units as needed.</span>
+<span class="sd">        If a string, it is converted to a number or `Quantity`, depending on</span>
+<span class="sd">        whether a unit is present.</span>
+
+<span class="sd">    uncertainty : `int`, `float`, `str`, `~numpy.ndarray`, `astropy.quantity.Quantity`, default=0</span>
+<span class="sd">        The numerical value of this quantity in the units given by unit.  If</span>
+<span class="sd">        a `Quantity` (or any other valid object with a ``unit`` attribute),</span>
+<span class="sd">        creates a new `Quantity` object, converting to `unit` units as needed.</span>
+<span class="sd">        If a string, it is converted to a number or `Quantity`, depending on</span>
+<span class="sd">        whether a unit is present.</span>
+
+<span class="sd">    reference : `str`, default=&#39;User&#39;</span>
+<span class="sd">        A string stating the reference for the parameter value.</span>
+
+<span class="sd">    notes : `str`, default=&#39;&#39;</span>
+<span class="sd">        Any other important information about the physical parameter.</span>
+
+<span class="sd">    unit : `str`, `~astropy.units.UnitBase` instance, default=&#39;dimensionless&#39;</span>
+<span class="sd">        An object that represents the unit associated with the input value. Must</span>
+<span class="sd">        be an `~astropy.units.UnitBase` object or a string parsable by the</span>
+<span class="sd">        :mod:`~astropy.units` package.</span>
+
+<span class="sd">    raise_error : `bool`, default=False</span>
+<span class="sd">        If ``value=None`` or ``raise_error=True`` the function raises an error,</span>
+<span class="sd">        else `value` is redefined to ``NaN``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">notes</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dimensionless_unscaled</span><span class="p">,</span>
+                <span class="n">raise_error</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">given_unit</span> <span class="o">=</span> <span class="n">unit</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_error</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The value must be a valid PhysicalData type. Given: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">CompositeUnit</span><span class="p">):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">dimensionless_unscaled</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">bases</span><span class="p">)):</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">bases</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="n">value</span><span class="o">.</span><span class="n">powers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">scale</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">PhysicalData</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">)):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">unit</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Given value must be a scalar. Given: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">unit</span><span class="o">.</span><span class="n">is_equivalent</span><span class="p">(</span><span class="n">given_unit</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not equivalent to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">given_unit</span><span class="p">))</span>
+        <span class="n">physdata</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
+        <span class="n">physdata</span> <span class="o">=</span> <span class="n">physdata</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">given_unit</span><span class="p">)</span>
+        <span class="n">physdata</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">physdata</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">uncertainty</span>
+        <span class="n">physdata</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span>
+        <span class="n">physdata</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="n">notes</span>
+        <span class="k">return</span> <span class="n">physdata</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">uncertainty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_uncertainty</span>
+
+    <span class="nd">@uncertainty</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">uncertainty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">given_unit</span> <span class="o">=</span> <span class="n">unit</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">CompositeUnit</span><span class="p">):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">dimensionless_unscaled</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">bases</span><span class="p">)):</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">bases</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="n">value</span><span class="o">.</span><span class="n">powers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">scale</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">unit</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Given value must be a scalar. Given: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">unit</span><span class="o">.</span><span class="n">is_equivalent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not equivalent to </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">given_unit</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_uncertainty</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">given_unit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_uncertainty</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;uncertainty cannot be a negative value&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span>
+
+    <span class="nd">@reference</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;reference must be a string&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reference</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">notes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notes</span>
+
+    <span class="nd">@notes</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;notes must be a string&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notes</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">    </span><span class="si">{:.5g}</span><span class="s2"> +/- </span><span class="si">{:.5g}</span><span class="s2"> </span><span class="si">{}</span><span class="se">\n</span><span class="s2">    Reference: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uncertainty</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">out</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<span class="k">class</span> <span class="nc">BaseBody</span><span class="p">():</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">albedo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_albedo</span>
+
+    <span class="nd">@albedo</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">albedo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="n">albedo</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">albedo</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Albedo&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">albedo</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Albedo&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">albedo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;albedo cannot be a negative value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_albedo</span> <span class="o">=</span> <span class="n">albedo</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_H</span>
+
+    <span class="nd">@H</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_H</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_H</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Absolute Magnitude&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">mag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">):</span>  <span class="c1"># remove this line for v1.0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span>  <span class="c1"># remove this line for v1.0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_G</span>
+
+    <span class="nd">@G</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">G</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_G</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_G</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Phase Slope&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_G</span><span class="p">):</span>  <span class="c1"># remove this line for v1.0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;G&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>  <span class="c1"># remove this line for v1.0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diameter</span>
+
+    <span class="nd">@diameter</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="n">diameter</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">diameter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Diameter&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">diameter</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">diameter</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;diameter cannot be a negative value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_diameter</span> <span class="o">=</span> <span class="n">diameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;radius&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Radius&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">uncertainty</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+
+    <span class="nd">@radius</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">value</span><span class="o">*</span><span class="mf">2.0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">*</span> <span class="mf">2.0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Diameter&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Diameter&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_density</span>
+
+    <span class="nd">@density</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="n">density</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">density</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Density&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">density</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">density</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;density cannot be a negative value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_density</span> <span class="o">=</span> <span class="n">density</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">GM</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GM</span>
+
+    <span class="nd">@GM</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">GM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="n">GM</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">GM</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Standard Gravitational Parameter&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">GM</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Standard Gravitational Parameter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">GM</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;GM cannot be a negative value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_GM</span> <span class="o">=</span> <span class="n">GM</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="k">as</span> <span class="nn">const</span>
+
+        <span class="k">return</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Mass&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GM</span><span class="o">/</span><span class="n">const</span><span class="o">.</span><span class="n">G</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GM</span><span class="o">.</span><span class="n">uncertainty</span><span class="o">/</span><span class="n">const</span><span class="o">.</span><span class="n">G</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">GM</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GM</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">kg</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span>
+
+    <span class="nd">@rotation</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="n">rotation</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">rotation</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Rotation&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rotation</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;Rotation&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rotation</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;rotation cannot be a negative value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span> <span class="o">=</span> <span class="n">rotation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pole</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span>
+
+    <span class="nd">@pole</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">pole</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Longitude</span><span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="n">Latitude</span><span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="s2">&quot;User&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pole</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">BV</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_BV</span>
+
+    <span class="nd">@BV</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">BV</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_BV</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_BV</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;B-V color&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">UB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_UB</span>
+
+    <span class="nd">@UB</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">UB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PhysicalData</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_UB</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_UB</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="s1">&#39;U-B color&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">spkid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spkid&#39;</span><span class="p">)</span>
+
+    <span class="nd">@spkid</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">spkid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">spkid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spkid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orbit_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orbit_class</span>
+
+    <span class="nd">@orbit_class</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">orbit_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">orbit_classes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tno&#39;</span><span class="p">:</span> <span class="s1">&#39;TransNeptunian Object&#39;</span><span class="p">,</span> <span class="s1">&#39;satellite&#39;</span><span class="p">:</span> <span class="s1">&#39;Natural Satellite&#39;</span><span class="p">,</span> <span class="s1">&#39;centaur&#39;</span><span class="p">:</span> <span class="s1">&#39;Centaur&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;comet&#39;</span><span class="p">:</span> <span class="s1">&#39;Comet&#39;</span><span class="p">,</span> <span class="s1">&#39;asteroid&#39;</span><span class="p">:</span> <span class="s1">&#39;Main-belt Asteroid&#39;</span><span class="p">,</span> <span class="s1">&#39;trojan&#39;</span><span class="p">:</span> <span class="s1">&#39;Jupiter Trojan&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;neo&#39;</span><span class="p">:</span> <span class="s1">&#39;Near-Earth Object&#39;</span><span class="p">,</span> <span class="s1">&#39;planet&#39;</span><span class="p">:</span> <span class="s2">&quot;Planet&quot;</span><span class="p">,</span> <span class="s1">&#39;unclassified&#39;</span><span class="p">:</span> <span class="s2">&quot;Unclassified&quot;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">orbit_classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_orbit_class</span> <span class="o">=</span> <span class="n">orbit_classes</span><span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+        <span class="k">elif</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">orbit_classes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_orbit_class</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_orbit_class</span> <span class="o">=</span> <span class="n">orbit_classes</span><span class="p">[</span><span class="s1">&#39;unclassified&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ephem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ephem</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> object does not have ephemeris.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="nd">@ephem</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">ephem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">allowed_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemKernel</span><span class="p">,</span> <span class="n">EphemJPL</span><span class="p">,</span> <span class="n">EphemHorizons</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_types</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;horizons&#39;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">EphemHorizons</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_search_name</span><span class="p">,</span> <span class="n">id_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_id_type</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spkid</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">EphemKernel</span><span class="p">(</span><span class="n">kernels</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">spkid</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot set &quot;ephem&quot; with </span><span class="si">{}</span><span class="s1">. Allowed types are: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">allowed_types</span><span class="p">))</span>
+        <span class="k">if</span> <span class="s1">&#39;spkid&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;_spkid&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">][</span><span class="s1">&#39;spkid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">spkid</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;spkid is not defined in </span><span class="si">{}</span><span class="s1"> or </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_ephem&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ephem</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ephem</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">spkval</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;spkid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ephem</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;ephem&#39;</span><span class="p">]</span>
+        <span class="n">spknewval</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;spkid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spkval</span> <span class="o">!=</span> <span class="n">spknewval</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;spkid is different in </span><span class="si">{0}</span><span class="s1"> (</span><span class="si">{1}</span><span class="s1">) and </span><span class="si">{2}</span><span class="s1"> (</span><span class="si">{3}</span><span class="s1">). </span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s1">s spkid will have higher priority&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">spknewval</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">spkval</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_search_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Natural Satellite&#39;</span><span class="p">,</span> <span class="s1">&#39;Planet&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spkid</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortname</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_des_name&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_des_name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_id_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orbit_class</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Natural Satellite&#39;</span><span class="p">,</span> <span class="s1">&#39;Planet&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="s1">&#39;majorbody&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;smallbody&#39;</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

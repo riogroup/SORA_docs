@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>SORA Overview &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using and Citing SORA" href="license.html" />
+    <link rel="prev" title="Welcome to SORA’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SORA Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#stellar-occultations">Stellar Occultations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-sora-package">The SORA package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>SORA Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<a class="reference internal image-reference" href="_images/SORA_logo.png" id="sec-overview"><img alt="SORA: Stellar Occultation Reduction and Analysis" class="align-center" id="sec-overview" src="_images/SORA_logo.png" style="width: 500px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="sora-overview">
+<h1>SORA Overview<a class="headerlink" href="#sora-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="stellar-occultations">
+<h2>Stellar Occultations<a class="headerlink" href="#stellar-occultations" title="Permalink to this headline">¶</a></h2>
+<p>A stellar occultation occurs when a solar system object passes in front
+of a star for an observer on Earth, and its shadow causes a temporary
+drop in the observed flux of the star. This technique allows the
+determination of sizes and shapes with kilometre precision and to obtain
+characteristics of the object, such as its albedo, the presence of an
+atmosphere, rings, jets, or other structures around the body (Sicardy et
+al. <a href="https://ui.adsabs.harvard.edu/abs/2011Natur.478..493S/abstract" target="_blank">2011</a>, <a href="https://ui.adsabs.harvard.edu/abs/2016ApJ...819L..38S/abstract" target="_blank">2016</a>, Braga-Ribas et al. <a href="https://ui.adsabs.harvard.edu/abs/2013ApJ...773...26B/abstract" target="_blank">2011</a>, <a href="https://ui.adsabs.harvard.edu/abs/2014Natur.508...72B/abstract" target="_blank">2014</a>, <a href="https://ui.adsabs.harvard.edu/abs/2019JPhCS1365a2024B/abstract" target="_blank">2019</a>,
+Dias-Oliveira et al., <a href="https://ui.adsabs.harvard.edu/abs/2015ApJ...811...53D/abstract" target="_blank">2015</a>, Benedetti-Rossi et al., <a href="https://ui.adsabs.harvard.edu/abs/2016AJ....152..156B/abstract" target="_blank">2016</a>, <a href="https://ui.adsabs.harvard.edu/abs/2019AJ....158..159B/abstract" target="_blank">2019</a>,
+Ortiz et al., <a href="https://ui.adsabs.harvard.edu/abs/2015EPSC...10..230O/abstract" target="_blank">2015</a>, <a href="https://ui.adsabs.harvard.edu/abs/2017Natur.550..219O/abstract" target="_blank">2017</a>, Leiva et al., <a href="https://ui.adsabs.harvard.edu/abs/2017AJ....154..159L/abstract" target="_blank">2017</a>, Bérard et al.,
+<a href="https://ui.adsabs.harvard.edu/abs/2017AJ....154..144B/abstract" target="_blank">2017</a>, Morgado et al., <a href="https://ui.adsabs.harvard.edu/abs/2019A%26A...626L...4M/abstract" target="_blank">2019</a>, Gomes-Júnior et al., <a href="https://ui.adsabs.harvard.edu/abs/2020MNRAS.492..770G/abstract" target="_blank">2020</a>)
+or even the detection of topographic features (Dias-Oliveira et al. <a href="https://ui.adsabs.harvard.edu/abs/2017AJ....154...22D/abstract" target="_blank">2017</a>).</p>
+<a class="reference internal image-reference" href="_images/stellar_occ.jpg"><img alt="Stellar Occultation geometry" class="align-center" src="_images/stellar_occ.jpg" style="width: 800px;" /></a>
+<p><strong>Figure 1:</strong> Illustration of a stellar occultation geometry. Original source:
+IOTA, editted by G. Benedetti-Rossi.</p>
+</div>
+<div class="section" id="the-sora-package">
+<h2>The SORA package<a class="headerlink" href="#the-sora-package" title="Permalink to this headline">¶</a></h2>
+<p>SORA is a Python-based, object-oriented package for optimal analysis of
+stellar occultation data. The user can use this package to build pipelines
+to analyse their stellar occultation’s data. It includes processes starting
+on the prediction of such events to the resulting size, shape and position of
+the Solar System object. The main object classes available at version 0.2
+are: <strong>Star</strong>, <strong>Body</strong>, <strong>Observer</strong>, <strong>LightCurve</strong> and
+<strong>Occultation</strong>. It is important to note that new object classes,
+modules and other improvements and implementations can be available in
+future versions.</p>
+<p>A stellar occultation is defined by the occulting body (<strong>Body</strong>), the
+occulted star (<strong>Star</strong>), and the time of the occultation. On the other
+hand, each observational station (<strong>Observer</strong>) will be associated with
+their light curve (<strong>LightCurve</strong>). sora has tasks that allow the user
+to determine the immersion and emersion times and project them to the
+tangent sky plane, using the information within the <strong>Observer</strong>,
+<strong>Body</strong> and <strong>Star</strong> Objects. That projection will lead to chords that
+will be used to obtain the object’s apparent size, shape and position at
+the moment of the occultation. Automatic processes were developed for
+optimising the reduction of typical events. However, users have full
+control over the parameters and methods and can make changes in every
+step of the processes.</p>
+<p>The Object Classes developed within sora were built as an integrated
+system, and they are controlled by the <strong>Occultation</strong> Object Class.
+Combining these Object Classes and the functions therein, the user can
+perform the complete data reduction, pre- and post-occultation.
+Jupyter-Notebooks with the features of each Class can be found in the
+example folder.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>The sora package is hosted on a <a href="https://github.com/riogroup/SORA" target="_blank">GitHub</a> repository. It was developed with support
+of the <a href="https://lesia.obspm.fr/lucky-star/" target="_blank">ERC LuckyStar</a>, that agglomerates the efforts of the Paris, Granada, and Rio teams.
+The <a href="https://lesia.obspm.fr/lucky-star/" target="_blank">ERC LuckyStar</a> is funded by the ERC (European Research Council) under the European
+Community’s H2020 (2014-2020/ERC Grant Agreement No. 669416). Also, this project is
+supported by <a href="https://www.linea.gov.br/" target="_blank">LIneA</a> (Laboratório Interinstitucional de e-Astronomia), INCT do e-Universo
+(CNPQ grants 465376/2014-2), by FAPESP (proc. 2018/11239-8) and by CNPQ (proc. 300472/2020-0),
+Brazil.</p>
+<a class="reference internal image-reference" href="_images/Thanks.png"><img alt="Acknowledgements" class="align-center" src="_images/Thanks.png" style="width: 800px;" /></a>
+<p><strong>Figure 2:</strong> The SORA team thanks the following institutions, groups and projects for their support:
+ERC Lucky Star, LIneA/Brazil, INCT do e-Universo/Brazil, UNESP/Brazil, GDOP/Brazil, Observatoire
+de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="license.html" class="btn btn-neutral float-right" title="Using and Citing SORA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to SORA’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

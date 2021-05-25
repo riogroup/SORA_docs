@@ -1,0 +1,1295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Prediction &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Observer Class" href="Tutorial_SORAv0.2_Observer.html" />
+    <link rel="prev" title="Star Class" href="Tutorial_SORAv0.2_Star.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../jupyters.html">Jupyter-Notebook Guidelines</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Body.html">Body Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Star.html">Star Class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#0.-Index">0. Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#1.-Predicting-stellar-occultation">1. Predicting stellar occultation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#2.-The-PredictionTable">2. The PredictionTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#3.-Using-PredictionTable">3. Using PredictionTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#4.-Plotting-occultation-maps">4. Plotting occultation maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#5.-Occultation-parameters">5. Occultation parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Observer.html">Observer Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_LightCurve.html">LightCurve Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Occultation.html">Occultation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_ChiSquare.html">ChiSquare Class</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../jupyters.html">Jupyter-Notebook Guidelines</a> &raquo;</li>
+        
+      <li>Prediction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/Tutorial_SORAv0.2_Prediction.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Prediction">
+<h1>Prediction<a class="headerlink" href="#Prediction" title="Permalink to this headline">¶</a></h1>
+<p>The prediction module within SORA was created to predict stellar occultation, organize the prediction and plot the occultation maps. The documentation here contains the details about every step.</p>
+<p>This Jupyter-Notebook was designed as a tutorial for how to work with the prediction module. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</p>
+<p><strong>All functions have their Docstring containing its main purpose and the needed parameters (physical description and formats). Please, do not hesitate to use it.</strong></p>
+<div class="section" id="0.-Index">
+<h2>0. Index<a class="headerlink" href="#0.-Index" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#section_1">Predicting stellar occultation</a></p></li>
+<li><p><a class="reference external" href="#section_2">Setting and/or modifying parameters</a></p></li>
+<li><p><a class="reference external" href="#section_3">Apparent Sidereal Time</a></p></li>
+<li><p><a class="reference external" href="#section_4">Ksi and Eta projection</a></p></li>
+<li><p><a class="reference external" href="#section_5">MPC observatories</a></p></li>
+</ol>
+</div>
+<div class="section" id="1.-Predicting-stellar-occultation">
+<h2>1. Predicting stellar occultation<a class="headerlink" href="#1.-Predicting-stellar-occultation" title="Permalink to this headline">¶</a></h2>
+<p>To predict a stellar occultation, the function <code class="docutils literal notranslate"><span class="pre">prediction()</span></code> must be used. It will need a <code class="docutils literal notranslate"><span class="pre">Body</span></code> Object and the time interval for the search. The function will generate the ephemeris within the given interval (with a default step of 60 seconds between positions, that may be changed by the user) and download the star coordinates from VizieR. The function is able to download stars from Gaia-DR2 and Gaia-EDR3. The user must select the one desired by the keys <em>“gaiadr2”</em> and <em>“gaiaedr3”</em>
+(default in this version). For every star, it checks the closest ephemeris. An occultation is identified if the distance is smaller than the radius of the Earth plus the radius of the object (given in <code class="docutils literal notranslate"><span class="pre">Body</span></code>) plus the error of the ephemeris (multiplied by a sigma factor given by the user). In the next step, the coordinate of the star is propagated to date using proper motion and parallax. It results in the occultation parameters, such as the Closest Approach distance, the Position Angle,
+Velocity, etc.</p>
+<p>The function returns a <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> with all the information.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.prediction</span> <span class="kn">import</span> <span class="n">prediction</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SORA version: 0.2dev
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>prediction<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+prediction<span class="ansi-blue-fg">(</span>
+    time_beg<span class="ansi-blue-fg">,</span>
+    time_end<span class="ansi-blue-fg">,</span>
+    body<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    ephem<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    mag_lim<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    catalogue<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;gaiaedr3&#39;</span><span class="ansi-blue-fg">,</span>
+    step<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">60</span><span class="ansi-blue-fg">,</span>
+    divs<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span>
+    sigma<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span>
+    radius<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    verbose<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Predicts stellar occultations
+
+Parameters:
+    time_beg (str,Time): Initial time for prediction (required).
+    time_end (str,Time): Final time for prediction (required).
+    body (Body, str): Object that will occult the stars. It must be a Body object or its
+            name to search in the Small Body Database.
+    ephem (Ephem): object ephemeris. It must be an Ephemeris object.
+    mag_lim (int,float): Faintest Gmag for search
+    catalogue (str): The catalogue to download data. It can be &#34;gaiadr2&#34; or &#34;gaiaedr3&#34;
+    step (number): step, in seconds, of ephem times for search
+    divs (int): number of regions the ephemeris will be splitted for better search of occultations
+    sigma (number): ephemeris error sigma for search off-Earth.
+    radius (number): The radius of the body. It is important if not defined in body or ephem.
+    verbose (bool): To show what is being done at the moment.
+
+When instantiating with &#34;body&#34; and &#34;ephem&#34;, the user may call the function in 3 ways:
+    - With &#34;body&#34; and &#34;ephem&#34;.
+    - With only &#34;body&#34;. In this case, the &#34;body&#34; parameter must be a Body object and have an
+        ephemeris associated (see Body documentation).
+    - With only &#34;ephem&#34;. In this case, the &#34;ephem&#34; parameter must be one of the Ephem Classes
+        and have a name (see Ephem documentation) to search for the body in the Small Body Database.
+
+Returns:
+    predict (PredictionTable): PredictionTable with the occultation params for each event
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/prediction/core.py
+<span class="ansi-red-fg">Type:</span>      function
+
+</pre></div></div>
+</div>
+<p><strong>Importing and defining the</strong> <code class="docutils literal notranslate"><span class="pre">Body</span></code> <strong>to be used.</strong></p>
+<p>As showed in the docstring of the <code class="docutils literal notranslate"><span class="pre">prediction()</span></code> function, the user can give a <code class="docutils literal notranslate"><span class="pre">Body</span></code> object, a <code class="docutils literal notranslate"><span class="pre">Ephem</span></code> object, or both (given their restrictions). Please refer to the <code class="docutils literal notranslate"><span class="pre">Body</span></code> tutorial for further explanation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.body</span> <span class="kn">import</span> <span class="n">Body</span>
+<span class="kn">from</span> <span class="nn">sora.ephem</span> <span class="kn">import</span> <span class="n">EphemKernel</span>
+
+<span class="n">chariklo</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">)</span>
+<span class="n">ephem</span> <span class="o">=</span> <span class="n">EphemKernel</span><span class="p">(</span><span class="n">spkid</span><span class="o">=</span><span class="s1">&#39;2010199&#39;</span><span class="p">,</span> <span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">],</span> <span class="n">error_ra</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">error_dec</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># here I&#39;m using Body and Ephem so I&#39;m able to give the errors in RA and DEC.</span>
+<span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span> <span class="o">=</span> <span class="n">ephem</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for Chariklo from SBDB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">chariklo</span><span class="p">,</span> <span class="n">time_beg</span><span class="o">=</span><span class="s1">&#39;2017-06-20 00:00:00&#39;</span><span class="p">,</span> <span class="n">time_end</span><span class="o">=</span><span class="s1">&#39;2017-07-01 00:00:00&#39;</span><span class="p">,</span> <span class="n">mag_lim</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">divs</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ephemeris was split in 3 parts for better search of stars
+
+Searching occultations in part 1/3
+Generating Ephemeris between 2017-06-20 00:00:00.000 and 2017-06-23 15:59:00.000 ...
+Downloading stars ...
+    15 Gaia-EDR3 stars downloaded
+Identifying occultations ...
+
+Searching occultations in part 2/3
+Generating Ephemeris between 2017-06-23 16:00:00.000 and 2017-06-27 07:59:00.000 ...
+Downloading stars ...
+    12 Gaia-EDR3 stars downloaded
+Identifying occultations ...
+
+Searching occultations in part 3/3
+Generating Ephemeris between 2017-06-27 08:00:00.000 and 2017-06-30 23:59:00.000 ...
+Downloading stars ...
+    18 Gaia-EDR3 stars downloaded
+Identifying occultations ...
+
+8 occultations found.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.-The-PredictionTable">
+<h2>2. The PredictionTable<a class="headerlink" href="#2.-The-PredictionTable" title="Permalink to this headline">¶</a></h2>
+<p>The resulting variable of the prediction function is a <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> Object. The <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> Class was created to have all the information about the occultations predicted, plot occultation maps and save the table in other formats.</p>
+<p><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> <strong>is a class that inherits all methods from</strong> <code class="docutils literal notranslate"><span class="pre">Astropy.table.Table</span></code><strong>. All the functions present in</strong> <code class="docutils literal notranslate"><span class="pre">Astropy.table.Table</span></code> <strong>should work for</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code>.</p>
+<p>More information about it at <a class="reference external" href="https://docs.astropy.org/en/stable/table/">https://docs.astropy.org/en/stable/table/</a></p>
+<p><strong>if the user asks to print the prediction, a summary of the table is shown.</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+         Epoch             ICRS Star Coord at Epoch    ... Gaia-EDR3 Source ID
+                                                       ...
+----------------------- ------------------------------ ... -------------------
+2017-06-21 09:57:43.420 18 55 36.17454 -31 31 19.03261 ... 6760228702284187264
+2017-06-22 02:58:37.480 18 55 26.31652 -31 31 20.38440 ... 6760228839723992320
+2017-06-22 21:18:48.200 18 55 15.65251 -31 31 21.67062 ... 6760223758801661440
+2017-06-23 21:34:37.660 18 55 01.48119 -31 31 22.44257 ... 6760223513963694208
+2017-06-24 10:13:39.980 18 54 54.06755 -31 31 22.36732 ... 6760226503261782656
+2017-06-25 10:55:09.320 18 54 39.55296 -31 31 21.69987 ... 6760225163236852864
+2017-06-26 08:14:35.540 18 54 26.97503 -31 31 20.51255 ... 6760226060885482624
+2017-06-26 20:46:07.140 18 54 19.56971 -31 31 20.43382 ... 6760225712991422208
+</pre></div></div>
+</div>
+<p><strong>to print the complete table, we must use:</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+         Epoch             ICRS Star Coord at Epoch      Geocentric Object Position    C/A    P/A    Vel     Dist    G      G*   long  loct M-G-T S-G-T Gaia-EDR3 Source ID
+                                                                                      arcsec  deg   km / s    AU    mag    mag   deg  hh:mm  deg   deg
+----------------------- ------------------------------ ------------------------------ ------ ------ ------ ------- ------ ------ ---- ----- ----- ----- -------------------
+2017-06-21 09:57:43.420 18 55 36.17454 -31 31 19.03261 18 55 36.17500 -31 31 19.60516  0.573 179.41 -21.84  14.663 15.254 15.350  225 00:56   128   165 6760228702284187264
+2017-06-22 02:58:37.480 18 55 26.31652 -31 31 20.38440 18 55 26.31674 -31 31 20.74213  0.358 179.55 -21.92  14.661 17.929 18.029  329 00:53   138   166 6760228839723992320
+2017-06-22 21:18:48.200 18 55 15.65251 -31 31 21.67062 18 55 15.65249 -31 31 21.62190  0.049 359.72 -22.00  14.659 14.224 14.327   53 00:50   149   166 6760223758801661440
+2017-06-23 21:34:37.660 18 55 01.48119 -31 31 22.44257 18 55 01.48116 -31 31 22.22700  0.216 359.91 -22.10  14.657 17.818 17.927   48 00:46   162   167 6760223513963694208
+2017-06-24 10:13:39.980 18 54 54.06755 -31 31 22.36732 18 54 54.06755 -31 31 22.28669  0.081   0.01 -22.15  14.656 17.928 18.039  218 00:43   167   168 6760226503261782656
+2017-06-25 10:55:09.320 18 54 39.55296 -31 31 21.69987 18 54 39.55291 -31 31 21.89148  0.192 180.23 -22.23  14.654 16.955 17.070  206 00:39   164   168 6760225163236852864
+2017-06-26 08:14:35.540 18 54 26.97503 -31 31 20.51255 18 54 26.97476 -31 31 20.99937  0.487 180.41 -22.30  14.653 17.603 17.721  245 00:35   154   169 6760226060885482624
+2017-06-26 20:46:07.140 18 54 19.56971 -31 31 20.43382 18 54 19.56985 -31 31 20.23484  0.199   0.51 -22.33  14.652 17.702 17.822   57 00:33   147   169 6760225712991422208
+</pre></div></div>
+</div>
+<p><em>M-G-T stands for Moon-Geocenter-Target, the on-sky angle between the star and the moon</em></p>
+<p><em>S-G-T stands for Sun-Geocenter-Target, the on-sky angle between the star and the sun</em></p>
+<p><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> <strong>can be exported to PRAIA format file</strong></p>
+<p>In this case, some information, such as the Gaia-DR2 Source ID, S-G-T and M-G-T, are lost.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pred.to_praia<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> pred<span class="ansi-blue-fg">.</span>to_praia<span class="ansi-blue-fg">(</span>filename<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Writes PredictionTable to PRAIA format.
+
+Parameters:
+    filename(str): name of the file to save table
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/table.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="o">.</span><span class="n">to_praia</span><span class="p">(</span><span class="s1">&#39;output/Chariklo_occs.table&#39;</span><span class="p">)</span>
+<span class="c1"># Check your folder named output</span>
+</pre></div>
+</div>
+</div>
+<p><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> <strong>can also generate the files in the Occult Watcher feed format</strong></p>
+<p>These are two files, named ‘LOG.dat’ and ‘tableOccult_update.txt’. The occult watcher designation for the object must be informed. For instance, for the satellite Himalia, the designation is “P5M06”. If <code class="docutils literal notranslate"><span class="pre">mode='append'</span></code> the prediction will be appended to an existing file. If <code class="docutils literal notranslate"><span class="pre">mode='restart'</span></code>, the file will be overwritted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pred.to_ow<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> pred<span class="ansi-blue-fg">.</span>to_ow<span class="ansi-blue-fg">(</span>ow_des<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;append&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Writes PredictionTable to OccultWatcher feeder update file format.
+    Tables will be saved in two files: &#34;tableOccult_update.txt&#34; and &#34;LOG.dat&#34;
+
+Parameters:
+    ow_des (str): Occult Watcher designation for the object.
+    mode (str): &#39;append&#39; to append table to already existing file, default
+        &#39;restart&#39; to overwrite existing file.
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/table.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="o">.</span><span class="n">to_ow</span><span class="p">(</span><span class="s1">&#39;1997CU26&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Using the functions from</strong> <code class="docutils literal notranslate"><span class="pre">Astropy.table.Table</span></code> <strong>, the data can be exported to many other formats using the funtion ‘write’</strong></p>
+<p>The formats allowed can be seen in <a class="reference external" href="https://docs.astropy.org/en/stable/io/unified.html#built-in-readers-writers">https://docs.astropy.org/en/stable/io/unified.html#built-in-readers-writers</a>. This includes latex and csv.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;output/prediction.tex&#39;</span><span class="p">)</span>
+<span class="c1"># Check your folder named output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="3.-Using-PredictionTable">
+<h2>3. Using PredictionTable<a class="headerlink" href="#3.-Using-PredictionTable" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> was not created to be instantiated directly by the user. It was designed to be an insteresting output object from the prediction function. However, a <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> can be instantiated from a PRAIA occultation table. For this, a <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> method must be called directly as shown below.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.prediction</span> <span class="kn">import</span> <span class="n">PredictionTable</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>PredictionTable.from_praia<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> PredictionTable<span class="ansi-blue-fg">.</span>from_praia<span class="ansi-blue-fg">(</span>filename<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Creates a PredictionTable Table reading from a PRAIA table
+
+Parameters:
+    filename (str): path to the PRAIA table file.
+    name (str): Name of the Object of the prediction.
+    radius (int,float): Object radius, in km. (not required)
+        If not given it&#39;s searched in online database.
+        If not found online, the default is set to zero.
+
+Returns:
+    A PredictionTable
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/table.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred_1</span> <span class="o">=</span> <span class="n">PredictionTable</span><span class="o">.</span><span class="n">from_praia</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;output/Chariklo_occs.table&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for chariklo from SBDB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred_1</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+         Epoch             ICRS Star Coord at Epoch      Geocentric Object Position    C/A    P/A    Vel     Dist    G      G*   long  loct M-G-T S-G-T  Source ID
+                                                                                      arcsec  deg   km / s    AU    mag    mag   deg  hh:mm  deg   deg
+----------------------- ------------------------------ ------------------------------ ------ ------ ------ ------- ------ ------ ---- ----- ----- ----- ----------
+2017-06-21 09:57:43.400 18 55 36.17450 -31 31 19.03260 18 55 36.17500 -31 31 19.60520  0.573 179.41 -21.84  14.660 15.204 15.300  225 00:56   128   165
+2017-06-22 02:58:37.400 18 55 26.31650 -31 31 20.38440 18 55 26.31670 -31 31 20.74210  0.358 179.55 -21.92  14.660 17.900 18.000  329 00:53   138   166
+2017-06-22 21:18:48.200 18 55 15.65250 -31 31 21.67060 18 55 15.65250 -31 31 21.62190  0.049 359.72 -22.00  14.660 14.197 14.300   53 00:50   149   166
+2017-06-23 21:34:37.600 18 55 01.48120 -31 31 22.44260 18 55 01.48120 -31 31 22.22700  0.216 359.91 -22.10  14.660 17.792 17.900   48 00:46   162   167
+2017-06-24 10:13:39.900 18 54 54.06750 -31 31 22.36730 18 54 54.06750 -31 31 22.28670  0.081   0.01 -22.15  14.660 17.889 18.000  218 00:43   167   168
+2017-06-25 10:55:09.300 18 54 39.55300 -31 31 21.69990 18 54 39.55290 -31 31 21.89150  0.192 180.23 -22.23  14.650 16.985 17.100  206 00:39   164   168
+2017-06-26 08:14:35.500 18 54 26.97500 -31 31 20.51260 18 54 26.97480 -31 31 20.99940  0.487 180.41 -22.30  14.650 17.582 17.700  245 00:35   154   169
+2017-06-26 20:46:07.100 18 54 19.56970 -31 31 20.43380 18 54 19.56980 -31 31 20.23480  0.199   0.51 -22.33  14.650 17.680 17.800   57 00:33   147   169
+</pre></div></div>
+</div>
+<p>To remove some occultations the User can use two functions. The first is the <em>PredictionTable.remove_occ()</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pred_1.remove_occ<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> pred_1<span class="ansi-blue-fg">.</span>remove_occ<span class="ansi-blue-fg">(</span>date<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Removes stellar occultations from table
+
+Parameters:
+    date (str,list): Date or list of dates of the occultation to be removed.
+        The dates mut be as shown in the &#39;Epoch&#39; column. If the date is not
+        complete, the function will select all occultations that matches the given string.
+        For instance, date=&#39;2020-06&#39; will remove all occultations from the month of June 2020.
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/table.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred_1</span><span class="o">.</span><span class="n">remove_occ</span><span class="p">(</span><span class="s1">&#39;2017-06-21 09:57&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred_1</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+         Epoch             ICRS Star Coord at Epoch      Geocentric Object Position    C/A    P/A    Vel     Dist    G      G*   long  loct M-G-T S-G-T  Source ID
+                                                                                      arcsec  deg   km / s    AU    mag    mag   deg  hh:mm  deg   deg
+----------------------- ------------------------------ ------------------------------ ------ ------ ------ ------- ------ ------ ---- ----- ----- ----- ----------
+2017-06-22 02:58:37.400 18 55 26.31650 -31 31 20.38440 18 55 26.31670 -31 31 20.74210  0.358 179.55 -21.92  14.660 17.900 18.000  329 00:53   138   166
+2017-06-22 21:18:48.200 18 55 15.65250 -31 31 21.67060 18 55 15.65250 -31 31 21.62190  0.049 359.72 -22.00  14.660 14.197 14.300   53 00:50   149   166
+2017-06-23 21:34:37.600 18 55 01.48120 -31 31 22.44260 18 55 01.48120 -31 31 22.22700  0.216 359.91 -22.10  14.660 17.792 17.900   48 00:46   162   167
+2017-06-24 10:13:39.900 18 54 54.06750 -31 31 22.36730 18 54 54.06750 -31 31 22.28670  0.081   0.01 -22.15  14.660 17.889 18.000  218 00:43   167   168
+2017-06-25 10:55:09.300 18 54 39.55300 -31 31 21.69990 18 54 39.55290 -31 31 21.89150  0.192 180.23 -22.23  14.650 16.985 17.100  206 00:39   164   168
+2017-06-26 08:14:35.500 18 54 26.97500 -31 31 20.51260 18 54 26.97480 -31 31 20.99940  0.487 180.41 -22.30  14.650 17.582 17.700  245 00:35   154   169
+2017-06-26 20:46:07.100 18 54 19.56970 -31 31 20.43380 18 54 19.56980 -31 31 20.23480  0.199   0.51 -22.33  14.650 17.680 17.800   57 00:33   147   169
+</pre></div></div>
+</div>
+<p>The second function is the <code class="docutils literal notranslate"><span class="pre">PredictionTable.keep_from_selected_images()</span></code> this function will check the names in the saved images and eliminate the occultations without the map. This functions allows that after the user deleted the maps of the unwanted occultation this function will eliminate the respective rows in the <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pred_1.keep_from_selected_images<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> pred_1<span class="ansi-blue-fg">.</span>keep_from_selected_images<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;.&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Keeps predictions which images were not deleted in given path
+    This function uses the name of the images to identify predictions.
+    The name must be the automatic one generated by plot_occ_map().
+    The format of the image is not relevant.
+
+Parameters:
+    path (str): path where images are located
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/table.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.-Plotting-occultation-maps">
+<h2>4. Plotting occultation maps<a class="headerlink" href="#4.-Plotting-occultation-maps" title="Permalink to this headline">¶</a></h2>
+<p>SORA is also able to generate an occultation map. The only required parameters are the occultation parameters. The function also has many inputs to configure the plot.</p>
+<p>The first time the function is called, cartopy will download some data referring to the features presented in the map, such as the country and state division, lakes, rivers, etc.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.prediction</span> <span class="kn">import</span> <span class="n">plot_occ_map</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>plot_occ_map<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+plot_occ_map<span class="ansi-blue-fg">(</span>
+    name<span class="ansi-blue-fg">,</span>
+    radius<span class="ansi-blue-fg">,</span>
+    coord<span class="ansi-blue-fg">,</span>
+    time<span class="ansi-blue-fg">,</span>
+    ca<span class="ansi-blue-fg">,</span>
+    pa<span class="ansi-blue-fg">,</span>
+    vel<span class="ansi-blue-fg">,</span>
+    dist<span class="ansi-blue-fg">,</span>
+    mag<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span>
+    longi<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span>
+    <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Plots map of the occultation
+
+Parameters:
+    Required params:
+    name (str): Name of the object
+    radius (int, float): radius of the object (km)
+    coord (str, SkyCoord): Coordinate of the star
+        (&#34;hh mm ss.sss dd mm ss.sss&#34; or &#34;hh.hhhhhhhh dd.dddddddd&#34;)
+    time (str, Time): Instant of Closest Approach (iso or isot format)
+    ca (int, float): Closest Approach Distance (arcsec)
+    pa (int, float): Position Angle at C/A (deg)
+    vel (int, vel): Velocity of the event (km/s)
+    dist (int, float): Object distance at C/A (AU)
+
+    Not required params (only printed in label):
+    mag (int,float): Mag* = Normalized magnitude to vel=20km/s
+    longi (int,float): East longitude of sub-planet point, deg, positive towards East
+
+    Map configuration:
+    nameimg (str): Change the name of the imaged saved.
+    path (str): Path to a directory where to save map.
+    resolution (int): Cartopy feature resolution. &#34;1&#34; means a resolution of &#34;10m&#34;,
+        &#34;2&#34; a resolution of &#34;50m&#34; and &#34;3&#34; a resolution of &#34;100m&#34;. Default = 2
+    states (bool): True to plot the state division of the countries. The states of
+        some countries will only be shown depending on the resolution.
+    zoom (int, float): Zooms in or out of the map.
+    centermap_geo (list): Center the map given coordinates in longitude and latitude.
+        It must be a list with two numbers. Default=None.
+    centermap_delta (list): Displace the center of the map given displacement
+        in X and Y, in km. It must be a list with two numbers. Default=None.
+    centerproj (list): Rotates the Earth to show occultation with the center
+        projected at a given longitude and latitude. It must be a list with two numbers
+    labels (bool): Plots text above and below the map with the occultation parameters.
+        Default=True.
+    meridians (int): Plots lines representing the meridians for given interval. Default=30 deg
+    parallels (int): Plots lines representing the parallels for given interval. Default=30 deg
+    sites (dict): Plots site positions in map. It must be a python dictionary where the key is
+        the name of the site, and the value is a list with longitude, latitude, delta_x,
+        delta_y and color. delta_x and delta_y are displacement, in km, from the point
+        of the site in the map and the name. color is the color of the point.
+    site_name (bool): If True, it prints the name of the sites given, else it plots only the points
+    countries (dict): Plots the names of countries. It must be a python dictionary where the key
+        is the name of the country and the value is a list with longitude and latitude
+        of the lower left part of the text.
+    offset (list): applies an offset to the ephemeris, calculating new CA and instant of CA.
+        It is a pair of delta_RA*cosDEC and delta_DEC.
+    mapstyle (int): Define the color style of the map. 1 is the default black and white scale.
+        2 is a colored map.
+    error (int,float): Ephemeris error in mas. It plots a dashed line representing radius + error.
+    ercolor (str): Changes the color of the lines of the error bar.
+    ring (int,float): plots a dashed line representing the location of a ring.
+        It is given in km, from the center.
+    rncolor (str): Changes the color of ring lines.
+    atm (int,float): plots a dashed line representing the location of an atmosphere.
+        It is given in km, from the center.
+    atcolor (str): Changes the color of atm lines.
+    chord_delta (list): list with distances from center to plot chords
+    chord_geo (2d-list): list with pairs of coordinates to plot chords
+    chcolor (str): color of the line of the chords. Default: grey
+    heights (list): It plots a circular dashed line showing the locations where the observer
+        would observe the occultation at a given height above the horizons.
+        This must be a list.
+    hcolor (str): Changes the color of the height lines.
+    mapsize (list): The size of figure, in cm. It must be a list with two values.
+        Default = [46.0, 38.0].
+    cpoints (int,float): Interval for the small points marking the center of shadow,
+        in seconds. Default=60.
+    ptcolor (str): Change the color of the center points.
+    alpha (float): The transparency of the night shade, where 0.0 is full transparency
+        and 1.0 is full black. Default = 0.2.
+    fmt (str): The format to save the image. It is parsed directly by matplotlib.pyplot.
+        Default = &#39;png&#39;
+    dpi (int): &#34;Dots per inch&#34;. It defines the quality of the image. Default = 100.
+    lncolor (str): Changes the color of the line that represents the limits of the shadow over Earth.
+    outcolor (str): Changes the color of the lines that represents the limits of the shadow outside Earth
+    nscale (int,float): Arbitrary scale for the size of the name of the site.
+    cscale (int,float): Arbitrary scale for the name of the country.
+    sscale (int,float): Arbitrary scale for the size of point of the site.
+    pscale (int,float): Arbitrary scale for the size of the points that represent the center of the shadow
+    arrow (bool): If true, it plots the arrow with the occultation direction.
+
+    Comment: Only one of centermap_geo and centermap_delta can be given
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/occmap.py
+<span class="ansi-red-fg">Type:</span>      function
+
+</pre></div></div>
+</div>
+<p><strong>To make it easier to plot the predictions, the ``PredictionTable.plot_occ_map()`` function can be called which automatically fills the required parameters.</strong></p>
+<p>To plot the map for all the predictions</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="o">.</span><span class="n">plot_occ_map</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;output/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10199 Chariklo_2017-06-21T09:57:43.420.png generated
+10199 Chariklo_2017-06-22T02:58:37.480.png generated
+10199 Chariklo_2017-06-22T21:18:48.200.png generated
+10199 Chariklo_2017-06-23T21:34:37.660.png generated
+10199 Chariklo_2017-06-24T10:13:39.980.png generated
+10199 Chariklo_2017-06-25T10:55:09.320.png generated
+10199 Chariklo_2017-06-26T08:14:35.540.png generated
+10199 Chariklo_2017-06-26T20:46:07.140.png generated
+</pre></div></div>
+</div>
+<p>To plot the map for only one prediction, just give a item to the <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot_occ_map</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;output/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10199 Chariklo_2017-06-21T09:57:43.420.png generated
+</pre></div></div>
+</div>
+<p><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> <strong>can also be plotted by giving the date of the occultation. All the occultations that matches the date will be plotted.</strong></p>
+<p>The date can be as constrained as the user wants, and must match the text that appears in the <em>‘Epoch’</em> column.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pred</span><span class="p">[</span><span class="s1">&#39;2017-06-26&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot_occ_map</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10199 Chariklo_2017-06-26T08:14:35.540.png generated
+10199 Chariklo_2017-06-26T20:46:07.140.png generated
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="5.-Occultation-parameters">
+<h2>5. Occultation parameters<a class="headerlink" href="#5.-Occultation-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Finally, a function is implemented in the prediction module which calculates the occultation parameters. For this function, it must be passed a <code class="docutils literal notranslate"><span class="pre">Star</span></code> Object, an <code class="docutils literal notranslate"><span class="pre">Ephem</span></code> Object (it can be any of the <code class="docutils literal notranslate"><span class="pre">Ephem</span></code> classes) and a time. The time does not need to be precise, but it must be close within 60 minutes from the Closest Approach time.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.prediction</span> <span class="kn">import</span> <span class="n">occ_params</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>occ_params<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> occ_params<span class="ansi-blue-fg">(</span>star<span class="ansi-blue-fg">,</span> ephem<span class="ansi-blue-fg">,</span> time<span class="ansi-blue-fg">,</span> n_recursions<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">,</span> max_tdiff<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Calculates the parameters of the occultation, as instant, CA, PA.
+
+Parameters:
+    star (Star): The coordinate of the star in the same reference frame as the ephemeris.
+        It must be a Star object.
+    ephem (Ephem): object ephemeris. It must be an Ephemeris object.
+    time (Time): Time close to occultation epoch to calculate occultation parameters
+        It can be a string in the ISO format (yyyy-mm-dd hh:mm:ss.s) or an astropy Time object.
+    n_recursions (int): The number of attempts to try obtain prediction parameters
+        in case the event is outside the previous range of time. Default=5
+    max_tdiff (int): Maximum difference from given time it will attempt to identify
+        the occultation, in minutes. If given, &#39;n_recursions&#39; is ignored. Default=None.
+
+Returns:
+    instant of CA (Time): Instant of Closest Approach
+    CA (arcsec): Distance of Closest Approach
+    PA (deg): Position Angle at Closest Approach
+    vel (km/s): Velocity of the occultation
+    dist (AU): the object geocentric distance.
+<span class="ansi-red-fg">File:</span>      ~/Documentos/códigos/SORA/sora/prediction/core.py
+<span class="ansi-red-fg">Type:</span>      function
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.star</span> <span class="kn">import</span> <span class="n">Star</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;6760225712991422208&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tca</span><span class="p">,</span> <span class="n">ca</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">occ_params</span><span class="p">(</span><span class="n">star</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">ephem</span><span class="o">=</span><span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="s1">&#39;2017-06-26 20:40&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time of the CA:   </span><span class="si">{}</span><span class="s1"> UTC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tca</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Closest Approach: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ca</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Position Angle:   </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pa</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shadow Velocity:  </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vel</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Object Distance:  </span><span class="si">{:.5f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Time of the CA:   2017-06-26 20:46:07.140 UTC
+Closest Approach: 0.199 arcsec
+Position Angle:   0.511 deg
+Shadow Velocity:  -22.333 km / s
+Object Distance:  14.65229 AU
+</pre></div></div>
+</div>
+<p><strong>This Jupyter-Notebook was designed as a tutorial for how to work with the</strong> <code class="docutils literal notranslate"><span class="pre">prediction()</span></code> <strong>function and</strong> <code class="docutils literal notranslate"><span class="pre">PredictionTable</span></code> <strong>Object Class. More information about the other classes, please refer to their specif Jupyter-Notebook. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</strong></p>
+<p><strong>The End</strong></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Tutorial_SORAv0.2_Observer.html" class="btn btn-neutral float-right" title="Observer Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Tutorial_SORAv0.2_Star.html" class="btn btn-neutral float-left" title="Star Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

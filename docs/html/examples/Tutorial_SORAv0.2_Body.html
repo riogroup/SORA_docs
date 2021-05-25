@@ -1,0 +1,2191 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Body Class &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Star Class" href="Tutorial_SORAv0.2_Star.html" />
+    <link rel="prev" title="Jupyter-Notebook Guidelines" href="../jupyters.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../jupyters.html">Jupyter-Notebook Guidelines</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Body Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#0.-Index">0. Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#1.-Instantiating-a-Body-object">1. Instantiating a Body object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#2.-Body-Physical-Attributes">2. Body Physical Attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#2.1.-Editing-Body-Attributes">2.1. Editing Body Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3.-Ephemeris">3. Ephemeris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#4.-Pole-Position-Angle-and-Aperture-Angle">4. Pole Position Angle and Aperture Angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#5.-Apparent-Magnitude">5. Apparent Magnitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#6.-The-Ephemeris-Classes">6. The Ephemeris Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#6.1.-Instantiating-an-EphemPlanete-Object">6.1. Instantiating an EphemPlanete Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.2.-Instantiating-an-EphemHorizons-Object">6.2. Instantiating an EphemHorizons Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.3.-Instantiating-an-EphemKernel-Object">6.3. Instantiating an EphemKernel Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.4-Other-parameters">6.4 Other parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.5.-Obtaining-positions">6.5. Obtaining positions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.6.-Ksi-and-Eta-projection">6.6. Ksi and Eta projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.7.-Adding-Offsets">6.7. Adding Offsets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Star.html">Star Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Prediction.html">Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Observer.html">Observer Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_LightCurve.html">LightCurve Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_Occultation.html">Occultation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorial_SORAv0.2_ChiSquare.html">ChiSquare Class</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../jupyters.html">Jupyter-Notebook Guidelines</a> &raquo;</li>
+        
+      <li>Body Class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/Tutorial_SORAv0.2_Body.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Body-Class">
+<h1>Body Class<a class="headerlink" href="#Body-Class" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">Body</span></code> Class within SORA was created to handle the information about the Solar System object. The online documentation here contains the details about every step.</p>
+<p>This Jupyter-Notebook was designed as a tutorial for how to work with the <code class="docutils literal notranslate"><span class="pre">Body</span></code> Class. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</p>
+<p><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">Body</span></code> <strong>Docstring was designed to help the users. Also, each function has its Docstring containing its main purpose and the needed parameters (physical description and formats). Please, do not hesitate to use it.</strong></p>
+<div class="section" id="0.-Index">
+<h2>0. Index<a class="headerlink" href="#0.-Index" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#section_1">Instantiating a Body object</a></p></li>
+<li><p><a class="reference external" href="#section_2">Body Physical Attributes</a></p></li>
+<li><p><a class="reference external" href="#section_3">Ephemeris</a></p></li>
+<li><p><a class="reference external" href="#section_4">Pole Position Angle and Aperture Angle</a></p></li>
+<li><p><a class="reference external" href="#section_5">Apparent Magnitude</a></p></li>
+<li><p><a class="reference external" href="#section_6">The Ephemeris Classes</a></p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">## import the Body Class</span>
+<span class="kn">from</span> <span class="nn">sora.body</span> <span class="kn">import</span> <span class="n">Body</span>
+
+<span class="c1">## To facilitate, sora allows to import Body directly from the root</span>
+<span class="kn">from</span> <span class="nn">sora</span> <span class="kn">import</span> <span class="n">Body</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SORA version: 0.2dev
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="1.-Instantiating-a-Body-object">
+<h2>1. Instantiating a Body object<a class="headerlink" href="#1.-Instantiating-a-Body-object" title="Permalink to this headline">¶</a></h2>
+<p>A Solar System Body have a lot of parameters that characterizes itself. The SORA <code class="docutils literal notranslate"><span class="pre">Body</span></code> Class is able to download these parameter from the JPL Small Body DataBase. For that, a name should be given to search the object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>Body<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span> Body<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> database<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;auto&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Init docstring:</span>
+Class that contains and manage the information of the body
+
+Parameters:
+    name (str): The name of the object. It can be the used spkid or designation number
+        to query the SBDB. In this case, the name is case insensitive. (Required)
+    database (str): The database to query the object. It can be &#39;satdb&#39; for our
+        temporary hardcoded satellite database, or &#39;sbdb&#39; to query on the Small-Body
+        DataBase. If &#39;auto&#39; it will try first with &#39;satdb&#39;, then &#39;sbdb&#39;. If the user
+        wants to use their own information, database must be given as None. In this case,
+        &#34;spkid&#34; parameter must be given. Default=&#39;auto&#39;
+    ephem (EphemKernel, EphemHorizons, EphemJPL, EphemPlanete): An Ephem Class that
+        contains information about the ephemeris. It can be &#34;horizons&#34; to automatically
+        defined an EphemHorizons object or a list of kernels to automatically define an
+        EphemKernel object.
+
+Parameters that are returned from the Small-Body DataBase if database=&#39;sbdb&#39; or from
+    our temporary hardcoded Satellite Database if database=&#39;satdb&#39;. These are
+    the physical paramaters the user can give to the object. If a query is made and
+    user gives a parameter, the parameter given by the user is defined in the Body object:
+
+    orbit_class (str): It defines the Orbital class of the body. It can be &#39;TNO&#39;,
+        &#39;Satellite&#39;, &#39;Centaur&#39;, &#39;comet&#39;, &#39;asteroid&#39;, &#39;trojan&#39;, &#39;neo&#39; and &#39;planet&#39;.
+        It is important for a better characterization of the object.
+        If a different value is given, it will be defined as &#39;unclassified&#39;.
+    spkid (str, number): If database=None, the user must give a spkid or an ephem
+        which has the spkid parameter.
+    albedo (number): The albedo of the object.
+    H (number): The absolute magnitude.
+    G (number): The phase slope.
+    diameter (number, Quantity): The dimater of the object, in km.
+    density: (number, Quantity): The density of the object, in g/cm^3.
+    GM (number, Quantity): The Standard Gravitational Parameter, in km^3/s^2.
+    rotation (number, Quantity): The Rotation of the object, in hours.
+    pole (str, SkyCoord): The Pole coordinates of the object. It can be a SkyCoord
+        object or a string in the format &#39;hh mm ss.ss +dd mm ss.ss&#39;
+    BV (number): The B-V color.
+    UB (number): The U-B color.
+    smass (str): The spectral type in SMASS classification.
+    tholen (str): The spectral type in Tholen classification.
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.8/site-packages/sora/body/core.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Ceres&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for Ceres from SBDB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+###############################################################################
+                               1 Ceres (A801 AA)
+###############################################################################
+Object Orbital Class: Main-belt Asteroid
+Spectral Type:
+    SMASS: C  [Reference: EAR-A-5-DDR-TAXONOMY-V4.0]
+    Tholen: G [Reference: EAR-A-5-DDR-TAXONOMY-V4.0]
+       Linear, generally featureless spectra. Differences in UV absorption features and presence/absence of narrow absorption feature near 0.7 μm.
+Discovered 1801-Jan-01 by Piazzi, G. at Palermo
+
+Physical parameters:
+Diameter:
+    939.4 +/- 0.2 km
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+Mass:
+    9.3835e+20 +/- 1.3485e+16 kg
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+Density:
+    2.162 +/- 0.008 g / cm3
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+Rotation:
+    9.0742 +/- 1e-06 h
+    Reference: Nature vol. 537, pp515-517 (22 September 2016), derived from published value: 952.1532 +/- 0.0001 deg./day
+Pole
+    RA:291d25m15.6s +/- 0d00m25.2s
+    DEC:66d45m28.8s +/- 0d00m07.2s
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+Absolute Magnitude:
+    3.53 +/- 0 mag
+    Reference: E2021B10, IRAS observations used: 15
+Phase Slope:
+    0.12 +/- 0
+    Reference: PDS3 (MPC 17257), Fit
+Albedo:
+    0.09 +/- 0.003
+    Reference: Li et al. (2006) Icarus v182:pp143-160, V-band geometric albedo
+B-V color:
+    0.713 +/- 0.014
+    Reference: EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2, #obs=52; phase (min.=1.47, mean=11.85, max.=22.59) deg.
+U-B color:
+    0.426 +/- 0.026
+    Reference: EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2, #obs=52; phase (min.=1.47, mean=12.16, max.=22.59) deg.
+
+</pre></div></div>
+</div>
+<p>Other parameters that are interpreted by the <code class="docutils literal notranslate"><span class="pre">Body</span></code> Class are downloaded from the SBDB. They are accessed vi the attribute <code class="docutils literal notranslate"><span class="pre">Body.meta_sbdb</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">meta_sbdb</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OrderedDict([(&#39;phys_par&#39;,
+              OrderedDict([(&#39;H&#39;, &#39;3.53&#39;),
+                           (&#39;H_sig&#39;, None),
+                           (&#39;H_ref&#39;, &#39;E2021B10&#39;),
+                           (&#39;H_note&#39;, &#39;IRAS observations used: 15&#39;),
+                           (&#39;G&#39;, &#39;0.12&#39;),
+                           (&#39;G_sig&#39;, None),
+                           (&#39;G_ref&#39;, &#39;PDS3 (MPC 17257)&#39;),
+                           (&#39;G_note&#39;, &#39;Fit&#39;),
+                           (&#39;diameter&#39;, Unit(&#34;939.4 km&#34;)),
+                           (&#39;diameter_sig&#39;, Unit(&#34;0.2 km&#34;)),
+                           (&#39;diameter_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;diameter_note&#39;, None),
+                           (&#39;extent&#39;, &#39;964.4 x 964.2 x 891.8&#39;),
+                           (&#39;extent_sig&#39;, &#39;0.2 x 0.2 x 0.2&#39;),
+                           (&#39;extent_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;extent_note&#39;,
+                            &#39;fit w.r.t. center of mass and in body-fixed frame&#39;),
+                           (&#39;GM&#39;, Unit(&#34;62.6284 km3 / s2&#34;)),
+                           (&#39;GM_sig&#39;, Unit(&#34;0.0009 km3 / s2&#34;)),
+                           (&#39;GM_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;GM_note&#39;, None),
+                           (&#39;density&#39;, Unit(&#34;2.162 g / cm3&#34;)),
+                           (&#39;density_sig&#39;, Unit(&#34;0.008 g / cm3&#34;)),
+                           (&#39;density_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;density_note&#39;, None),
+                           (&#39;rot_per&#39;, Unit(&#34;9.07417 h&#34;)),
+                           (&#39;rot_per_sig&#39;, Unit(&#34;1e-06 h&#34;)),
+                           (&#39;rot_per_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;rot_per_note&#39;,
+                            &#39;derived from published value: 952.1532 +/- 0.0001 deg./day&#39;),
+                           (&#39;pole&#39;, &#39;291.421/66.758&#39;),
+                           (&#39;pole_sig&#39;, &#39;0.007/0.002&#39;),
+                           (&#39;pole_ref&#39;,
+                            &#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;),
+                           (&#39;pole_note&#39;, None),
+                           (&#39;albedo&#39;, &#39;0.090&#39;),
+                           (&#39;albedo_sig&#39;, &#39;0.003&#39;),
+                           (&#39;albedo_ref&#39;,
+                            &#39;Li et al. (2006) Icarus v182:pp143-160&#39;),
+                           (&#39;albedo_note&#39;, &#39;V-band geometric albedo&#39;),
+                           (&#39;BV&#39;, &#39;0.713&#39;),
+                           (&#39;BV_sig&#39;, &#39;0.014&#39;),
+                           (&#39;BV_ref&#39;, &#39;EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2&#39;),
+                           (&#39;BV_note&#39;,
+                            &#39;#obs=52; phase (min.=1.47, mean=11.85, max.=22.59) deg.&#39;),
+                           (&#39;UB&#39;, &#39;0.426&#39;),
+                           (&#39;UB_sig&#39;, &#39;0.026&#39;),
+                           (&#39;UB_ref&#39;, &#39;EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2&#39;),
+                           (&#39;UB_note&#39;,
+                            &#39;#obs=52; phase (min.=1.47, mean=12.16, max.=22.59) deg.&#39;),
+                           (&#39;spec_T&#39;, &#39;G&#39;),
+                           (&#39;spec_T_sig&#39;, None),
+                           (&#39;spec_T_ref&#39;, &#39;EAR-A-5-DDR-TAXONOMY-V4.0&#39;),
+                           (&#39;spec_T_note&#39;,
+                            &#39;used 7 color indices; used ground-based radiometric albedo&#39;),
+                           (&#39;spec_B&#39;, &#39;C&#39;),
+                           (&#39;spec_B_sig&#39;, None),
+                           (&#39;spec_B_ref&#39;, &#39;EAR-A-5-DDR-TAXONOMY-V4.0&#39;),
+                           (&#39;spec_B_note&#39;,
+                            &#39;based on a high-resolution spectrum by Xu et al. (1995) or Bus and Binzel (2002)&#39;)])),
+             (&#39;object&#39;,
+              OrderedDict([(&#39;shortname&#39;, &#39;1 Ceres&#39;),
+                           (&#39;neo&#39;, False),
+                           (&#39;orbit_class&#39;,
+                            OrderedDict([(&#39;name&#39;, &#39;Main-belt Asteroid&#39;),
+                                         (&#39;code&#39;, &#39;MBA&#39;)])),
+                           (&#39;pha&#39;, False),
+                           (&#39;spkid&#39;, &#39;2000001&#39;),
+                           (&#39;kind&#39;, &#39;an&#39;),
+                           (&#39;orbit_id&#39;, &#39;48&#39;),
+                           (&#39;fullname&#39;, &#39;1 Ceres (A801 AA)&#39;),
+                           (&#39;des&#39;, &#39;1&#39;),
+                           (&#39;prefix&#39;, None)])),
+             (&#39;signature&#39;,
+              OrderedDict([(&#39;source&#39;,
+                            &#39;NASA/JPL Small-Body Database (SBDB) API&#39;),
+                           (&#39;version&#39;, &#39;1.2&#39;)])),
+             (&#39;orbit&#39;,
+              OrderedDict([(&#39;source&#39;, &#39;JPL&#39;),
+                           (&#39;cov_epoch&#39;, Unit(&#34;2.45885e+06 d&#34;)),
+                           (&#39;moid_jup&#39;, Unit(&#34;2.09403 AU&#34;)),
+                           (&#39;t_jup&#39;, &#39;3.310&#39;),
+                           (&#39;condition_code&#39;, &#39;0&#39;),
+                           (&#39;not_valid_before&#39;, None),
+                           (&#39;rms&#39;, &#39;.43153&#39;),
+                           (&#39;model_pars&#39;, []),
+                           (&#39;orbit_id&#39;, &#39;48&#39;),
+                           (&#39;producer&#39;, &#39;Davide Farnocchia&#39;),
+                           (&#39;first_obs&#39;, &#39;1995-01-05&#39;),
+                           (&#39;soln_date&#39;, &#39;2021-04-13 11:04:44&#39;),
+                           (&#39;two_body&#39;, None),
+                           (&#39;epoch&#39;, Unit(&#34;2.45885e+06 d&#34;)),
+                           (&#39;elements&#39;,
+                            OrderedDict([(&#39;e&#39;, &#39;.07687465013145245&#39;),
+                                         (&#39;e_sig&#39;, 4.82457301562052e-12),
+                                         (&#39;q&#39;, Unit(&#34;2.5564 AU&#34;)),
+                                         (&#39;q_sig&#39;,
+                                          &lt;Quantity 1.96580406e-11 AU&gt;),
+                                         (&#39;tp&#39;, Unit(&#34;2.45824e+06 d&#34;)),
+                                         (&#39;tp_sig&#39;,
+                                          &lt;Quantity 3.72607486e-08 d&gt;),
+                                         (&#39;om&#39;, Unit(&#34;80.3012 deg&#34;)),
+                                         (&#39;om_sig&#39;,
+                                          &lt;Quantity 6.17186303e-08 deg&gt;),
+                                         (&#39;w&#39;, Unit(&#34;73.809 deg&#34;)),
+                                         (&#39;w_sig&#39;,
+                                          &lt;Quantity 6.61818138e-08 deg&gt;),
+                                         (&#39;i&#39;, Unit(&#34;10.5913 deg&#34;)),
+                                         (&#39;i_sig&#39;,
+                                          &lt;Quantity 4.61328999e-09 deg&gt;)])),
+                           (&#39;equinox&#39;, &#39;J2000&#39;),
+                           (&#39;data_arc&#39;, &#39;9520&#39;),
+                           (&#39;not_valid_after&#39;, None),
+                           (&#39;n_del_obs_used&#39;, &#39;60&#39;),
+                           (&#39;sb_used&#39;, &#39;SB441-N373&#39;),
+                           (&#39;n_obs_used&#39;, &#39;1075&#39;),
+                           (&#39;comment&#39;, None),
+                           (&#39;pe_used&#39;, &#39;DE441&#39;),
+                           (&#39;last_obs&#39;, &#39;2021-01-28&#39;),
+                           (&#39;moid&#39;, Unit(&#34;1.59232 AU&#34;)),
+                           (&#39;n_dop_obs_used&#39;, &#39;0&#39;)])),
+             (&#39;discovery&#39;,
+              OrderedDict([(&#39;who&#39;, &#39;Piazzi, G.&#39;),
+                           (&#39;site&#39;, None),
+                           (&#39;location&#39;, &#39;Palermo&#39;),
+                           (&#39;ref&#39;, &#39;DISCOVERY.DB&#39;),
+                           (&#39;date&#39;, &#39;1801-Jan-01&#39;)]))])
+</pre></div></div>
+</div>
+<p>The SORA team also created a hardcoded database with planetary satellites to overcome the missing of these data on the SBDB. It is an interim solution and will be removed when a more reliable database is implemented.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">himalia</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Himalia&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;satdb&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">himalia</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+###############################################################################
+                                    Himalia
+###############################################################################
+Object Orbital Class: Natural Satellite
+
+
+Physical parameters:
+Diameter:
+    139.6 +/- 1.7 km
+    Reference: Grav et al. (2015). AJ 809(1):3,
+Mass:
+    4.1952e+18 +/- 5.9931e+17 kg
+    Reference: Emelyanov (2005). A&amp;A 438(3):L33-L36,
+Rotation:
+    7.7819 +/- 0.0005 h
+    Reference: Pilcher et al. (2012). Icarus 219(2):741-742,
+Absolute Magnitude:
+    8 +/- 0.01 mag
+    Reference: Rettig et al. (2001). Icarus 154(2):313-320,
+Phase Slope:
+    0.1 +/- 0.15
+    Reference: ,
+Albedo:
+    5.7 +/- 0.1
+    Reference: Grav et al. (2015). AJ 809(1):3,
+
+</pre></div></div>
+</div>
+<p>Finally, the user can also define a <code class="docutils literal notranslate"><span class="pre">Body</span></code> object without any database. In this case, it is required to define the parameters: <code class="docutils literal notranslate"><span class="pre">[name,</span> <span class="pre">spkid,</span> <span class="pre">database=None,</span> <span class="pre">orbit_class]</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">elara</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Elara&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="mi">507</span><span class="p">,</span> <span class="n">orbit_class</span><span class="o">=</span><span class="s1">&#39;satellite&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">elara</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+###############################################################################
+                                     Elara
+###############################################################################
+Object Orbital Class: Natural Satellite
+
+
+Physical parameters:
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.-Body-Physical-Attributes">
+<h2>2. Body Physical Attributes<a class="headerlink" href="#2.-Body-Physical-Attributes" title="Permalink to this headline">¶</a></h2>
+<p>The parameters shown in the print can be accessed by its attribute name.</p>
+<p>These paremeter also have uncertainty and reference, which may be edited</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="math notranslate nohighlight">
+$939.4 \; \mathrm{km}$</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">uncertainty</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="math notranslate nohighlight">
+$0.2 \; \mathrm{km}$</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">reference</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;Nature vol. 537, pp515-517 (22 September 2016)&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Diameter:
+    939.4 +/- 0.2 km
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+
+</pre></div></div>
+</div>
+<div class="section" id="2.1.-Editing-Body-Attributes">
+<h3>2.1. Editing Body Attributes<a class="headerlink" href="#2.1.-Editing-Body-Attributes" title="Permalink to this headline">¶</a></h3>
+<p>To edit a parameter, simply redefine the attribute. If the core value is edited, the uncertainty is redefined to “0”, and the reference to “user”</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="mi">972</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Diameter:
+    972 +/- 0 km
+    Reference: User,
+
+</pre></div></div>
+</div>
+<p>To correct the uncertainty and reference, just redefine them</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="s2">&quot;Gomes-Júnior et al. (2015), MNRAS 451(3), 2295-2302&quot;</span>
+<span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;Equatorial Diameter&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Diameter:
+    972 +/- 6 km
+    Reference: Gomes-Júnior et al. (2015), MNRAS 451(3), 2295-2302, Equatorial Diameter
+
+</pre></div></div>
+</div>
+<p>Finally, if you want to edit all the values of a single parameter directly, you must use the <code class="docutils literal notranslate"><span class="pre">PhysicalData</span></code> Class located in sora.body</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora.body</span> <span class="kn">import</span> <span class="n">PhysicalData</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+PhysicalData<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span>
+PhysicalData<span class="ansi-blue-fg">(</span>
+    name<span class="ansi-blue-fg">,</span>
+    value<span class="ansi-blue-fg">,</span>
+    uncertainty<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.0</span><span class="ansi-blue-fg">,</span>
+    reference<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;User&#39;</span><span class="ansi-blue-fg">,</span>
+    notes<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span>
+    unit<span class="ansi-blue-fg">=</span>Unit<span class="ansi-blue-fg">(</span>dimensionless<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+    raise_error<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Define PhysicalData with uncertainty, reference and notes.
+It inherits from astropy.units.quantity.Quantity()
+
+Parameters:
+    name (str): The name representing the corresponding physical parameter.
+    value (number, `~numpy.ndarray`, `Quantity` object (sequence), str):
+        The numerical value of this quantity in the units given by unit.  If a
+        `Quantity`  (or any other valid object with a ``unit`` attribute),
+        creates a new `Quantity` object, converting to `unit` units as needed.
+        If a string, it is converted to a number or `Quantity`, depending on
+        whether a unit is present.
+    uncertainty (number, `~numpy.ndarray`, `Quantity` object (sequence), str):
+        The numerical value of this quantity in the units given by unit.  If a
+        `Quantity` (or any other valid object with a ``unit`` attribute),
+        creates a new `Quantity` object, converting to `unit` units as needed.
+        If a string, it is converted to a number or `Quantity`, depending on
+        whether a unit is present. Default = 0.0
+    reference (str): A string stating the reference for the parameter value.
+        Default = &#34;User&#34;
+    notes (str): Any other important information about the physical parameter.
+        Default = &#34;&#34;
+    unit: `~astropy.units.UnitBase` instance, str
+        An object that represents the unit associated with the input value.
+        Must be an `~astropy.units.UnitBase` object or a string parseable by
+        the :mod:`~astropy.units` package. Default = &#34;dimensionless&#34;
+    raise_error (bool): If value=None, the function raise an error if
+        raise_error=True, else value is redefined to NaN.
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.8/site-packages/sora/body/meta.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">PhysicalData</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Diameter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">972</span><span class="p">,</span> <span class="n">uncertainty</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;Gomes-Júnior et al. (2015), MNRAS 451(3), 2295-2302&quot;</span><span class="p">,</span>
+                              <span class="n">notes</span><span class="o">=</span><span class="s2">&quot;Equatorial Radius&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">diameter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Diameter:
+    972 +/- 6 km
+    Reference: Gomes-Júnior et al. (2015), MNRAS 451(3), 2295-2302, Equatorial Radius
+
+</pre></div></div>
+</div>
+<p>Some parameters have direct relations when modified, for instance: diameter and radius; and GM and mass.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">GM</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Standard Gravitational Parameter:
+    62.628 +/- 0.0009 km3 / s2
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+
+Mass:
+    9.3835e+20 +/- 1.3485e+16 kg
+    Reference: Nature vol. 537, pp515-517 (22 September 2016),
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">GM</span> <span class="o">=</span> <span class="mi">63000</span>
+<span class="n">ceres</span><span class="o">.</span><span class="n">GM</span><span class="o">.</span><span class="n">uncertainty</span> <span class="o">=</span> <span class="mf">0.0010</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">GM</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Standard Gravitational Parameter:
+    63000 +/- 0.001 km3 / s2
+    Reference: User,
+
+Mass:
+    9.4392e+23 +/- 1.4983e+16 kg
+    Reference: User,
+
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="3.-Ephemeris">
+<h2>3. Ephemeris<a class="headerlink" href="#3.-Ephemeris" title="Permalink to this headline">¶</a></h2>
+<p>An important feature of the body is its ephemeris. It is the ephemeris that will tell us te position of the object for a given time. It is necessary the <code class="docutils literal notranslate"><span class="pre">Body</span></code> object to have an Ephemeris when reducing an Occultation. The full description of the Ephemeris options are given at <a class="reference external" href="#section_6">Section 6</a>.</p>
+<p>To add a ephemeris to a <code class="docutils literal notranslate"><span class="pre">Body</span></code> object, just given them as input or edit the ephem attribute:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Giving the kernels directly using an EphemKernel object</span>
+<span class="n">chariklo</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">,</span> <span class="n">ephem</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for Chariklo from SBDB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">chariklo</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">)</span>
+<span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for Chariklo from SBDB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">chariklo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+###############################################################################
+                          10199 Chariklo (1997 CU26)
+###############################################################################
+Object Orbital Class: Centaur
+Spectral Type:
+    SMASS: D  [Reference: EAR-A-5-DDR-TAXONOMY-V4.0]
+       Relatively featureless spectrum with very steep red slope.
+Discovered 1997-Feb-15 by Spacewatch at Kitt Peak
+
+Physical parameters:
+Diameter:
+    302 +/- 30 km
+    Reference: Earth, Moon, and Planets, v. 89, Issue 1, p. 117-134 (2002),
+Rotation:
+    7.004 +/- 0 h
+    Reference: LCDB (Rev. 2020-October); Warner et al., 2009, [Result based on less than full coverage, so that the period may be wrong by 30 percent or so.]  REFERENCE LIST:[Fornasier, S.; Lazzaro, D.; Alvarez-Candal, A.; Snodgrass, C.; et   al. (2014) Astron. Astrophys. 568, L11.], [Leiva, R.; Sicardy, B.; Camargo, J.I.B.; Desmars, J.; et al. (2017)   Astron. J. 154, A159.]
+Absolute Magnitude:
+    6.7 +/- 0 mag
+    Reference: MPO452314,
+Albedo:
+    0.045 +/- 0.01
+    Reference: Earth, Moon, and Planets, v. 89, Issue 1, p. 117-134 (2002),
+
+----------- Ephemeris -----------
+
+EphemKernel: CHARIKLO/DE438_SMALL (SPKID=2010199)
+Ephem Error: RA*cosDEC: 0.000 arcsec; DEC: 0.000 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Using the ephemeris from Horizons with a EphemHorizons object</span>
+<span class="n">ceres</span> <span class="o">=</span> <span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Ceres&#39;</span><span class="p">,</span> <span class="n">ephem</span><span class="o">=</span><span class="s1">&#39;horizons&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Obtaining data for Ceres from SBDB
+</pre></div></div>
+</div>
+<p>The ephemeris parameters can also be an <code class="docutils literal notranslate"><span class="pre">EphemKernel</span></code>, <code class="docutils literal notranslate"><span class="pre">EphemHorizons</span></code> or <code class="docutils literal notranslate"><span class="pre">EphemPlanete</span></code> objects given directly. Only <code class="docutils literal notranslate"><span class="pre">EphemPlanete</span></code> requires the ephemeris object being defined before associated to a <code class="docutils literal notranslate"><span class="pre">Body</span></code> object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sora</span> <span class="kn">import</span> <span class="n">EphemKernel</span>
+<span class="n">ephem</span> <span class="o">=</span> <span class="n">EphemKernel</span><span class="p">(</span><span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">],</span> <span class="n">spkid</span><span class="o">=</span><span class="s1">&#39;2010199&#39;</span><span class="p">)</span>
+<span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span> <span class="o">=</span> <span class="n">ephem</span>
+</pre></div>
+</div>
+</div>
+<p>For a full description of the Ephemeris objects, see <a class="reference external" href="#section_6">Section 6</a></p>
+</div>
+<div class="section" id="4.-Pole-Position-Angle-and-Aperture-Angle">
+<h2>4. Pole Position Angle and Aperture Angle<a class="headerlink" href="#4.-Pole-Position-Angle-and-Aperture-Angle" title="Permalink to this headline">¶</a></h2>
+<p>For a given time, and given pole coordinate, we are able to calculate the Pole Position Angle relative to the North pole in the ICRS and the Aperture Angle of the object pole coordinate. For this, it is necessary for the <code class="docutils literal notranslate"><span class="pre">Body</span></code> object to have pole coordinates and ephemeris.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>ceres.get_pole_position_angle<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> ceres<span class="ansi-blue-fg">.</span>get_pole_position_angle<span class="ansi-blue-fg">(</span>time<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Returns the pole position angle and aperture angle relative to the geocenter
+
+Parameters:
+    time (str, Time): Time from which to calculate the position.
+
+Returns:
+    position_angle (float): Position angle of the object pole, in degrees
+    aperture_angle (float): Apeture angle of the object pole, in degrees
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/body/core.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">pole</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;19h25m41.04s +66d45m28.8s&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pos_ang</span><span class="p">,</span> <span class="n">ap_ang</span> <span class="o">=</span> <span class="n">ceres</span><span class="o">.</span><span class="n">get_pole_position_angle</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pos_ang</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ap_ang</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+348.5668772704144 deg
+-2.5588174548444744 deg
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="5.-Apparent-Magnitude">
+<h2>5. Apparent Magnitude<a class="headerlink" href="#5.-Apparent-Magnitude" title="Permalink to this headline">¶</a></h2>
+<p>The Body objectcs calculates the Apparent Magnitude of an object using the H and G given by the user. The equation is:</p>
+<p><span class="math notranslate nohighlight">\(\phi_0 = \exp(-3.33(\tan(0.5 phase)^{0.63}))\)</span></p>
+<p><span class="math notranslate nohighlight">\(\phi_1 = \exp(-1.87(\tan(0.5 phase)^{1.22}))\)</span></p>
+<p><span class="math notranslate nohighlight">\(apmag = H - 2.5\log10((1-G)\phi_0 + G\phi_1) + 5\log10(sundist*dist)\)</span></p>
+<p>It is Body object has the Absolute Magnitude (H), Phase Slope (G) and an ephemeris, the apparent magnitude will be calculated. Else, a query to the JPL Horizons web service will be made</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">ceres</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">ceres</span><span class="o">.</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Absolute Magnitude:
+    3.53 +/- 0 mag
+    Reference: E2021B10, IRAS observations used: 15
+ Phase Slope:
+    0.12 +/- 0
+    Reference: PDS3 (MPC 17257), Fit
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ceres</span><span class="o">.</span><span class="n">apparent_magnitude</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+8.855626809780173
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">chariklo</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">chariklo</span><span class="o">.</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Absolute Magnitude:
+    6.7 +/- 0 mag
+    Reference: MPO452314,
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">chariklo</span><span class="o">.</span><span class="n">apparent_magnitude</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/morgado/anaconda3/lib/python3.8/site-packages/sora/body/core.py:228: UserWarning: H and/or G is not defined for 10199 Chariklo. Searching into JPL Horizons service
+  warnings.warn(&#39;H and/or G is not defined for {}. Searching into JPL Horizons service&#39;.format(self.shortname))
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+18.489
+</pre></div></div>
+</div>
+<p>When the apparent magnitude is downloaded from the Horizons service, usually the H and G parameters can be found. In this cases, the <code class="docutils literal notranslate"><span class="pre">Body</span></code> object stores these values for further use.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">chariklo</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">chariklo</span><span class="o">.</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Absolute Magnitude:
+    6.54 +/- 0 mag
+    Reference: JPL Horizons,
+ Phase Slope:
+    0.15 +/- 0
+    Reference: JPL Horizons,
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">chariklo</span><span class="o">.</span><span class="n">apparent_magnitude</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+18.489165511615344
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.-The-Ephemeris-Classes">
+<h2>6. The Ephemeris Classes<a class="headerlink" href="#6.-The-Ephemeris-Classes" title="Permalink to this headline">¶</a></h2>
+<p>As stated above, there are 3 different types of <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> Classes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EphemPlanete</span></code> - Reads a file with a list of Geocentric coordinates and interpolates.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EphemHorizons</span></code> - Queries the JPL Horizons website and download ephemeris informations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EphemKernel</span></code> - Reads the BSP files to calculate ephemeris.</p></li>
+</ul>
+<p>Usually, the user will only need one of those. As shown in <a class="reference external" href="#section_3">Section 3</a>, the user can tell the body object the kernels for a <code class="docutils literal notranslate"><span class="pre">EphemKernel</span></code> object or the string ‘horizons’ for a <code class="docutils literal notranslate"><span class="pre">EphemHorizons</span></code> object. In this section we show the Ephemeris behave and if the user wants to use it directly without a <code class="docutils literal notranslate"><span class="pre">Body</span></code> object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">## import the Ephemeris Classes</span>
+<span class="kn">from</span> <span class="nn">sora.ephem</span> <span class="kn">import</span> <span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemHorizons</span><span class="p">,</span> <span class="n">EphemKernel</span>
+
+<span class="c1">## To facilitate, sora allows to import Ephem directly from the sora package.</span>
+<span class="kn">from</span> <span class="nn">sora</span> <span class="kn">import</span> <span class="n">EphemPlanete</span><span class="p">,</span> <span class="n">EphemHorizons</span><span class="p">,</span> <span class="n">EphemKernel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="6.1.-Instantiating-an-EphemPlanete-Object">
+<h3>6.1. Instantiating an EphemPlanete Object<a class="headerlink" href="#6.1.-Instantiating-an-EphemPlanete-Object" title="Permalink to this headline">¶</a></h3>
+<p>In this case, a file must be given containing Julian Date, RA (in deg), DEC (in deg) and Distance (in AU), in this order, separated by an space. Please, look at the “ephem_phoebe_ph15_jd.txt” file for an example. Only the name of the object and the file with the ephemeris is required.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>EphemPlanete<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span> EphemPlanete<span class="ansi-blue-fg">(</span>ephem<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> spkid<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Init docstring:</span>
+Simulates the former fortran programs ephem_planete and fit_d2_ksi_eta.
+
+Parameters:
+    name (str): name of the object to search in the JPL database
+    ephem (str): Input file with JD (UTC), and geocentric RA (deg), DEC (deg), and distance (AU)
+    radius (int,float): Object radius, in km (Default: Online database)
+    error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)
+    error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)
+    mass (int,float): Object Mass, in kg (Default: 0.0)
+    H (int,float): Object Absolute Magnitude (Default: NaN)
+    G (int,float): Object Phase slope (Default: NaN)
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.8/site-packages/sora/ephem/core.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_pla</span> <span class="o">=</span> <span class="n">EphemPlanete</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Phoebe&#39;</span><span class="p">,</span> <span class="n">ephem</span><span class="o">=</span><span class="s1">&#39;input/ascii/ephem_phoebe_ph15_jd.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">eph_pla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------- Ephemeris -----------
+
+EphemPlanete: Valid from 2019-06-07 02:54:00.000 until 2019-06-07 04:54:00.000 (SPKID=)
+Ephem Error: RA*cosDEC: 0.000 arcsec; DEC: 0.000 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.2.-Instantiating-an-EphemHorizons-Object">
+<h3>6.2. Instantiating an EphemHorizons Object<a class="headerlink" href="#6.2.-Instantiating-an-EphemHorizons-Object" title="Permalink to this headline">¶</a></h3>
+<p>In this case, only the name of the object is required as this will be used to queries the JPL database. Another important keyword is the “id_type”, which will be used to constrain the search of the object. For instance, if the name is “Europa” and the id_type is “smallbody” it looks the asteroid (52) Europa, while if id_type is “majorbody” it looks for the Jovian satellite J2 Europa. However, in some cases, there are still conflict name issue which solutions are being verified. A common solver
+is to use the IAU ID number in the name variable</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>EphemHorizons<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span> EphemHorizons<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> id_type<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;smallbody&#39;</span><span class="ansi-blue-fg">,</span> spkid<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Init docstring:</span>
+Obtains the ephemeris from Horizons/JPL service.
+
+Web tool URL = https://ssd.jpl.nasa.gov/horizons.cgi
+
+Parameters:
+    name (str): name of the object to search in the JPL database
+    id_type (str): type of object options: &#39;smallbody&#39;, &#39;majorbody&#39;
+        (planets but also anything that is not a small body), &#39;designation&#39;,
+        &#39;name&#39;, &#39;asteroid_name&#39;, &#39;comet_name&#39;, &#39;id&#39; (Horizons id number),
+        or &#39;smallbody&#39; (find the closest match under any id_type). Default: &#39;smallbody&#39;
+    radius (int,float): Object radius, in km (Default: Online database)
+    error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)
+    error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)
+    mass (int,float): Object Mass, in kg (Default: 0.0)
+    H (int,float): Object Absolute Magnitude (Default: NaN)
+    G (int,float): Object Phase slope (Default: NaN)
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.8/site-packages/sora/ephem/core.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>     EphemJPL
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_hor</span> <span class="o">=</span> <span class="n">EphemHorizons</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">eph_hor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------- Ephemeris -----------
+
+EphemHorizons: Ephemeris are downloaded from Horizons website (SPKID=)
+Ephem Error: RA*cosDEC: 0.000 arcsec; DEC: 0.000 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.3.-Instantiating-an-EphemKernel-Object">
+<h3>6.3. Instantiating an EphemKernel Object<a class="headerlink" href="#6.3.-Instantiating-an-EphemKernel-Object" title="Permalink to this headline">¶</a></h3>
+<p>This is the most effective <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> Class. Since it reads the BSP files directly, it is faster. What is needed here is the spkid of the object, and the list of kernels. Even if only one kernel is passed, it must be a list.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>EphemKernel<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span> EphemKernel<span class="ansi-blue-fg">(</span>kernels<span class="ansi-blue-fg">,</span> spkid<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>      &lt;no docstring&gt;
+<span class="ansi-red-fg">Init docstring:</span>
+Gets the ephemeris from bsp kernels.
+
+Parameters:
+    name (str): name of the object to search in the JPL database
+    spkid (str): spkid of the targeting object. Former &#39;code&#39; (v0.1)
+    kernels(list): list of paths for kernels files
+    radius (int,float): Object radius, in km (Default: Online database)
+    error_ra (int,float): Ephemeris RA*cosDEC error, in arcsec (Default: Online database)
+    error_dec (int,float): Ephemeris DEC error, in arcsec (Default: Online database)
+    mass (int,float): Object Mass, in kg (Default: 0.0)
+    H (int,float): Object Absolute Magnitude (Default: NaN)
+    G (int,float): Object Phase slope (Default: NaN)
+<span class="ansi-red-fg">File:</span>           ~/anaconda3/lib/python3.8/site-packages/sora/ephem/core.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_ker</span> <span class="o">=</span> <span class="n">EphemKernel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="s1">&#39;2010199&#39;</span><span class="p">,</span> <span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">eph_ker</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------- Ephemeris -----------
+
+EphemKernel: CHARIKLO/DE438_SMALL (SPKID=2010199)
+Ephem Error: RA*cosDEC: 0.000 arcsec; DEC: 0.000 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.4-Other-parameters">
+<h3>6.4 Other parameters<a class="headerlink" href="#6.4-Other-parameters" title="Permalink to this headline">¶</a></h3>
+<p>All the 3 <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> Classes allow for the user to pass the ephemeris error in RA*cosDEC and DEC.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_ker</span> <span class="o">=</span> <span class="n">EphemKernel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Chariklo&#39;</span><span class="p">,</span> <span class="n">spkid</span><span class="o">=</span><span class="s1">&#39;2010199&#39;</span><span class="p">,</span> <span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input/bsp/Chariklo.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;input/bsp/de438_small.bsp&#39;</span><span class="p">],</span> <span class="n">error_ra</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">error_dec</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">eph_ker</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------- Ephemeris -----------
+
+EphemKernel: CHARIKLO/DE438_SMALL (SPKID=2010199)
+Ephem Error: RA*cosDEC: 0.020 arcsec; DEC: 0.020 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.5.-Obtaining-positions">
+<h3>6.5. Obtaining positions<a class="headerlink" href="#6.5.-Obtaining-positions" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> allows the user to get the on-sky geocentric position of the object for a certain epoch. This function does not exist for the <code class="docutils literal notranslate"><span class="pre">EphemPlanete</span></code> Class since, in this case, the ephemeris is an input parameter. The returned variable is an Astropy SkyCoord object, so their functions can be used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>chariklo.ephem.get_position<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> chariklo<span class="ansi-blue-fg">.</span>ephem<span class="ansi-blue-fg">.</span>get_position<span class="ansi-blue-fg">(</span>time<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Returns the object geocentric position.
+
+Parameters:
+    time (str, Time): Reference time to calculate the object position.
+
+Returns:
+    coord (SkyCoord): Astropy SkyCoord object with the object coordinates at the given time
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/ephem/core.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;SkyCoord (ICRS): (ra, dec, distance) in (deg, deg, km)
+    (283.86685123, -31.52237927, 2.19331444e+09)&gt;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RA =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">ra</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DEC =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;AU&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coordinate =&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RA = 283d52m00.6644s
+DEC = -31d31m20.5654s
+Distance = 14.661401433721714 AU
+Coordinate = 18 55 28.04429 -31 31 20.56536
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_hor</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;SkyCoord (ICRS): (ra, dec, distance) in (deg, deg, AU)
+    (283.86685422, -31.52237803, 14.66140344)&gt;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.6.-Ksi-and-Eta-projection">
+<h3>6.6. Ksi and Eta projection<a class="headerlink" href="#6.6.-Ksi-and-Eta-projection" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> objects calculates the orthographic projection (ksi and eta) of a site in the direction of a star given the following function. Ksi is in the East direction and Eta is in the North direction.</p>
+<p>The coordinates of the star given must be in the Geocentric Celestial Reference System (GCRS).</p>
+<p>This is calculated automaticaly in <code class="docutils literal notranslate"><span class="pre">Occultation</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>chariklo.ephem.get_ksi_eta<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> chariklo<span class="ansi-blue-fg">.</span>ephem<span class="ansi-blue-fg">.</span>get_ksi_eta<span class="ansi-blue-fg">(</span>time<span class="ansi-blue-fg">,</span> star<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Returns projected position* of the object in the tangent sky plane relative to a star.
+    * ortographic projection.
+
+Parameters:
+    time (str, Time): Reference time to calculate the object position.
+    star (str, SkyCoord): Coordinate of the star in the same reference frame as the ephemeris.
+
+Returns:
+    ksi, eta (float): projected position (ortographic projection) of the object in the tangent sky plane
+        relative to a star.
+        Ksi is in the North-South direction (North positive)
+        Eta is in the East-West direction (East positive)
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/ephem/meta.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:18:00&#39;</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="s1">&#39;18 55 15.65250 -31 31 21.67051&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(1059.3876121640205, 522.2713452577591)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_hor</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2017-06-22 21:18:00&#39;</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="s1">&#39;18 55 15.65250 -31 31 21.67051&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(1157.3047728204565, 569.3302025641514)
+</pre></div></div>
+</div>
+<p><strong>In the case of ``EphemPlanete``, the time given must be in the range of the input ephemeris.</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">eph_pla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+----------- Ephemeris -----------
+
+EphemPlanete: Valid from 2019-06-07 02:54:00.000 until 2019-06-07 04:54:00.000 (SPKID=)
+Ephem Error: RA*cosDEC: 0.000 arcsec; DEC: 0.000 arcsec
+Offset applied: RA*cosDEC: 0.0000 arcsec; DEC: 0.0000 arcsec
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_pla</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2019-06-07 03:54:22.60&#39;</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="s1">&#39;19 21 18.63201 -21 44 25.3924&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Fitting ephemeris position relative to star coordinate 19h21m18.632s -21d44m25.3924s
+ksi = aksi*t² + bksi*t + cksi
+eta = aeta*t² + beta*t + ceta
+t=(jd-2458641.62083333)/(2458641.70416667-2458641.62083333)
+        aksi=-74.33578570364584
+        bksi=-120036.66964478238
+        cksi=56728.18870944259
+        aeta=-11.579369275888473
+        beta=-17144.758848118654
+        ceta=6972.3299907265955
+Residual RMS: ksi=0.004 km, eta=0.001 km
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(-3685.746063311948, -1656.7962535909337)
+</pre></div></div>
+</div>
+<p><strong>For</strong> <code class="docutils literal notranslate"><span class="pre">EphemPlanete</span></code> <strong>, the user can also make the fit before running get_ksi_eta. If the fit is done, get_ksi_eta will only need the time param.</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>eph_pla.fit_d2_ksi_eta<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> eph_pla<span class="ansi-blue-fg">.</span>fit_d2_ksi_eta<span class="ansi-blue-fg">(</span>star<span class="ansi-blue-fg">,</span> verbose<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Fits the projected position* of the object in the tangent sky plane relative to a star
+    * ortographic projection.
+
+Parameters:
+    star (str, SkyCoord): The coordinate of the star in the same reference frame as the ephemeris.
+    verbose (bool): if True, log is printed. Default: True
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/ephem/core.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_pla</span><span class="o">.</span><span class="n">fit_d2_ksi_eta</span><span class="p">(</span><span class="s1">&#39;19 21 18.63201 -21 44 25.3923&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Fitting ephemeris position relative to star coordinate 19h21m18.632s -21d44m25.3923s
+ksi = aksi*t² + bksi*t + cksi
+eta = aeta*t² + beta*t + ceta
+t=(jd-2458641.62083333)/(2458641.70416667-2458641.62083333)
+        aksi=-74.33578570364584
+        bksi=-120036.66964478238
+        cksi=56728.18870944259
+        aeta=-11.579369458933602
+        beta=-17144.7587881425
+        ceta=6971.659735843644
+Residual RMS: ksi=0.004 km, eta=0.001 km
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph_pla</span><span class="o">.</span><span class="n">get_ksi_eta</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2019-06-07 03:54:22.60&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(-3685.746063311948, -1657.4664783438866)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="6.7.-Adding-Offsets">
+<h3>6.7. Adding Offsets<a class="headerlink" href="#6.7.-Adding-Offsets" title="Permalink to this headline">¶</a></h3>
+<p>If an ephemeris offset was obtained from astrometry, it can be added to the <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> objects using add_offset. This values are given in <span class="math notranslate nohighlight">\(\Delta\alpha\cos\delta\)</span> and <span class="math notranslate nohighlight">\(\Delta\delta\)</span> in mas.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>eph_ker.add_offset<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span> eph_ker<span class="ansi-blue-fg">.</span>add_offset<span class="ansi-blue-fg">(</span>da_cosdec<span class="ansi-blue-fg">,</span> ddec<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Adds an offset to the Ephemeris
+
+Parameters:
+    da_cosdec (int, float): Delta_alpha_cos_delta in mas
+    ddec (int, float): Delta_delta in mas
+<span class="ansi-red-fg">File:</span>      ~/anaconda3/lib/python3.8/site-packages/sora/ephem/meta.py
+<span class="ansi-red-fg">Type:</span>      method
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">))</span>
+<span class="n">eph</span> <span class="o">=</span> <span class="n">chariklo</span><span class="o">.</span><span class="n">ephem</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+18h55m28.0443s -31d31m20.5654s
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph</span><span class="o">.</span><span class="n">add_offset</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">eph_hor</span><span class="o">.</span><span class="n">add_offset</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">eph_pla</span><span class="o">.</span><span class="n">add_offset</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">eph</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="s1">&#39;2017-06-22 00:00:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;hmsdms&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;18h55m28.0474s -31d31m20.5154s&#39;
+</pre></div></div>
+</div>
+<p><strong>This Jupyter-Notebook was designed as a tutorial for how to work with the</strong> <code class="docutils literal notranslate"><span class="pre">Body</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code> <strong>Classes. More information about the other classes, please refer to their specif Jupyter-Notebook. Any further question, please contact the core team: Altair Ramos Gomes Júnior, Bruno Eduardo Morgado, Gustavo Benedetti Rossi, and Rodrigo Carlos Boufleur.</strong></p>
+<p><strong>The End</strong></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Tutorial_SORAv0.2_Star.html" class="btn btn-neutral float-right" title="Star Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../jupyters.html" class="btn btn-neutral float-left" title="Jupyter-Notebook Guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -32,7 +32,10 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -87,36 +90,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Manual:</span></p>
+              <p class="caption"><span class="caption-text">Details:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="goals_updates.html">Goals and Version updates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curiosities.html">Curiosities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="future_linea.html">The future and the LIneA TNO Portal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input_output.html">Input and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora_code.html">SORA Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora_code.html#python-hints-tips-and-tools-for-users-sec-python-hints">Python hints, tips and tools (for users) [Sec:Python_hints]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team.html">About Us</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials:</span></p>
+<p class="caption"><span class="caption-text">Code:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_ChiSquare.html">ChiSquare Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_LightCurve.html">LightCurve Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Observer.html">Observer Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Occultation.html">Occultation Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Prediction.html"><em>prediction()</em> and PredictionTable Object Class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.1_Star.html">Star Class</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Modules:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sora.html">Ephem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.lightcurve">Lightcurve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.observer">Observer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.occultation">Occultation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.prediction">Prediction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.star">Star</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.body">Body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sora.html#module-sora.extra">Extra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters.html">Jupyter-Notebook Guidelines</a></li>
 </ul>
 
             
@@ -186,13 +172,16 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
@@ -202,30 +191,64 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
- | <a href="#X"><strong>X</strong></a>
  
 </div>
-<h2 id="A">A</h2>
+<h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.add_observation">add_observation() (sora.occultation.Occultation method)</a>
-</li>
-      <li><a href="sora.html#sora.star.Star.add_offset">add_offset() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Body.__from_local">__from_local() (sora.Body method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.apparent_diameter">apparent_diameter() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Body.__from_sbdb">__from_sbdb() (sora.Body method)</a>
 </li>
-      <li><a href="sora.html#sora.ephem.apparent_mag">apparent_mag() (in module sora.ephem)</a>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.occultation.chordlist.ChordList.add_chord">add_chord() (sora.occultation.chordlist.ChordList method)</a>
 </li>
+      <li><a href="sora.html#sora.Occultation.add_observation">add_observation() (sora.Occultation method)</a>
+</li>
+      <li><a href="sora.html#sora.Star.add_offset">add_offset() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.Body.albedo">albedo (sora.Body attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Observer.altaz">altaz() (sora.Observer method)</a>
+</li>
+      <li><a href="sora.html#sora.Star.apparent_diameter">apparent_diameter() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.body.utils.apparent_magnitude">apparent_magnitude() (in module sora.body.utils)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Body.apparent_magnitude">(sora.Body method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.barycentric">barycentric() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Star.barycentric">barycentric() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.Body">Body (class in sora)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Occultation.body">body (sora.Occultation attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.body">(sora.occultation.chordlist.ChordList attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.Body.BV">BV (sora.Body attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -233,11 +256,27 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.lightcurve.calc_fresnel">calc_fresnel() (in module sora.lightcurve)</a>
+      <li><a href="sora.html#sora.lightcurve.utils.calc_fresnel">calc_fresnel() (in module sora.lightcurve.utils)</a>
+</li>
+      <li><a href="sora.html#sora.lightcurve.utils.calc_magnitude_drop">calc_magnitude_drop() (in module sora.lightcurve.utils)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.calc_magnitude_drop">(sora.LightCurve method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.Occultation.check_time_shift">check_time_shift() (sora.Occultation method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.check_velocities">check_velocities() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.Occultation.check_velocities">check_velocities() (sora.Occultation method)</a>
+</li>
+      <li><a href="sora.html#sora.extra.ChiSquare">ChiSquare (class in sora.extra)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.Chord">Chord (class in sora.occultation)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.chordlist.ChordList">ChordList (class in sora.occultation.chordlist)</a>
+</li>
+      <li><a href="sora.html#sora.Observer.code">code (sora.Observer attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -245,7 +284,21 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.extra.draw_ellipse">draw_ellipse() (in module sora.extra)</a>
+      <li><a href="sora.html#sora.Body.database">database (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.Body.density">density (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.Body.diameter">diameter (sora.Body attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.occultation.Chord.disable">disable() (sora.occultation.Chord method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.disable">(sora.occultation.chordlist.ChordList method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.extra.plots.draw_ellipse">draw_ellipse() (in module sora.extra.plots)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -253,28 +306,62 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.ephem.ephem_kernel">ephem_kernel() (in module sora.ephem)</a>
+      <li><a href="sora.html#sora.occultation.Chord.enable">enable() (sora.occultation.Chord method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.enable">(sora.occultation.chordlist.ChordList method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.Body.ephem">ephem (sora.Body attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemPlanete.ephem">(sora.EphemPlanete attribute)</a>
+</li>
+        <li><a href="sora.html#sora.Occultation.ephem">(sora.Occultation attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.ephem.utils.ephem_kernel">ephem_kernel() (in module sora.ephem.utils)</a>
+</li>
+      <li><a href="sora.html#sora.EphemHorizons">EphemHorizons (class in sora)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.error_at">error_at() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.EphemKernel">EphemKernel (class in sora)</a>
 </li>
+      <li><a href="sora.html#sora.EphemPlanete">EphemPlanete (class in sora)</a>
+</li>
+      <li><a href="sora.html#sora.Star.error_at">error_at() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.EphemHorizons.error_dec">error_dec (sora.EphemHorizons attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemPlanete.error_dec">(sora.EphemPlanete attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.EphemHorizons.error_ra">error_ra (sora.EphemHorizons attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemPlanete.error_ra">(sora.EphemPlanete attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.occultation.utils.filter_negative_chord">filter_negative_chord() (in module sora.occultation.utils)</a>
+</li>
+      <li><a href="sora.html#sora.EphemPlanete.fit_d2_ksi_eta">fit_d2_ksi_eta() (sora.EphemPlanete method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.occultation.fit_ellipse">fit_ellipse() (in module sora.occultation)</a>
 
       <ul>
-        <li><a href="sora.html#sora.occultation.Occultation.fit_ellipse">(sora.occultation.Occultation method)</a>
+        <li><a href="sora.html#sora.Occultation.fit_ellipse">(sora.Occultation method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.lightcurve.fit_pol">fit_pol() (in module sora.lightcurve)</a>
-</li>
       <li><a href="sora.html#sora.prediction.PredictionTable.from_praia">from_praia() (sora.prediction.PredictionTable class method)</a>
 </li>
   </ul></td>
@@ -283,11 +370,89 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.geocentric">geocentric() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Body.G">G (sora.Body attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemHorizons.G">(sora.EphemHorizons attribute)</a>
+</li>
+        <li><a href="sora.html#sora.EphemPlanete.G">(sora.EphemPlanete attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.Star.geocentric">geocentric() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.extra.utils.get_ellipse_points">get_ellipse_points() (in module sora.extra.utils)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.Chord.get_fg">get_fg() (sora.occultation.Chord method)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.Chord.get_impact_param">get_impact_param() (sora.occultation.Chord method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.get_impact_param">(sora.occultation.chordlist.ChordList method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.EphemPlanete.get_ksi_eta">get_ksi_eta() (sora.EphemPlanete method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Observer.get_ksi_eta">(sora.Observer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Occultation.get_map_sites">get_map_sites() (sora.Occultation method)</a>
+</li>
+      <li><a href="sora.html#sora.extra.ChiSquare.get_nsigma">get_nsigma() (sora.extra.ChiSquare method)</a>
+</li>
+      <li><a href="sora.html#sora.Body.get_pole_position_angle">get_pole_position_angle() (sora.Body method)</a>
+</li>
+      <li><a href="sora.html#sora.EphemHorizons.get_position">get_position() (sora.EphemHorizons method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemKernel.get_position">(sora.EphemKernel method)</a>
+</li>
+        <li><a href="sora.html#sora.EphemPlanete.get_position">(sora.EphemPlanete method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.occultation.Chord.get_theoretical_times">get_theoretical_times() (sora.occultation.Chord method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.get_theoretical_times">(sora.occultation.chordlist.ChordList method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.extra.ChiSquare.get_values">get_values() (sora.extra.ChiSquare method)</a>
+</li>
+      <li><a href="sora.html#sora.ephem.utils.getBSPfromJPL">getBSPfromJPL() (in module sora.ephem.utils)</a>
+</li>
+      <li><a href="sora.html#sora.Body.GM">GM (sora.Body attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Body.H">H (sora.Body attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemHorizons.H">(sora.EphemHorizons attribute)</a>
+</li>
+        <li><a href="sora.html#sora.EphemPlanete.H">(sora.EphemPlanete attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Observer.height">height (sora.Observer attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.EphemHorizons.id_type">id_type (sora.EphemHorizons attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.get_map_sites">get_map_sites() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.occultation.Chord.is_able">is_able() (sora.occultation.Chord property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -299,15 +464,27 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.kervella">kervella() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.star.utils.kervella">kervella() (in module sora.star.utils)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Star.kervella">(sora.Star method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.prediction.latlon2xy">latlon2xy() (in module sora.prediction)</a>
+      <li><a href="sora.html#sora.Observer.lat">lat (sora.Observer attribute)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve">LightCurve (class in sora)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.occultation.Chord.lightcurve">lightcurve (sora.occultation.Chord attribute)</a>
+</li>
+      <li><a href="sora.html#sora.Observer.lon">lon (sora.Observer attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -315,25 +492,37 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.EphemHorizons.mass">mass (sora.EphemHorizons attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemPlanete.mass">(sora.EphemPlanete attribute)</a>
+</li>
+      </ul></li>
       <li>
     module
 
       <ul>
-        <li><a href="sora.html#module-sora.body">sora.body</a>
+        <li><a href="sora.html#module-sora.body.utils">sora.body.utils</a>
 </li>
-        <li><a href="sora.html#module-sora.ephem">sora.ephem</a>
+        <li><a href="sora.html#module-sora.ephem.utils">sora.ephem.utils</a>
 </li>
-        <li><a href="sora.html#module-sora.extra">sora.extra</a>
+        <li><a href="sora.html#module-sora.extra.plots">sora.extra.plots</a>
 </li>
-        <li><a href="sora.html#module-sora.lightcurve">sora.lightcurve</a>
+        <li><a href="sora.html#module-sora.extra.utils">sora.extra.utils</a>
 </li>
-        <li><a href="sora.html#module-sora.observer">sora.observer</a>
+        <li><a href="sora.html#module-sora.lightcurve.occdetect">sora.lightcurve.occdetect</a>
 </li>
-        <li><a href="sora.html#module-sora.occultation">sora.occultation</a>
+        <li><a href="sora.html#module-sora.lightcurve.utils">sora.lightcurve.utils</a>
 </li>
-        <li><a href="sora.html#module-sora.prediction">sora.prediction</a>
+        <li><a href="sora.html#module-sora.observer.utils">sora.observer.utils</a>
 </li>
-        <li><a href="sora.html#module-sora.star">sora.star</a>
+        <li><a href="sora.html#module-sora.occultation.utils">sora.occultation.utils</a>
+</li>
+        <li><a href="sora.html#module-sora.prediction.core">sora.prediction.core</a>
+</li>
+        <li><a href="sora.html#module-sora.prediction.occmap">sora.prediction.occmap</a>
+</li>
+        <li><a href="sora.html#module-sora.star.utils">sora.star.utils</a>
 </li>
       </ul></li>
   </ul></td>
@@ -342,7 +531,23 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.new_astrometric_position">new_astrometric_position() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.Body.name">name (sora.Body attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemHorizons.name">(sora.EphemHorizons attribute)</a>
+</li>
+        <li><a href="sora.html#sora.EphemPlanete.name">(sora.EphemPlanete attribute)</a>
+</li>
+        <li><a href="sora.html#sora.Observer.name">(sora.Observer attribute)</a>
+</li>
+        <li><a href="sora.html#sora.occultation.Chord.name">(sora.occultation.Chord attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.Occultation.new_astrometric_position">new_astrometric_position() (sora.Occultation method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.normalize">normalize() (sora.LightCurve method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -350,13 +555,29 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.observations">observations() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.Occultation.observations">observations() (sora.Occultation method)</a>
 </li>
+      <li><a href="sora.html#sora.Observer">Observer (class in sora)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.Chord.observer">observer (sora.occultation.Chord attribute)</a>
+</li>
+      <li><a href="sora.html#sora.lightcurve.occdetect.occ_detect">occ_detect() (in module sora.lightcurve.occdetect)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.occ_detect">(sora.LightCurve method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.prediction.occ_params">occ_params() (in module sora.prediction)</a>
+      <li><a href="sora.html#sora.LightCurve.occ_lcfit">occ_lcfit() (sora.LightCurve method)</a>
 </li>
-      <li><a href="sora.html#sora.occultation.Occultation">Occultation (class in sora.occultation)</a>
+      <li><a href="sora.html#sora.LightCurve.occ_model">occ_model() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.core.occ_params">occ_params() (in module sora.prediction.core)</a>
+</li>
+      <li><a href="sora.html#sora.Occultation">Occultation (class in sora)</a>
+</li>
+      <li><a href="sora.html#sora.Body.orbit_class">orbit_class (sora.Body attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -364,29 +585,43 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.plot_chords">plot_chords() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.occultation.Chord.path">path() (sora.occultation.Chord method)</a>
 </li>
-      <li><a href="sora.html#sora.prediction.plot_occ_map">plot_occ_map() (in module sora.prediction)</a>
+      <li><a href="sora.html#sora.body.PhysicalData">PhysicalData (class in sora.body)</a>
+</li>
+      <li><a href="sora.html#sora.extra.ChiSquare.plot_chi2">plot_chi2() (sora.extra.ChiSquare method)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.Chord.plot_chord">plot_chord() (sora.occultation.Chord method)</a>
+</li>
+      <li><a href="sora.html#sora.Occultation.plot_chords">plot_chords() (sora.Occultation method)</a>
 
       <ul>
-        <li><a href="sora.html#sora.occultation.Occultation.plot_occ_map">(sora.occultation.Occultation method)</a>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.plot_chords">(sora.occultation.chordlist.ChordList method)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.LightCurve.plot_lc">plot_lc() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.plot_model">plot_model() (sora.LightCurve method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.prediction.occmap.plot_occ_map">plot_occ_map() (in module sora.prediction.occmap)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Occultation.plot_occ_map">(sora.Occultation method)</a>
 </li>
         <li><a href="sora.html#sora.prediction.PredictionTable.plot_occ_map">(sora.prediction.PredictionTable method)</a>
 </li>
-        <li><a href="sora.html#sora.prediction.PredictRow.plot_occ_map">(sora.prediction.PredictRow method)</a>
-</li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.positions">positions() (sora.occultation.Occultation property)</a>
+      <li><a href="sora.html#sora.Body.pole">pole (sora.Body attribute)</a>
 </li>
-      <li><a href="sora.html#sora.occultation.positionv">positionv() (in module sora.occultation)</a>
+      <li><a href="sora.html#sora.Occultation.positions">positions() (sora.Occultation property)</a>
 </li>
-      <li><a href="sora.html#sora.prediction.prediction">prediction() (in module sora.prediction)</a>
+      <li><a href="sora.html#sora.occultation.utils.positionv">positionv() (in module sora.occultation.utils)</a>
+</li>
+      <li><a href="sora.html#sora.prediction.core.prediction">prediction() (in module sora.prediction.core)</a>
 </li>
       <li><a href="sora.html#sora.prediction.PredictionTable">PredictionTable (class in sora.prediction)</a>
-</li>
-      <li><a href="sora.html#sora.prediction.PredictRow">PredictRow (class in sora.prediction)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -394,13 +629,23 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.ephem.read_obj_data">read_obj_data() (in module sora.ephem)</a>
+      <li><a href="sora.html#sora.EphemHorizons.radius">radius (sora.EphemHorizons attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.EphemPlanete.radius">(sora.EphemPlanete attribute)</a>
 </li>
-      <li><a href="sora.html#sora.occultation.Occultation.remove_observation">remove_observation() (sora.occultation.Occultation method)</a>
+      </ul></li>
+      <li><a href="sora.html#sora.occultation.chordlist.ChordList.remove_chord">remove_chord() (sora.occultation.chordlist.ChordList method)</a>
+</li>
+      <li><a href="sora.html#sora.Occultation.remove_observation">remove_observation() (sora.Occultation method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sora.html#sora.prediction.PredictionTable.remove_occ">remove_occ() (sora.prediction.PredictionTable method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.reset_flux">reset_flux() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.Body.rotation">rotation (sora.Body attribute)</a>
 </li>
       <li><a href="sora.html#sora.prediction.PredictionTable.Row">Row (sora.prediction.PredictionTable attribute)</a>
 </li>
@@ -410,71 +655,124 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.observer.search_code_mpc">search_code_mpc() (in module sora.observer)</a>
+      <li><a href="sora.html#sora.observer.utils.search_code_mpc">search_code_mpc() (in module sora.observer.utils)</a>
 </li>
-      <li><a href="sora.html#sora.star.Star.set_diameter">set_diameter() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.body.utils.search_sbdb">search_sbdb() (in module sora.body.utils)</a>
 </li>
-      <li><a href="sora.html#sora.star.Star.set_magnitude">set_magnitude() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Star.set_diameter">set_diameter() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_dist">set_dist() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_exptime">set_exptime() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_filter">set_filter() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_flux">set_flux() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.Star.set_magnitude">set_magnitude() (sora.Star method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_star_diam">set_star_diam() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.LightCurve.set_vel">set_vel() (sora.LightCurve method)</a>
+</li>
+      <li><a href="sora.html#sora.Observer.sidereal_time">sidereal_time() (sora.Observer method)</a>
+</li>
+      <li><a href="sora.html#sora.Observer.site">site (sora.Observer attribute)</a>
+</li>
+      <li><a href="sora.html#sora.Body.smass">smass (sora.Body attribute)</a>
 </li>
       <li>
-    sora.body
+    sora.body.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.body">module</a>
+        <li><a href="sora.html#module-sora.body.utils">module</a>
 </li>
       </ul></li>
       <li>
-    sora.ephem
+    sora.ephem.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.ephem">module</a>
+        <li><a href="sora.html#module-sora.ephem.utils">module</a>
 </li>
       </ul></li>
       <li>
-    sora.extra
+    sora.extra.plots
 
       <ul>
-        <li><a href="sora.html#module-sora.extra">module</a>
+        <li><a href="sora.html#module-sora.extra.plots">module</a>
 </li>
       </ul></li>
       <li>
-    sora.lightcurve
+    sora.extra.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.lightcurve">module</a>
+        <li><a href="sora.html#module-sora.extra.utils">module</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    sora.observer
+    sora.lightcurve.occdetect
 
       <ul>
-        <li><a href="sora.html#module-sora.observer">module</a>
+        <li><a href="sora.html#module-sora.lightcurve.occdetect">module</a>
 </li>
       </ul></li>
       <li>
-    sora.occultation
+    sora.lightcurve.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.occultation">module</a>
+        <li><a href="sora.html#module-sora.lightcurve.utils">module</a>
 </li>
       </ul></li>
       <li>
-    sora.prediction
+    sora.observer.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.prediction">module</a>
+        <li><a href="sora.html#module-sora.observer.utils">module</a>
 </li>
       </ul></li>
       <li>
-    sora.star
+    sora.occultation.utils
 
       <ul>
-        <li><a href="sora.html#module-sora.star">module</a>
+        <li><a href="sora.html#module-sora.occultation.utils">module</a>
 </li>
       </ul></li>
-      <li><a href="sora.html#sora.star.Star">Star (class in sora.star)</a>
+      <li>
+    sora.prediction.core
+
+      <ul>
+        <li><a href="sora.html#module-sora.prediction.core">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.prediction.occmap
+
+      <ul>
+        <li><a href="sora.html#module-sora.prediction.occmap">module</a>
+</li>
+      </ul></li>
+      <li>
+    sora.star.utils
+
+      <ul>
+        <li><a href="sora.html#module-sora.star.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.Body.spkid">spkid (sora.Body attribute)</a>
+</li>
+      <li><a href="sora.html#sora.Star">Star (class in sora)</a>
+</li>
+      <li><a href="sora.html#sora.Occultation.star">star (sora.Occultation attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.star">(sora.occultation.chordlist.ChordList attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="sora.html#sora.occultation.Chord.status">status() (sora.occultation.Chord method)</a>
+</li>
+      <li><a href="sora.html#sora.occultation.chordlist.ChordList.summary">summary() (sora.occultation.chordlist.ChordList method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -482,12 +780,30 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.occultation.Occultation.to_file">to_file() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.Body.tholen">tholen (sora.Body attribute)</a>
 </li>
-      <li><a href="sora.html#sora.occultation.Occultation.to_log">to_log() (sora.occultation.Occultation method)</a>
+      <li><a href="sora.html#sora.Occultation.time">time (sora.Occultation attribute)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.occultation.chordlist.ChordList.time">(sora.occultation.chordlist.ChordList attribute)</a>
 </li>
+      </ul></li>
+      <li><a href="sora.html#sora.extra.ChiSquare.to_file">to_file() (sora.extra.ChiSquare method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.LightCurve.to_file">(sora.LightCurve method)</a>
+</li>
+        <li><a href="sora.html#sora.Occultation.to_file">(sora.Occultation method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sora.html#sora.LightCurve.to_log">to_log() (sora.LightCurve method)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Occultation.to_log">(sora.Occultation method)</a>
+</li>
+      </ul></li>
       <li><a href="sora.html#sora.prediction.PredictionTable.to_ow">to_ow() (sora.prediction.PredictionTable method)</a>
 </li>
       <li><a href="sora.html#sora.prediction.PredictionTable.to_praia">to_praia() (sora.prediction.PredictionTable method)</a>
@@ -495,19 +811,23 @@
   </ul></td>
 </tr></table>
 
-<h2 id="V">V</h2>
+<h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.star.Star.van_belle">van_belle() (sora.star.Star method)</a>
+      <li><a href="sora.html#sora.Body.UB">UB (sora.Body attribute)</a>
 </li>
   </ul></td>
 </tr></table>
 
-<h2 id="X">X</h2>
+<h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sora.html#sora.prediction.xy2latlon">xy2latlon() (in module sora.prediction)</a>
+      <li><a href="sora.html#sora.star.utils.van_belle">van_belle() (in module sora.star.utils)</a>
+
+      <ul>
+        <li><a href="sora.html#sora.Star.van_belle">(sora.Star method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

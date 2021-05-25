@@ -1,0 +1,952 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.prediction.occmap &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.prediction.occmap</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.prediction.occmap</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="k">as</span> <span class="nn">const</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">GCRS</span><span class="p">,</span> <span class="n">ITRS</span><span class="p">,</span> <span class="n">SkyOffsetFrame</span><span class="p">,</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">Angle</span><span class="p">,</span> <span class="n">get_sun</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+
+<span class="kn">from</span> <span class="nn">sora.config</span> <span class="kn">import</span> <span class="n">input_tests</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;plot_occ_map&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">xy2latlon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">loncen</span><span class="p">,</span> <span class="n">latcen</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the longitude and latitude given projected positions x and y.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : `int`, `float`</span>
+<span class="sd">        Projected position in x, in the GCRS, in meters.</span>
+
+<span class="sd">    y : `int`, `float`</span>
+<span class="sd">        Projected position in y, in the GCRS, in meters.</span>
+
+<span class="sd">    loncen : `int`, `float`</span>
+<span class="sd">        Center longitude of projection, in degrees.</span>
+
+<span class="sd">    latcen : `int`, `float`</span>
+<span class="sd">        Center latitude of projection, in degrees.</span>
+<span class="sd">    time : `astropy.time.Time`</span>
+<span class="sd">        Time of referred projection.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lon, lat : `list`</span>
+<span class="sd">        Longitude and Latitude whose projection at loncen, lat results</span>
+<span class="sd">        in x, y. (deg).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">const</span><span class="o">.</span><span class="n">R_earth</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">site_cen</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">loncen</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">latcen</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+    <span class="n">itrs_cen</span> <span class="o">=</span> <span class="n">site_cen</span><span class="o">.</span><span class="n">get_itrs</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">gcrs_cen</span> <span class="o">=</span> <span class="n">itrs_cen</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">GCRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">))</span>
+
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="o">-</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">z</span><span class="o">*</span><span class="n">z</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1e+31</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1e+31</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+    <span class="n">center_frame</span> <span class="o">=</span> <span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">gcrs_cen</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">time</span><span class="o">.</span><span class="n">isscalar</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">):</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">new_pos</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">z</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">representation_type</span><span class="o">=</span><span class="s1">&#39;cartesian&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">center_frame</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+            <span class="n">n_coord</span> <span class="o">=</span> <span class="n">new_pos</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">GCRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">))</span>
+            <span class="n">n_itrs</span> <span class="o">=</span> <span class="n">n_coord</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ITRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">))</span>
+            <span class="n">n_site</span> <span class="o">=</span> <span class="n">n_itrs</span><span class="o">.</span><span class="n">earth_location</span>
+            <span class="n">n_site</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">n_site</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">n_site</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">itrs_site</span> <span class="o">=</span> <span class="n">n_site</span><span class="o">.</span><span class="n">get_itrs</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">gcrs_site</span> <span class="o">=</span> <span class="n">itrs_site</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">GCRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">))</span>
+            <span class="n">target1</span> <span class="o">=</span> <span class="n">gcrs_site</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">center_frame</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">lon</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_site</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">deg</span>
+                <span class="n">lat</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_site</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">deg</span>
+                <span class="k">break</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">target1</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">return</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span>
+
+
+<span class="k">def</span> <span class="nf">latlon2xy</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">loncen</span><span class="p">,</span> <span class="n">latcen</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the projection of longitude and latitude in the loncen,</span>
+<span class="sd">    latcen direction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lon : `int`, `float`</span>
+<span class="sd">        Longitude to calculate projection.</span>
+
+<span class="sd">    lat : `int`, `float`</span>
+<span class="sd">        Latitude to calculate projection.</span>
+
+<span class="sd">    loncen : `int`, `float`</span>
+<span class="sd">        Center longitude of projection, in degrees.</span>
+
+<span class="sd">    latcen : `int`, `float`</span>
+<span class="sd">        Center latitude of projection, in degrees.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    x, y : `list`</span>
+<span class="sd">        Projection of lon, lat at loncen, latcen, in the ITRS (meters).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">site_cen</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">loncen</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">latcen</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+    <span class="n">itrs_cen</span> <span class="o">=</span> <span class="n">site_cen</span><span class="o">.</span><span class="n">get_itrs</span><span class="p">()</span>
+
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">site</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lon</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lat</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">itrs_site</span> <span class="o">=</span> <span class="n">site</span><span class="o">.</span><span class="n">get_itrs</span><span class="p">()</span>
+
+    <span class="n">target</span> <span class="o">=</span> <span class="n">itrs_site</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">SkyOffsetFrame</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">itrs_cen</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e+31</span>
+    <span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e+31</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+
+<div class="viewcode-block" id="plot_occ_map"><a class="viewcode-back" href="../../../sora.html#sora.prediction.occmap.plot_occ_map">[docs]</a><span class="k">def</span> <span class="nf">plot_occ_map</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">coord</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">ca</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots the map of the occultation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : `str`</span>
+<span class="sd">        Name of the object.</span>
+
+<span class="sd">    radius : `int`, `float`</span>
+<span class="sd">        Radius of the object, in km.</span>
+
+<span class="sd">    coord : `str`, `astropy.coordinates.SkyCoord`</span>
+<span class="sd">        Coordinates of the star (``&quot;hh mm ss.sss dd mm ss.sss&quot;`` or</span>
+<span class="sd">        ``&quot;hh.hhhhhhhh dd.dddddddd&quot;``).</span>
+
+<span class="sd">    time : `str`, `astropy.time.Time`</span>
+<span class="sd">        Instant of Closest Approach (iso or isot format).</span>
+
+<span class="sd">    ca : `int`, `float`</span>
+<span class="sd">        Closest Approach Distance, in arcsec.</span>
+
+<span class="sd">    pa : `int`, `float`</span>
+<span class="sd">        Position Angle at C/A, in degrees.</span>
+
+<span class="sd">    vel : `int`, `float`</span>
+<span class="sd">        Velocity of the event, in km/s.</span>
+
+<span class="sd">    dist : `int`, `float`</span>
+<span class="sd">        Object distance at C/A, in AU.</span>
+
+<span class="sd">    mag : `int`, `float`, default=0</span>
+<span class="sd">        Mag* = Normalized magnitude to vel=20km/s.</span>
+
+<span class="sd">    longi : `int`, `float`, default=0</span>
+<span class="sd">        East longitude of sub-planet point, deg, positive towards East.</span>
+
+<span class="sd">    nameimg : `str`</span>
+<span class="sd">        Change the name of the imaged saved.</span>
+
+<span class="sd">    path : `str`</span>
+<span class="sd">        Path to a directory where to save map.</span>
+
+<span class="sd">    resolution : `int`, default=2</span>
+<span class="sd">        Cartopy feature resolution.\n</span>
+<span class="sd">        - ``1`` means a resolution of &quot;10m&quot;;\n</span>
+<span class="sd">        - ``2`` a resolution of &quot;50m&quot;;\n</span>
+<span class="sd">        - ``3`` a resolution of &quot;100m&quot;.</span>
+
+<span class="sd">    states : `bool`</span>
+<span class="sd">        If True, plots the states borders of the countries. The states</span>
+<span class="sd">        of some countries will only be shown depending on the resolution.</span>
+
+<span class="sd">    zoom : `int`, `float`</span>
+<span class="sd">        Zooms in or out of the map.</span>
+
+<span class="sd">    centermap_geo : `list`, default=None</span>
+<span class="sd">        Center the map given coordinates in longitude and latitude. It must be</span>
+<span class="sd">        a list with two numbers.</span>
+
+<span class="sd">    centermap_delta : `list`, default=None</span>
+<span class="sd">        Displace the center of the map given displacement in X and Y, in km.</span>
+<span class="sd">        It must be a list with two numbers.</span>
+
+<span class="sd">    centerproj : `list`</span>
+<span class="sd">        Rotates the Earth to show occultation with the center projected at a</span>
+<span class="sd">        given longitude and latitude. It must be a list with two numbers.</span>
+
+<span class="sd">    labels : `bool`, default=True</span>
+<span class="sd">        Plots text above and below the map with the occultation parameters.</span>
+
+<span class="sd">    meridians : `int`, default=30</span>
+<span class="sd">        Plots lines representing the meridians for given interval, in degrees.</span>
+
+<span class="sd">    parallels : `int`, default=30</span>
+<span class="sd">        Plots lines representing the parallels for given interval, in degrees.</span>
+
+<span class="sd">    sites : `dict`</span>
+<span class="sd">        Plots site positions in map. It must be a python dictionary where the</span>
+<span class="sd">        key is  the `name` of the site, and the value is a list with `longitude`,</span>
+<span class="sd">        `latitude`, `delta_x`, `delta_y` and `color`. `delta_x` and `delta_y`</span>
+<span class="sd">        are displacement, in km, from the point position of the site in the map</span>
+<span class="sd">        and the `name`. `color` is the color of the point.</span>
+
+<span class="sd">    site_name : `bool`</span>
+<span class="sd">        If True, it prints the name of the sites given, else it plots only the points.</span>
+
+<span class="sd">    countries : `dict`</span>
+<span class="sd">        Plots the names of countries. It must be a python dictionary where the</span>
+<span class="sd">        key is the name of the country and the value is a list with longitude</span>
+<span class="sd">        and latitude of the lower left part of the text.</span>
+
+<span class="sd">    offset : `list`</span>
+<span class="sd">        Applies an offset to the ephemeris, calculating new CA and instant of</span>
+<span class="sd">        CA. It is a pair of `delta_RA*cosDEC` and `delta_DEC`.</span>
+
+<span class="sd">    mapstyle : `int`, default=1</span>
+<span class="sd">        Define the color style of the map. ``&#39;1&#39;`` is the default black</span>
+<span class="sd">        and white scale. ``&#39;2&#39;`` is a colored map.</span>
+
+<span class="sd">    error : `int`, `float`</span>
+<span class="sd">        Ephemeris error in mas. It plots a dashed line representing radius + error.</span>
+
+<span class="sd">    ercolor : `str`</span>
+<span class="sd">        Changes the color of the lines of the error bar.</span>
+
+<span class="sd">    ring : `int`, `float`</span>
+<span class="sd">        Plots a dashed line representing the location of a ring. It is given</span>
+<span class="sd">        in km, from the center.</span>
+
+<span class="sd">    rncolor : `str`</span>
+<span class="sd">        Changes the color of ring lines.</span>
+
+<span class="sd">    atm : `int`, `float`</span>
+<span class="sd">        Plots a dashed line representing the location of an atmosphere. It is</span>
+<span class="sd">        given in km, from the center.</span>
+
+<span class="sd">    atcolor : `str`</span>
+<span class="sd">        Changes the color of atm lines.</span>
+
+<span class="sd">    chord_delta : `list`</span>
+<span class="sd">        List with distances from center to plot chords.</span>
+
+<span class="sd">    chord_geo : `2d-list`</span>
+<span class="sd">        List with pairs of coordinates to plot chords.</span>
+
+<span class="sd">    chcolor : `str`, default=&#39;grey&#39;</span>
+<span class="sd">        Color of the line of the chords.</span>
+
+<span class="sd">    heights : `list`</span>
+<span class="sd">        It plots a circular dashed line showing the locations where the observer</span>
+<span class="sd">        would observe the occultation at a given height above the horizons.</span>
+<span class="sd">        This must be a list.</span>
+
+<span class="sd">    hcolor : `str`</span>
+<span class="sd">        Changes the color of the height lines.</span>
+
+<span class="sd">    mapsize : `list`, default= [46.0, 38.0]</span>
+<span class="sd">        The size of figure, in cm. It must be a list with two values.</span>
+
+<span class="sd">    cpoints : `int`, `float`, default=60</span>
+<span class="sd">        Interval for the small points marking the center of shadow, in seconds.</span>
+
+<span class="sd">    ptcolor : `str`</span>
+<span class="sd">        Change the color of the center points.</span>
+
+<span class="sd">    alpha : `float`, default=0.2</span>
+<span class="sd">        The transparency of the night shade, where 0.0 is full transparency and</span>
+<span class="sd">        1.0 is full black.</span>
+
+<span class="sd">    fmt : `str`, default:&#39;png&#39;</span>
+<span class="sd">        The format to save the image. It is parsed directly by `matplotlib.pyplot`.</span>
+
+<span class="sd">    dpi : `int`, default=100</span>
+<span class="sd">        Resolution in &quot;dots per inch&quot;. It defines the quality of the image.</span>
+
+<span class="sd">    lncolor : `str`</span>
+<span class="sd">        Changes the color of the line that represents the limits of the shadow</span>
+<span class="sd">        over Earth.</span>
+
+<span class="sd">    outcolor :`str`</span>
+<span class="sd">        Changes the color of the lines that represents the limits of the shadow</span>
+<span class="sd">        outside Earth.</span>
+
+<span class="sd">    scale : `int`, `float`</span>
+<span class="sd">        Arbitrary scale for the size of the name of the site.</span>
+
+<span class="sd">    cscale : `int`, `float`</span>
+<span class="sd">        Arbitrary scale for the name of the country.</span>
+
+<span class="sd">    sscale : `int`, `float`</span>
+<span class="sd">        Arbitrary scale for the size of point of the site.</span>
+
+<span class="sd">    pscale : `int`, `float`</span>
+<span class="sd">        Arbitrary scale for the size of the points that represent the center of</span>
+<span class="sd">        the shadow.</span>
+
+<span class="sd">    arrow : `bool`</span>
+<span class="sd">        If True, it plots the arrow with the occultation direction.</span>
+
+
+<span class="sd">    Important</span>
+<span class="sd">    ---------</span>
+<span class="sd">    Required parameters to plot an occultation map: &#39;name&#39;, &#39;radius&#39;, &#39;coord&#39;,</span>
+<span class="sd">    &#39;time&#39;, &#39;ca&#39;, &#39;pa&#39;, &#39;vel&#39;, and &#39;dist&#39;.</span>
+
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    The parameters &#39;mag&#39; and &#39;longi&#39; are optional and only printed in label.</span>
+<span class="sd">    All other remaining parameters can be used to further customize the Map</span>
+<span class="sd">    configuration.</span>
+
+<span class="sd">    When producing the map, only one of &#39;centermap_geo&#39; or &#39;centermap_delta&#39;</span>
+<span class="sd">    options can be used at a time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+    <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+
+    <span class="n">allowed_kwargs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;atcolor&#39;</span><span class="p">,</span> <span class="s1">&#39;atm&#39;</span><span class="p">,</span> <span class="s1">&#39;centermap_delta&#39;</span><span class="p">,</span> <span class="s1">&#39;centermap_geo&#39;</span><span class="p">,</span> <span class="s1">&#39;centerproj&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;chcolor&#39;</span><span class="p">,</span> <span class="s1">&#39;chord_delta&#39;</span><span class="p">,</span> <span class="s1">&#39;chord_geo&#39;</span><span class="p">,</span> <span class="s1">&#39;countries&#39;</span><span class="p">,</span> <span class="s1">&#39;cpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;cscale&#39;</span><span class="p">,</span> <span class="s1">&#39;dpi&#39;</span><span class="p">,</span> <span class="s1">&#39;ercolor&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;fmt&#39;</span><span class="p">,</span> <span class="s1">&#39;hcolor&#39;</span><span class="p">,</span> <span class="s1">&#39;heights&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;lncolor&#39;</span><span class="p">,</span> <span class="s1">&#39;mapsize&#39;</span><span class="p">,</span> <span class="s1">&#39;mapstyle&#39;</span><span class="p">,</span> <span class="s1">&#39;meridians&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;nameimg&#39;</span><span class="p">,</span> <span class="s1">&#39;nscale&#39;</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="s1">&#39;outcolor&#39;</span><span class="p">,</span> <span class="s1">&#39;parallels&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;pscale&#39;</span><span class="p">,</span> <span class="s1">&#39;ptcolor&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="s1">&#39;ring&#39;</span><span class="p">,</span> <span class="s1">&#39;rncolor&#39;</span><span class="p">,</span> <span class="s1">&#39;site_name&#39;</span><span class="p">,</span> <span class="s1">&#39;sites&#39;</span><span class="p">,</span> <span class="s1">&#39;sscale&#39;</span><span class="p">,</span> <span class="s1">&#39;states&#39;</span><span class="p">,</span> <span class="s1">&#39;zoom&#39;</span><span class="p">]</span>
+    <span class="n">input_tests</span><span class="o">.</span><span class="n">check_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">allowed_kwargs</span><span class="o">=</span><span class="n">allowed_kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;name keyword must be a string&#39;</span><span class="p">)</span>
+
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+
+    <span class="n">occs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hourangle</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;&quot;star&quot; keyword is not in the format: &quot;hh mm ss.sss dd mm ss.sss&quot; or &quot;hh.hhhhhhhh dd.dddddddd&quot;&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;datas&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;&quot;time&quot; keyword is not a iso or isot time format&#39;</span><span class="p">)</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;ca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ca</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pa</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vel</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">AU</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;magG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mag</span>
+    <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;longi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">longi</span>
+
+    <span class="n">mapstyle</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mapstyle&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mapstyle</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;mapstyle must be 1 or 2]&#39;</span><span class="p">)</span>
+
+    <span class="n">resolution</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">resolution</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;resolution keyword must be one of these: [1, 2, 3] where 1=10m, 2=50m and 3=100m&#39;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="s1">&#39;110m&#39;</span><span class="p">]</span>
+    <span class="n">resolution</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">resolution</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">nameimg</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nameimg&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;datas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isot</span><span class="p">))</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fmt&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+    <span class="n">dpi</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dpi&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mapsize</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mapsize&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">46.0</span><span class="p">,</span> <span class="mf">38.0</span><span class="p">])</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="n">erro</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">ring</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ring&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">atm</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;atm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">cpoints</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cpoints&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;states&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">meridians</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;meridians&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">parallels</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parallels&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">nscale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nscale&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">cscale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cscale&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sscale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sscale&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">pscale</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pscale&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;heights&#39;</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">centermap_geo</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;centermap_geo&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">centermap_delta</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;centermap_delta&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;centermap_geo&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;centermap_delta&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User must give &quot;centermap_geo&quot; OR &quot;centermap_delta&quot;&#39;</span><span class="p">)</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zoom&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">zoom</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;zoom can not be equal or smaller than 0.&#39;</span><span class="p">)</span>
+    <span class="n">off_ra</span><span class="p">,</span> <span class="n">off_de</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span>
+    <span class="n">arrow</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;arrow&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">site_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;site_name&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;Path does not exists&#39;</span><span class="p">)</span>
+    <span class="n">chord_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chord_delta&#39;</span><span class="p">,</span> <span class="p">[]),</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+    <span class="n">chord_geo</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chord_geo&#39;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chord_geo</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chord_geo</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">chord_geo</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;chord_geo must a set of pairs with longitude and latitude&#39;</span><span class="p">)</span>
+        <span class="n">chord_geo</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="o">*</span><span class="n">chord_geo</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="n">sites</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="s1">&#39;sites&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sites&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sites&#39;</span><span class="p">]):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sites&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;offx&#39;</span><span class="p">,</span> <span class="s1">&#39;offy&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">),</span>
+                                                      <span class="s1">&#39;formats&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;S30&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;S30&#39;</span><span class="p">)},</span>
+                              <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+                <span class="n">sites</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;offx&#39;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;offy&#39;</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()]</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sites&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="n">sites</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sites&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;sites keyword must be a file or a dictionary&#39;</span><span class="p">)</span>
+
+    <span class="n">countries</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="s1">&#39;countries&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;countries&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;countries&#39;</span><span class="p">]):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;countries&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">),</span> <span class="s1">&#39;formats&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;S30&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">)},</span>
+                              <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+                <span class="n">countries</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()]</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;countries&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="n">countries</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;countries&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;country keyword must be a file or a dictionary&#39;</span><span class="p">)</span>
+
+    <span class="c1"># calculates offsets</span>
+    <span class="n">dca</span> <span class="o">=</span> <span class="n">off_ra</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">off_de</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">])</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">off_ra</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">off_de</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span> <span class="o">*</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span>
+        <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
+    <span class="n">ca1</span> <span class="o">=</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;ca&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">dca</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;datas&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span>
+
+    <span class="c1"># define map parameters</span>
+    <span class="n">center_gcrs</span> <span class="o">=</span> <span class="n">GCRS</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">R_earth</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">center_itrs</span> <span class="o">=</span> <span class="n">center_gcrs</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ITRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">center_map</span> <span class="o">=</span> <span class="n">center_itrs</span><span class="o">.</span><span class="n">earth_location</span>
+    <span class="n">centert</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="s1">&#39;centerproj&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;centerproj&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">EarthLocation</span><span class="p">:</span>
+            <span class="n">center_map</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;centerproj&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;centerproj&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,):</span>
+            <span class="n">center_map</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="o">.</span><span class="n">from_geodetic</span><span class="p">(</span><span class="o">*</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;centerproj&#39;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;centerproj must be an Astropy EarthLocation Object or an array with Longitude and Latitude only&#39;</span><span class="p">)</span>
+        <span class="n">centert</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">mapsize</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">imperial</span><span class="o">.</span><span class="n">inch</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="n">center_map</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=</span><span class="n">center_map</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">axf</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">axf</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.002</span><span class="p">,</span> <span class="mf">1.002</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+
+    <span class="c1"># calculates regions for zoom</span>
+    <span class="n">limits</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">const</span><span class="o">.</span><span class="n">R_earth</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">if</span> <span class="n">centermap_geo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">latlon2xy</span><span class="p">(</span><span class="n">centermap_geo</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">centermap_geo</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">center_map</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">center_map</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">cx</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">cy</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Coordinates for centermap_geo are outside the visible range.&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">centermap_delta</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="n">centermap_delta</span>
+    <span class="k">elif</span> <span class="n">zoom</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">r</span><span class="o">/</span><span class="n">zoom</span>
+        <span class="n">l0</span> <span class="o">=</span> <span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">l1</span> <span class="o">=</span> <span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">dmsize</span> <span class="o">=</span> <span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">mapsize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">lx</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">-</span> <span class="n">dr</span><span class="o">*</span><span class="n">dmsize</span>
+            <span class="n">ux</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">+</span> <span class="n">dr</span><span class="o">*</span><span class="n">dmsize</span>
+            <span class="n">ly</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">-</span> <span class="n">dr</span>
+            <span class="n">uy</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">dr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lx</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">-</span> <span class="n">dr</span>
+            <span class="n">ux</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">+</span> <span class="n">dr</span>
+            <span class="n">ly</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">-</span> <span class="n">dr</span><span class="o">/</span><span class="n">dmsize</span>
+            <span class="n">uy</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">dr</span><span class="o">/</span><span class="n">dmsize</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="n">ux</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ly</span><span class="p">,</span> <span class="n">uy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">labels</span> <span class="ow">and</span> <span class="n">zoom</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">centert</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># plots features</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.3&#39;</span><span class="p">)</span>
+    <span class="n">ocean</span> <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="s1">&#39;ocean&#39;</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
+    <span class="n">land</span> <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="s1">&#39;land&#39;</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
+    <span class="n">border</span> <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s1">&#39;cultural&#39;</span><span class="p">,</span> <span class="s1">&#39;admin_0_countries&#39;</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mapstyle</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.9&#39;</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">land</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.4&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.7&#39;</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.7&#39;</span><span class="p">)</span>
+        <span class="n">ptcolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+        <span class="n">lncolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="n">ercolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="n">rncolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="n">atcolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="n">outcolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+        <span class="n">hcolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+        <span class="n">chcolor</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+    <span class="k">elif</span> <span class="n">mapstyle</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;water&#39;</span><span class="p">])</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">land</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;land&#39;</span><span class="p">])</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;land&#39;</span><span class="p">])</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.5&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ptcolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+        <span class="n">lncolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="n">ercolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+        <span class="n">rncolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+        <span class="n">atcolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+        <span class="n">outcolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+        <span class="n">hcolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+        <span class="n">chcolor</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span>
+    <span class="k">if</span> <span class="n">states</span><span class="p">:</span>
+        <span class="n">states_r</span> <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s1">&#39;cultural&#39;</span><span class="p">,</span> <span class="s1">&#39;admin_1_states_provinces&#39;</span><span class="p">,</span> <span class="n">resolution</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">states_r</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.6&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">axf</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mf">180.001</span><span class="p">,</span> <span class="n">meridians</span><span class="p">),</span> <span class="n">ylocs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mf">90.001</span><span class="p">,</span> <span class="n">parallels</span><span class="p">))</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="mi">180</span>
+    <span class="n">sun</span> <span class="o">=</span> <span class="n">get_sun</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sun_lat</span> <span class="o">=</span> <span class="n">sun</span><span class="o">.</span><span class="n">dec</span>
+    <span class="n">sun_lon</span> <span class="o">=</span> <span class="n">sun</span><span class="o">.</span><span class="n">ra</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">sidereal_time</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;greenwich&#39;</span><span class="p">)</span>
+    <span class="n">pole_lon</span> <span class="o">=</span> <span class="n">sun_lon</span><span class="o">.</span><span class="n">deg</span>
+    <span class="n">pole_lat</span> <span class="o">=</span> <span class="n">sun_lat</span><span class="o">.</span><span class="n">deg</span>
+    <span class="n">proj_sun</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="n">pole_lon</span><span class="o">+</span><span class="mi">180</span><span class="p">,</span> <span class="n">central_latitude</span><span class="o">=-</span><span class="n">pole_lat</span><span class="p">)</span>
+    <span class="n">bordx</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">361</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+    <span class="n">bordy</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">361</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">bordx</span><span class="p">,</span> <span class="n">bordy</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">proj_sun</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">bordx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">18</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">bordy</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">18</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">proj_sun</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+    <span class="n">ptcolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ptcolor&#39;</span><span class="p">,</span> <span class="n">ptcolor</span><span class="p">)</span>
+    <span class="n">lncolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lncolor&#39;</span><span class="p">,</span> <span class="n">lncolor</span><span class="p">)</span>
+    <span class="n">ercolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ercolor&#39;</span><span class="p">,</span> <span class="n">ercolor</span><span class="p">)</span>
+    <span class="n">rncolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rncolor&#39;</span><span class="p">,</span> <span class="n">rncolor</span><span class="p">)</span>
+    <span class="n">atcolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;atcolor&#39;</span><span class="p">,</span> <span class="n">atcolor</span><span class="p">)</span>
+    <span class="n">outcolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;outcolor&#39;</span><span class="p">,</span> <span class="n">outcolor</span><span class="p">)</span>
+    <span class="n">hcolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hcolor&#39;</span><span class="p">,</span> <span class="n">hcolor</span><span class="p">)</span>
+    <span class="n">chcolor</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chcolor&#39;</span><span class="p">,</span> <span class="n">chcolor</span><span class="p">)</span>
+
+    <span class="c1"># calculates path</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">8000</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">))),</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">vec</span><span class="p">,</span> <span class="o">-</span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">pa</span> <span class="o">=</span> <span class="n">Angle</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">])</span>
+    <span class="n">pa</span><span class="o">.</span><span class="n">wrap_at</span><span class="p">(</span><span class="s1">&#39;180d&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pa</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">:</span>
+        <span class="n">paplus</span> <span class="o">=</span> <span class="n">pa</span> <span class="o">-</span> <span class="mi">180</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+    <span class="k">elif</span> <span class="n">pa</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">:</span>
+        <span class="n">paplus</span> <span class="o">=</span> <span class="n">pa</span> <span class="o">+</span> <span class="mi">180</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">paplus</span> <span class="o">=</span> <span class="n">pa</span>
+    <span class="n">deltatime</span> <span class="o">=</span> <span class="n">vec</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span>
+    <span class="n">datas1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">deltatime</span>
+    <span class="n">centers_gcrs</span> <span class="o">=</span> <span class="n">GCRS</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">datas1</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">datas1</span><span class="p">)),</span>
+                        <span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">R_earth</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">datas1</span><span class="p">)</span>
+    <span class="n">centers_itrs</span> <span class="o">=</span> <span class="n">centers_gcrs</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ITRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">datas1</span><span class="p">))</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="n">centers_itrs</span><span class="o">.</span><span class="n">earth_location</span>
+
+    <span class="n">dista</span> <span class="o">=</span> <span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">*</span><span class="n">ca1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">dista</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">deltatime</span><span class="o">*</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">by</span> <span class="o">=</span> <span class="n">dista</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">deltatime</span><span class="o">*</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">lncolor</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&gt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;centerproj&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">outcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">centert</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">by3</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon2</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">lncolor</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon2</span> <span class="o">&gt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;centerproj&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax3</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by3</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">outcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">centert</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="c1"># plots chords_delta</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">chord_delta</span><span class="p">:</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">val</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">val</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">chcolor</span><span class="p">)</span>
+
+    <span class="c1"># plots chords_geo</span>
+    <span class="k">for</span> <span class="n">coord_geo</span> <span class="ow">in</span> <span class="n">chord_geo</span><span class="p">:</span>
+        <span class="n">xt</span><span class="p">,</span> <span class="n">yt</span> <span class="o">=</span> <span class="n">latlon2xy</span><span class="p">(</span><span class="n">coord_geo</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">coord_geo</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">xt</span><span class="o">-</span><span class="n">ax</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">yt</span><span class="o">-</span><span class="n">by</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="n">ang</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">((</span><span class="n">yt</span><span class="o">-</span><span class="n">by</span><span class="p">)[</span><span class="n">k</span><span class="p">],</span> <span class="p">(</span><span class="n">xt</span><span class="o">-</span><span class="n">ax</span><span class="p">)[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ang</span><span class="p">))</span><span class="o">*</span><span class="n">val</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">val</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">val</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">chcolor</span><span class="p">)</span>
+
+    <span class="c1"># plots error</span>
+    <span class="k">if</span> <span class="n">erro</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">erro</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span>
+        <span class="n">errd</span> <span class="o">=</span> <span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">*</span><span class="n">err</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">-</span> <span class="n">errd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span> <span class="o">-</span> <span class="n">radius</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">-</span> <span class="n">errd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span> <span class="o">-</span> <span class="n">radius</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">ercolor</span><span class="p">)</span>
+
+        <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">errd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span> <span class="o">+</span> <span class="n">radius</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by3</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">errd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span> <span class="o">+</span> <span class="n">radius</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon2</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">ercolor</span><span class="p">)</span>
+
+    <span class="c1"># plots ring</span>
+    <span class="k">if</span> <span class="n">ring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">ring</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">-</span> <span class="n">rng</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">-</span> <span class="n">rng</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">rncolor</span><span class="p">)</span>
+
+        <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">rng</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by3</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">rng</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon2</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">rncolor</span><span class="p">)</span>
+
+    <span class="c1"># plots atm</span>
+    <span class="k">if</span> <span class="n">atm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">atmo</span> <span class="o">=</span> <span class="n">atm</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">-</span> <span class="n">atmo</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by2</span> <span class="o">=</span> <span class="n">by</span> <span class="o">-</span> <span class="n">atmo</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">atcolor</span><span class="p">)</span>
+
+        <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax</span> <span class="o">+</span> <span class="n">atmo</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">by3</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="n">atmo</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+        <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">ax3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">by3</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lon2</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lon2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">lat2</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">atcolor</span><span class="p">)</span>
+
+<span class="c1"># plots center points</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">8000</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">))),</span> <span class="n">cpoints</span><span class="p">)</span>
+    <span class="n">deltatime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">vec</span><span class="p">,</span> <span class="o">-</span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span>
+    <span class="n">axc</span> <span class="o">=</span> <span class="n">dista</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">deltatime</span><span class="o">*</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">byc</span> <span class="o">=</span> <span class="n">dista</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">deltatime</span><span class="o">*</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">axc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">byc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ptcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">centert</span><span class="p">),</span>
+             <span class="n">markersize</span><span class="o">=</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">pscale</span><span class="o">*</span><span class="mf">8.0</span><span class="o">/</span><span class="mf">46.0</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+
+    <span class="n">datas2</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">deltatime</span>
+    <span class="n">centers_p_gcrs</span> <span class="o">=</span> <span class="n">GCRS</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">datas2</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">datas2</span><span class="p">)),</span>
+                          <span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">R_earth</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">datas2</span><span class="p">)</span>
+    <span class="n">centers_p_itrs</span> <span class="o">=</span> <span class="n">centers_p_gcrs</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ITRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">datas2</span><span class="p">))</span>
+    <span class="n">centers_p</span> <span class="o">=</span> <span class="n">centers_p_itrs</span><span class="o">.</span><span class="n">earth_location</span>
+    <span class="n">clon1</span><span class="p">,</span> <span class="n">clat1</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">axc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">byc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers_p</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">centers_p</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">datas2</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clon1</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clon1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">clat1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">ptcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+             <span class="n">markersize</span><span class="o">=</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">pscale</span><span class="o">*</span><span class="mf">8.0</span><span class="o">/</span><span class="mf">46.0</span><span class="p">)</span>
+
+    <span class="n">datas1</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">deltatime</span>
+    <span class="n">center_gcrs</span> <span class="o">=</span> <span class="n">GCRS</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                       <span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">R_earth</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">center_itrs</span> <span class="o">=</span> <span class="n">center_gcrs</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">ITRS</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">center_itrs</span><span class="o">.</span><span class="n">earth_location</span>
+    <span class="n">xp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dista</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">pa</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">yp</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dista</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pa</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">loncen</span><span class="p">,</span> <span class="n">latcen</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">center</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">loncen</span> <span class="o">&lt;</span> <span class="mf">1e+30</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loncen</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">latcen</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">ptcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">markersize</span><span class="o">=</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">pscale</span><span class="o">*</span><span class="mf">24.0</span><span class="o">/</span><span class="mf">46.0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">centert</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">ptcolor</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">pscale</span><span class="o">*</span><span class="mf">24.0</span><span class="o">/</span><span class="mf">46.0</span><span class="p">)</span>
+
+    <span class="c1"># plots the heights</span>
+    <span class="k">if</span> <span class="s1">&#39;heights&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+            <span class="n">lonb</span><span class="p">,</span> <span class="n">latb</span> <span class="o">=</span> <span class="n">xy2latlon</span><span class="p">(</span><span class="n">bordx</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">bordy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">center</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                   <span class="n">center</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lonb</span><span class="p">,</span> <span class="n">latb</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">hcolor</span><span class="p">)</span>
+
+    <span class="c1"># plots the the direction arrow</span>
+    <span class="k">if</span> <span class="n">arrow</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">limits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">5500000</span><span class="p">,</span> <span class="o">-</span><span class="mi">5500000</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="o">+</span><span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="o">+</span><span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">lx</span> <span class="o">+</span> <span class="p">(</span><span class="n">ux</span><span class="o">-</span><span class="n">lx</span><span class="p">)</span><span class="o">*</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">ly</span> <span class="o">+</span> <span class="p">(</span><span class="n">uy</span><span class="o">-</span><span class="n">ly</span><span class="p">)</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">paplus</span><span class="o">+</span><span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">paplus</span><span class="o">+</span><span class="mi">90</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
+
+    <span class="c1"># plots the countries names</span>
+    <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">countries</span><span class="p">[</span><span class="n">country</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">countries</span><span class="p">[</span><span class="n">country</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">country</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span>
+                 <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="o">*</span><span class="n">cscale</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plots the sites</span>
+    <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">sites</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="o">.</span><span class="n">from_geodetic</span><span class="p">(</span><span class="n">sites</span><span class="p">[</span><span class="n">site</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">sites</span><span class="p">[</span><span class="n">site</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.0</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(),</span>
+                 <span class="n">markersize</span><span class="o">=</span><span class="n">mapsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">sscale</span><span class="o">*</span><span class="mf">10.0</span><span class="o">/</span><span class="mf">46.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sites</span><span class="p">[</span><span class="n">site</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">site_name</span><span class="p">:</span>
+            <span class="n">xt</span><span class="p">,</span> <span class="n">yt</span> <span class="o">=</span> <span class="n">latlon2xy</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">center_map</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">center_map</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">axf</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xt</span> <span class="o">+</span> <span class="n">sites</span><span class="p">[</span><span class="n">site</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">yt</span><span class="o">+</span><span class="n">sites</span><span class="p">[</span><span class="n">site</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                     <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="o">*</span><span class="n">nscale</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Define the title and label of the output</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Object        Diam   Tmax   dots &lt;&gt; ra_offset_dec</span><span class="se">\n</span><span class="s1">&#39;</span>
+             <span class="s1">&#39;</span><span class="si">{:10s}</span><span class="s1"> </span><span class="si">{:4.0f}</span><span class="s1"> km  </span><span class="si">{:5.1f}</span><span class="s1">s  </span><span class="si">{:02d}</span><span class="s1"> s &lt;&gt;</span><span class="si">{:+6.1f}</span><span class="s1"> </span><span class="si">{:+6.1f}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span>
+             <span class="nb">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">radius</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">radius</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">cpoints</span><span class="p">,</span> <span class="n">off_ra</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">off_de</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="n">labelx</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> year-m-d    h:m:s UT     ra__dec__J2000__candidate    C/A    P/A    vel   Delta   G*  long</span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">  </span><span class="si">{:02d}</span><span class="s2"> </span><span class="si">{:02d}</span><span class="s2"> </span><span class="si">{:07.4f}</span><span class="s2"> </span><span class="si">{:+03d}</span><span class="s2"> </span><span class="si">{:02d}</span><span class="s2"> </span><span class="si">{:06.3f}</span><span class="s2"> </span><span class="si">{:6.3f}</span><span class="s2"> </span><span class="si">{:6.2f}</span><span class="s2"> </span><span class="si">{:6.2f}</span><span class="s2">  </span><span class="si">{:5.2f}</span><span class="s2"> </span><span class="si">{:5.1f}</span><span class="s2">  </span><span class="si">{:3.0f}</span><span class="s2">&quot;</span><span class="o">.</span>
+              <span class="nb">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iso</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">hms</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">hms</span><span class="o">.</span><span class="n">m</span><span class="p">),</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">hms</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
+                     <span class="nb">int</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">dms</span><span class="o">.</span><span class="n">d</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">dms</span><span class="o">.</span><span class="n">m</span><span class="p">)),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">occs</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">dms</span><span class="o">.</span><span class="n">s</span><span class="p">),</span> <span class="n">ca1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;posa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                     <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;vel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;magG&#39;</span><span class="p">],</span> <span class="n">occs</span><span class="p">[</span><span class="s1">&#39;longi&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># plots the map</span>
+    <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+        <span class="n">axf</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">labelx</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">rotation_mode</span><span class="o">=</span><span class="s1">&#39;anchor&#39;</span><span class="p">,</span>
+                 <span class="n">transform</span><span class="o">=</span><span class="n">axf</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nameimg</span><span class="p">,</span> <span class="n">fmt</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1"> generated&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nameimg</span><span class="p">,</span> <span class="n">fmt</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

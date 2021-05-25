@@ -3,42 +3,36 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Stellar Occultation Reduction Analysis's documentation!
+.. image:: images/SORA_logo.png
+  :width: 500
+  :align: center
+  :alt: SORA: Stellar Occultation Reduction and Analysis
+
+|
+|
+
+
+Welcome to SORA's documentation!
 ==================================================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Manual:
+   :caption: Details:
 
-   goals_updates
-   curiosities
-   general
-   future_linea
-   modules
-   input_output
-   sora_code
-
+   overview
+   license
+   install
+   releases
+   team
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
-   :caption: Tutorials:
-
-   ../examples/Tutorial_SORAv0.1_ChiSquare
-   examples/Tutorial_SORAv0.1_Ephem
-   examples/Tutorial_SORAv0.1_LightCurve
-   examples/Tutorial_SORAv0.1_Observer
-   examples/Tutorial_SORAv0.1_Occultation
-   examples/Tutorial_SORAv0.1_Prediction
-   examples/Tutorial_SORAv0.1_Star
-
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Modules:
-   
+   :caption: Code:
+    
    sora
-
+   examples/Tutorial_SORAv0.2_GettingStarted
+   jupyters
 
 Indices and tables
 ==================

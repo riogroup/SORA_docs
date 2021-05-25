@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.occultation.chordlist &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.occultation.chordlist</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.occultation.chordlist</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sora.config.list</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">.chord</span> <span class="kn">import</span> <span class="n">Chord</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ChordList&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ChordList"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList">[docs]</a><span class="k">class</span> <span class="nc">ChordList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Defines a collection of Chord objects associated to an Occultation.</span>
+
+<span class="sd">    This object is not supposed to be defined by the user. It will be automatically</span>
+<span class="sd">    defined in Occultation.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    star : `sora.Star`</span>
+<span class="sd">        The Star occulted.</span>
+
+<span class="sd">    body : `sora.Body`</span>
+<span class="sd">        The occulting Body.</span>
+
+<span class="sd">    time : `astropy.time.Time`</span>
+<span class="sd">        The occultation time.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_allowed_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">Chord</span><span class="p">,)</span>  <span class="c1"># (Chord, AstrometricChord)</span>
+    <span class="n">_set_func</span> <span class="o">=</span> <span class="s1">&#39;add_chord&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_star</span> <span class="o">=</span> <span class="n">star</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_body</span> <span class="o">=</span> <span class="n">body</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chord&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;star&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_star</span><span class="o">.</span><span class="n">geocentric</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="s2">&quot;ephem&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span><span class="o">.</span><span class="n">ephem</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">},</span>
+                             <span class="s1">&#39;occultation&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+
+<div class="viewcode-block" id="ChordList.add_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.add_chord">[docs]</a>    <span class="k">def</span> <span class="nf">add_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lightcurve</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a chord to the occultation chord list</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : `str`</span>
+<span class="sd">            The name of the Chord. It must be unique within the list of chords.</span>
+<span class="sd">            If not given, it will use the name in chord if chord is directly</span>
+<span class="sd">            given or the name in the observer object. If the name in Chord already</span>
+<span class="sd">            exists in the list, the name parameter can be given to update the</span>
+<span class="sd">            chord name. The `name` parameter is required if given together with</span>
+<span class="sd">            observer and lightcurve. It can not be an empty string.</span>
+
+<span class="sd">        chord `sora.occultation.Chord`</span>
+<span class="sd">            A chord instance defined by the user.</span>
+
+<span class="sd">        observer : `sora.Observer`</span>
+<span class="sd">            An Observer instance defined by the user. It must be given together</span>
+<span class="sd">            with a lightcurve.</span>
+
+<span class="sd">        lightcurve : `sora.LightCurve`</span>
+<span class="sd">            A lightcurve defined by the user. It must be given together with observer.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        Ways to add a chord:</span>
+
+<span class="sd">        &gt;&gt;&gt; obj.add_chord(chord) # where the name in chord will be used.</span>
+
+<span class="sd">        &gt;&gt;&gt; obj.add_chord(name, chord) # where the name in chord will be replaced by &quot;name&quot;.</span>
+
+<span class="sd">        &gt;&gt;&gt; obj.add_chord(observer, lightcurve) # where the name in observer will be used.</span>
+
+<span class="sd">        &gt;&gt;&gt; obj.add_chord(name, observer, lightcurve)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">chord</span> <span class="ow">and</span> <span class="p">(</span><span class="n">observer</span> <span class="ow">or</span> <span class="n">lightcurve</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User must give only chord or (name and observer and lightcurve)&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">chord</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">chord</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">elif</span> <span class="n">observer</span> <span class="ow">and</span> <span class="n">lightcurve</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">lightcurve</span> <span class="ow">is</span> <span class="n">lightcurve</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;lightcurve is already associated to the chord </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">observer</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">chord</span> <span class="o">=</span> <span class="n">Chord</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">,</span> <span class="n">lightcurve</span><span class="o">=</span><span class="n">lightcurve</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User must give chord or (name and observer and lightcurve)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_item</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">chord</span><span class="p">)</span>
+        <span class="n">chord</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">chord</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s2">&quot;chordlist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s2">&quot;chord&quot;</span><span class="p">]</span>
+        <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;occultation&#39;</span><span class="p">][</span><span class="s2">&quot;vel&quot;</span><span class="p">])</span>
+        <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">set_dist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;occultation&#39;</span><span class="p">][</span><span class="s2">&quot;dist&quot;</span><span class="p">])</span>
+        <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">set_star_diam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;occultation&#39;</span><span class="p">][</span><span class="s2">&quot;star_diam&quot;</span><span class="p">])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">calc_magnitude_drop</span><span class="p">(</span><span class="n">mag_star</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_star</span><span class="o">.</span><span class="n">mag</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">],</span> <span class="n">mag_obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_body</span><span class="o">.</span><span class="n">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">chord</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">bottom_flux</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Magnitude drop was not calculated. Using bottom flux as 0.0.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chord</span></div>
+
+<div class="viewcode-block" id="ChordList.remove_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.remove_chord">[docs]</a>    <span class="k">def</span> <span class="nf">remove_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove a chord from the chord list and disassociate it from the Occultation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : `str`</span>
+<span class="sd">            The name of the chord.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">_shared_with</span><span class="p">[</span><span class="s1">&#39;chordlist&#39;</span><span class="p">])</span>
+        <span class="k">del</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_able</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">chord</span><span class="o">.</span><span class="n">is_able</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">chord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<div class="viewcode-block" id="ChordList.enable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.enable">[docs]</a>    <span class="k">def</span> <span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enable a contact point of the curve to be used in the fit.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chord : `str`</span>
+<span class="sd">            Name of the chord to enable. If ``chord=None``, it applies to all chords.</span>
+
+<span class="sd">        time : Non`, `str`</span>
+<span class="sd">            If ``time=None``, it will enable all contact points.</span>
+<span class="sd">            If &#39;immersion&#39; or &#39;emersion&#39;, it will enable respective contact point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">chord</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">chord</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No Chord with name </span><span class="si">{}</span><span class="s1"> is available.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ChordList.disable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Disable a contact point of the curve to be used in the fit.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chord : `str`</span>
+<span class="sd">            Name of the chord to disable. If ``chord=None``, it applies to all chords.</span>
+
+<span class="sd">        time : None, `str`</span>
+<span class="sd">            If ``time=None``, it will disable all contact points.</span>
+<span class="sd">            If &#39;immersion&#39; or &#39;emersion&#39;, it will disable respective contact point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">chord</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">chord</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No Chord with name </span><span class="si">{}</span><span class="s1"> is available.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ChordList.plot_chords"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.plot_chords">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">ignore_chords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plots the on-sky path of this chord.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        segment : `str`</span>
+<span class="sd">            The segment to plot the chord. The available options are:</span>
+
+<span class="sd">            ``&#39;positive&#39;`` to get the path between the immersion and emersion</span>
+<span class="sd">            times if the chord is positive.</span>
+
+<span class="sd">            ``&#39;negative&#39;`` to get the path between the start and end of</span>
+<span class="sd">            observation if the chord is negative.</span>
+
+<span class="sd">            ``&#39;standard&#39;`` to get the &#39;positive&#39; path if the chord is positive</span>
+<span class="sd">            or &#39;negative&#39; if the chord is negative.</span>
+
+<span class="sd">            ``&#39;full&#39;`` to get  the path between the start and end of observation</span>
+<span class="sd">            independent if the chord is positive or negative.</span>
+
+<span class="sd">            ``&#39;outer&#39;`` to get the path outside the &#39;positive&#39; path, for instance</span>
+<span class="sd">            between the start and immersion times and between the emersion and</span>
+<span class="sd">            end times.</span>
+
+<span class="sd">            ``&#39;error&#39;`` to get the path corresponding to the error bars.</span>
+
+<span class="sd">        ignore_chords : `str`, `list`</span>
+<span class="sd">            Name of chord or list of names to ignore in the plot.</span>
+
+<span class="sd">        only_able : `bool`</span>
+<span class="sd">            Plot only the chords or contact points that are able to be used in the fit.</span>
+<span class="sd">            If ``segment=&#39;error&#39;`` it will show only the contact points able.</span>
+<span class="sd">            If segment is any other, the path will be plotted only if both</span>
+<span class="sd">            immersion and emersion are able, or it is a negative chord.</span>
+
+<span class="sd">        ax : `matplotlib.pyplot.Axes`</span>
+<span class="sd">            The axes where to make the plot. If None, it will use the default axes.</span>
+
+<span class="sd">        linestyle : `str`</span>
+<span class="sd">            Default linestyle used in `matplotlib.pyplot.plot`. The difference</span>
+<span class="sd">            is that now it accept ``linestyle=&#39;exposure&#39;``, where the plot will</span>
+<span class="sd">            be a dashed line corresponding to each exposure. The blank space</span>
+<span class="sd">            between the lines can be interpreted as &#39;dead time&#39;.</span>
+
+<span class="sd">        **kwargs</span>
+<span class="sd">            Any other kwarg will be parsed directly by `maplotlip.pyplot.plot`.</span>
+<span class="sd">            The only difference is that the default linewidth ``lw=2``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">ignore_chords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ignore_chords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ignore_chords</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">ignore_chords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ignore_chords</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">segment</span> <span class="o">!=</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot_chord</span><span class="p">(</span><span class="n">segment</span><span class="o">=</span><span class="n">segment</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="n">only_able</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Segment &quot;</span><span class="si">{}</span><span class="s1">&quot; was not found on any chord&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">segment</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ChordList.summary"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prints a table with the summary of the chords.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">vstack</span>
+
+        <span class="n">tables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">observer</span>
+            <span class="n">lc</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">lightcurve</span>
+            <span class="n">max_val</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">colnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+            <span class="n">itens</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="p">,</span> <span class="n">obs</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">to_string</span><span class="p">(),</span> <span class="n">obs</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">to_string</span><span class="p">()]</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Initial Time&#39;</span><span class="p">:</span> <span class="s1">&#39;initial_time&#39;</span><span class="p">,</span> <span class="s1">&#39;Immersion&#39;</span><span class="p">:</span> <span class="s1">&#39;immersion&#39;</span><span class="p">,</span> <span class="s1">&#39;Emersion&#39;</span><span class="p">:</span> <span class="s1">&#39;emersion&#39;</span><span class="p">,</span> <span class="s1">&#39;End Time&#39;</span><span class="p">:</span> <span class="s1">&#39;end_time&#39;</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span> <span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">iso</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">get_fg</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">val</span><span class="p">)]])</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
+                <span class="n">itens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">itens</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
+                    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">max_val</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_val</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+                        <span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">tt</span><span class="p">[</span><span class="n">colnames</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">tables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
+        <span class="n">tabela</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
+        <span class="n">tabela</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ChordList.get_impact_param"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.get_impact_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_impact_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the impact parameter, minimal distance between the chord and the</span>
+<span class="sd">        centre position.</span>
+
+<span class="sd">        This Chord object must be associated to an Occultation to work, since it</span>
+<span class="sd">        needs the position of the star and an ephemeris.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chords : `int`, `str`, default=&#39;all_chords&#39;</span>
+<span class="sd">            Index or names of the chords to be considered.</span>
+
+<span class="sd">        center_f : `int`, `float`, default=0</span>
+<span class="sd">            The coordinate in f of the ellipse center.</span>
+
+<span class="sd">        center_g : `int`, `float`, default=0</span>
+<span class="sd">            The coordinate in g of the ellipse center.</span>
+
+<span class="sd">        verbose : `bool`</span>
+<span class="sd">            If True, prints the obtained values.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        impact, sense, chord_name : `list`</span>
+<span class="sd">            The impact parameter (in km), the direction of the chord relative</span>
+<span class="sd">            the ellipse center, North (N), South (S), East (E) and West (W), and</span>
+<span class="sd">            the name of the chord</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">impact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">sense</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">chords</span> <span class="o">==</span> <span class="s1">&#39;all_chords&#39;</span><span class="p">:</span>
+            <span class="n">chords</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chords</span><span class="p">:</span>
+            <span class="n">chord</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">im</span><span class="p">,</span> <span class="n">se</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">get_impact_param</span><span class="p">(</span><span class="n">center_f</span><span class="o">=</span><span class="n">center_f</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="n">center_g</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+            <span class="n">impact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">impact</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+            <span class="n">sense</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sense</span><span class="p">,</span> <span class="n">se</span><span class="p">)</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">chord</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">impact</span><span class="p">,</span> <span class="n">sense</span><span class="p">,</span> <span class="n">names</span></div>
+
+<div class="viewcode-block" id="ChordList.get_theoretical_times"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.get_theoretical_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_theoretical_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                              <span class="n">position_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the theoretical times and chords sizes for a given ellipse.</span>
+
+<span class="sd">        This Chord object must be associated to an Occultation to work, since it needs</span>
+<span class="sd">        the position of the star and an ephemeris.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chords : `int`, `str`, default=&#39;all_chords&#39;</span>
+<span class="sd">            Index or names of the chords to be considered.</span>
+
+<span class="sd">        equatorial_radius : `int`, `float`</span>
+<span class="sd">            The Equatorial radius (semi-major axis) of the ellipse.</span>
+
+<span class="sd">        center_f : `int`, `float`, default=0</span>
+<span class="sd">            The coordinate in f of the ellipse center.</span>
+
+<span class="sd">        center_g : `int`, `float`, default=0</span>
+<span class="sd">            The coordinate in g of the ellipse center.</span>
+
+<span class="sd">        oblateness : `int`, `float`, default=0</span>
+<span class="sd">            The oblateness of the ellipse.</span>
+
+<span class="sd">        position_angle : `int`, `float`, default=0</span>
+<span class="sd">            The pole position angle of the ellipse in degrees.</span>
+<span class="sd">            Zero is in the North direction (&#39;g-positive&#39;). Positive clockwise.</span>
+
+<span class="sd">        sigma : `int`, `float`</span>
+<span class="sd">            Uncertainty of the expected ellipse, in km.</span>
+
+<span class="sd">        step : `int`, `float`</span>
+<span class="sd">            Time resolution of the chord, in seconds.</span>
+
+<span class="sd">        verbose : `bool`</span>
+<span class="sd">            If True, prints the obtained values.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        theory_immersion_time, theory_emersion_time, theory_chord_size, chord_name : `list`</span>
+<span class="sd">            The expected immersion time for the given ellipse, the expected</span>
+<span class="sd">            emersion time for the given ellipse, the expected chord size for the</span>
+<span class="sd">            given ellipse, and the name of the chord.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">theory_immersion_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">theory_emersion_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">theory_chord_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="k">if</span> <span class="n">chords</span> <span class="o">==</span> <span class="s1">&#39;all_chords&#39;</span><span class="p">:</span>
+            <span class="n">chords</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chords</span><span class="p">:</span>
+            <span class="n">chord</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">tit</span><span class="p">,</span> <span class="n">tet</span><span class="p">,</span> <span class="n">tcs</span> <span class="o">=</span> <span class="n">chord</span><span class="o">.</span><span class="n">get_theoretical_times</span><span class="p">(</span><span class="n">equatorial_radius</span><span class="o">=</span><span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="n">center_f</span><span class="p">,</span>
+                                                        <span class="n">center_g</span><span class="o">=</span><span class="n">center_g</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="n">oblateness</span><span class="p">,</span> <span class="n">position_angle</span><span class="o">=</span><span class="n">position_angle</span><span class="p">,</span>
+                                                        <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+            <span class="n">theory_immersion_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theory_immersion_time</span><span class="p">,</span> <span class="n">tit</span><span class="p">)</span>
+            <span class="n">theory_emersion_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theory_emersion_time</span><span class="p">,</span> <span class="n">tet</span><span class="p">)</span>
+            <span class="n">theory_chord_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theory_chord_size</span><span class="p">,</span> <span class="n">tcs</span><span class="p">)</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">chord</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">theory_immersion_time</span><span class="p">,</span> <span class="n">theory_emersion_time</span><span class="p">,</span> <span class="n">theory_chord_size</span><span class="p">,</span> <span class="n">names</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

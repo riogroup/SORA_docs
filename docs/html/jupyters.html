@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Jupyter-Notebook Guidelines &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Body Class" href="examples/Tutorial_SORAv0.2_Body.html" />
+    <link rel="prev" title="SORA Getting Started" href="examples/Tutorial_SORAv0.2_GettingStarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Jupyter-Notebook Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html">Body Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html">Star Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html">Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html">Observer Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html">LightCurve Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html">Occultation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html">ChiSquare Class</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Jupyter-Notebook Guidelines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/jupyters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<a class="reference internal image-reference" href="_images/SORA_logo.png" id="sec-jupyter"><img alt="SORA: Stellar Occultation Reduction and Analysis" class="align-center" id="sec-jupyter" src="_images/SORA_logo.png" style="width: 500px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="jupyter-notebook-guidelines">
+<h1>Jupyter-Notebook Guidelines<a class="headerlink" href="#jupyter-notebook-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html">Body Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#1.-Instantiating-a-Body-object">1. Instantiating a Body object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#2.-Body-Physical-Attributes">2. Body Physical Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#3.-Ephemeris">3. Ephemeris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#4.-Pole-Position-Angle-and-Aperture-Angle">4. Pole Position Angle and Aperture Angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#5.-Apparent-Magnitude">5. Apparent Magnitude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Body.html#6.-The-Ephemeris-Classes">6. The Ephemeris Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html">Star Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#1.-Instantiating-Star-Object">1. Instantiating Star Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#2.-Changing-or-adding-magnitudes">2. Changing or adding magnitudes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#3.-Geocentric-and-Barycentric-positions">3. Geocentric and Barycentric positions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#4.-Adding-offsets">4. Adding offsets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Star.html#5.-The-Apparent-Diameter-of-the-star">5. The Apparent Diameter of the star</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html">Prediction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#1.-Predicting-stellar-occultation">1. Predicting stellar occultation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#2.-The-PredictionTable">2. The PredictionTable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#3.-Using-PredictionTable">3. Using PredictionTable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#4.-Plotting-occultation-maps">4. Plotting occultation maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Prediction.html#5.-Occultation-parameters">5. Occultation parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html">Observer Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#1.-Instantiating-the-Observer-Object">1. Instantiating the Observer Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#2.-Setting-and/or-modifing-parameters">2. Setting and/or modifing parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#3.-Apparent-Sidereal-Time">3. Apparent Sidereal Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#4.-Ksi-and-Eta-projection">4. Ksi and Eta projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Observer.html#5.-MPC-observatories">5. MPC observatories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html">LightCurve Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#1.-Instantiating-the-LightCurve-Object">1. Instantiating the LightCurve Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#2.-Set-and/or-modifing-model-parameters">2. Set and/or modifing model parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#3.-Preparing-the-LightCurve">3. Preparing the LightCurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#4.-Automatic-detection-of-Occultations">4. Automatic detection of Occultations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#5.-Complete-occultation-light-curve-model-and-fitting">5. Complete occultation light curve model and fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_LightCurve.html#6.-Viewing-and-saving-the-results">6. Viewing and saving the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html">Occultation Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html#1.-Instantiating-the-Occultation-Object-and-adding-observations">1. Instantiating the Occultation Object and adding observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html#2.-Projecting-the-times-in-the-sky-plane-and-the-Chords">2. Projecting the times in the sky plane and the Chords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html#3.-Ellipse-fit">3. Ellipse fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_Occultation.html#4.-Viewing-and-saving-the-results">4. Viewing and saving the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html">ChiSquare Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html#0.-Index">0. Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html#1.-Instantiating-the-ChiSquare-Object">1. Instantiating the ChiSquare Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html#2.-Viewing-the-results">2. Viewing the results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/Tutorial_SORAv0.2_ChiSquare.html#3.-Saving-the-results-and-plots">3. Saving the results and plots</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples/Tutorial_SORAv0.2_Body.html" class="btn btn-neutral float-right" title="Body Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples/Tutorial_SORAv0.2_GettingStarted.html" class="btn btn-neutral float-left" title="SORA Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sora.lightcurve.occdetect &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sora.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sora.lightcurve.occdetect</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sora.lightcurve.occdetect</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;occ_detect&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="occ_detect"><a class="viewcode-back" href="../../../sora.html#sora.lightcurve.occdetect.occ_detect">[docs]</a><span class="k">def</span> <span class="nf">occ_detect</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">maximum_duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dur_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">snr_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">n_detections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Detects automatically the occultation event in the light curve.</span>
+
+<span class="sd">    Detects a &#39;square well&#39; shaped transit. All parameters are optional.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    flux : `float` array</span>
+<span class="sd">        Flux of the time series. Dependent variable.</span>
+
+<span class="sd">    dflux: `float` array</span>
+<span class="sd">        Error in the flux. Error in the dependent variable.</span>
+
+<span class="sd">    time: `float` array</span>
+<span class="sd">        Time variable. Independent variable.</span>
+
+<span class="sd">    cycle: `float`</span>
+<span class="sd">        Sampling value of the time series.</span>
+
+<span class="sd">    maximum_duration : `float`, default: light curve time span</span>
+<span class="sd">        Maximum duration of the occultation event.</span>
+
+<span class="sd">    dur_step : `float`, default: 1/2 cycle</span>
+<span class="sd">        Step size to sweep occultation duration event.</span>
+
+<span class="sd">    snr_limit : `float`, default=None</span>
+<span class="sd">        Minimum occultation SNR.</span>
+
+<span class="sd">    n_detections : `int`, default=1</span>
+<span class="sd">        Number of detections regardless the SNR. `n_detections` is superseded by</span>
+<span class="sd">        `snr_limit`.</span>
+
+<span class="sd">    plot : `boolean`, default=False</span>
+<span class="sd">        True if output plots are desired.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    OrderedDict : `dict`</span>
+<span class="sd">        An ordered dictionary of :attr:`name`::attr:`value` pairs for each</span>
+<span class="sd">        parameter.</span>
+
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sora.lightcurve.occdetect import occ_detect</span>
+<span class="sd">    &gt;&gt;&gt; params = occ_detect(flux, dflux, time, 0.2)</span>
+<span class="sd">    &gt;&gt;&gt; params</span>
+<span class="sd">    {&#39;rank&#39;: 1,</span>
+<span class="sd">    &#39;occultation_duration&#39;: 40.1384063065052,</span>
+<span class="sd">    &#39;central_time&#39;: 7916.773870512843,</span>
+<span class="sd">    &#39;immersion_time&#39;: 7896.7046673595905,</span>
+<span class="sd">    &#39;emersion_time&#39;: 7936.843073666096,</span>
+<span class="sd">    &#39;time_err&#39;: 0.05011036992073059,</span>
+<span class="sd">    &#39;depth&#39;: 0.8663887801707082,</span>
+<span class="sd">    &#39;depth_err&#39;: 0.10986223384336465,</span>
+<span class="sd">    &#39;baseline&#39;: 0.9110181732552853,</span>
+<span class="sd">    &#39;baseline_err&#39;: 0.19045768512595365,</span>
+<span class="sd">    &#39;snr&#39;: 7.886138392251848,</span>
+<span class="sd">    &#39;occ_mask&#39;: array([False, False, False, ..., False, False, False])}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># duration of the light curve</span>
+    <span class="n">time_span</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">maximum_duration</span> <span class="ow">and</span> <span class="p">(</span><span class="n">maximum_duration</span> <span class="o">&gt;</span> <span class="n">time_span</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Occultation duration (maximum_duration=</span><span class="si">{0}</span><span class="s1">) &#39;</span>
+                      <span class="s1">&#39;exceeds the time series length (</span><span class="si">{1:0.5f}</span><span class="s1">).&#39;</span>
+                      <span class="s1">&#39; maximum_duration reset to the time series length.&#39;</span>
+                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maximum_duration</span><span class="p">,</span> <span class="n">time_span</span><span class="p">))</span>
+        <span class="n">maximum_duration</span> <span class="o">=</span> <span class="n">time_span</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">maximum_duration</span><span class="p">:</span>
+        <span class="n">maximum_duration</span> <span class="o">=</span> <span class="n">time_span</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dur_step</span><span class="p">:</span>
+        <span class="n">dur_step</span> <span class="o">=</span> <span class="n">cycle</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">dur_step</span> <span class="o">&lt;</span> <span class="n">cycle</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The given dur_step is oversampled by a factor &#39;</span>
+                      <span class="s1">&#39;of </span><span class="si">{0:0.1f}</span><span class="s1"> and has been reset to half a cycle &#39;</span>
+                      <span class="s1">&#39;(</span><span class="si">{1:0.4f}</span><span class="s1">).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">cycle</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">/</span> <span class="n">dur_step</span><span class="p">,</span> <span class="n">cycle</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">))</span>
+        <span class="n">dur_step</span> <span class="o">=</span> <span class="n">cycle</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="n">duration_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">dur_step</span><span class="p">,</span> <span class="n">maximum_duration</span><span class="p">,</span> <span class="n">dur_step</span><span class="p">)</span>
+    <span class="c1"># initial occultation mask (all data points)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="c1"># initial detection rank</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">snr_limit</span><span class="p">:</span>
+        <span class="c1"># minimum SNR accepted in a detection for multiple search</span>
+        <span class="n">snr_value</span> <span class="o">=</span> <span class="n">snr_limit</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">occ0</span> <span class="o">=</span> <span class="n">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">time_span</span><span class="p">,</span> <span class="n">duration_grid</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">*=</span> <span class="o">~</span><span class="n">occ0</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">snr_value</span> <span class="o">&gt;</span> <span class="n">snr_limit</span><span class="p">:</span>
+            <span class="n">rank</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">occ1</span> <span class="o">=</span> <span class="n">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">time_span</span><span class="p">,</span> <span class="n">duration_grid</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                           <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">occ1</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">snr_limit</span><span class="p">:</span>
+                <span class="n">snr_value</span> <span class="o">=</span> <span class="n">occ1</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">]</span>
+                <span class="n">mask</span> <span class="o">*=</span> <span class="o">~</span><span class="n">occ1</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]</span>
+                <span class="n">occ0</span> <span class="o">=</span> <span class="n">summarize_bls</span><span class="p">(</span><span class="n">occ0</span><span class="p">,</span> <span class="n">occ1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">snr_value</span> <span class="o">=</span> <span class="n">snr_limit</span>
+
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">plot_occ_detect</span><span class="p">(</span><span class="n">occ0</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">occ0</span>
+    <span class="k">elif</span> <span class="n">n_detections</span><span class="p">:</span>
+        <span class="c1"># search the n best fits</span>
+        <span class="n">occ0</span> <span class="o">=</span> <span class="n">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">time_span</span><span class="p">,</span> <span class="n">duration_grid</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">*=</span> <span class="o">~</span><span class="n">occ0</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_detections</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">rank</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">occ1</span> <span class="o">=</span> <span class="n">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">time_span</span><span class="p">,</span> <span class="n">duration_grid</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                           <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">*=</span> <span class="o">~</span><span class="n">occ1</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]</span>
+            <span class="n">occ0</span> <span class="o">=</span> <span class="n">summarize_bls</span><span class="p">(</span><span class="n">occ0</span><span class="p">,</span> <span class="n">occ1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">plot_occ_detect</span><span class="p">(</span><span class="n">occ0</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">occ0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># search only the first best fit</span>
+        <span class="n">occ0</span> <span class="o">=</span> <span class="n">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">time_span</span><span class="p">,</span> <span class="n">duration_grid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">plot_occ_detect</span><span class="p">(</span><span class="n">occ0</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">occ0</span></div>
+
+
+<span class="k">def</span> <span class="nf">plot_occ_detect</span><span class="p">(</span><span class="n">occ</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># case for multiple detections</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">trues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]),</span> <span class="n">trues</span><span class="p">),</span>
+                     <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Rank: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">mask</span> <span class="o">+=</span> <span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">falses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]),</span> <span class="n">falses</span><span class="p">),</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Baseline&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [seconds]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Flux&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># case for single occultation</span>
+        <span class="n">trues</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">falses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]]),</span> <span class="n">trues</span><span class="p">),</span>
+                 <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Occultation&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="o">~</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="o">~</span><span class="n">occ</span><span class="p">[</span><span class="s1">&#39;occ_mask&#39;</span><span class="p">]]),</span> <span class="n">falses</span><span class="p">),</span>
+                 <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Baseline&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [seconds]&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Flux&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">run_bls</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">dflux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">per_grid</span><span class="p">,</span> <span class="n">dur_grid</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Private function to find the best box fit suitable to the data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">astropy.timeseries</span> <span class="kn">import</span> <span class="n">BoxLeastSquares</span>
+
+    <span class="c1"># object with no occultation mask</span>
+    <span class="n">mskmodel</span> <span class="o">=</span> <span class="n">BoxLeastSquares</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="n">dflux</span><span class="p">)</span>
+    <span class="c1"># if there is no dflux array, reset it to None in case of</span>
+    <span class="c1"># using a mask</span>
+    <span class="k">if</span> <span class="n">dflux</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dfluxmask</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dfluxmask</span> <span class="o">=</span> <span class="n">dflux</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+    <span class="c1"># object with occultation mask</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">BoxLeastSquares</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">flux</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span>
+                                <span class="n">dy</span><span class="o">=</span><span class="n">dfluxmask</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">mskmodel</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">per_grid</span><span class="p">,</span> <span class="n">dur_grid</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;snr&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;fast&#39;</span><span class="p">)</span>
+    <span class="c1"># statistics of the BLS fit</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_stats</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">period</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">transit_time</span><span class="p">)</span>
+    <span class="c1"># occultation mask of the event with respect to all data</span>
+    <span class="n">occ_mask</span> <span class="o">=</span> <span class="n">mskmodel</span><span class="o">.</span><span class="n">transit_mask</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">period</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span>
+                                     <span class="n">r</span><span class="o">.</span><span class="n">transit_time</span><span class="p">)</span>
+    <span class="c1"># parameters computation for clarity purposes</span>
+    <span class="n">occultation_duration</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">duration</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">central_time</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;transit_times&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">immersion_time</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;transit_times&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">r</span><span class="o">.</span><span class="n">duration</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">emersion_time</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;transit_times&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">duration</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">time_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="o">~</span><span class="n">occ_mask</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">occ_mask</span><span class="p">])</span>
+    <span class="n">depth_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">occ_mask</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">baseline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="o">~</span><span class="n">occ_mask</span><span class="p">])</span>
+    <span class="n">baseline_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="o">~</span><span class="n">occ_mask</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># If there is only one measurement during the occultation it will</span>
+    <span class="c1"># use the baseline_err to compute SNR, otherwise it will use depth_err</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">occ_mask</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">snr</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">/</span> <span class="n">baseline_err</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">snr</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">/</span> <span class="n">depth_err</span>
+
+    <span class="c1"># define rank</span>
+    <span class="k">if</span> <span class="n">rank</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;rank&#39;</span><span class="p">:</span> <span class="n">rank</span><span class="p">,</span>
+            <span class="s1">&#39;occultation_duration&#39;</span><span class="p">:</span> <span class="n">occultation_duration</span><span class="p">,</span>
+            <span class="s1">&#39;central_time&#39;</span><span class="p">:</span> <span class="n">central_time</span><span class="p">,</span>
+            <span class="s1">&#39;immersion_time&#39;</span><span class="p">:</span> <span class="n">immersion_time</span><span class="p">,</span>
+            <span class="s1">&#39;emersion_time&#39;</span><span class="p">:</span> <span class="n">emersion_time</span><span class="p">,</span>
+            <span class="s1">&#39;time_err&#39;</span><span class="p">:</span> <span class="n">time_err</span><span class="p">,</span>
+            <span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">depth</span><span class="p">,</span> <span class="s1">&#39;depth_err&#39;</span><span class="p">:</span> <span class="n">depth_err</span><span class="p">,</span>
+            <span class="s1">&#39;baseline&#39;</span><span class="p">:</span> <span class="n">baseline</span><span class="p">,</span> <span class="s1">&#39;baseline_err&#39;</span><span class="p">:</span> <span class="n">baseline_err</span><span class="p">,</span>
+            <span class="s1">&#39;snr&#39;</span><span class="p">:</span> <span class="n">snr</span><span class="p">,</span> <span class="s1">&#39;occ_mask&#39;</span><span class="p">:</span> <span class="n">occ_mask</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">summarize_bls</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Function to merge dictionaries returned by BLS and</span>
+<span class="sd">        to keep values of common keys in list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dict3</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dict1</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;occ_mask&#39;</span><span class="p">:</span>
+            <span class="n">sz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">dict1</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">dict2</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">sz</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sz</span><span class="p">):</span>
+                    <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dict1</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">k</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dict2</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">dict3</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dict3</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict1</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">dict2</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dict3</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict1</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">dict2</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">dict3</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

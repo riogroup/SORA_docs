@@ -7,8 +7,14 @@ version: 2
 
 python:
    version: 3.7
-   install:  
-   - requirements: docs/requirements.txt
+   install:
+   - pip:
+      - astropy==4.0
+      - matplotlib==3.1.1
+      - numpy==1.18.1
+      - scipy==1.4.1
+      - spiceypy==3.0.2
+      - astroquery==0.4.1
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

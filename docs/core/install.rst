@@ -66,16 +66,17 @@ last release from the SORA package in the riogroup organisation on
 Functionalities
 ---------------
 
-With SORA the user can:
+With SORA (v0.2), among other more advanced tasks, the user can easely:
 
 #. Predict stellar occultations and obtain predictions maps;
-#. Check when the stellar occultation will happen for a given observer;
-#. Determine the immersion and emersion times from an lightcurve;
-#. Check the chords in the skyplane;
-#. Fit a circle for events with less than 3 chords and determine the 
-   astrometrical position of the occulting object;
-#. Fit an ellipse for events with more than 3 chords and determine the
-   apparent size and shape of the occulting body and its position;
+#. Check when a stellar occultation will happen for a given observer;
+#. Analyse occultation light curves and determine the immersion and 
+   emersion times for the event;
+#. Plot and check the chords in the skyplane;
+#. Fit a circle for events with less than 3 chords or an ellipse for 
+   events with more chords;
+#. Determine the astrometric position of the occulting object, its 
+   apparent size and projected shape.
 
 **All these steps can be found in our Jupyter-Notebooks Tutorials.**
 

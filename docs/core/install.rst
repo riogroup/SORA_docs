@@ -16,8 +16,11 @@ Installation
 Python package requirements
 ---------------------------
 
-Here we present the packages that will be used as base for our coding.
-Those packages are also installed on the .
+Several SORA functionalities use other Python-based libraries. Below are 
+listed the library dependencies and their minimal version needed to use SORA. 
+Most of those packages are installed on the fly using the `pip install` 
+method, except for Cartopy.
+
 
 -  `Astropy <https://www.astropy.org/>`_ (4.0): For astronomical related functions, 
    mainly coordinates and time.

@@ -24,9 +24,9 @@ copyright = '2020, SORA Team'
 author = 'SORA Team'
 
 # The short X.Y version
-version = '0.2.dev0'
+version = 'v0.2-alpha'
 # The full version, including alpha/beta/rc tags
-release = 'develop'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------

@@ -19,23 +19,26 @@ Python package requirements
 Here we present the packages that will be used as base for our coding.
 Those packages are also installed on the .
 
--  **astropy 4.0:** For astronomical related functions, mainly coordinates
-   and time.
+-  `Astropy <https://www.astropy.org/>`_ (4.0): For astronomical related functions, 
+   mainly coordinates and time.
 
--  **astroquery 0.4.1:** To query astronomical database as JPL and Vizier.
+-  `Astroquery <https://astroquery.readthedocs.io/en/latest/>`_ (0.4.1): To query 
+   astronomical database as JPL and Vizier.
 
--  **matplotlib 3.1.1:** For easy and beautiful plots.
+-  `Matplotlib <https://matplotlib.org/>`_ (3.1.1): For easy and beautiful plots.
 
--  **numpy 1.18.1:** Otimized mathematical functions.
+-  `NumPy <https://numpy.org/>`_ (1.18.1): Otimized mathematical functions.
 
--  **scipy 1.4.1:** Otimized functions for mathematics, science, and
+-  `SciPy <https://www.scipy.org/>`_ (1.4.1): Otimized functions for mathematics, science, and
    engineering.
 
--  **spiceypy 3.0.2:** SPICE/NAIF functions in python.
+-  `SpiceyPy <https://spiceypy.readthedocs.io/en/main/>`_ (3.0.2): SPICE/NAIF functions in python.
 
--  **pyerfa 2.0** Python wrapper for the ERFA library based on the SOFA library.   
+-  `PyERFA <https://pyerfa.readthedocs.io/en/latest/>`_ (2.0): Python wrapper for the ERFA library based on the SOFA library.   
 
--  **cartopy 0.17:** Geospatial data processing to produce maps.
+-  `Cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_ (0.17): Geospatial data processing to produce maps.
+
+
 
 
 Installing SORA

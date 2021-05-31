@@ -25,8 +25,9 @@ characteristics of the object, such as its albedo, the presence of an
 atmosphere, rings, jets, or other structures around the body (Sicardy et
 al. |BS2011|, |BS2016|, Braga-Ribas et al. |FBR2013|, |FBR2014|, |FBR2019|,
 Dias-Oliveira et al., |ADO2015|, Benedetti-Rossi et al., |GBR2016|, |GBR2019|,
-Ortiz et al., |JLO2015|, |JLO2017|, Leiva et al., |RL2017|, Bérard et al., 
-|DB2017|, Morgado et al., |BEM2019|, Gomes-Júnior et al., |ARGJ2020|)
+Ortiz et al., |JLO2015|, |JLO2017|, |JLO2020|, Leiva et al., |RL2017|, Bérard et al., 
+|DB2017|, Morgado et al., |BEM2019|, Gomes-Júnior et al., |ARGJ2020|, 
+Souami et al., |DS2020|, Santos-Sanz et al., |PSS2021|) 
 or even the detection of topographic features (Dias-Oliveira et al. |ADO2017|).
 
 
@@ -54,7 +55,7 @@ future versions.
 A stellar occultation is defined by the occulting body (**Body**), the
 occulted star (**Star**), and the time of the occultation. On the other
 hand, each observational station (**Observer**) will be associated with
-their light curve (**LightCurve**). sora has tasks that allow the user
+their light curve (**LightCurve**). SORA has tasks that allow the user
 to determine the immersion and emersion times and project them to the
 tangent sky plane, using the information within the **Observer**,
 **Body** and **Star** Objects. That projection will lead to chords that
@@ -64,7 +65,7 @@ optimising the reduction of typical events. However, users have full
 control over the parameters and methods and can make changes in every
 step of the processes.
 
-The Object Classes developed within sora were built as an integrated
+The Object Classes developed within SORA were built as an integrated
 system, and they are controlled by the **Occultation** Object Class.
 Combining these Object Classes and the functions therein, the user can
 perform the complete data reduction, pre- and post-occultation. 
@@ -74,13 +75,13 @@ example folder.
 Acknowledgements
 ----------------
 
-The sora package is hosted on a |GitHub| repository. It was developed with support 
+The SORA package is hosted on a |GitHub| repository. It was developed with support 
 of the |LuckyStar|, that agglomerates the efforts of the Paris, Granada, and Rio teams. 
 The |LuckyStar| is funded by the ERC (European Research Council) under the European 
 Community’s H2020 (2014-2020/ERC Grant Agreement No. 669416). Also, this project is 
 supported by |LIneA| (Laboratório Interinstitucional de e-Astronomia), INCT do e-Universo 
-(CNPQ grants 465376/2014-2), by FAPESP (proc. 2018/11239-8) and by CNPQ (proc. 300472/2020-0),
-Brazil.
+(CNPQ grants 465376/2014-2), by FAPESP (proc. 2018/11239-8), by CNPQ (proc. 300472/2020-0),
+and by CAPES-PRINT/UNESP (88887.571156/2020-00) in Brazil.
 
 .. image:: images/Thanks.png
   :width: 800
@@ -101,7 +102,7 @@ de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.
 
 .. |FBR2013| raw:: html
 
-   <a href="https://ui.adsabs.harvard.edu/abs/2013ApJ...773...26B/abstract" target="_blank">2011</a>
+   <a href="https://ui.adsabs.harvard.edu/abs/2013ApJ...773...26B/abstract" target="_blank">2013</a>
 
 .. |FBR2014| raw:: html
 
@@ -135,6 +136,10 @@ de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.
 
    <a href="https://ui.adsabs.harvard.edu/abs/2017Natur.550..219O/abstract" target="_blank">2017</a>
 
+.. |JLO2020| raw:: html
+
+   <a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...639A.134O/abstract" target="_blank">2020</a>
+
 .. |RL2017| raw:: html
 
    <a href="https://ui.adsabs.harvard.edu/abs/2017AJ....154..159L/abstract" target="_blank">2017</a>
@@ -150,6 +155,14 @@ de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.
 .. |ARGJ2020| raw:: html
 
    <a href="https://ui.adsabs.harvard.edu/abs/2020MNRAS.492..770G/abstract" target="_blank">2020</a>
+
+.. |DS2020| raw:: html
+
+   <a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...643A.125S/abstract" target="_blank">2020</a>
+
+.. |PSS2021| raw:: html
+
+   <a href="https://ui.adsabs.harvard.edu/abs/2021MNRAS.501.6062S/abstract" target="_blank">2021</a>
 
 .. |GitHub| raw:: html
 

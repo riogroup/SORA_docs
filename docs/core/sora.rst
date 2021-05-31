@@ -14,7 +14,7 @@ Modules
 
 SORA is a Python-based, object-oriented package for optimal analysis of
 stellar occultation data. The user can use this package to build pipelines 
-to analyse their stellar occultation’s data. Here t follows the details for
+to analyse their stellar occultation’s data. Here follows the details for
 each object class: **Body**, **Ephem**, **Star**, **PredictionTable**, 
 **Observer**, **LightCurve**, **Occultation** and **ChiSquare**.
 
@@ -37,8 +37,6 @@ Module `utils`
 ==============
 .. automodule:: sora.body.utils
    :members:
-
-
 
 
 Ephem
@@ -64,50 +62,24 @@ Module `utils`
 .. automodule:: sora.ephem.utils
    :members: 
 
-Star
-----
 
-The Star Class
-==============
-.. autoclass:: sora.Star
+Extra
+-----
+
+ChiSquare Class
+===============
+.. autoclass:: sora.extra.ChiSquare
    :members:
+
+Plot ellipse
+============
+.. automodule:: sora.extra.plots
+   :members:
+
 
 Module `utils`
 ==============
-.. automodule:: sora.star.utils
-   :members:
-
-
-Prediction
-----------
-
-Prediction Functions
-====================
-.. automodule:: sora.prediction.core
-   :members:
-
-Plot Occultation Map
-====================
-.. automodule:: sora.prediction.occmap
-   :members:
-
-PredictionTable Cbject
-======================
-.. autoclass:: sora.prediction.PredictionTable
-   :members:
-
-
-Observer
---------
-
-The Observer Class
-==================
-.. autoclass:: sora.Observer
-   :members:
-
-Module `utils`
-==============
-.. automodule:: sora.observer.utils
+.. automodule:: sora.extra.utils
    :members:
 
 
@@ -128,6 +100,20 @@ Module's `utils`
 ================
 .. automodule:: sora.lightcurve.utils
    :members: 
+
+
+Observer
+--------
+
+The Observer Class
+==================
+.. autoclass:: sora.Observer
+   :members:
+
+Module `utils`
+==============
+.. automodule:: sora.observer.utils
+   :members:
 
 
 Occultation
@@ -157,22 +143,34 @@ Module `utils`
    :members:
 
 
+Prediction
+----------
 
-Extra
------
-
-ChiSquare Class
-===============
-.. autoclass:: sora.extra.ChiSquare
+Prediction Functions
+====================
+.. automodule:: sora.prediction.core
    :members:
 
-Plot ellipse
-============
-.. automodule:: sora.extra.plots
+Plot Occultation Map
+====================
+.. automodule:: sora.prediction.occmap
    :members:
 
+PredictionTable Cbject
+======================
+.. autoclass:: sora.prediction.PredictionTable
+   :members:
+
+
+Star
+----
+
+The Star Class
+==============
+.. autoclass:: sora.Star
+   :members:
 
 Module `utils`
 ==============
-.. automodule:: sora.extra.utils
+.. automodule:: sora.star.utils
    :members:

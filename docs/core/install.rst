@@ -16,30 +16,41 @@ Installation
 Python package requirements
 ---------------------------
 
-Here we present the packages that will be used as base for our coding.
-Those packages are also installed on the .
+Several SORA functionalities use other Python-based libraries. Below are 
+listed the library dependencies and their minimal version needed to use SORA. 
+Most of those packages are installed on the fly using the `pip install` 
+method, except for Cartopy.
 
--  **astropy 4.0:** For astronomical related functions, mainly coordinates
-   and time.
 
--  **astroquery 0.4.1:** To query astronomical database as JPL and Vizier.
+-  `Astropy <https://www.astropy.org/>`_ (4.0): For astronomical related functions, 
+   mainly coordinates and time.
 
--  **matplotlib 3.1.1:** For easy and beautiful plots.
+-  `Astroquery <https://astroquery.readthedocs.io/en/latest/>`_ (0.4.1): To query 
+   astronomical database as JPL and Vizier.
 
--  **numpy 1.18.1:** Otimized mathematical functions.
+-  `Matplotlib <https://matplotlib.org/>`_ (3.1.1): For easy and beautiful plots.
 
--  **scipy 1.4.1:** Otimized functions for mathematics, science, and
+-  `NumPy <https://numpy.org/>`_ (1.18.1): Otimized mathematical functions.
+
+-  `SciPy <https://www.scipy.org/>`_ (1.4.1): Otimized functions for mathematics, science, and
    engineering.
 
--  **spiceypy 3.0.2:** SPICE/NAIF functions in python.
+-  `SpiceyPy <https://spiceypy.readthedocs.io/en/main/>`_ (3.0.2): SPICE/NAIF functions in python.
 
--  **pyerfa 2.0** Python wrapper for the ERFA library based on the SOFA library.   
+-  `PyERFA <https://pyerfa.readthedocs.io/en/latest/>`_ (2.0): Python wrapper for the ERFA library based on the SOFA library.   
 
--  **cartopy 0.17:** Geospatial data processing to produce maps.
+-  `Cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_ (0.17): Geospatial data processing to produce maps.
+
+
 
 
 Installing SORA
 ---------------
+
+If you are new to Python or not familiar with Python virtual environments, we 
+recommend starting by installing the Anaconda Distribution.  This works on all 
+platforms (Linux, macOS, Windows) and installs a full-featured scientific Python 
+in a user directory without requiring root permissions.
 
 The user can install SORA and most of its requirements using **pip**, only
 Cartopy should be installed by hand afterwards.
@@ -66,16 +77,17 @@ last release from the SORA package in the riogroup organisation on
 Functionalities
 ---------------
 
-With SORA the user can:
+With SORA (v0.2), among other more advanced tasks, the user can easely:
 
 #. Predict stellar occultations and obtain predictions maps;
-#. Check when the stellar occultation will happen for a given observer;
-#. Determine the immersion and emersion times from an lightcurve;
-#. Check the chords in the skyplane;
-#. Fit a circle for events with less than 3 chords and determine the 
-   astrometrical position of the occulting object;
-#. Fit an ellipse for events with more than 3 chords and determine the
-   apparent size and shape of the occulting body and its position;
+#. Check when a stellar occultation will happen for a given observer;
+#. Analyse occultation light curves and determine the immersion and 
+   emersion times for the event;
+#. Plot and check the chords in the skyplane;
+#. Fit a circle for events with less than 3 chords or an ellipse for 
+   events with more chords;
+#. Determine the astrometric position of the occulting object, its 
+   apparent size and projected shape.
 
 **All these steps can be found in our Jupyter-Notebooks Tutorials.**
 

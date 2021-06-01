@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Extra &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LightCurve" href="sora_lightcurve.html" />
+    <link rel="prev" title="Ephem" href="sora_ephem.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2-alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Details:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">SORA Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Using and Citing SORA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="team.html">About Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sora.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sora_body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sora_ephem.html">Ephem</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Extra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chisquare-class">ChiSquare Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sora.extra.plots">Plot ellipse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sora.extra.utils">Module <cite>utils</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sora_lightcurve.html">LightCurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sora_observer.html">Observer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sora_occultation.html">Occultation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sora_prediction.html">Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sora_star.html">Star</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/Tutorial_SORAv0.2_GettingStarted.html">SORA Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters.html">Jupyter-Notebook Guidelines</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="sora.html">Modules</a> &raquo;</li>
+        
+      <li>Extra</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/sora_extra.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="extra">
+<h1>Extra<a class="headerlink" href="#extra" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chisquare-class">
+<h2>ChiSquare Class<a class="headerlink" href="#chisquare-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sora.extra.ChiSquare">
+<em class="property">class </em><code class="sig-prename descclassname">sora.extra.</code><code class="sig-name descname">ChiSquare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chi2</span></em>, <em class="sig-param"><span class="n">npts</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.ChiSquare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the arrays for all inputs and given chi-square.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chi2</strong> (<cite>array</cite>) – Array with all the chi-square values.</p></li>
+<li><p><strong>npts</strong> (<cite>int</cite>) – Number of points used in the fit.</p></li>
+<li><p><strong>**kwargs</strong> – Any other given input must be an array with the same size as chi2. The
+keyword <cite>name</cite> will be associated as the variable <cite>name</cite> of the given data.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chisquare</span> <span class="o">=</span> <span class="n">ChiSquare</span><span class="p">(</span><span class="n">chi2</span><span class="p">,</span> <span class="n">immersion</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">emersion</span><span class="o">=</span><span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t2</span></code> must be an array with the same size as chi2.</p>
+<p>The data can be accessed as</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chisquare</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;immersion&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.get_nsigma">
+<code class="sig-name descname">get_nsigma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sigma</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.get_nsigma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.ChiSquare.get_nsigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the interval of the chi-square within the nth sigma.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<cite>float</cite>, <cite>int</cite>) – Value of sigma to calculate.</p></li>
+<li><p><strong>key</strong> (<cite>str</cite>, default=None) – keyword the user desire to obtain results.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary with the average n-sigma value and bondaries.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a key value is given the mean value within the n-sigma and the error
+bar within the n-sigma are returned.</p>
+<p>If no key is given, a dictionary with: the minimum chi-square, the sigma
+required, the number of points where <span class="math notranslate nohighlight">\(chi2 &lt; (chi2_min + sigma^2)\)</span>,
+and the mean values and errors for all keys is returned.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.get_values">
+<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sigma</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.get_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.ChiSquare.get_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all values where the chi-square is within the nth sigma.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<cite>float</cite>, <cite>int</cite>) – Value of sigma to cut values.</p></li>
+<li><p><strong>key</strong> (<cite>str</cite>) – Keyword (parameter) that the user desires to obtain results of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>list or dict</strong> – List or dictionary with chi-square values within the nth sigma, the
+average n-sigma value, and bondaries.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>list</cite>, <cite>dict</cite></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a <cite>key</cite> is given, it returns a <cite>list</cite> with all the values that are within
+the chosen n-sigma.</p>
+<p>If no <cite>key</cite> is given, it returns a dictionary with the list with all the
+values that are within the n-sigma for all keys.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">sigma=0</span></code>, it returns the parameters for the minimum chi-square
+instead of a list.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.plot_chi2">
+<code class="sig-name descname">plot_chi2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.plot_chi2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.ChiSquare.plot_chi2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots an ellipse using the input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<cite>str</cite>) – Key (parameter) for which to plot the chi squares. If no key  is
+given, it will plot for all parameters.</p></li>
+<li><p><strong>ax</strong> (<cite>maplotlib.pyplot.Axes</cite>) – Matplotlib plot axes. If none is given, it uses the matplotlib pool
+to identify.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sora.extra.ChiSquare.to_file">
+<code class="sig-name descname">to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">namefile</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/chisquare.html#ChiSquare.to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.ChiSquare.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the data to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>namefile</strong> (<cite>str</cite>) – Filename to save the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.extra.plots">
+<span id="plot-ellipse"></span><h2>Plot ellipse<a class="headerlink" href="#module-sora.extra.plots" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.extra.plots.draw_ellipse">
+<code class="sig-prename descclassname">sora.extra.plots.</code><code class="sig-name descname">draw_ellipse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">equatorial_radius</span></em>, <em class="sig-param"><span class="n">oblateness</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">center_f</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">center_g</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">position_angle</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">center_dot</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/plots.html#draw_ellipse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.plots.draw_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots an ellipse with the given input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equatorial_radius</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Semi-major axis of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Oblateness of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (abscissa).</p></li>
+<li><p><strong>center_g</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (ordinate).</p></li>
+<li><p><strong>center_dot</strong> (<cite>bool</cite>, default=False) – If True, plots a dot at the center of the ellipse.</p></li>
+<li><p><strong>position_angle</strong> (<cite>float</cite>, <cite>int</cite>, default= 0) – Pole position angle (Default=0.0).</p></li>
+<li><p><strong>ax</strong> (<cite>maptlotlib.pyplot.Axes</cite>) – Axis where to plot ellipse.</p></li>
+<li><p><strong>**kwargs</strong> – All other parameters. They will be parsed directly by matplotlib.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sora.extra.utils">
+<span id="module-utils"></span><h2>Module <cite>utils</cite><a class="headerlink" href="#module-sora.extra.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="sora.extra.utils.get_ellipse_points">
+<code class="sig-prename descclassname">sora.extra.utils.</code><code class="sig-name descname">get_ellipse_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">theta</span></em>, <em class="sig-param"><span class="n">equatorial_radius</span></em>, <em class="sig-param"><span class="n">oblateness</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">center_f</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">center_g</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">position_angle</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sora/extra/utils.html#get_ellipse_points"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sora.extra.utils.get_ellipse_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get points for the ellipse with the given input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (<cite>float</cite> array) – Angular coordinate, in degrees, to return the ellipse points.</p></li>
+<li><p><strong>equatorial_radius</strong> (<cite>float</cite>, <cite>int</cite>) – Semi-major axis of the ellipse.</p></li>
+<li><p><strong>oblateness</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Oblateness of the ellipse.</p></li>
+<li><p><strong>center_f</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (abscissa).</p></li>
+<li><p><strong>center_g</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – Coordinate of the ellipse (ordinate).</p></li>
+<li><p><strong>position_angle</strong> (<cite>float</cite>, <cite>int</cite>, default=0) – The pole position angle of the ellipse in degrees.
+Zero is in the North direction (‘g-positive’). Positive clockwise.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x_model</strong> (<cite>float</cite>, array) – Cartesian x-component, in km</p></li>
+<li><p><strong>y_model</strong> (<cite>float</cite>, array) – Cartesian y-component, in km</p></li>
+<li><p><strong>r_model</strong> (<cite>float</cite>, array) – Radial distance, in km</p></li>
+<li><p><strong>theta</strong> (<cite>float</cite> array) – Angular coordinate, in degrees, to return the ellipse points.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="sora_lightcurve.html" class="btn btn-neutral float-right" title="LightCurve" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sora_ephem.html" class="btn btn-neutral float-left" title="Ephem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, SORA Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

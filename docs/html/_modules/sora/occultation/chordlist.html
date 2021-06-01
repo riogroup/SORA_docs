@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.occultation.chordlist &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.occultation.chordlist &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -179,7 +179,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ChordList&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="ChordList"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList">[docs]</a><span class="k">class</span> <span class="nc">ChordList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList">[docs]</a><span class="k">class</span> <span class="nc">ChordList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Defines a collection of Chord objects associated to an Occultation.</span>
 
 <span class="sd">    This object is not supposed to be defined by the user. It will be automatically</span>
@@ -209,7 +209,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_shared_with</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chord&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;star&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_star</span><span class="o">.</span><span class="n">geocentric</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="s2">&quot;ephem&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span><span class="o">.</span><span class="n">ephem</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">},</span>
                              <span class="s1">&#39;occultation&#39;</span><span class="p">:</span> <span class="p">{}}</span>
 
-<div class="viewcode-block" id="ChordList.add_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.add_chord">[docs]</a>    <span class="k">def</span> <span class="nf">add_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lightcurve</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.add_chord"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.add_chord">[docs]</a>    <span class="k">def</span> <span class="nf">add_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lightcurve</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a chord to the occultation chord list</span>
 
 <span class="sd">        Parameters</span>
@@ -269,7 +269,7 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Magnitude drop was not calculated. Using bottom flux as 0.0.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">chord</span></div>
 
-<div class="viewcode-block" id="ChordList.remove_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.remove_chord">[docs]</a>    <span class="k">def</span> <span class="nf">remove_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.remove_chord"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.remove_chord">[docs]</a>    <span class="k">def</span> <span class="nf">remove_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove a chord from the chord list and disassociate it from the Occultation.</span>
 
 <span class="sd">        Parameters</span>
@@ -284,7 +284,7 @@
     <span class="k">def</span> <span class="nf">is_able</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">chord</span><span class="o">.</span><span class="n">is_able</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">chord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<div class="viewcode-block" id="ChordList.enable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.enable">[docs]</a>    <span class="k">def</span> <span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.enable"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.enable">[docs]</a>    <span class="k">def</span> <span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enable a contact point of the curve to be used in the fit.</span>
 
 <span class="sd">        Parameters</span>
@@ -304,7 +304,7 @@
         <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No Chord with name </span><span class="si">{}</span><span class="s1"> is available.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ChordList.disable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.disable"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">chord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Disable a contact point of the curve to be used in the fit.</span>
 
 <span class="sd">        Parameters</span>
@@ -324,7 +324,7 @@
         <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No Chord with name </span><span class="si">{}</span><span class="s1"> is available.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chord</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ChordList.plot_chords"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.plot_chords">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">ignore_chords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.plot_chords"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.plot_chords">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">ignore_chords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots the on-sky path of this chord.</span>
 
 <span class="sd">        Parameters</span>
@@ -389,7 +389,7 @@
         <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Segment &quot;</span><span class="si">{}</span><span class="s1">&quot; was not found on any chord&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">segment</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ChordList.summary"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.summary"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prints a table with the summary of the chords.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">vstack</span>
@@ -425,7 +425,7 @@
         <span class="n">tabela</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
         <span class="n">tabela</span><span class="o">.</span><span class="n">pprint_all</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ChordList.get_impact_param"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.get_impact_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_impact_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ChordList.get_impact_param"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.get_impact_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_impact_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the impact parameter, minimal distance between the chord and the</span>
 <span class="sd">        centre position.</span>
 
@@ -467,7 +467,7 @@
             <span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">chord</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">impact</span><span class="p">,</span> <span class="n">sense</span><span class="p">,</span> <span class="n">names</span></div>
 
-<div class="viewcode-block" id="ChordList.get_theoretical_times"><a class="viewcode-back" href="../../../sora.html#sora.occultation.chordlist.ChordList.get_theoretical_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_theoretical_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<div class="viewcode-block" id="ChordList.get_theoretical_times"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.chordlist.ChordList.get_theoretical_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_theoretical_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">chords</span><span class="o">=</span><span class="s1">&#39;all_chords&#39;</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                               <span class="n">position_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the theoretical times and chords sizes for a given ellipse.</span>
 

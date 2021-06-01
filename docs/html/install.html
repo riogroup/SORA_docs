@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>Installation &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -57,7 +57,7 @@
           
 
           
-            <a href="contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -125,7 +125,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -156,7 +156,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Installation</li>
     
@@ -210,30 +210,37 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="python-package-requirements">
 <h2>Python package requirements<a class="headerlink" href="#python-package-requirements" title="Permalink to this headline">¶</a></h2>
-<p>Here we present the packages that will be used as base for our coding.
-Those packages are also installed on the .</p>
+<p>Several SORA functionalities use other Python-based libraries. Below are
+listed the library dependencies and their minimal version needed to use SORA.
+Most of those packages are installed on the fly using the <cite>pip install</cite>
+method, except for Cartopy.</p>
 <ul class="simple">
-<li><p><strong>astropy 4.0:</strong> For astronomical related functions, mainly coordinates
-and time.</p></li>
-<li><p><strong>astroquery 0.4.1:</strong> To query astronomical database as JPL and Vizier.</p></li>
-<li><p><strong>matplotlib 3.1.1:</strong> For easy and beautiful plots.</p></li>
-<li><p><strong>numpy 1.18.1:</strong> Otimized mathematical functions.</p></li>
-<li><p><strong>scipy 1.4.1:</strong> Otimized functions for mathematics, science, and
+<li><p><a class="reference external" href="https://www.astropy.org/">Astropy</a> (4.0): For astronomical related functions,
+mainly coordinates and time.</p></li>
+<li><p><a class="reference external" href="https://astroquery.readthedocs.io/en/latest/">Astroquery</a> (0.4.1): To query
+astronomical database as JPL and Vizier.</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> (3.1.1): For easy and beautiful plots.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/">NumPy</a> (1.18.1): Otimized mathematical functions.</p></li>
+<li><p><a class="reference external" href="https://www.scipy.org/">SciPy</a> (1.4.1): Otimized functions for mathematics, science, and
 engineering.</p></li>
-<li><p><strong>spiceypy 3.0.2:</strong> SPICE/NAIF functions in python.</p></li>
-<li><p><strong>pyerfa 2.0</strong> Python wrapper for the ERFA library based on the SOFA library.</p></li>
-<li><p><strong>cartopy 0.17:</strong> Geospatial data processing to produce maps.</p></li>
+<li><p><a class="reference external" href="https://spiceypy.readthedocs.io/en/main/">SpiceyPy</a> (3.0.2): SPICE/NAIF functions in python.</p></li>
+<li><p><a class="reference external" href="https://pyerfa.readthedocs.io/en/latest/">PyERFA</a> (2.0): Python wrapper for the ERFA library based on the SOFA library.</p></li>
+<li><p><a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/">Cartopy</a> (0.17): Geospatial data processing to produce maps.</p></li>
 </ul>
 </div>
 <div class="section" id="installing-sora">
 <h2>Installing SORA<a class="headerlink" href="#installing-sora" title="Permalink to this headline">¶</a></h2>
+<p>If you are new to Python or not familiar with Python virtual environments, we
+recommend starting by installing the Anaconda Distribution.  This works on all
+platforms (Linux, macOS, Windows) and installs a full-featured scientific Python
+in a user directory without requiring root permissions.</p>
 <p>The user can install SORA and most of its requirements using <strong>pip</strong>, only
 Cartopy should be installed by hand afterwards.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; user@path$&gt; pip install sora-astro
 &gt;&gt;&gt; user@path$&gt; conda install -c conda-forge cartopy
 </pre></div>
 </div>
-<p>If you are a <a href="https://github.com/riogroup/SORA" target="_blank"> GitHub</a> user, you can also use:</p>
+<p>If you are a <a href="https://github.com/" target="_blank"> GitHub</a> user, you can also use:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; user@path$&gt; git clone https://github.com/riogroup/SORA/sora.git
 &gt;&gt;&gt; user@path$&gt; cd sora
 &gt;&gt;&gt; user@path$&gt; pip install .
@@ -246,16 +253,17 @@ last release from the SORA package in the riogroup organisation on
 </div>
 <div class="section" id="functionalities">
 <h2>Functionalities<a class="headerlink" href="#functionalities" title="Permalink to this headline">¶</a></h2>
-<p>With SORA the user can:</p>
+<p>With SORA (v0.2), among other more advanced tasks, the user can easely:</p>
 <ol class="arabic simple">
 <li><p>Predict stellar occultations and obtain predictions maps;</p></li>
-<li><p>Check when the stellar occultation will happen for a given observer;</p></li>
-<li><p>Determine the immersion and emersion times from an lightcurve;</p></li>
-<li><p>Check the chords in the skyplane;</p></li>
-<li><p>Fit a circle for events with less than 3 chords and determine the
-astrometrical position of the occulting object;</p></li>
-<li><p>Fit an ellipse for events with more than 3 chords and determine the
-apparent size and shape of the occulting body and its position;</p></li>
+<li><p>Check when a stellar occultation will happen for a given observer;</p></li>
+<li><p>Analyse occultation light curves and determine the immersion and
+emersion times for the event;</p></li>
+<li><p>Plot and check the chords in the skyplane;</p></li>
+<li><p>Fit a circle for events with less than 3 chords or an ellipse for
+events with more chords;</p></li>
+<li><p>Determine the astrometric position of the occulting object, its
+apparent size and projected shape.</p></li>
 </ol>
 <p><strong>All these steps can be found in our Jupyter-Notebooks Tutorials.</strong></p>
 </div>

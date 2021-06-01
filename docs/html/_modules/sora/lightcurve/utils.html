@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.lightcurve.utils &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.lightcurve.utils &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -178,7 +178,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;calc_fresnel&#39;</span><span class="p">,</span> <span class="s1">&#39;calc_magnitude_drop&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="calc_fresnel"><a class="viewcode-back" href="../../../sora.html#sora.lightcurve.utils.calc_fresnel">[docs]</a><span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">lambida</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
+<div class="viewcode-block" id="calc_fresnel"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.lightcurve.utils.calc_fresnel">[docs]</a><span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">lambida</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
 <span class="k">def</span> <span class="nf">calc_fresnel</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">bandpass</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculates the Fresnel scale.</span>
 
@@ -282,7 +282,7 @@
     <span class="k">return</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_err</span>
 
 
-<div class="viewcode-block" id="calc_magnitude_drop"><a class="viewcode-back" href="../../../sora.html#sora.lightcurve.utils.calc_magnitude_drop">[docs]</a><span class="k">def</span> <span class="nf">calc_magnitude_drop</span><span class="p">(</span><span class="n">mag_star</span><span class="p">,</span> <span class="n">mag_obj</span><span class="p">):</span>
+<div class="viewcode-block" id="calc_magnitude_drop"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.lightcurve.utils.calc_magnitude_drop">[docs]</a><span class="k">def</span> <span class="nf">calc_magnitude_drop</span><span class="p">(</span><span class="n">mag_star</span><span class="p">,</span> <span class="n">mag_obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Determines the magnitude drop of the occultation.</span>
 
 <span class="sd">    Parameters</span>

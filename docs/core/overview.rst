@@ -76,21 +76,38 @@ Acknowledgements
 ----------------
 
 The SORA package is hosted on a |GitHub| repository. It was developed with support 
-of the |LuckyStar|, that agglomerates the efforts of the Paris, Granada, and Rio teams. 
-The |LuckyStar| is funded by the ERC (European Research Council) under the European 
-Community’s H2020 (2014-2020/ERC Grant Agreement No. 669416). Also, this project is 
-supported by |LIneA| (Laboratório Interinstitucional de e-Astronomia), INCT do e-Universo 
-(CNPQ grants 465376/2014-2), by FAPESP (proc. 2018/11239-8), by CNPQ (proc. 300472/2020-0),
-and by CAPES-PRINT/UNESP (88887.571156/2020-00) in Brazil.
+of the |LuckyStar|, that agglomerates the efforts of the Paris, Granada, and Rio
+teams :superscript:`(1)`. The |LuckyStar| is funded by the ERC (European Research Council) 
+under the European Community’s H2020 (2014-2020/ERC Grant Agreement No. 669416). Also, 
+this project is supported by |LIneA| (Laboratório Interinstitucional de e-Astronomia), 
+INCT do e-Universo (CNPQ grants 465376/2014-2), by FAPESP (proc. 2018/11239-8), by CNPQ 
+(proc. 300472/2020-0, 150612/2020-6), and by CAPES-PRINT/UNESP (88887.571156/2020-00) 
+in Brazil.
 
 .. image:: images/Thanks.png
   :width: 800
   :align: center
   :alt: Acknowledgements
 
-**Figure 2:** The SORA team thanks the following institutions, groups and projects for their support:
-ERC Lucky Star, LIneA/Brazil, INCT do e-Universo/Brazil, UNESP/Brazil, GDOP/Brazil, Observatoire 
-de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.
+**Figure 2:** The SORA team thanks the following institutions, groups and projects for their 
+support: ERC Lucky Star, LIneA/Brazil, INCT do e-Universo/Brazil, UNESP/Brazil, GDOP/Brazil, 
+Observatoire de Paris/France, Observatório Nacional/Brazil and CNPq/Brazil.
+
+
+:superscript:`(1)` The Paris, Granada, and Rio teams are professionals astronomers affiliated mainly in the following 
+institutions:
+
+* LESIA - Observatoire de Paris, France;
+* Institut Polytechnique des Sciences Avancées, France;
+* IMCCE - Observatoire de Paris, France;
+* Instituto de Astrofísica de Andalucía, Spain;
+* Laboratório Interinstitucional de e-Astronomia, Brazil;
+* INCT do e-Universo, Brazil;
+* Observatório Nacional/MCTI, Brazil;
+* Federal University of Technology - Paraná, Brazil;
+* UNESP - São Paulo State University, Brazil;
+* Universidade Federal do Rio de Janeiro - Observatório do Valongo, Brazil;
+
 
 .. |BS2011| raw:: html
 

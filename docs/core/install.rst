@@ -67,12 +67,15 @@ If you are a |GitHub| user, you can also use:
 
 When new versions are available, the user can update it downloading the
 last release from the SORA package in the riogroup organisation on
-|GitHub|. If you want to be notified just follow the package.
+|GitHubRio|. If you want to be notified just follow the package.
 
-.. |GitHub| raw:: html
+.. |GitHubRio| raw:: html
 
    <a href="https://github.com/riogroup/SORA" target="_blank"> GitHub</a>
 
+.. |GitHub| raw:: html
+
+   <a href="https://github.com/" target="_blank"> GitHub</a>
 
 Functionalities
 ---------------

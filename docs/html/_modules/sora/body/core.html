@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.body.core &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.body.core &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -183,7 +183,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Body&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Body"><a class="viewcode-back" href="../../../sora.html#sora.Body">[docs]</a><span class="k">class</span> <span class="nc">Body</span><span class="p">(</span><span class="n">BaseBody</span><span class="p">):</span>
+<div class="viewcode-block" id="Body"><a class="viewcode-back" href="../../../sora_body.html#sora.Body">[docs]</a><span class="k">class</span> <span class="nc">Body</span><span class="p">(</span><span class="n">BaseBody</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class that contains and manages the information of the body.</span>
 
 <span class="sd">    Attributes</span>
@@ -405,7 +405,7 @@
                               <span class="s2">&quot;Tholen&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discovery</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-<div class="viewcode-block" id="Body.get_pole_position_angle"><a class="viewcode-back" href="../../../sora.html#sora.Body.get_pole_position_angle">[docs]</a>    <span class="k">def</span> <span class="nf">get_pole_position_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Body.get_pole_position_angle"><a class="viewcode-back" href="../../../sora_body.html#sora.Body.get_pole_position_angle">[docs]</a>    <span class="k">def</span> <span class="nf">get_pole_position_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the pole position angle and the aperture angle relative to</span>
 <span class="sd">        the geocenter.</span>
 
@@ -432,7 +432,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">position_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">),</span> <span class="n">aperture_angle</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;deg&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Body.apparent_magnitude"><a class="viewcode-back" href="../../../sora.html#sora.Body.apparent_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Body.apparent_magnitude"><a class="viewcode-back" href="../../../sora_body.html#sora.Body.apparent_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">apparent_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the object&#39;s apparent magnitude.</span>
 
 <span class="sd">        Parameters</span>

@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.occultation.core &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.occultation.core &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -183,7 +183,7 @@
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Occultation"><a class="viewcode-back" href="../../../sora.html#sora.Occultation">[docs]</a><span class="k">class</span> <span class="nc">Occultation</span><span class="p">:</span>
+<div class="viewcode-block" id="Occultation"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation">[docs]</a><span class="k">class</span> <span class="nc">Occultation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Instantiates the Occultation object and performs the reduction of the</span>
 <span class="sd">    occultation.</span>
 
@@ -290,7 +290,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chords</span>
 
     <span class="c1"># remove this block for v1.0</span>
-<div class="viewcode-block" id="Occultation.add_observation"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.add_observation">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.add_chord to add new observations.&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Occultation.add_observation"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.add_observation">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.add_chord to add new observations.&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">add_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">lightcurve</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds observations to the Occultation object.</span>
 
@@ -304,7 +304,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chords</span><span class="o">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span> <span class="n">lightcurve</span><span class="o">=</span><span class="n">lightcurve</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Occultation.remove_observation"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.remove_observation">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.remove_chord to remove observations.&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Occultation.remove_observation"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.remove_observation">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.remove_chord to remove observations.&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">remove_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">key_lc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Removes an observation from the Occultation object.</span>
 
@@ -334,7 +334,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">chords</span><span class="o">.</span><span class="n">remove_chord</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">rm_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Occultation.observations"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.observations">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Occultation.observations"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.observations">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Print all the observations added to the Occultation object</span>
 <span class="sd">        Pair (`Observer`, `LightCurve`)</span>
@@ -343,7 +343,7 @@
 
     <span class="c1"># end of block removal</span>
 
-<div class="viewcode-block" id="Occultation.fit_ellipse"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.fit_ellipse">[docs]</a>    <span class="k">def</span> <span class="nf">fit_ellipse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.fit_ellipse"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.fit_ellipse">[docs]</a>    <span class="k">def</span> <span class="nf">fit_ellipse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">chisquare</span> <span class="o">=</span> <span class="n">ellipse_fitting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">chisquare</span></div>
 
@@ -497,7 +497,7 @@
 
     <span class="c1"># end of block removal</span>
 
-<div class="viewcode-block" id="Occultation.check_velocities"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.check_velocities">[docs]</a>    <span class="k">def</span> <span class="nf">check_velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.check_velocities"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.check_velocities">[docs]</a>    <span class="k">def</span> <span class="nf">check_velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prints the current velocity used by the LightCurves and its radial velocity.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;fitted_params&#39;</span><span class="p">):</span>
@@ -521,7 +521,7 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    Emersion Radial Velocity: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span>
                       <span class="nb">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:]),</span> <span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">delta</span><span class="p">))))</span></div>
 
-<div class="viewcode-block" id="Occultation.new_astrometric_position"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.new_astrometric_position">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span><span class="p">)</span>  <span class="c1"># remove this line in v1.0</span>
+<div class="viewcode-block" id="Occultation.new_astrometric_position"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.new_astrometric_position">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span><span class="p">)</span>  <span class="c1"># remove this line in v1.0</span>
     <span class="k">def</span> <span class="nf">new_astrometric_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the new astrometric position for the object given fitted parameters.</span>
 
@@ -641,7 +641,7 @@
             <span class="k">return</span> <span class="n">out</span></div>
 
     <span class="c1"># remove this block for v1.0</span>
-<div class="viewcode-block" id="Occultation.plot_chords"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.plot_chords">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.plot_chord to have a better control of the plots&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="Occultation.plot_chords"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.plot_chords">[docs]</a>    <span class="nd">@deprecated_function</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please use chords.plot_chord to have a better control of the plots&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">plot_chords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_chords</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive_color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">negative_color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">error_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
                     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots the chords of the occultation.</span>
@@ -674,7 +674,7 @@
 
     <span class="c1"># end of block removal</span>
 
-<div class="viewcode-block" id="Occultation.get_map_sites"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.get_map_sites">[docs]</a>    <span class="k">def</span> <span class="nf">get_map_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.get_map_sites"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.get_map_sites">[docs]</a>    <span class="k">def</span> <span class="nf">get_map_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns Dictionary with sites in the format required by plot_occ_map function.</span>
 
 <span class="sd">        Returns</span>
@@ -690,7 +690,7 @@
             <span class="n">sites</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">obs</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">obs</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="p">[</span><span class="n">chord</span><span class="o">.</span><span class="n">status</span><span class="p">()]]</span>
         <span class="k">return</span> <span class="n">sites</span></div>
 
-<div class="viewcode-block" id="Occultation.plot_occ_map"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.plot_occ_map">[docs]</a>    <span class="k">def</span> <span class="nf">plot_occ_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.plot_occ_map"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.plot_occ_map">[docs]</a>    <span class="k">def</span> <span class="nf">plot_occ_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s1">&#39;radius&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;fitted_params&#39;</span><span class="p">):</span>
             <span class="n">r_equa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitted_params</span><span class="p">[</span><span class="s1">&#39;equatorial_radius&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">obla</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitted_params</span><span class="p">[</span><span class="s1">&#39;oblateness&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -713,7 +713,7 @@
 
     <span class="n">plot_occ_map</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">PredictionTable</span><span class="o">.</span><span class="n">plot_occ_map</span><span class="o">.</span><span class="vm">__doc__</span>
 
-<div class="viewcode-block" id="Occultation.to_log"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.to_log">[docs]</a>    <span class="k">def</span> <span class="nf">to_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.to_log"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.to_log">[docs]</a>    <span class="k">def</span> <span class="nf">to_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Saves the occultation log to a file.</span>
 
 <span class="sd">        Parameters</span>
@@ -727,7 +727,7 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Occultation.check_time_shift"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.check_time_shift">[docs]</a>    <span class="k">def</span> <span class="nf">check_time_shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delta_plot</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<div class="viewcode-block" id="Occultation.check_time_shift"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.check_time_shift">[docs]</a>    <span class="k">def</span> <span class="nf">check_time_shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_interval</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delta_plot</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                          <span class="n">ignore_chords</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check the needed time offset, so all chords have their center aligned.</span>
 
@@ -846,7 +846,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">chords</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lightcurve</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">previous_dt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">out_dic</span></div>
 
-<div class="viewcode-block" id="Occultation.to_file"><a class="viewcode-back" href="../../../sora.html#sora.Occultation.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Occultation.to_file"><a class="viewcode-back" href="../../../sora_occultation.html#sora.Occultation.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Saves the occultation data to a file.</span>
 
 <span class="sd">        Three files are saved containing the positions and velocities for the</span>

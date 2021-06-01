@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.star.utils &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.star.utils &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -222,7 +222,7 @@
     <span class="k">return</span> <span class="n">catalogue</span>
 
 
-<div class="viewcode-block" id="van_belle"><a class="viewcode-back" href="../../../sora.html#sora.star.utils.van_belle">[docs]</a><span class="k">def</span> <span class="nf">van_belle</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="van_belle"><a class="viewcode-back" href="../../../sora_star.html#sora.star.utils.van_belle">[docs]</a><span class="k">def</span> <span class="nf">van_belle</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from van Belle (1999).</span>
 
 <span class="sd">    See: Publi. Astron. Soc. Pacific 111, 1515-1523:.</span>
@@ -270,7 +270,7 @@
     <span class="k">return</span> <span class="n">diameter</span></div>
 
 
-<div class="viewcode-block" id="kervella"><a class="viewcode-back" href="../../../sora.html#sora.star.utils.kervella">[docs]</a><span class="k">def</span> <span class="nf">kervella</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="kervella"><a class="viewcode-back" href="../../../sora_star.html#sora.star.utils.kervella">[docs]</a><span class="k">def</span> <span class="nf">kervella</span><span class="p">(</span><span class="n">magB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magV</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magK</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from Kervella et. al (2004).</span>
 
 <span class="sd">    See: A&amp;A Vol. 426, No.  1:.</span>

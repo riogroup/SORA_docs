@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.star.core &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.star.core &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -186,7 +186,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Star&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Star"><a class="viewcode-back" href="../../../sora.html#sora.Star">[docs]</a><span class="k">class</span> <span class="nc">Star</span><span class="p">(</span><span class="n">MetaStar</span><span class="p">):</span>
+<div class="viewcode-block" id="Star"><a class="viewcode-back" href="../../../sora_star.html#sora.Star">[docs]</a><span class="k">class</span> <span class="nc">Star</span><span class="p">(</span><span class="n">MetaStar</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Defines a star.</span>
 
 <span class="sd">    Parameters</span>
@@ -292,7 +292,7 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span>
 
-<div class="viewcode-block" id="Star.set_magnitude"><a class="viewcode-back" href="../../../sora.html#sora.Star.set_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">set_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.set_magnitude"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.set_magnitude">[docs]</a>    <span class="k">def</span> <span class="nf">set_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the magnitudes of a star.</span>
 
 <span class="sd">        Parameters</span>
@@ -319,7 +319,7 @@
                     <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">mag</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mag</span></div>
 
-<div class="viewcode-block" id="Star.set_diameter"><a class="viewcode-back" href="../../../sora.html#sora.Star.set_diameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diameter</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.set_diameter"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.set_diameter">[docs]</a>    <span class="k">def</span> <span class="nf">set_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets an user diameter for the star, in mas.</span>
 
 <span class="sd">        Parameters</span>
@@ -332,21 +332,21 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;negative sizes are converted to positive.&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">diameter_user</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diameter_user</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Star.van_belle"><a class="viewcode-back" href="../../../sora.html#sora.Star.van_belle">[docs]</a>    <span class="k">def</span> <span class="nf">van_belle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.van_belle"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.van_belle">[docs]</a>    <span class="k">def</span> <span class="nf">van_belle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from van Belle (1999).</span>
 
 <span class="sd">        See: Publi. Astron. Soc. Pacific 111, 1515-1523:.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">van_belle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Star.kervella"><a class="viewcode-back" href="../../../sora.html#sora.Star.kervella">[docs]</a>    <span class="k">def</span> <span class="nf">kervella</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.kervella"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.kervella">[docs]</a>    <span class="k">def</span> <span class="nf">kervella</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines the diameter of a star in mas using equations from Kervella et. al (2004).</span>
 
 <span class="sd">        See: A&amp;A Vol.  426, No.  1:.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">kervella</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Star.apparent_diameter"><a class="viewcode-back" href="../../../sora.html#sora.Star.apparent_diameter">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span><span class="p">)</span>  <span class="c1"># remove this line in v1.0</span>
+<div class="viewcode-block" id="Star.apparent_diameter"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.apparent_diameter">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="s1">&#39;verbose&#39;</span><span class="p">)</span>  <span class="c1"># remove this line in v1.0</span>
     <span class="k">def</span> <span class="nf">apparent_diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">star_type</span><span class="o">=</span><span class="s1">&#39;sg&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the apparent diameter of the star at a given distance.</span>
 
@@ -556,7 +556,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Magnitudes in </span><span class="si">{}</span><span class="s1"> were not located in NOMAD&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Star.geocentric"><a class="viewcode-back" href="../../../sora.html#sora.Star.geocentric">[docs]</a>    <span class="k">def</span> <span class="nf">geocentric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.geocentric"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.geocentric">[docs]</a>    <span class="k">def</span> <span class="nf">geocentric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the position of the star, propagating the position using</span>
 <span class="sd">        parallax and proper motion.</span>
 
@@ -589,7 +589,7 @@
 
         <span class="k">return</span> <span class="n">g_coord</span></div>
 
-<div class="viewcode-block" id="Star.barycentric"><a class="viewcode-back" href="../../../sora.html#sora.Star.barycentric">[docs]</a>    <span class="k">def</span> <span class="nf">barycentric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.barycentric"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.barycentric">[docs]</a>    <span class="k">def</span> <span class="nf">barycentric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates the position of the star using proper motion.</span>
 
 <span class="sd">        Parameters</span>
@@ -606,7 +606,7 @@
         <span class="n">n_coord</span> <span class="o">=</span> <span class="n">spatial_motion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pmdec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rad_vel</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">jd</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">n_coord</span></div>
 
-<div class="viewcode-block" id="Star.error_at"><a class="viewcode-back" href="../../../sora.html#sora.Star.error_at">[docs]</a>    <span class="k">def</span> <span class="nf">error_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.error_at"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.error_at">[docs]</a>    <span class="k">def</span> <span class="nf">error_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Estimates the star position error at a given time.</span>
 
 <span class="sd">        Parameters</span>
@@ -630,7 +630,7 @@
                                          <span class="bp">self</span><span class="o">.</span><span class="n">rad_vel</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="n">cov_matrix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="p">,</span> <span class="n">errors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span></div>
 
-<div class="viewcode-block" id="Star.add_offset"><a class="viewcode-back" href="../../../sora.html#sora.Star.add_offset">[docs]</a>    <span class="k">def</span> <span class="nf">add_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">da_cosdec</span><span class="p">,</span> <span class="n">ddec</span><span class="p">):</span>
+<div class="viewcode-block" id="Star.add_offset"><a class="viewcode-back" href="../../../sora_star.html#sora.Star.add_offset">[docs]</a>    <span class="k">def</span> <span class="nf">add_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">da_cosdec</span><span class="p">,</span> <span class="n">ddec</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds an offset to the star position.</span>
 
 <span class="sd">        Parameters</span>

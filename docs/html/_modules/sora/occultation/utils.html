@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.occultation.utils &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.occultation.utils &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -175,7 +175,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filter_negative_chord&#39;</span><span class="p">,</span> <span class="s1">&#39;positionv&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="positionv"><a class="viewcode-back" href="../../../sora.html#sora.occultation.utils.positionv">[docs]</a><span class="k">def</span> <span class="nf">positionv</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">ephem</span><span class="p">,</span> <span class="n">observer</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="positionv"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.utils.positionv">[docs]</a><span class="k">def</span> <span class="nf">positionv</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">ephem</span><span class="p">,</span> <span class="n">observer</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculates the position and velocity of the occultation shadow relative</span>
 <span class="sd">    to the observer.</span>
 
@@ -238,7 +238,7 @@
     <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">vf</span><span class="p">,</span> <span class="n">vg</span></div>
 
 
-<div class="viewcode-block" id="filter_negative_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.utils.filter_negative_chord">[docs]</a><span class="k">def</span> <span class="nf">filter_negative_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">chisquare</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="filter_negative_chord"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.utils.filter_negative_chord">[docs]</a><span class="k">def</span> <span class="nf">filter_negative_chord</span><span class="p">(</span><span class="n">chord</span><span class="p">,</span> <span class="n">chisquare</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get points for the ellipse with the given input parameters.</span>
 
 <span class="sd">    Parameters</span>

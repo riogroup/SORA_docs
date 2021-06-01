@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.occultation.chord &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.occultation.chord &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -178,7 +178,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chord&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord">[docs]</a><span class="k">class</span> <span class="nc">Chord</span><span class="p">:</span>
+<div class="viewcode-block" id="Chord"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord">[docs]</a><span class="k">class</span> <span class="nc">Chord</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Defines an Occultation Chord.</span>
 
 <span class="sd">    Attributes</span>
@@ -221,7 +221,7 @@
     <span class="k">def</span> <span class="nf">lightcurve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lightcurve</span>
 
-<div class="viewcode-block" id="Chord.status"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.status">[docs]</a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.status"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.status">[docs]</a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns if the chord is positive or negative</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">im</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lightcurve</span><span class="p">,</span> <span class="s1">&#39;immersion&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -247,7 +247,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_isable</span><span class="p">[</span><span class="s1">&#39;emersion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isable</span>
 
-<div class="viewcode-block" id="Chord.enable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.enable">[docs]</a>    <span class="k">def</span> <span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.enable"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.enable">[docs]</a>    <span class="k">def</span> <span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Enables a contact point of the curve to be used in the fit.</span>
 
 <span class="sd">        Parameters</span>
@@ -264,7 +264,7 @@
             <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">time</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
                 <span class="n">isable</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="Chord.disable"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.disable"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Disables a contact point of the curve to be used in the fit.</span>
 
 <span class="sd">        Parameters</span>
@@ -281,7 +281,7 @@
             <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">time</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
                 <span class="n">isable</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Chord.get_fg"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.get_fg">[docs]</a>    <span class="k">def</span> <span class="nf">get_fg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.get_fg"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.get_fg">[docs]</a>    <span class="k">def</span> <span class="nf">get_fg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the on-sky position for this chord at a given time.</span>
 
 <span class="sd">        This Chord object must be associated to an Occultation to work, since</span>
@@ -346,7 +346,7 @@
 
         <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="p">(</span><span class="n">nf</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="mf">0.1</span><span class="p">,</span> <span class="p">(</span><span class="n">ng</span><span class="o">-</span><span class="n">g</span><span class="p">)</span><span class="o">/</span><span class="mf">0.1</span></div>
 
-<div class="viewcode-block" id="Chord.path"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.path">[docs]</a>    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.path"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.path">[docs]</a>    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the on-sky path of this chord.</span>
 
 <span class="sd">        This Chord object must be associated to an Occultation to work, since it</span>
@@ -465,7 +465,7 @@
 
         <span class="k">return</span> <span class="n">vals</span></div>
 
-<div class="viewcode-block" id="Chord.plot_chord"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.plot_chord">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.plot_chord"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.plot_chord">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">only_able</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Plots the on-sky path of this chord.</span>
 
 <span class="sd">        This Chord object must be associated to an Occultation to work, since</span>
@@ -554,7 +554,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">var</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">label</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Chord.get_impact_param"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.get_impact_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_impact_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Chord.get_impact_param"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.get_impact_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_impact_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the impact parameter, minimal distance between the chord and the</span>
 <span class="sd">        centre position.</span>
 
@@ -592,7 +592,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Impact parameter&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">impact</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sense</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">impact</span><span class="p">,</span> <span class="n">sense</span></div>
 
-<div class="viewcode-block" id="Chord.get_theoretical_times"><a class="viewcode-back" href="../../../sora.html#sora.occultation.Chord.get_theoretical_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_theoretical_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">position_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<div class="viewcode-block" id="Chord.get_theoretical_times"><a class="viewcode-back" href="../../../sora_occultation.html#sora.occultation.Chord.get_theoretical_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_theoretical_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equatorial_radius</span><span class="p">,</span> <span class="n">center_f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">oblateness</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">position_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                               <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the theoretical times and chord size for a given ellipse.</span>
 

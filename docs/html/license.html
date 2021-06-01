@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Using and Citing SORA &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>Using and Citing SORA &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -57,7 +57,7 @@
           
 
           
-            <a href="contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -124,7 +124,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -155,7 +155,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Using and Citing SORA</li>
     
@@ -209,29 +209,45 @@
 <h1>Using and Citing SORA<a class="headerlink" href="#using-and-citing-sora" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="terms-of-use">
 <h2>Terms of Use<a class="headerlink" href="#terms-of-use" title="Permalink to this headline">¶</a></h2>
-<p>From the collaboration Rio/Granada/Paris with objects that are up to discussion by
-the collaboration (TNOs, Centaurs, …). In this case, the SORA team may have the
-possibility to decide if any of its PIs should be co-author of the publication.
-The SORA team will commit to:</p>
-<ul class="simple">
-<li><p>Teach the functionalities of the SORA package in a hands-on session or individually;</p></li>
-<li><p>Run SORA if necessary;</p></li>
-<li><p>Fix any bug with urgency;</p></li>
-<li><p>Implement new requested features with high priority;</p></li>
-</ul>
-<p>Anyone outside the collaboration or by someone from the collaboration but with objects
-that are not up to discussion by the collaboration (e.g. Main-Belt Asteroids, NEAs).
-In this case, the SORA team will not demand the possibility to become a co-author.
-As a drawback, the SORA team will not consider urgent any bug reported (unless it is
-a critical bug) in these cases nor be available to teach. If the user wants more priority
-or attention by the team a discussion will be made in advance to discuss the addition of
-a specific co-author from the SORA team.</p>
-<p>If you use SORA (or part of SORA) in a scientific publication, we would appreciate that you
-add at your acknowledgement the following statement:</p>
+<p>SORA is free software and we kindly ask users that make use of it (or part of it), especially in
+projects, if that results in scientific publications, to include the following acknowledgment
+statement:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>“This research made use of SORA, a python package for stellar occultations reduction and
 analysis, developed with the support of ERC Lucky Star and LIneA/Brazil.”
 </pre></div>
 </div>
+<p>Also, for a scientific publication, please be attentive the following terms of use for
+co-authorship:</p>
+<ol class="arabic simple">
+<li><p>If you <em>participate in the collaboration Rio/Granada/Paris</em> and use SORA for the analysis of
+<em>objects within the collaboration</em> (e.g. TNOs, Centaurs, giant planets Trojans, among others),
+the SORA team may have the possibility to decide if any of its PIs should be co-author of the
+publication. In this case, the SORA team will commit to:</p>
+<ul class="simple">
+<li><p>Teach the functionalities of the SORA package in a hands-on session or individually;</p></li>
+<li><p>Run SORA, if necessary;</p></li>
+<li><p>Fix any bug - in SORA code - with urgency;</p></li>
+<li><p>Implement new requested features with high priority.</p></li>
+</ul>
+</li>
+<li><p>If you <em>participate in the collaboration Rio/Granada/Paris</em> and use SORA for the analysis of
+<em>objects outside the collaboration</em> (e.g. Main-Belt Asteroids, NEAs, among others), the SORA
+team will not demand the possibility to become a co-author, but it should be included in the
+acknowledgement sentence (see below) in the publication.</p></li>
+<li><p>If you are <em>NOT from the Rio/Granada/Paris collaboration</em> and use SORA for the analysis of <em>any
+object</em> the SORA team will not demand the possibility to become a co-author, but it should be
+included in the acknowledgement sentence (see below) in the publication.</p></li>
+</ol>
+<dl class="simple">
+<dt>As a drawback for itens 2 and 3, the SORA team will NOT commit to:</dt><dd><ul class="simple">
+<li><p>Teach the functionalities of the SORA package in a hands-on session or individually;</p></li>
+<li><p>Run SORA;</p></li>
+<li><p>Fix any bug - in SORA code - with urgency, unless it is a critical bug;</p></li>
+<li><p>Implement new requested features with high priority;</p></li>
+</ul>
+</dd>
+</dl>
+<p>In the event of granting priority or special attention to the user by the SORA team, further discussions will be made to address the addition of a specific co-author (or co-authors) from the team in the publication.</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>

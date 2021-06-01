@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sora.lightcurve.core &mdash; Stellar Occultation Reduction Analysis develop documentation</title>
+  <title>sora.lightcurve.core &mdash; Stellar Occultation Reduction Analysis 0.2 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../../contents.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
+            <a href="../../../index.html" class="icon icon-home"> Stellar Occultation Reduction Analysis
           
 
           
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.2.dev0
+                v0.2-alpha
               </div>
             
           
@@ -118,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">Stellar Occultation Reduction Analysis</a>
+          <a href="../../../index.html">Stellar Occultation Reduction Analysis</a>
         
       </nav>
 
@@ -149,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -183,7 +183,7 @@
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="LightCurve"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve">[docs]</a><span class="k">class</span> <span class="nc">LightCurve</span><span class="p">:</span>
+<div class="viewcode-block" id="LightCurve"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve">[docs]</a><span class="k">class</span> <span class="nc">LightCurve</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Defines a Light Curve.</span>
 
 <span class="sd">    Parameters</span>
@@ -472,7 +472,7 @@
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;&#39;LightCurve&#39; object has no attribute &#39;time&#39;&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LightCurve.set_flux"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_flux">[docs]</a>    <span class="k">def</span> <span class="nf">set_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.set_flux"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_flux">[docs]</a>    <span class="k">def</span> <span class="nf">set_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the flux for the LightCurve.</span>
 
 <span class="sd">        Parameters</span>
@@ -594,7 +594,7 @@
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Exposure time (</span><span class="si">{:0.4f}</span><span class="s1"> seconds) higher than Cycle time (</span><span class="si">{:0.4f}</span><span class="s1"> seconds)&#39;</span><span class="o">.</span>
                               <span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exptime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="LightCurve.set_exptime"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_exptime">[docs]</a>    <span class="k">def</span> <span class="nf">set_exptime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exptime</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.set_exptime"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_exptime">[docs]</a>    <span class="k">def</span> <span class="nf">set_exptime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exptime</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the light curve exposure time.</span>
 
 <span class="sd">        Parameters</span>
@@ -615,7 +615,7 @@
         <span class="k">except</span><span class="p">:</span>
             <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="LightCurve.set_vel"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_vel">[docs]</a>    <span class="k">def</span> <span class="nf">set_vel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.set_vel"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_vel">[docs]</a>    <span class="k">def</span> <span class="nf">set_vel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the occultation velocity.</span>
 
 <span class="sd">        Parameters</span>
@@ -626,7 +626,7 @@
         <span class="n">vel</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">vel</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LightCurve.set_dist"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_dist">[docs]</a>    <span class="k">def</span> <span class="nf">set_dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.set_dist"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_dist">[docs]</a>    <span class="k">def</span> <span class="nf">set_dist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the object distance.</span>
 
 <span class="sd">        Parameters</span>
@@ -639,7 +639,7 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;distance cannot be negative. Using absolute value.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LightCurve.set_star_diam"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_star_diam">[docs]</a>    <span class="k">def</span> <span class="nf">set_star_diam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_star</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.set_star_diam"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_star_diam">[docs]</a>    <span class="k">def</span> <span class="nf">set_star_diam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_star</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the star diameter.</span>
 
 <span class="sd">        Parameters</span>
@@ -652,7 +652,7 @@
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;star diameter cannot be negative. Using absolute value.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">d_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">d_star</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LightCurve.set_filter"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.set_filter">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">lambda_0</span><span class="o">=</span><span class="s1">&#39;central_bandpass&#39;</span><span class="p">,</span> <span class="n">delta_lambda</span><span class="o">=</span><span class="s1">&#39;delta_bandpass&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
+<div class="viewcode-block" id="LightCurve.set_filter"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.set_filter">[docs]</a>    <span class="nd">@deprecated_alias</span><span class="p">(</span><span class="n">lambda_0</span><span class="o">=</span><span class="s1">&#39;central_bandpass&#39;</span><span class="p">,</span> <span class="n">delta_lambda</span><span class="o">=</span><span class="s1">&#39;delta_bandpass&#39;</span><span class="p">)</span>  <span class="c1"># remove this line for v1.0</span>
     <span class="k">def</span> <span class="nf">set_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">central_bandpass</span><span class="p">,</span> <span class="n">delta_bandpass</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the filter bandwidth in microns.</span>
 
@@ -677,7 +677,7 @@
                              <span class="s2">&quot;Please give appropriate values&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">central_bandpass</span> <span class="o">+</span>
                                                                        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">delta_bandpass</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="LightCurve.calc_magnitude_drop"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.calc_magnitude_drop">[docs]</a>    <span class="k">def</span> <span class="nf">calc_magnitude_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag_star</span><span class="p">,</span> <span class="n">mag_obj</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.calc_magnitude_drop"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.calc_magnitude_drop">[docs]</a>    <span class="k">def</span> <span class="nf">calc_magnitude_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag_star</span><span class="p">,</span> <span class="n">mag_obj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines the magnitude drop of the occultation.</span>
 
 <span class="sd">        Parameters</span>
@@ -701,7 +701,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mag_drop</span> <span class="o">=</span> <span class="n">mag_drop</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bottom_flux</span> <span class="o">=</span> <span class="n">bottom_flux</span></div>
 
-<div class="viewcode-block" id="LightCurve.normalize"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly_deg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flux_min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">flux_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.normalize"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly_deg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flux_min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">flux_max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the fresnel scale.</span>
 
 <span class="sd">        Parameters</span>
@@ -780,7 +780,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">normalizer_flux</span> <span class="o">=</span> <span class="n">flux_poly_model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">normalizer_mask</span> <span class="o">=</span> <span class="n">mask</span></div>
 
-<div class="viewcode-block" id="LightCurve.reset_flux"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.reset_flux">[docs]</a>    <span class="k">def</span> <span class="nf">reset_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.reset_flux"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.reset_flux">[docs]</a>    <span class="k">def</span> <span class="nf">reset_flux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Resets flux for original values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
@@ -789,7 +789,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Reset is only possible when a LightCurve is instantiated with time and flux.&#39;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
-<div class="viewcode-block" id="LightCurve.occ_model"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.occ_model">[docs]</a>    <span class="k">def</span> <span class="nf">occ_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">immersion_time</span><span class="p">,</span> <span class="n">emersion_time</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">npt_star</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+<div class="viewcode-block" id="LightCurve.occ_model"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.occ_model">[docs]</a>    <span class="k">def</span> <span class="nf">occ_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">immersion_time</span><span class="p">,</span> <span class="n">emersion_time</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">npt_star</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
                   <span class="n">time_resolution_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">flux_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flux_max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the modelled light curve.</span>
 
@@ -880,7 +880,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">baseflux</span> <span class="o">=</span> <span class="n">flux_max</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bottomflux</span> <span class="o">=</span> <span class="n">flux_min</span></div>
 
-<div class="viewcode-block" id="LightCurve.occ_lcfit"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.occ_lcfit">[docs]</a>    <span class="k">def</span> <span class="nf">occ_lcfit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.occ_lcfit"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.occ_lcfit">[docs]</a>    <span class="k">def</span> <span class="nf">occ_lcfit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Monte Carlo chi square fit for occultations lightcurve.</span>
 
 <span class="sd">        Parameters</span>
@@ -1040,7 +1040,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">opacity</span>
         <span class="k">return</span> <span class="n">chisquare</span></div>
 
-<div class="viewcode-block" id="LightCurve.plot_lc"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.plot_lc">[docs]</a>    <span class="k">def</span> <span class="nf">plot_lc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.plot_lc"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.plot_lc">[docs]</a>    <span class="k">def</span> <span class="nf">plot_lc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Plots the light curve</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1057,7 +1057,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Flux&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LightCurve.plot_model"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.plot_model">[docs]</a>    <span class="k">def</span> <span class="nf">plot_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.plot_model"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.plot_model">[docs]</a>    <span class="k">def</span> <span class="nf">plot_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Plots the modelled light curve</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1073,7 +1073,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Flux&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LightCurve.to_log"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.to_log">[docs]</a>    <span class="k">def</span> <span class="nf">to_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.to_log"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.to_log">[docs]</a>    <span class="k">def</span> <span class="nf">to_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Saves the light curve log to a file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1087,7 +1087,7 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LightCurve.to_file"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="LightCurve.to_file"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Saves the light curve to a file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1122,7 +1122,7 @@
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Column </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
             <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="LightCurve.occ_detect"><a class="viewcode-back" href="../../../sora.html#sora.LightCurve.occ_detect">[docs]</a>    <span class="k">def</span> <span class="nf">occ_detect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maximum_duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dur_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">snr_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="LightCurve.occ_detect"><a class="viewcode-back" href="../../../sora_lightcurve.html#sora.LightCurve.occ_detect">[docs]</a>    <span class="k">def</span> <span class="nf">occ_detect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maximum_duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dur_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">snr_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">n_detections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Detects automatically the occultation event in the light curve.</span>
 

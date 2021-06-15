@@ -13,7 +13,7 @@
 Jupyter-Notebook Guidelines
 ===========================
 
-All the Jupyter-Notebooks can be downloaded :download:`here <examples.zip>`
+All the Jupyter-Notebooks can be downloaded :download:`here <SORA_guidelines.zip>`
 
 .. toctree::
    :maxdepth: 2

@@ -50,7 +50,9 @@ Installing SORA
 If you are new to Python or not familiar with Python virtual environments, we 
 recommend starting by installing the Anaconda Distribution.  This works on all 
 platforms (Linux, macOS, Windows) and installs a full-featured scientific Python 
-in a user directory without requiring root permissions.
+in a user directory without requiring root permissions. For a better experience 
+with SORA, we recommend the use of Jupyter. The creation of a dedicated Conda 
+environment for SORA is suggested to avoid requirement issues.
 
 The user can install SORA and most of its requirements using **pip**, only
 Cartopy should be installed by hand afterwards.

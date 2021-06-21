@@ -1,5 +1,5 @@
-sora.lightCurve
-----------
+sora.lightcurve
+---------------
 
 The LightCurve Class
 ====================

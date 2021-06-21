@@ -24,5 +24,5 @@ on how SORA can be used.
 .. toctree::
    :maxdepth: 2
 
-   example_maps
+   examples/prediction/maps
 

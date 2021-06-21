@@ -21,12 +21,12 @@ each module: **body**, **ephem**, **star**, **prediction**,
 .. toctree::
    :maxdepth: 2
 
-   sora_body
-   sora_ephem
-   sora_extra
-   sora_lightcurve
-   sora_observer
-   sora_occultation
-   sora_prediction
-   sora_star
+   modules/body
+   modules/ephem
+   modules/extra
+   modules/lightcurve
+   modules/observer
+   modules/occultation
+   modules/prediction
+   modules/star
 

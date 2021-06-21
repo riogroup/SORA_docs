@@ -30,10 +30,10 @@ Welcome to SORA's documentation!
    :maxdepth: 2
    :caption: Code:
     
-   sora
-   examples/Tutorial_SORAv0.2_GettingStarted
+   modules
+   GettingStarted
    examples
-   jupyters
+   guidelines
 
 Indices and tables
 ==================

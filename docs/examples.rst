@@ -25,4 +25,5 @@ on how SORA can be used.
    :maxdepth: 2
 
    examples/prediction/maps
+   examples/prediction/spacecraft
 

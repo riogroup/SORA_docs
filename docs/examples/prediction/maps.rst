@@ -17,7 +17,7 @@ Earth and path. For example.
    occs.plot_occ_map()
    ## Phoebe_2018-06-19T04:36:56.400.png generated
 
-.. image:: images/maps/map_0.png
+.. image:: ../../images/maps/map_0.png
   :width: 800
   :align: center
   :alt: Example Map
@@ -40,11 +40,11 @@ Earth and path. For example.
       occs.plot_occ_map(resolution=1)
       occs.plot_occ_map(resolution=3)
 
-.. image:: images/maps/map_1a.png
+.. image:: ../../images/maps/map_1a.png
   :width: 46%
   :align: left
   :alt: Example Map
-.. image:: images/maps/map_1b.png
+.. image:: ../../images/maps/map_1b.png
   :width: 46%
   :align: right
   :alt: Example Map
@@ -74,11 +74,11 @@ Earth and path. For example.
       occs.plot_occ_map(zoom=2)
       occs.plot_occ_map(zoom=0.5)
 
-.. image:: images/maps/map_2a.png
+.. image:: ../../images/maps/map_2a.png
   :width: 46%
   :align: left
   :alt: Example Map
-.. image:: images/maps/map_2b.png
+.. image:: ../../images/maps/map_2b.png
   :width: 46%
   :align: right
   :alt: Example Map
@@ -104,11 +104,11 @@ Earth and path. For example.
       occs.plot_occ_map(centermap_delta=[5000,-1000], zoom=2)
       # Displace the center of the map 5000 km East and 1000 km South
 
-.. image:: images/maps/map_3a.png
+.. image:: ../../images/maps/map_3a.png
   :width: 46%
   :align: left
   :alt: Example Map
-.. image:: images/maps/map_3b.png
+.. image:: ../../images/maps/map_3b.png
   :width: 46%
   :align: right
   :alt: Example Map
@@ -133,7 +133,7 @@ and with center displaced by 5000 km East and 1000 km South (right)
       occs.plot_occ_map(labels=False, meridian=10, parallels=10, zoom=2)
       # Displace the center of the map 5000 km East and 1000 km South
 
-.. image:: images/maps/map_4.png
+.. image:: ../../images/maps/map_4.png
   :width: 800
   :align: left
   :alt: Example Map
@@ -142,7 +142,7 @@ and with center displaced by 5000 km East and 1000 km South (right)
 latitude=-40º. 
 
 
-.. image:: images/maps/map_5.png
+.. image:: ../../images/maps/map_5.png
   :width: 800
   :align: right
   :alt: Example Map
@@ -175,14 +175,14 @@ each 10º.
       countries['Argentina'] = [-67.2088692, -35.1237852]
       occs.plot_occ_map(zoom=3, labels=False, countries=countries, states=False)
 
-.. image:: images/maps/map_6.png
+.. image:: ../../images/maps/map_6.png
   :width: 800
   :align: center
   :alt: Example Map
 
 **Figure 7:** Map with the location of sites.
 
-.. image:: images/maps/map_7.png
+.. image:: ../../images/maps/map_7.png
   :width: 800
   :align: center
   :alt: Example Map
@@ -202,14 +202,14 @@ each 10º.
       occs.plot_occ_map(zoom=3, mapstyle=2)
       # Plots a colored map, without offset
 
-.. image:: images/maps/map_8.png
+.. image:: ../../images/maps/map_8.png
   :width: 800
   :align: center
   :alt: Example Map
 
 **Figure 9:** Map with an offset applied.
 
-.. image:: images/maps/map_9.png
+.. image:: ../../images/maps/map_9.png
   :width: 800
   :align: center
   :alt: Example Map
@@ -241,14 +241,14 @@ each 10º.
       occs.plot_occ_map(heights=[30])
       # Shows where the observer will see the occultation with a 30deg height above the horizons.
 
-.. image:: images/maps/map_10.png
+.. image:: ../../images/maps/map_10.png
   :width: 800
   :align: center
   :alt: Example Map
 
 **Figure 11:** Map showing the error bar.
 
-.. image:: images/maps/map_11.png
+.. image:: ../../images/maps/map_11.png
   :width: 800
   :align: center
   :alt: Example Map

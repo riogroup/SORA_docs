@@ -22,6 +22,6 @@ All the Jupyter-Notebooks can be downloaded :download:`here <SORA_guidelines.zip
    guidelines/star
    guidelines/prediction
    guidelines/observer
-   guidelines/lightCurve
+   guidelines/lightcurve
    guidelines/occultation
    guidelines/chisquare
